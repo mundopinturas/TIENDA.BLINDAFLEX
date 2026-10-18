@@ -44,7 +44,7 @@
 
     <style>
         /* =========================================================
-           VARIABLES Y RESET (NUEVO DISEÑO)
+           VARIABLES Y RESET
            ========================================================= */
         :root {
             --c-turquesa: #00AFC6;
@@ -86,7 +86,6 @@
         .section-gap { margin-bottom: var(--gap-mob); }
         .text-center { text-align: center; }
 
-        /* Tarjetas Base */
         .card {
             background: var(--c-blanco); border-radius: var(--radius-lg);
             padding: var(--pad-box); box-shadow: var(--shadow-sm);
@@ -103,8 +102,9 @@
         }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .menu-btn { background: none; border: none; fill: var(--c-blanco); padding: 8px; cursor: pointer; }
-        .logo { font-weight: 900; font-size: 22px; letter-spacing: 1px; color: var(--c-turquesa); }
-        .logo span { color: var(--c-blanco); }
+        
+        .logo { display: flex; align-items: center; height: 100%; padding: 12px 0; }
+        .logo img { max-height: 100%; width: auto; object-fit: contain; }
         
         .cart-btn { position: relative; background: none; border: none; fill: var(--c-blanco); padding: 8px; cursor: pointer; transition: transform 0.2s;}
         .cart-btn:hover { transform: scale(1.05); }
@@ -125,11 +125,11 @@
         .hero-header h2 { font-size: 15px; font-weight: 500; color: var(--c-texto-light); }
         
         .video-wrapper {
-            position: relative; width: 100%; height: 45vh; min-height: 320px; max-height: 450px;
+            position: relative; width: 100%; height: 65vh; min-height: 400px; max-height: 550px;
             border-radius: var(--radius-lg); overflow: hidden; background-color: #000;
             box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul);
         }
-        .video-wrapper iframe { width: 100%; height: 100%; object-fit: cover; pointer-events: none; transform: scale(1.2); }
+        .video-wrapper iframe { width: 100%; height: 100%; object-fit: cover; pointer-events: none; border: none; }
         .mute-toggle {
             position: absolute; bottom: 16px; right: 16px; background: rgba(7, 26, 36, 0.85);
             border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 44px; height: 44px;
@@ -138,7 +138,6 @@
         }
         .mute-toggle svg { width: 22px; height: 22px; fill: var(--c-blanco); }
 
-        /* Botones */
         .btn-primary {
             display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%;
             background: linear-gradient(180deg, var(--c-naranja) 0%, var(--c-naranja-dark) 100%);
@@ -149,11 +148,9 @@
         .btn-primary:active { transform: translateY(2px); box-shadow: 0 4px 12px rgba(246, 90, 3, 0.15); }
 
         /* =========================================================
-           BENEFICIOS COMPACTOS (Mejorados)
+           BENEFICIOS COMPACTOS
            ========================================================= */
-        .benefits-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-        }
+        .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .benefit-card {
             background: var(--c-blanco); padding: 16px 12px; border-radius: var(--radius-md);
             display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
@@ -164,7 +161,7 @@
         .benefit-card span { font-size: 13px; font-weight: 800; color: var(--c-azul); line-height: 1.2; }
 
         /* =========================================================
-           CARRUSEL REGALOS (TAMAÑO AUMENTADO)
+           CARRUSEL REGALOS
            ========================================================= */
         .promo-title { font-size: 22px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 4px;}
         .promo-subtitle { font-size: 14px; color: var(--c-texto-light); text-align: center; margin-bottom: 20px; }
@@ -178,28 +175,29 @@
         .carousel-track::-webkit-scrollbar { display: none; }
         .carousel-slide {
             min-width: 100%; scroll-snap-align: center; position: relative;
-            /* Altura incrementada para mayor protagonismo */
             height: 500px; display: flex; flex-direction: column; padding: 0;
+            overflow: hidden;
         }
-        .carousel-img-placeholder {
-            width: 100%; flex: 1; background: var(--c-gris-claro);
-            display: flex; justify-content: center; align-items: center;
-            color: var(--c-texto-light); font-size: 14px; font-weight: 600; text-align: center;
-            /* Aquí irá la imagen con object-fit: cover o contain según tu pieza */
-            border-bottom: 1px solid var(--c-gris-border);
+        .carousel-img-wrapper {
+            width: 100%; flex: 1; display: flex; justify-content: center; align-items: center;
+            background: var(--c-blanco); overflow: hidden; border-bottom: 1px solid var(--c-gris-border);
+        }
+        .carousel-img-wrapper img {
+            width: 100%; height: 100%; object-fit: contain; 
+            -webkit-user-drag: none; user-select: none; pointer-events: none;
         }
         .slide-info { padding: 16px 20px; background: var(--c-blanco); text-align: center; }
         .slide-text { font-weight: 900; color: var(--c-azul); font-size: 16px; margin-bottom: 4px;}
 
         .carousel-nav {
             position: absolute; top: 40%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.9); border: 1px solid var(--c-gris-border);
+            background: var(--c-azul); border: 2px solid var(--c-blanco);
             width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            cursor: pointer; box-shadow: var(--shadow-md); z-index: 10; backdrop-filter: blur(4px);
+            cursor: pointer; box-shadow: var(--shadow-md); z-index: 10;
         }
         .nav-prev { left: 12px; display: none; }
         .nav-next { right: 12px; }
-        .carousel-nav svg { width: 20px; height: 20px; fill: var(--c-azul); }
+        .carousel-nav svg { width: 20px; height: 20px; fill: var(--c-blanco); }
         .carousel-indicator {
             text-align: center; font-size: 13px; color: var(--c-blanco); margin-top: 12px;
             font-weight: 700; background: var(--c-azul); padding: 4px 12px; border-radius: 20px;
@@ -207,7 +205,7 @@
         }
 
         /* =========================================================
-           BLOQUE REGALOS (REDISEÑADO)
+           BLOQUE REGALOS
            ========================================================= */
         .gifts-block { background: var(--c-azul-grad); padding: var(--pad-box); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: var(--shadow-md);}
         .gifts-block::before { content: ''; position: absolute; top:-50%; right:-50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(0,175,198,0.2) 0%, transparent 70%); }
@@ -222,7 +220,7 @@
         .promo-note { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 16px; text-align: center; font-weight: 500;}
 
         /* =========================================================
-           SELECTOR DE COMPRA (PRECIO UNITARIO PROTAGONISTA)
+           SELECTOR DE COMPRA
            ========================================================= */
         .buy-section { background: var(--c-blanco); border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech);}
         .buy-title { font-size: 24px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 20px; line-height: 1.1;}
@@ -248,7 +246,6 @@
         .qty-card:hover { border-color: #cbd5e1; }
         .qty-card.active { border-color: var(--c-naranja); box-shadow: var(--shadow-glow); transform: translateY(-2px); background: #fffcfaf0;}
         
-        /* Layout interno de la tarjeta de compra */
         .qty-info { flex: 1; }
         .qty-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); line-height: 1.1; margin-bottom: 4px;}
         .badge-discount { background: var(--c-naranja); color: var(--c-blanco); font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 6px; }
@@ -273,14 +270,13 @@
         .summary-gifts { background: var(--c-turquesa-light); color: var(--c-turquesa-dark); font-weight: 800; font-size: 12px; padding: 8px 12px; border-radius: var(--radius-sm); text-align: center; margin-top: 12px;}
 
         /* =========================================================
-           ENVÍOS, PAGOS, INFO Y FAQ (REDISEÑO)
+           ENVÍOS, PAGOS, INFO Y FAQ
            ========================================================= */
         .block-header { text-align: center; margin-bottom: 20px; }
         .block-header svg { width: 40px; height: 40px; fill: var(--c-turquesa); margin-bottom: 8px; }
         .block-header h3 { font-size: 20px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;}
         .block-header p { font-size: 14px; color: var(--c-texto-light); font-weight: 500; margin-top: 4px;}
 
-        /* Envíos */
         .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
         .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; }
         .shipping-icon { width: 32px; height: 32px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
@@ -288,7 +284,6 @@
         .shipping-info h4 { font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
         .shipping-info p { font-size: 13px; color: var(--c-texto-light); }
         
-        /* Pagos (Nuevo) */
         .pay-methods { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
         .pay-tag { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 8px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; color: var(--c-texto); display: flex; align-items: center; gap: 6px; }
         .pay-tag svg { width: 16px; height: 16px; fill: var(--c-azul); }
@@ -305,13 +300,11 @@
         }
         .btn-outline:active { background: var(--c-turquesa-light); }
 
-        /* Tecnología */
         .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
         .tech-item { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 12px; border-radius: var(--radius-md); text-align: center; }
         .tech-item svg { width: 24px; height: 24px; fill: var(--c-turquesa); margin-bottom: 8px; }
         .tech-item p { font-size: 12px; font-weight: 700; color: var(--c-azul); line-height: 1.2;}
 
-        /* FAQ */
         .faq-item { border-bottom: 1px solid var(--c-gris-border); }
         .faq-item:last-child { border: none; }
         .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 16px 0; font-weight: 800; font-size: 14px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
@@ -321,7 +314,7 @@
         .faq-answer p { padding-bottom: 16px; }
 
         /* =========================================================
-           FOOTER (NUEVO)
+           FOOTER
            ========================================================= */
         footer { background: var(--c-azul); color: var(--c-blanco); padding: 40px 16px 24px; margin-top: 40px; border-top: 4px solid var(--c-turquesa); }
         .footer-logo { font-size: 24px; font-weight: 900; color: var(--c-turquesa); margin-bottom: 8px; letter-spacing: 1px;}
@@ -361,7 +354,7 @@
         .cart-total { display: flex; justify-content: space-between; font-size: 20px; font-weight: 900; color: var(--c-azul); margin-bottom: 16px; }
 
         /* =========================================================
-           CHECKOUT VIEW (FORMULARIO WHATSAPP)
+           CHECKOUT VIEW
            ========================================================= */
         #checkout-view { display: none; padding: 24px 0; min-height: 100vh;}
         .checkout-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
@@ -401,7 +394,7 @@
             .hero-header { text-align: left; }
             .hero-header h1 { font-size: 40px; margin-bottom: 16px;}
             .hero-header h2 { font-size: 18px; }
-            .video-wrapper { flex: 1.2; height: 450px; }
+            .video-wrapper { flex: 1.2; height: 500px; }
             .hero-text-block { flex: 1; }
             
             .benefits-grid { grid-template-columns: repeat(4, 1fr); margin-top: 24px; margin-bottom: 32px;}
@@ -425,9 +418,8 @@
                 <svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </button>
             
-            <!-- Logo link actualizado a la tienda -->
-            <a href="https://tienda.blindaflex.com" class="logo">
-                BLINDA<span>FLEX</span>
+            <a href="tienda-index.html" class="logo">
+                <img src="assets/images/logo.png" alt="BLINDAFLEX">
             </a>
             
             <span class="sr-only">Especialistas en pinturas impermeabilizantes y protección de superficies</span>
@@ -454,8 +446,8 @@
             <!-- SECCIÓN HERO -->
             <section class="section-gap hero-section">
                 <div class="video-wrapper">
-                    <!-- ID del video en el src de YT -->
-                    <iframe id="yt-video" src="https://www.youtube.com/embed/obzZo5q5VnI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=ScMzIvxBSi4&controls=0&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Demostración Blindaje para Techos"></iframe>
+                    <!-- Video correcto y optimizado -->
+                    <iframe id="yt-video" src="https://www.youtube.com/embed/obzZo5q5VnI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=obzZo5q5VnI&controls=0&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Demostración Blindaje para Techos"></iframe>
                     <button class="mute-toggle" id="mute-btn" onclick="videoControl()" aria-label="Activar sonido">
                         <svg id="icon-unmute" viewBox="0 0 24 24" style="display:none;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                         <svg id="icon-mute" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
@@ -467,7 +459,6 @@
                         <h2>Impermeabilizante elastomérico con tecnología hidrorrepelente.</h2>
                     </div>
                     
-                    <!-- BENEFICIOS AHORA ESTÁN AQUÍ DEBAJO DEL TEXTO/AL LADO DEL VIDEO -->
                     <div class="benefits-grid">
                         <div class="benefit-card">
                             <svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg>
@@ -487,15 +478,14 @@
                         </div>
                     </div>
 
-                    <!-- BOTÓN VER PROMOCIONES DEBAJO DE LOS BENEFICIOS -->
                     <button class="btn-primary" onclick="document.getElementById('compra').scrollIntoView({behavior: 'smooth'})">VER PROMOCIONES</button>
                 </div>
             </section>
 
             <div class="grid-desktop">
-                <!-- COLUMNA IZQUIERDA (Promociones Visuales) -->
+                <!-- COLUMNA IZQUIERDA -->
                 <div>
-                    <!-- CARRUSEL DE KIT (AMPLIADO) -->
+                    <!-- CARRUSEL DE KIT -->
                     <section class="section-gap">
                         <h2 class="promo-title">KIT PREMIUM INCLUIDO</h2>
                         <p class="promo-subtitle">Herramientas profesionales para una aplicación perfecta.</p>
@@ -510,19 +500,25 @@
                             
                             <div class="carousel-track" id="gift-carousel" onscroll="updateCarouselIndicator()">
                                 <div class="carousel-slide">
-                                   <img src="assets/images/kit-completo.png" alt="Kit premium Blindaflex" style="width:100%; height:100%; object-fit:contain;">
+                                    <div class="carousel-img-wrapper">
+                                        <img src="assets/images/kit-completo.png" alt="Kit Profesional Completo">
+                                    </div>
                                     <div class="slide-info">
                                         <div class="slide-text">Kit Profesional Completo</div>
                                     </div>
                                 </div>
                                 <div class="carousel-slide">
-                                    <img src="assets/images/kit-sellador.png" alt="Sellador y pistola Blindaflex" style="width:100%; height:100%; object-fit:contain;">
+                                    <div class="carousel-img-wrapper">
+                                        <img src="assets/images/kit-sellador.png" alt="Sellador Poliuretánico y Pistola">
+                                    </div>
                                     <div class="slide-info">
                                         <div class="slide-text">Sellador Poliuretánico + Pistola</div>
                                     </div>
                                 </div>
                                 <div class="carousel-slide">
-                                   <img src="assets/images/kit-rodillo.png" alt="Rodillo y pincel Blindaflex" style="width:100%; height:100%; object-fit:contain;">
+                                    <div class="carousel-img-wrapper">
+                                        <img src="assets/images/kit-rodillo.png" alt="Rodillo de Lana Natural y Pincel">
+                                    </div>
                                     <div class="slide-info">
                                         <div class="slide-text">Rodillo de Lana Natural + Pincel</div>
                                     </div>
@@ -534,7 +530,7 @@
                         </div>
                     </section>
 
-                    <!-- REGALOS CON TU COMPRA (NUEVO DISEÑO) -->
+                    <!-- REGALOS CON TU COMPRA -->
                     <section class="section-gap gifts-block">
                         <h3 class="gifts-title">REGALOS CON TU COMPRA</h3>
                         <div class="gifts-grid">
@@ -561,12 +557,11 @@
                     </section>
                 </div>
 
-                <!-- COLUMNA DERECHA (Selector de Compra) -->
+                <!-- COLUMNA DERECHA -->
                 <div>
                     <section id="compra" class="section-gap card buy-section">
                         <h2 class="buy-title">COMPRÁ MÁS, AHORRÁ MÁS</h2>
                         
-                        <!-- Color Selector -->
                         <div class="color-selector">
                             <input type="radio" name="color" id="color-blanco" value="Blanco" class="color-input" checked onchange="updateSelectionUI()">
                             <label for="color-blanco" class="color-label">BLANCO</label>
@@ -575,10 +570,8 @@
                             <label for="color-gris" class="color-label">GRIS</label>
                         </div>
 
-                        <!-- Grilla generada por JS -->
                         <div class="qty-grid" id="qty-container"></div>
 
-                        <!-- Resumen Mejorado -->
                         <div class="summary-box">
                             <div class="summary-row"><span>Precio Unitario Original:</span> <span>$148.000</span></div>
                             <div class="summary-row"><span>Descuento aplicado:</span> <span id="summ-desc">0%</span></div>
@@ -598,7 +591,6 @@
             <div class="grid-desktop">
                 <!-- COLUMNA IZQUIERDA INFO -->
                 <div>
-                    <!-- ENVÍOS REDISEÑADO -->
                     <section class="section-gap card">
                         <div class="block-header">
                             <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3v13h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM8 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm10 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm.5-6H17V9.5h1.96l1.54 2.5z"/></svg>
@@ -629,7 +621,6 @@
                         </a>
                     </section>
 
-                    <!-- PAGOS (NUEVO BLOQUE) -->
                     <section class="section-gap card">
                         <div class="block-header" style="margin-bottom:12px;">
                             <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
@@ -643,14 +634,12 @@
                             <div class="pay-tag"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg> Tarjetas (Débito/Crédito)</div>
                         </div>
 
-                        <!-- Renderizado por JS para promos bancarias -->
                         <div id="promo-container"></div>
                     </section>
                 </div>
 
                 <!-- COLUMNA DERECHA INFO -->
                 <div>
-                    <!-- TECNOLOGÍA REDISEÑADO -->
                     <section class="section-gap card">
                         <div class="block-header">
                             <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -667,7 +656,6 @@
                         <a href="https://blindaflex.com" class="btn-outline" target="_blank">CONOCÉ LA TECNOLOGÍA BLINDAFLEX</a>
                     </section>
 
-                    <!-- PREGUNTAS FRECUENTES MEJORADO -->
                     <section class="section-gap card">
                         <div class="block-header" style="margin-bottom:12px;">
                             <svg viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
@@ -702,7 +690,6 @@
             <button class="close-cart" onclick="toggleCart()" aria-label="Cerrar">&times;</button>
         </div>
         <div class="cart-body" id="cart-body">
-            <!-- Items JS -->
             <div class="cart-empty" id="cart-empty">Tu carrito está vacío.</div>
         </div>
         <div class="cart-footer">
@@ -769,22 +756,22 @@
                 
                 <div class="form-card" style="background: var(--c-azul-grad); color: var(--c-blanco); border:none;">
                     <h3 style="color: var(--c-turquesa); border-color: rgba(255,255,255,0.1);">Resumen Final</h3>
-                    <div id="checkout-summary">
-                        <!-- JS inserta el resumen -->
-                    </div>
+                    <div id="checkout-summary"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ================== FOOTER (NUEVO) ================== -->
+    <!-- ================== FOOTER ================== -->
     <footer>
         <div class="container grid-desktop" style="gap:24px;">
             <div>
-                <div class="footer-logo">BLINDA<span>FLEX</span></div>
+                <a href="tienda-index.html" class="logo" style="padding:0; margin-bottom: 12px; display:inline-block;">
+                    <img src="assets/images/logo.png" alt="BLINDAFLEX" style="max-height: 28px;">
+                </a>
                 <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies de alta tecnología.</p>
                 <div class="footer-nav">
-                    <a href="https://tienda.blindaflex.com">Inicio Tienda</a>
+                    <a href="tienda-index.html">Inicio Tienda</a>
                     <a href="https://blindaflex.com">Tecnología Blindaflex</a>
                 </div>
             </div>
@@ -805,7 +792,6 @@
 
     <!-- ================== SCRIPTS ================== -->
     <script>
-        // --- 1. LÓGICA DE PRECIOS Y DATOS (INTACTA) ---
         const PRECIO_BASE = 148000;
         let selectedQty = 1;
         
@@ -834,7 +820,6 @@
 
         const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
 
-        // --- 2. RENDERIZADO DEL SELECTOR (MEJORADO VISUALMENTE) ---
         function renderQtySelector() {
             const container = document.getElementById('qty-container');
             container.innerHTML = '';
@@ -843,7 +828,7 @@
                 const pd = getPriceData(t.qty);
                 const isActive = selectedQty === t.qty ? 'active' : '';
                 const saveTag = t.discount > 0 ? `<div class="badge-discount">${t.discount * 100}% OFF</div>` : '';
-                const unitFinal = pd.final / t.qty; // PRECIO POR UNIDAD
+                const unitFinal = pd.final / t.qty; 
                 
                 const html = `
                     <div class="qty-card ${isActive}" onclick="selectQty(${t.qty})">
@@ -860,7 +845,6 @@
                 container.innerHTML += html;
             });
 
-            // Opción 5 o más
             const isCustomActive = selectedQty >= 5 ? 'active' : '';
             let customQtyVal = selectedQty >= 5 ? selectedQty : 5;
             const customPd = getPriceData(customQtyVal);
@@ -908,9 +892,8 @@
             document.getElementById('summ-gifts').innerText = "INCLUYE: " + pd.gifts.toUpperCase();
         }
 
-        // --- 3. CONFIGURACIÓN EDITABLE DE PROMOCIONES BANCARIAS ---
         const promoConfig = {
-            activa: false, // Cambiar a true para mostrar la promoción
+            activa: false,
             titulo: "3 CUOTAS SIN INTERÉS",
             descripcion: "Con tarjetas de crédito bancarias Visa y Mastercard.",
             vigencia: "Válido hasta el 31 de este mes."
@@ -936,7 +919,6 @@
             }
         }
 
-        // --- 4. CARRITO DE COMPRAS (INTACTO) ---
         let cart = JSON.parse(localStorage.getItem('blindaflex_cart')) || [];
 
         function saveCart() {
@@ -1022,7 +1004,6 @@
             document.getElementById('cart-drawer').classList.toggle('open');
         }
 
-        // --- 5. CHECKOUT VIEW ---
         function goToCheckout() {
             toggleCart();
             document.getElementById('main-store').style.display = 'none';
@@ -1050,7 +1031,6 @@
             window.scrollTo(0,0);
         }
 
-        // --- 6. ENVIAR A WHATSAPP (INTACTO) ---
         function submitWhatsApp(e) {
             e.preventDefault();
             const nombre = document.getElementById('f-nombre').value;
@@ -1081,7 +1061,6 @@
             window.open(`https://wa.me/5493516318301?text=${msg}`, '_blank');
         }
 
-        // --- 7. UTILIDADES UI ---
         const track = document.getElementById('gift-carousel');
         function moveCarousel(direction) {
             const slideWidth = track.clientWidth;
@@ -1125,7 +1104,7 @@
             updateSelectionUI();
             updateCartCounter();
             renderDrawer();
-            renderPromoBlock(); // Inicializa promociones
+            renderPromoBlock();
         };
     </script>
 </body>
