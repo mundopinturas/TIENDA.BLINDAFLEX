@@ -121,7 +121,6 @@
 
         .hero-section { margin-top: 16px; display: flex; flex-direction: column; }
         
-        /* Video idéntico a instrucción */
         .video-wrapper {
             position: relative; width: 100%; height: 65vh; min-height: 400px; max-height: 550px;
             border-radius: var(--radius-lg); overflow: hidden; background-color: #000;
@@ -136,13 +135,12 @@
         }
         .mute-toggle svg { width: 22px; height: 22px; fill: var(--c-blanco); }
 
-        /* Ajuste de título según reglas (margen y reducción de 8-10%) */
         .hero-header { text-align: center; margin-top: 24px; margin-bottom: 20px; }
         .hero-header h1 { font-size: 24px; font-weight: 900; color: var(--c-azul); line-height: 1.15; margin-bottom: 8px; text-transform: uppercase;}
         .hero-header h2 { font-size: 14px; font-weight: 500; color: var(--c-texto-light); }
 
         /* =========================================================
-           BENEFICIOS COMPACTOS (Altura reducida, ritmo ajustado)
+           BENEFICIOS COMPACTOS
            ========================================================= */
         .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .benefit-card {
@@ -154,6 +152,7 @@
         .benefit-card svg { width: 28px; height: 28px; fill: var(--c-azul); }
         .benefit-card span { font-size: 12px; font-weight: 800; color: var(--c-azul); line-height: 1.2; }
 
+        /* Botones Base */
         .btn-primary {
             display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%;
             background: linear-gradient(180deg, var(--c-naranja) 0%, var(--c-naranja-dark) 100%);
@@ -164,57 +163,71 @@
         }
         .btn-primary:active { transform: translateY(2px); box-shadow: 0 4px 12px rgba(246, 90, 3, 0.15); }
         
-        .btn-promo-hero { margin-top: 20px; }
+        /* Botón de Promociones Específico (Optimizado) */
+        button.btn-promo-hero {
+            background: var(--c-azul);
+            color: var(--c-blanco);
+            border-bottom: 2px solid var(--c-turquesa);
+            box-shadow: 0 4px 12px rgba(7, 26, 36, 0.15);
+            padding: 14px 20px;
+            margin-top: 20px;
+            margin-bottom: 32px;
+        }
+        button.btn-promo-hero:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(7, 26, 36, 0.1);
+        }
 
         /* =========================================================
-           CARRUSEL REGALOS (Fotos protagonistas, sin texto base)
+           CARRUSEL REGALOS (Optimizado: Sin marcos, 100% integradas)
            ========================================================= */
-        .promo-kit-section { margin-top: 32px; }
-        .promo-title { font-size: 22px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 4px;}
-        .promo-subtitle { font-size: 14px; color: var(--c-texto-light); text-align: center; margin-bottom: 20px; }
+        .promo-kit-section { margin-top: 0; } /* Margen manejado por el botón btn-promo-hero */
+        .promo-title { font-size: 20px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 8px;}
+        .promo-subtitle { font-size: 14px; color: var(--c-texto-light); text-align: center; margin-bottom: 24px; }
         
         .carousel-wrapper {
-            position: relative; width: 100%; border-radius: var(--radius-lg);
-            overflow: hidden; background: var(--c-blanco);
-            box-shadow: var(--shadow-md); border: 1px solid var(--c-gris-border);
+            position: relative; width: 100%; border-radius: 14px;
+            overflow: hidden; background: transparent;
+            box-shadow: 0 4px 12px rgba(7, 26, 36, 0.08);
+            border: none;
         }
         .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .carousel-track::-webkit-scrollbar { display: none; }
         
-        /* Ajuste slide para evitar scroll vertical interno y potenciar imagen */
         .carousel-slide {
             min-width: 100%; scroll-snap-align: center; position: relative;
-            aspect-ratio: 4/5; max-height: 480px; display: flex; flex-direction: column;
-            overflow: hidden; background: var(--c-blanco);
+            height: auto; display: block; overflow: hidden;
+            background: transparent; padding: 0; border: none;
         }
         .carousel-img-wrapper {
-            width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;
-            padding: 4px; overflow: hidden;
+            width: 100%; height: auto; display: block;
+            padding: 0; overflow: hidden; border: none; background: transparent;
         }
-        /* Incremento visual suave sin desbordar ni deformar */
         .carousel-img-wrapper img {
-            width: 100%; height: 100%; object-fit: contain; 
-            transform: scale(1.08); /* Agranda la imagen un ~8% */
+            width: 100%; height: auto; display: block; 
+            object-fit: contain; 
             -webkit-user-drag: none; user-select: none; pointer-events: none;
         }
 
+        /* Flechas rediseñadas (Azul y Naranja) */
         .carousel-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: var(--c-azul); border: 2px solid var(--c-blanco);
-            width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            cursor: pointer; box-shadow: var(--shadow-md); z-index: 10;
+            background: var(--c-azul); border: 1.5px solid var(--c-naranja);
+            width: 46px; height: 46px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.15); z-index: 10;
         }
         .nav-prev { left: 12px; display: none; }
         .nav-next { right: 12px; }
-        .carousel-nav svg { width: 20px; height: 20px; fill: var(--c-blanco); }
+        .carousel-nav svg { width: 22px; height: 22px; fill: var(--c-blanco); }
+        
         .carousel-indicator {
-            text-align: center; font-size: 13px; color: var(--c-blanco); margin-top: 12px;
+            text-align: center; font-size: 13px; color: var(--c-blanco); margin-top: 16px;
             font-weight: 700; background: var(--c-azul); padding: 4px 12px; border-radius: 20px;
             display: inline-block; left: 50%; position: relative; transform: translateX(-50%);
         }
 
         /* =========================================================
-           BLOQUE REGALOS (Ícono sellador actualizado)
+           BLOQUE REGALOS
            ========================================================= */
         .gifts-block { background: var(--c-azul-grad); padding: var(--pad-box); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: var(--shadow-md);}
         .gifts-block::before { content: ''; position: absolute; top:-50%; right:-50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(0,175,198,0.2) 0%, transparent 70%); }
@@ -229,7 +242,7 @@
         .promo-note { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 16px; text-align: center; font-weight: 500;}
 
         /* =========================================================
-           SELECTOR DE COMPRA (Intacto según instrucción)
+           SELECTOR DE COMPRA
            ========================================================= */
         .buy-section { background: var(--c-blanco); border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech);}
         .buy-title { font-size: 24px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 20px; line-height: 1.1;}
@@ -279,7 +292,7 @@
         .summary-gifts { background: var(--c-turquesa-light); color: var(--c-turquesa-dark); font-weight: 800; font-size: 12px; padding: 8px 12px; border-radius: var(--radius-sm); text-align: center; margin-top: 12px;}
 
         /* =========================================================
-           ENVÍOS (Destacar Envío Gratis)
+           ENVÍOS
            ========================================================= */
         .block-header { text-align: center; margin-bottom: 20px; }
         .block-header svg { width: 40px; height: 40px; fill: var(--c-turquesa); margin-bottom: 8px; }
@@ -289,12 +302,10 @@
         .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
         .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; }
         
-        /* Envío Gratis destacado sutilmente en turquesa */
         .shipping-card.free-shipping { background: #eefafc; border-color: var(--c-turquesa); border-left: 4px solid var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon { background: var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon svg { fill: var(--c-blanco); }
         
-        /* Zonas extendidas mantiene su distinción naranja */
         .shipping-card.extended { border-left: 4px solid var(--c-naranja); }
         
         .shipping-icon { width: 32px; height: 32px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
@@ -311,7 +322,7 @@
         .btn-outline:active { background: var(--c-turquesa-light); }
 
         /* =========================================================
-           FORMAS DE PAGO (Rediseño visual importante a Dark)
+           FORMAS DE PAGO
            ========================================================= */
         .pay-section-dark {
             background: linear-gradient(135deg, #071A24 0%, #0a2736 100%);
@@ -332,7 +343,6 @@
         }
         .pay-tag-dark svg { width: 16px; height: 16px; fill: var(--c-turquesa); }
 
-        /* Promos integradas al bloque oscuro */
         .promo-card-dark { 
             background: rgba(0, 175, 198, 0.08); 
             border: 1px solid rgba(0, 175, 198, 0.3); 
@@ -350,7 +360,7 @@
         }
 
         /* =========================================================
-           TECNOLOGÍA Y APLICACIÓN (Tarjetas mejoradas)
+           TECNOLOGÍA Y APLICACIÓN
            ========================================================= */
         .tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
         .tech-item-modern { 
@@ -367,7 +377,7 @@
         .tech-item-modern p { font-size: 12px; font-weight: 800; color: var(--c-texto); line-height: 1.3;}
 
         /* =========================================================
-           PREGUNTAS FRECUENTES (Refinadas)
+           PREGUNTAS FRECUENTES
            ========================================================= */
         .faq-item { border-bottom: 1px solid var(--c-gris-border); transition: background-color 0.3s; }
         .faq-item:last-child { border: none; }
@@ -463,13 +473,16 @@
             .hero-text-block { flex: 1; display: flex; flex-direction: column; justify-content: center; }
             
             .benefits-grid { grid-template-columns: repeat(2, 1fr); margin-top: 24px; margin-bottom: 0;}
-            .btn-promo-hero { margin-top: 32px; }
-            .btn-primary { width: auto; display: inline-flex; padding: 18px 40px;}
             
-            .promo-kit-section { margin-top: 48px; }
+            button.btn-promo-hero { 
+                width: auto; 
+                display: inline-flex; 
+                padding: 14px 40px; 
+                margin-top: 24px; 
+                margin-bottom: 40px;
+            }
             
             .grid-desktop { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;}
-            .carousel-slide { max-height: 520px; }
             .carousel-nav { width: 56px; height: 56px; }
             
             .buy-title { font-size: 28px; }
@@ -513,7 +526,7 @@
             
             <!-- SECCIÓN HERO -->
             <section class="section-gap hero-section">
-                <!-- Video sin alteraciones (ID y config conservados) -->
+                <!-- Video Intacto -->
                 <div class="video-wrapper">
                     <iframe id="yt-video" src="https://www.youtube.com/embed/obzZo5q5VnI?enablejsapi=1&autoplay=1&mute=1&loop=1&playlist=obzZo5q5VnI&controls=0&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Demostración Blindaje para Techos"></iframe>
                     <button class="mute-toggle" id="mute-btn" onclick="videoControl()" aria-label="Activar sonido">
@@ -523,13 +536,11 @@
                 </div>
                 
                 <div class="hero-text-block">
-                    <!-- Título con separación ajustada y tamaño balanceado -->
                     <div class="hero-header">
                         <h1>EL AGUA RESBALA.<br>TU TECHO QUEDA PROTEGIDO.</h1>
                         <h2>Impermeabilizante elastomérico con tecnología hidrorrepelente.</h2>
                     </div>
                     
-                    <!-- Beneficios: 2x2, altura reducida (~10%), íconos mantenidos -->
                     <div class="benefits-grid">
                         <div class="benefit-card">
                             <svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg>
@@ -549,7 +560,7 @@
                         </div>
                     </div>
 
-                    <!-- Botón con separación visible -->
+                    <!-- Botón Promociones optimizado visualmente -->
                     <button class="btn-primary btn-promo-hero" onclick="document.getElementById('compra').scrollIntoView({behavior: 'smooth'})">VER PROMOCIONES</button>
                 </div>
             </section>
@@ -557,7 +568,7 @@
             <div class="grid-desktop">
                 <!-- COLUMNA IZQUIERDA -->
                 <div>
-                    <!-- CARRUSEL DE KIT (Separación ampliada y sin textos base) -->
+                    <!-- CARRUSEL DE KIT (Rediseño Estructural) -->
                     <section class="section-gap promo-kit-section">
                         <h2 class="promo-title">KIT PREMIUM INCLUIDO</h2>
                         <p class="promo-subtitle">Herramientas profesionales para una aplicación perfecta.</p>
@@ -593,7 +604,7 @@
                         </div>
                     </section>
 
-                    <!-- REGALOS CON TU COMPRA (Ícono Sellador Moderno) -->
+                    <!-- REGALOS CON TU COMPRA -->
                     <section class="section-gap gifts-block">
                         <h3 class="gifts-title">REGALOS CON TU COMPRA</h3>
                         <div class="gifts-grid">
@@ -655,7 +666,7 @@
             <div class="grid-desktop">
                 <!-- COLUMNA IZQUIERDA INFO -->
                 <div>
-                    <!-- ENVÍOS (Envío Gratis destacado) -->
+                    <!-- ENVÍOS -->
                     <section class="section-gap card">
                         <div class="block-header">
                             <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3v13h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM8 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm10 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm.5-6H17V9.5h1.96l1.54 2.5z"/></svg>
@@ -686,7 +697,7 @@
                         </a>
                     </section>
 
-                    <!-- PAGOS (Rediseñado Dark & Tech) -->
+                    <!-- PAGOS -->
                     <section class="section-gap card pay-section-dark">
                         <div class="block-header" style="margin-bottom:16px;">
                             <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
@@ -706,7 +717,7 @@
 
                 <!-- COLUMNA DERECHA INFO -->
                 <div>
-                    <!-- TECNOLOGÍA (Fondo claro, diseño elaborado) -->
+                    <!-- TECNOLOGÍA Y APLICACIÓN -->
                     <section class="section-gap card" style="background: transparent; box-shadow: none; border: none; padding: 0;">
                         <div class="block-header" style="margin-bottom: 24px;">
                             <svg viewBox="0 0 24 24" style="width:48px; height:48px;"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -735,7 +746,7 @@
                         <a href="https://blindaflex.com" class="btn-outline" target="_blank">CONOCÉ LA TECNOLOGÍA BLINDAFLEX</a>
                     </section>
 
-                    <!-- PREGUNTAS FRECUENTES (Refinadas) -->
+                    <!-- PREGUNTAS FRECUENTES -->
                     <section class="section-gap card">
                         <div class="block-header" style="margin-bottom:16px;">
                             <svg viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
