@@ -420,15 +420,13 @@
         .qty-btn { width: 28px; height: 28px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 4px; font-weight: 900; color: var(--c-azul); cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);}
         .item-price { font-weight: 900; font-size: 16px; color: var(--c-azul); }
         
-        /* Botón eliminar corregido: área táctil 44x44 y funcionalidad sólida */
         .remove-item { position: absolute; top: 8px; right: 8px; background: #fee2e2; border: none; color: #dc2626; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
         .remove-item svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none;}
         
-        .cart-empty { text-align: center; padding: 40px 0; color: var(--c-texto-light); font-size: 14px; font-weight: 600; display: none; }
+        .cart-empty-message { text-align: center; padding: 40px 0; color: var(--c-texto-light); font-size: 14px; font-weight: 600; display: block; }
         .cart-footer { padding: 20px; background: var(--c-blanco); border-top: 1px solid var(--c-gris-border); box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 2;}
         .cart-total { display: flex; justify-content: space-between; font-size: 20px; font-weight: 900; color: var(--c-azul); margin-bottom: 16px; }
 
-        /* Botón vaciar carrito secundario */
         .empty-cart-btn { width: 100%; text-align: center; background: none; border: none; color: var(--c-texto-light); font-size: 12px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 12px 0; margin-top: 8px; }
 
         /* =========================================================
@@ -621,6 +619,7 @@
                             </div>
                             <div class="gift-item-card">
                                 <div class="gift-item-icon">
+                                    <!-- Ícono moderno Cartucho Sellador -->
                                     <svg viewBox="0 0 24 24"><path d="M14 4V2a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-3zm-2-1h1v1h-1V3zm4 18H8V6h8v15zm-6-4h4v2h-4v-2zm0-4h4v2h-4v-2zm0-4h4v2h-4V9z"/></svg>
                                 </div>
                                 <div class="gift-item-info">
@@ -656,7 +655,7 @@
                             <div class="summary-gifts" id="summ-gifts">INCLUYE: 1 KIT PREMIUM</div>
                         </div>
 
-                        <!-- Llama explícitamente a addToCart que fuerza la apertura -->
+                        <!-- Botón principal agregar al carrito -->
                         <button class="btn-primary" onclick="addToCart()">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                             AGREGAR AL CARRITO
@@ -776,17 +775,14 @@
     </main>
 
     <!-- ================== CARRITO (DRAWER LATERAL) ================== -->
-    <!-- Evento onclick delegado explícitamente a closeCartDrawer para evitar toggles problemáticos -->
+    <!-- Contenedor vacío por default, gestionado íntegramente por JS para evitar problemas de nodos nulos -->
     <div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
     <aside class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
             <h2>MI CARRITO</h2>
             <button class="close-cart" onclick="closeCartDrawer()" aria-label="Cerrar">&times;</button>
         </div>
-        <div class="cart-body" id="cart-body">
-            <!-- El JS inyecta aquí -->
-            <div class="cart-empty" id="cart-empty" style="display:none;">Tu carrito está vacío.</div>
-        </div>
+        <div class="cart-body" id="cart-body"></div>
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total a pagar:</span>
@@ -887,7 +883,6 @@
 
     <!-- ================== SCRIPT DE YOUTUBE API ================== -->
     <script>
-        // Carga asíncrona de la API de YouTube Iframe
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -897,7 +892,6 @@
         let isVideoReady = false;
         let isMuted = true;
 
-        // Callback requerido por la API de YT
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('yt-player-container', {
                 videoId: 'obzZo5q5VnI',
@@ -922,12 +916,11 @@
 
         function onPlayerReady(event) {
             isVideoReady = true;
-            event.target.mute(); // Asegurar mute en móviles
+            event.target.mute();
             setupVideoObserver();
         }
 
         function onPlayerStateChange(event) {
-            // Rebobinar y reproducir en loop real (evita paradas de API)
             if (event.data === YT.PlayerState.ENDED) {
                 ytPlayer.seekTo(0);
                 ytPlayer.playVideo();
@@ -938,7 +931,6 @@
             const videoWrapper = document.querySelector('.video-wrapper');
             if(!videoWrapper) return;
 
-            // IntersectionObserver: pausa si no se ve, reproduce si entra a pantalla
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if(entry.isIntersecting) {
@@ -955,12 +947,10 @@
             
             observer.observe(videoWrapper);
 
-            // Control de visibilidad de pestaña (cambio a otra app/pestaña)
             document.addEventListener("visibilitychange", () => {
                 if (document.visibilityState === "hidden" && isVideoReady) {
                     ytPlayer.pauseVideo();
                 } else if (document.visibilityState === "visible" && isVideoReady) {
-                    // Solo si está visible en el viewport
                     const rect = videoWrapper.getBoundingClientRect();
                     if(rect.top < window.innerHeight && rect.bottom > 0) {
                         ytPlayer.playVideo();
@@ -987,16 +977,15 @@
     <!-- ================== SCRIPT DE TIENDA Y LÓGICA DE CARRITO ================== -->
     <script>
         const PRECIO_BASE = 148000;
-        const CART_EXPIRATION_MS = 30 * 60 * 1000; // 30 minutos
+        const CART_EXPIRATION_MS = 30 * 60 * 1000;
         let selectedQty = 1;
 
-        // 1. CARGA INICIAL Y EXPIRACIÓN
+        // CARGA INICIAL Y EXPIRACIÓN
         function loadCart() {
             const data = localStorage.getItem('blindaflex_cart_data');
             if(data) {
                 try {
                     const parsed = JSON.parse(data);
-                    // Comprobar 30 minutos de inactividad
                     if(Date.now() - parsed.lastActivity > CART_EXPIRATION_MS) {
                         return [];
                     }
@@ -1019,13 +1008,11 @@
             updateCartCounter();
             renderDrawer();
             
-            // Si el checkout está visible, actualizar el resumen
             if(document.getElementById('checkout-view').style.display === 'block') {
                 renderCheckoutSummary();
             }
         }
 
-        // 2. LÓGICA DE PRECIOS GLOBALES (Requerido para correcto cálculo de descuentos por balde)
         function getGlobalPricing() {
             const totalBuckets = cart.reduce((sum, item) => sum + item.qty, 0);
             let discount = 0;
@@ -1039,7 +1026,6 @@
             return { totalBuckets, discount, gifts };
         }
 
-        // Lógica de precios del Selector individual (para la vista de compra)
         function getSinglePriceData(qty) {
             let discount = 0;
             if (qty == 2) discount = 0.15;
@@ -1058,7 +1044,6 @@
 
         const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
 
-        // 3. RENDERIZADO DEL SELECTOR EN LA VISTA DE TIENDA
         const tiers = [
             { qty: 1, label: "1 BALDE", desc: "Kit premium", discount: 0 },
             { qty: 2, label: "2 BALDES", desc: "15% OFF + Sellador", discount: 0.15 },
@@ -1138,13 +1123,11 @@
             document.getElementById('summ-gifts').innerText = "INCLUYE: " + pd.gifts.toUpperCase();
         }
 
-        // 4. FUNCIONALIDAD DEL CARRITO DE COMPRAS
-
-        // Mostrar / Ocultar carrito sin riesgo de toggle inverso accidental
+        // FUNCIONES DE CARRITO
         function openCartDrawer() {
             document.getElementById('cart-overlay').classList.add('open');
             document.getElementById('cart-drawer').classList.add('open');
-            saveCart(); // Actualiza LastActivity al observar el carrito
+            saveCart(); // Actualiza lastActivity al abrir
         }
 
         function closeCartDrawer() {
@@ -1152,7 +1135,6 @@
             document.getElementById('cart-drawer').classList.remove('open');
         }
 
-        // Función general toggle para el header (si está abierto cierra, si está cerrado abre)
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
             if (drawer.classList.contains('open')) {
@@ -1166,11 +1148,10 @@
             const color = document.querySelector('input[name="color"]:checked').value;
             const productTitle = "Blindaje para Techos (20kg)";
             
-            // Buscar si ya existe el producto con ese color
             const existingItem = cart.find(i => i.product === productTitle && i.color === color);
             
             if(existingItem) {
-                existingItem.qty += selectedQty; // Consolida cantidad
+                existingItem.qty += selectedQty;
             } else {
                 cart.push({
                     id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
@@ -1180,8 +1161,11 @@
                 });
             }
             
+            // Forzar renderizado y guardado primero
             saveCart();
-            openCartDrawer(); // Obligatorio: abrir automáticamente al agregar
+            
+            // Garantizar la apertura después de tener el DOM listo
+            openCartDrawer(); 
         }
 
         function removeFromCart(id) {
@@ -1213,20 +1197,18 @@
             document.getElementById('btn-checkout').disabled = cart.length === 0;
         }
 
+        // REDISEÑO ABSOLUTO DE LA FUNCIÓN PARA EVITAR FALLOS DE NODOS NULL
         function renderDrawer() {
             const body = document.getElementById('cart-body');
-            const empty = document.getElementById('cart-empty');
             
+            // Estado vacío dinámico: ya no depende de un nodo HTML pre-existente
             if(cart.length === 0) {
-                body.innerHTML = '';
-                body.appendChild(empty);
-                empty.style.display = 'block';
+                body.innerHTML = '<div class="cart-empty-message">Tu carrito está vacío.</div>';
                 document.getElementById('drawer-total').innerText = '$0';
                 return;
             }
-
-            empty.style.display = 'none';
             
+            // Estado con productos
             const globalPricing = getGlobalPricing();
             const unitFinalPrice = PRECIO_BASE * (1 - globalPricing.discount);
             
@@ -1240,7 +1222,9 @@
                 
                 html += `
                     <div class="cart-item">
-                        <button class="remove-item" onclick="removeFromCart('${item.id}')" aria-label="Eliminar"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+                        <button class="remove-item" onclick="removeFromCart('${item.id}')" aria-label="Eliminar">
+                            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                        </button>
                         <div class="cart-item-title">${item.product}</div>
                         <div class="cart-item-color">Color: ${item.color}</div>
                         <div class="cart-item-controls">
@@ -1255,15 +1239,14 @@
                 `;
             });
 
-            // Botón Vaciar Carrito (No interfiere con Checkout)
             html += `<button class="empty-cart-btn" onclick="emptyCartConfirm()">VACIAR CARRITO</button>`;
 
+            // Inserción directa al body, sin intermediarios vulnerables
             body.innerHTML = html;
             document.getElementById('drawer-total').innerText = formatARS(grandTotal);
         }
 
-        // 5. CHECKOUT Y WHATSAPP
-
+        // CHECKOUT Y WHATSAPP
         function renderCheckoutSummary() {
             const summaryContainer = document.getElementById('checkout-summary');
             if(!summaryContainer) return;
@@ -1303,7 +1286,7 @@
             document.getElementById('main-store').style.display = 'block';
             document.getElementById('checkout-view').style.display = 'none';
             window.scrollTo(0,0);
-            saveCart(); // Resetea actividad
+            saveCart();
         }
 
         function submitWhatsApp(e) {
@@ -1346,7 +1329,7 @@
             window.open(`https://wa.me/5493516318301?text=${msg}`, '_blank');
         }
 
-        // 6. UI UTILS
+        // UI UTILS
         const promoConfig = {
             activa: false,
             titulo: "3 CUOTAS SIN INTERÉS",
