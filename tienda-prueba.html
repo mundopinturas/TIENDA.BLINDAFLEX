@@ -1,3 +1,17 @@
+Como la plataforma de chat no tiene una función directa para descargar archivos,
+te dejo las instrucciones exactas para que lo guardes fácilmente en 1 minuto:
+
+1.  Hacé clic en el botón "Copiar" (o Copy code) que aparece en la esquina
+    superior derecha del cuadro negro de código de acá abajo.
+2.  Abrí el Bloc de notas (si usás Windows) o TextEdit (si usás Mac, recordá
+    ponerlo en "Formato > Convertir a texto sin formato").
+3.  Pegá el código.
+4.  Andá a "Archivo > Guardar como...".
+5.  En "Tipo", elegí "Todos los archivos".
+6.  En el nombre, escribí exactamente: tienda-blindaje-techos.html y guardalo.
+
+Aquí tenés el código completo:
+
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -192,9 +206,53 @@
         .promo-note { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 20px; text-align: center; font-weight: 500; line-height: 1.4;}
 
         /* =========================================================
+           COMPARADOR ANTES Y DESPUÉS (ETAPA 3)
+           ========================================================= */
+        .comparer-section { padding: 0; background: transparent; border: none; box-shadow: none; margin-top: 32px; }
+        .comparer-header { text-align: center; margin-bottom: 16px; padding: 0 16px; }
+        .comparer-h2 { font-size: 22px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; margin-bottom: 8px;}
+        .comparer-subtitle { font-size: 14px; font-weight: 500; color: var(--c-texto-light); }
+        
+        .comparer-container {
+            position: relative; width: 100%; aspect-ratio: 4/3; max-width: 850px; margin: 0 auto;
+            border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-md);
+            touch-action: pan-y; /* Permite scroll vertical */
+            user-select: none; -webkit-user-drag: none;
+        }
+        .comparer-img-before {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+        }
+        .comparer-img-after {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); /* Revela desde la derecha */
+        }
+        
+        .comparer-label {
+            position: absolute; top: 12px; background: var(--c-azul); color: var(--c-blanco); font-weight: 700;
+            font-size: 12px; padding: 6px 10px; border-radius: 6px; pointer-events: none; z-index: 5;
+        }
+        .label-before { left: 12px; }
+        .label-after { right: 12px; }
+        
+        .comparer-divider {
+            position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--c-blanco);
+            transform: translateX(-50%); pointer-events: none; z-index: 10;
+            box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        }
+        .comparer-handle {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 46px; height: 46px; background: var(--c-azul); border: 2px solid var(--c-turquesa);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); pointer-events: auto;
+        }
+        .comparer-handle svg { width: 22px; height: 22px; fill: var(--c-blanco); }
+        
+        .comparer-help { text-align: center; font-size: 13px; color: var(--c-texto-light); font-weight: 500; margin-top: 12px; }
+
+        /* =========================================================
            SELECTOR DE COMPRA
            ========================================================= */
-        .buy-section { background: var(--c-blanco); border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech);}
+        .buy-section { background: var(--c-blanco); border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech); margin-top: 32px;}
         .buy-title-h2 { font-size: 24px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 8px; line-height: 1.1;}
         .buy-subtitle { font-size: 14px; font-weight: 500; color: var(--c-texto-light); text-align: center; margin-bottom: 12px; line-height: 1.4;}
         .buy-note { font-size: 12px; font-weight: 700; color: var(--c-turquesa-dark); text-align: center; background: var(--c-turquesa-light); padding: 8px; border-radius: 6px; margin-bottom: 20px;}
@@ -223,9 +281,6 @@
         .custom-qty-btn { width: 28px; height: 28px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 4px; font-weight: 900; color: var(--c-azul); cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.05);}
         .custom-qty-input { width: 40px; text-align: center; border: none; background: transparent; font-weight: 900; color: var(--c-azul); font-size: 14px; pointer-events: none;}
 
-        /* =========================================================
-           NUEVO RESUMEN DINÁMICO
-           ========================================================= */
         .dynamic-summary-box { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);}
         .summary-dyn-title { font-size: 14px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
         .summary-dyn-content { font-size: 14px; color: var(--c-texto); line-height: 1.5; margin-bottom: 16px;}
@@ -250,6 +305,14 @@
         .step-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px;}
         .step-info p { font-size: 14px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
         .step-note { font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500;}
+
+        /* =========================================================
+           ICONOGRAFÍA CORREGIDA ETAPA 3
+           ========================================================= */
+        .section-icon-main {
+            width: 36px; height: 36px; max-width: 36px; max-height: 36px; 
+            flex-shrink: 0; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block;
+        }
 
         /* =========================================================
            ENVÍOS Y ENTREGAS
@@ -288,6 +351,30 @@
         .promo-card-dark p { font-size: 13px; color: var(--c-blanco); font-weight: 500;}
         .promo-generic-dark { background: rgba(255, 255, 255, 0.03); padding: 16px; border-radius: var(--radius-md); text-align: center; font-size: 13px; font-weight: 500; color: #8ba2ac; border: 1px dashed rgba(255, 255, 255, 0.15); }
         .pay-note { font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; margin-top: 16px; font-weight: 500;}
+
+        /* =========================================================
+           RESEÑAS (ETAPA 3)
+           ========================================================= */
+        .reviews-section { background: var(--c-gris-claro); padding: 40px 0; margin-bottom: var(--gap-mob); }
+        .reviews-header { text-align: center; margin-bottom: 24px; padding: 0 16px; }
+        .reviews-h2 { font-size: 22px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; margin-bottom: 8px;}
+        .reviews-subtitle { font-size: 14px; font-weight: 500; color: var(--c-texto-light); }
+        
+        .reviews-carousel {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; 
+            padding: 16px; scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .reviews-carousel::-webkit-scrollbar { display: none; }
+        .review-card {
+            min-width: calc(100% - 32px); scroll-snap-align: center; background: var(--c-blanco);
+            border-radius: 14px; padding: 24px; box-shadow: var(--shadow-soft);
+            display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--c-gris-border);
+        }
+        .review-stars { display: flex; gap: 4px; }
+        .review-stars svg { width: 18px; height: 18px; fill: var(--c-naranja); }
+        .review-text { font-size: 15px; color: var(--c-texto); line-height: 1.5; flex-grow: 1;}
+        .review-author { font-size: 14px; font-weight: 800; color: var(--c-azul); display: flex; align-items: center; gap: 8px;}
+        .review-author::before { content: ''; width: 24px; height: 2px; background: var(--c-turquesa); }
 
         /* =========================================================
            TECNOLOGÍA E IDENTIDAD DE MARCA
@@ -410,13 +497,20 @@
             .grid-desktop { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;}
             .carousel-nav { width: 56px; height: 56px; }
             
+            .comparer-container { max-width: 850px; }
+            .comparer-handle { width: 50px; height: 50px; }
+            
             .buy-title-h2 { font-size: 28px; }
             .qty-card { padding: 20px; }
 
             .steps-grid { flex-direction: row; }
             .step-card { flex: 1; flex-direction: column; text-align: center; align-items: center;}
             
-            .floating-bar { display: none; } /* Ocultar barra en escritorio si se desea, o rediseñar */
+            .review-card { min-width: calc(33.333% - 16px); }
+
+            .section-icon-main { width: 42px; height: 42px; max-width: 42px; max-height: 42px; }
+
+            .floating-bar { display: none; }
         }
     </style>
 </head>
@@ -491,7 +585,6 @@
                         </div>
                     </div>
 
-                    <!-- NUEVA FRANJA DE BENEFICIOS COMERCIALES -->
                     <div class="commercial-strip">
                         <div class="cs-item">
                             <div class="cs-icon"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg></div>
@@ -514,7 +607,7 @@
             <div class="grid-desktop">
                 <!-- COLUMNA IZQUIERDA -->
                 <div>
-                    <!-- CARRUSEL DE KIT -->
+                    <!-- CARRUSEL DE KIT (Etapa 3: 5 Imágenes) -->
                     <section class="section-gap promo-kit-section">
                         <h2 class="promo-title">KIT PREMIUM INCLUIDO</h2>
                         <p class="promo-subtitle">Herramientas profesionales para una aplicación perfecta.</p>
@@ -530,27 +623,37 @@
                             <div class="carousel-track" id="gift-carousel" onscroll="updateCarouselIndicator()">
                                 <div class="carousel-slide">
                                     <div class="carousel-img-wrapper">
-                                        <img src="assets/images/kit-completo.png" alt="Kit Profesional Completo">
+                                        <img src="assets/images/techo-carrusel-1.png" alt="Herramientas del Kit Premium 1">
                                     </div>
                                 </div>
                                 <div class="carousel-slide">
                                     <div class="carousel-img-wrapper">
-                                        <img src="assets/images/kit-sellador.png" alt="Sellador Poliuretánico y Pistola">
+                                        <img src="assets/images/techo-carrusel-2.png" alt="Herramientas del Kit Premium 2">
                                     </div>
                                 </div>
                                 <div class="carousel-slide">
                                     <div class="carousel-img-wrapper">
-                                        <img src="assets/images/kit-rodillo.png" alt="Rodillo de Lana Natural y Pincel">
+                                        <img src="assets/images/techo-carrusel-3.png" alt="Herramientas del Kit Premium 3">
+                                    </div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <div class="carousel-img-wrapper">
+                                        <img src="assets/images/techo-carrusel-4.png" alt="Herramientas del Kit Premium 4">
+                                    </div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <div class="carousel-img-wrapper">
+                                        <img src="assets/images/techo-carrusel-5.png" alt="Herramientas del Kit Premium 5">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center">
-                            <div class="carousel-indicator" id="carousel-dots">1 / 3</div>
+                            <div class="carousel-indicator" id="carousel-dots">1 / 5</div>
                         </div>
                     </section>
 
-                    <!-- REGALOS CON TU COMPRA (NUEVA JERARQUÍA) -->
+                    <!-- REGALOS CON TU COMPRA -->
                     <section class="section-gap gifts-block">
                         <h2 class="gifts-title-h2">REGALOS CON TU COMPRA</h2>
                         <div class="gifts-hierarchy">
@@ -574,8 +677,30 @@
                         <div class="promo-note">Un kit por pedido. Desde 2 baldes, se agrega un sellador extra por pedido.</div>
                     </section>
 
-                    <!-- ================== ESPACIO RESERVADO ETAPA 3 ================== -->
-                    <!-- Aquí se insertará el comparador interactivo antes y después -->
+                    <!-- ================== COMPARADOR ANTES Y DESPUÉS (ETAPA 3) ================== -->
+                    <section class="section-gap comparer-section">
+                        <div class="comparer-header">
+                            <h2 class="comparer-h2">MIRÁ LA DIFERENCIA</h2>
+                            <p class="comparer-subtitle">Compará el aspecto de un techo antes y después de aplicar Blindaflex.</p>
+                        </div>
+                        
+                        <div class="comparer-container" id="comparer-container">
+                            <img src="assets/images/techo-sin-blindaflex.png" alt="Techo antes de aplicar impermeabilizante Blindaflex." class="comparer-img-before">
+                            <div class="comparer-label label-before">SIN BLINDAFLEX</div>
+                            
+                            <img src="assets/images/techo-con-blindaflex.png" alt="Techo después de aplicar Blindaje para Techos Blindaflex." class="comparer-img-after" id="comparer-img-after">
+                            <div class="comparer-label label-after">CON BLINDAFLEX</div>
+                            
+                            <div class="comparer-divider" id="comparer-divider">
+                                <div class="comparer-handle" role="slider" aria-label="Control de comparación" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+                                    <!-- Doble flecha nativa minimalista -->
+                                    <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L18.59 9 15.59 12l3 3-1.59 1.59zM8.59 16.59L13.17 12 8.59 7.41 7.17 8.83 10.17 12l-3 3 1.42 1.42z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparer-help">Deslizá para comparar</div>
+                    </section>
+
                 </div>
 
                 <!-- COLUMNA DERECHA -->
@@ -596,7 +721,7 @@
 
                         <div class="qty-grid" id="qty-container"></div>
 
-                        <!-- NUEVO RESUMEN DINÁMICO -->
+                        <!-- RESUMEN DINÁMICO -->
                         <div id="dynamic-summary" class="dynamic-summary-box"></div>
 
                         <button class="btn-primary" onclick="addToCart()">
@@ -605,7 +730,7 @@
                         </button>
                     </section>
 
-                    <!-- NUEVO BLOQUE CÓMO COMPRAR -->
+                    <!-- BLOQUE CÓMO COMPRAR -->
                     <section class="section-gap card">
                         <h2 class="block-header-h2">COMPRAR ES MUY FÁCIL</h2>
                         <div class="steps-grid">
@@ -642,7 +767,13 @@
                     <!-- ENVÍOS -->
                     <section class="section-gap card">
                         <div class="block-header">
-                            <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3v13h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM8 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm10 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm.5-6H17V9.5h1.96l1.54 2.5z"/></svg>
+                            <!-- Ícono Corregido ETAPA 3 (Camión línea fina) -->
+                            <svg class="section-icon-main" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="3" y="8" width="12" height="10" rx="1"></rect>
+                              <path d="M15 8h3l3 4v6h-6"></path>
+                              <circle cx="7" cy="18" r="2"></circle>
+                              <circle cx="17" cy="18" r="2"></circle>
+                            </svg>
                             <h2 style="font-size: 20px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;">ENVÍOS Y ENTREGAS</h2>
                         </div>
                         
@@ -679,25 +810,158 @@
                     <!-- PAGOS -->
                     <section class="section-gap card pay-section-dark">
                         <div class="block-header" style="margin-bottom:16px;">
-                            <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                            <!-- Ícono Corregido ETAPA 3 (Tarjeta de Crédito línea fina) -->
+                            <svg class="section-icon-main" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                              <line x1="2" y1="10" x2="22" y2="10"></line>
+                              <line x1="6" y1="15" x2="10" y2="15"></line>
+                            </svg>
                             <h2 class="block-header-h2">PAGÁ AL RECIBIR TU PEDIDO</h2>
                         </div>
                         <div class="block-subtitle">Elegí cómo pagar cuando Blindaflex llegue a tu domicilio.</div>
                         
                         <div class="pay-methods">
-                            <div class="pay-tag-dark"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-3.57-1.62-3.57-3.09 0-1.53 1.15-2.76 2.83-3.14V4h2.67v1.89c1.4.3 2.56 1.25 2.78 2.74h-1.94c-.16-1-.93-1.53-2.16-1.53-1.65 0-2.28.84-2.28 1.45 0 .8.54 1.44 2.75 1.96 2.68.64 3.48 1.75 3.48 3.2 0 1.57-1.12 2.79-2.9 3.18z"/></svg> Efectivo</div>
-                            <div class="pay-tag-dark"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zm2 2v2h2V6zm8-2h6v6h-6zm2 2v2h2V6zM4 14h6v6H4zm2 2v2h2v-2zM15 14h1v2h-1zm1 2h1v1h-1zm-2-1h1v1h-1zm1-1h1v1h-1zm2-1h1v2h-1zm1 2h1v2h-1z"/></svg> Transferencia / QR</div>
-                            <div class="pay-tag-dark"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg> Tarjetas (Débito/Crédito)</div>
+                            <div class="pay-tag-dark"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-3.57-1.62-3.57-3.09 0-1.53 1.15-2.76 2.83-3.14V4h2.67v1.89c1.4.3 2.56 1.25 2.78 2.74h-1.94c-.16-1-.93-1.53-2.16-1.53-1.65 0-2.28.84-2.28 1.45 0 .8.54 1.44 2.75 1.96 2.68.64 3.48 1.75 3.48 3.2 0 1.57-1.12 2.79-2.9 3.18z"/></svg> Efectivo</div>
+                            <div class="pay-tag-dark"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M4 4h6v6H4zm2 2v2h2V6zm8-2h6v6h-6zm2 2v2h2V6zM4 14h6v6H4zm2 2v2h2v-2zM15 14h1v2h-1zm1 2h1v1h-1zm-2-1h1v1h-1zm1-1h1v1h-1zm2-1h1v2h-1zm1 2h1v2h-1z"/></svg> Transferencia / QR</div>
+                            <div class="pay-tag-dark"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg> Tarjetas (Débito/Crédito)</div>
                         </div>
 
                         <div id="promo-container"></div>
                         <div class="pay-note">En zonas extendidas se abona anticipadamente solamente el costo de envío.</div>
                     </section>
-                </div>
 
-                <!-- COLUMNA DERECHA INFO -->
-                <div>
-                    <!-- TECNOLOGÍA Y APLICACIÓN & MARCA -->
+                    <!-- ================== NUEVA SECCIÓN DE RESEÑAS (ETAPA 3) ================== -->
+                    <section class="section-gap reviews-section">
+                        <div class="reviews-header">
+                            <h2 class="reviews-h2">QUIENES YA PROBARON BLINDAFLEX</h2>
+                            <p class="reviews-subtitle">Experiencias de clientes que utilizaron Blindaje para Techos.</p>
+                        </div>
+                        
+                        <div class="reviews-carousel">
+                            <!-- 1 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"La verdad excelente, me sorprendió lo bien que cubre. Es bastante espesa pero se trabaja muy bien con el rodillo. Me alcanzó para todo el techo y quedó una capa muy linda. Se nota que es buena pintura, quedé más que conforme."</div>
+                                <div class="review-author">Julia Manzanares</div>
+                            </div>
+                            <!-- 2 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"Excelente producto, fácil de aplicar y se adhiere muy bien. Ya llovió varias veces y ni una filtración, súper conforme."</div>
+                                <div class="review-author">Cliente de Blindaflex</div>
+                            </div>
+                            <!-- 3 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"Muy buena membrana!! Cuando seca queda como una goma, bastante flexible y bien agarrada al techo. Había usado otras que se cuarteaban enseguida, esta por ahora viene bárbaro. La recomiendo."</div>
+                                <div class="review-author">Marcos Luque</div>
+                            </div>
+                            <!-- 4 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"Tenía unas filtraciones que me volvían loco cada vez que llovía. Le di las manos que indicaba y quedó espectacular. Ya pasaron varias lluvias fuertes y ni una gota adentro. La verdad no esperaba tan buen resultado."</div>
+                                <div class="review-author">Ramón Juarez</div>
+                            </div>
+                            <!-- 5 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"Excelente producto. Lo que más me gustó es cómo queda cuando seca, forma una capa de goma bien resistente y elástica. No es de esas pinturas que parecen agua. Se nota la diferencia, muy conforme con la compra."</div>
+                                <div class="review-author">Jimena Suárez</div>
+                            </div>
+                            <!-- 6 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"La apliqué yo mismo sin tener mucha experiencia y la verdad fue bastante fácil. Se estira bien con el rodillo, no salpica tanto y cubre muy parejo. El techo quedó impecable. Muy recomendable."</div>
+                                <div class="review-author">Flavio González</div>
+                            </div>
+                            <!-- 7 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"Muy buena calidad, se agarró perfecto a la losa. Tenía algunas fisuritas y las cubrió muy bien. Después de seca queda una película uniforme, como una goma. Me gustó mucho cómo quedó, volvería a comprar."</div>
+                                <div class="review-author">Martin Moya</div>
+                            </div>
+                            <!-- 8 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"Ya probé varias marcas porque tengo bastante techo para mantener y esta me sorprendió para bien. Tiene muy buena consistencia, rinde bien y cuando seca queda súper elástica. Hasta ahora de las mejores que usé."</div>
+                                <div class="review-author">César Martinez</div>
+                            </div>
+                            <!-- 9 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"La verdad un lujo. Pintamos toda la terraza y quedó hermosa. Rindió lo que decía, fue fácil de colocar y se nota que deja una buena capa protectora. Encima llovió bastante estos días y cero problemas. Muy contento con el resultado."</div>
+                                <div class="review-author">Rubén Trejo</div>
+                            </div>
+                            <!-- 10 -->
+                            <div class="review-card">
+                                <div class="review-stars">
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </div>
+                                <div class="review-text">"Fácil de aplicar, se aguanto varias lluvias fuertes y freno filtraciones. Recomiendo"</div>
+                                <div class="review-author">Clara Sofia</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- TECNOLOGÍA E IDENTIDAD DE MARCA -->
                     <section class="section-gap card" style="background: transparent; box-shadow: none; border: none; padding: 0;">
                         <div class="block-header" style="margin-bottom: 24px;">
                             <svg viewBox="0 0 24 24" style="width:48px; height:48px;"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.73 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .43-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.49-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
@@ -723,7 +987,6 @@
                             </div>
                         </div>
 
-                        <!-- Info Marca -->
                         <div class="brand-info-box">
                             <h4>BLINDAFLEX</h4>
                             <p>Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
@@ -735,7 +998,12 @@
                     <!-- PREGUNTAS FRECUENTES -->
                     <section class="section-gap card">
                         <div class="block-header" style="margin-bottom:16px;">
-                            <svg viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg>
+                            <!-- Ícono Corregido ETAPA 3 (Pregunta minimalista fina) -->
+                            <svg class="section-icon-main" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
                             <h2 style="font-size: 20px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;">PREGUNTAS FRECUENTES</h2>
                         </div>
                         <div class="faq-container">
@@ -886,16 +1154,9 @@
             ytPlayer = new YT.Player('yt-player-container', {
                 videoId: 'obzZo5q5VnI',
                 playerVars: {
-                    'autoplay': 1,
-                    'controls': 0,
-                    'disablekb': 1,
-                    'fs': 0,
-                    'loop': 1,
-                    'playlist': 'obzZo5q5VnI',
-                    'modestbranding': 1,
-                    'playsinline': 1,
-                    'mute': 1,
-                    'rel': 0
+                    'autoplay': 1, 'controls': 0, 'disablekb': 1, 'fs': 0,
+                    'loop': 1, 'playlist': 'obzZo5q5VnI', 'modestbranding': 1,
+                    'playsinline': 1, 'mute': 1, 'rel': 0
                 },
                 events: {
                     'onReady': onPlayerReady,
@@ -964,7 +1225,7 @@
         }
     </script>
 
-    <!-- ================== SCRIPT DE TIENDA Y LÓGICA ================== -->
+    <!-- ================== SCRIPT LÓGICA PRINCIPAL (COMPARADOR, CARRITO, ETC) ================== -->
     <script>
         const PRECIO_BASE = 148000;
         const CART_EXPIRATION_MS = 30 * 60 * 1000;
@@ -972,19 +1233,15 @@
         let isCartOpen = false;
         let isCheckoutOpen = false;
 
-        // CARGA INICIAL Y EXPIRACIÓN
+        // ---- CARGA INICIAL Y EXPIRACIÓN ----
         function loadCart() {
             const data = localStorage.getItem('blindaflex_cart_data');
             if(data) {
                 try {
                     const parsed = JSON.parse(data);
-                    if(Date.now() - parsed.lastActivity > CART_EXPIRATION_MS) {
-                        return [];
-                    }
+                    if(Date.now() - parsed.lastActivity > CART_EXPIRATION_MS) return [];
                     return parsed.items || [];
-                } catch(e) {
-                    return [];
-                }
+                } catch(e) { return []; }
             }
             return [];
         }
@@ -992,14 +1249,10 @@
         let cart = loadCart();
 
         function saveCart() {
-            const data = {
-                items: cart,
-                lastActivity: Date.now()
-            };
+            const data = { items: cart, lastActivity: Date.now() };
             localStorage.setItem('blindaflex_cart_data', JSON.stringify(data));
             updateCartCounter();
             renderDrawer();
-            
             if(document.getElementById('checkout-view').style.display === 'block') {
                 renderCheckoutSummary();
             }
@@ -1099,7 +1352,6 @@
             container.innerHTML += customHtml;
         }
 
-        // NUEVO: RESUMEN DINÁMICO
         function updateDynamicSummary() {
             const pd = getSinglePriceData(selectedQty);
             const colorInput = document.querySelector('input[name="color"]:checked');
@@ -1118,18 +1370,14 @@
             }
             
             html += `<p class="summary-dyn-gift">✔ 1 kit premium de regalo.</p>`;
-            
-            if(selectedQty >= 2) {
-                html += `<p class="summary-dyn-gift">✔ 1 sellador extra de regalo.</p>`;
-            }
-            
+            if(selectedQty >= 2) html += `<p class="summary-dyn-gift">✔ 1 sellador extra de regalo.</p>`;
             html += `</div>`;
             
             html += `<div class="summary-dyn-totals">`;
             if(pd.savings > 0) {
                 html += `<div class="summary-dyn-save">AHORRÁS:<span>${formatARS(pd.savings)}</span></div>`;
             } else {
-                html += `<div></div>`; // spacer
+                html += `<div></div>`;
             }
             html += `<div class="summary-dyn-total">TOTAL:<span>${formatARS(pd.final)}</span></div>`;
             html += `</div>`;
@@ -1159,13 +1407,13 @@
             document.getElementById('compra').scrollIntoView({behavior: 'smooth'});
         }
 
-        // FUNCIONES DE CARRITO
+        // ---- CARRITO DRAWER ----
         function openCartDrawer() {
             document.getElementById('cart-overlay').classList.add('open');
             document.getElementById('cart-drawer').classList.add('open');
             isCartOpen = true;
             updateFloatingBarVisibility();
-            saveCart(); // Actualiza lastActivity al abrir
+            saveCart(); 
         }
 
         function closeCartDrawer() {
@@ -1279,7 +1527,7 @@
             document.getElementById('drawer-total').innerText = formatARS(grandTotal);
         }
 
-        // CHECKOUT Y WHATSAPP
+        // ---- CHECKOUT / WHATSAPP ----
         function renderCheckoutSummary() {
             const summaryContainer = document.getElementById('checkout-summary');
             if(!summaryContainer) return;
@@ -1366,61 +1614,25 @@
             window.open(`https://wa.me/5493516318301?text=${msg}`, '_blank');
         }
 
-        // CONTROL DE BARRA FLOTANTE
+        // ---- UTILIDADES Y SECCIONES (BARRA, CARRUSEL, COMPARADOR) ----
+        
         function updateFloatingBarVisibility() {
             const floatBar = document.getElementById('floating-bar');
             const compraSection = document.getElementById('compra');
             
             if (!floatBar || !compraSection) return;
-            
-            // Si el carrito o checkout están abiertos, ocultar siempre.
             if (isCartOpen || isCheckoutOpen) {
                 floatBar.classList.remove('visible');
                 return;
             }
-
             const rect = compraSection.getBoundingClientRect();
-            // Visible si la sección de compra no está intersectando el viewport actual
             const isCompraVisible = (rect.top <= window.innerHeight && rect.bottom >= 0);
             
-            if (!isCompraVisible) {
-                floatBar.classList.add('visible');
-            } else {
-                floatBar.classList.remove('visible');
-            }
+            if (!isCompraVisible) floatBar.classList.add('visible');
+            else floatBar.classList.remove('visible');
         }
-        
         window.addEventListener('scroll', updateFloatingBarVisibility, {passive: true});
         window.addEventListener('resize', updateFloatingBarVisibility, {passive: true});
-
-        // UI UTILS
-        const promoConfig = {
-            activa: false,
-            titulo: "3 CUOTAS SIN INTERÉS",
-            descripcion: "Con tarjetas de crédito bancarias Visa y Mastercard.",
-            vigencia: "Válido hasta el 31 de este mes."
-        };
-
-        function renderPromoBlock() {
-            const container = document.getElementById('promo-container');
-            if(!container) return;
-            if (promoConfig.activa) {
-                container.innerHTML = `
-                    <div class="promo-card-dark">
-                        <h4>${promoConfig.titulo}</h4>
-                        <p>${promoConfig.descripcion}</p>
-                        <div style="font-size:11px; margin-top:8px; color:#e0f7fa;">${promoConfig.vigencia}</div>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = `
-                    <div class="promo-generic-dark">
-                        Consultá las promociones vigentes con tarjetas al momento de tu compra.<br>
-                        <span style="font-size:11px; font-weight:400; display:block; margin-top:6px;">Las cuotas y beneficios dependen de los bancos y las tarjetas disponibles.</span>
-                    </div>
-                `;
-            }
-        }
 
         const track = document.getElementById('gift-carousel');
         function moveCarousel(direction) {
@@ -1441,6 +1653,75 @@
             if(nextNav) nextNav.style.display = index === total ? 'none' : 'flex';
         }
 
+        // --- COMPARADOR ANTES/DESPUÉS LÓGICA ---
+        const comparer = document.getElementById('comparer-container');
+        const afterImg = document.getElementById('comparer-img-after');
+        const divider = document.getElementById('comparer-divider');
+        const handle = document.querySelector('.comparer-handle');
+        let isDragging = false;
+        let hasAnimated = false;
+
+        function updateComparer(xPos, containerWidth) {
+            let percentage = (xPos / containerWidth) * 100;
+            if(percentage < 0) percentage = 0;
+            if(percentage > 100) percentage = 100;
+            if(afterImg) afterImg.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
+            if(divider) divider.style.left = `${percentage}%`;
+            if(handle) handle.setAttribute('aria-valuenow', Math.round(percentage));
+        }
+
+        function slideComparer(e) {
+            if(!isDragging) return;
+            const rect = comparer.getBoundingClientRect();
+            let clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const x = clientX - rect.left;
+            updateComparer(x, rect.width);
+        }
+
+        if(comparer) {
+            comparer.addEventListener('mousedown', () => { isDragging = true; hasAnimated = true; });
+            comparer.addEventListener('touchstart', () => { isDragging = true; hasAnimated = true; }, {passive: true});
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('touchend', () => isDragging = false);
+            window.addEventListener('mousemove', slideComparer);
+            window.addEventListener('touchmove', slideComparer, {passive: true});
+            
+            // Accesibilidad teclado
+            handle.addEventListener('keydown', (e) => {
+                const rect = comparer.getBoundingClientRect();
+                let currentVal = parseFloat(handle.getAttribute('aria-valuenow'));
+                if(e.key === 'ArrowLeft') { currentVal -= 5; hasAnimated = true; }
+                else if(e.key === 'ArrowRight') { currentVal += 5; hasAnimated = true; }
+                updateComparer((currentVal/100)*rect.width, rect.width);
+            });
+
+            // Observer para la animación inicial (Wiggle 50% -> 58% -> 42% -> 50%)
+            const comparerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        if(!prefersReducedMotion) {
+                            if(afterImg) afterImg.style.transition = 'clip-path 0.4s ease-in-out';
+                            if(divider) divider.style.transition = 'left 0.4s ease-in-out';
+                            
+                            setTimeout(() => { if(!isDragging) updateComparer(comparer.clientWidth * 0.58, comparer.clientWidth); }, 100);
+                            setTimeout(() => { if(!isDragging) updateComparer(comparer.clientWidth * 0.42, comparer.clientWidth); }, 600);
+                            setTimeout(() => { 
+                                if(!isDragging) updateComparer(comparer.clientWidth * 0.50, comparer.clientWidth); 
+                                setTimeout(() => {
+                                    if(afterImg) afterImg.style.transition = 'none';
+                                    if(divider) divider.style.transition = 'none';
+                                }, 400);
+                            }, 1100);
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            comparerObserver.observe(comparer);
+        }
+
+        // --- PREGUNTAS FRECUENTES ---
         function toggleFaq(btn) {
             btn.classList.toggle('active');
             const isExpanded = btn.classList.contains('active');
@@ -1453,11 +1734,11 @@
             }
         }
 
+        // INICIALIZACIÓN GLOBAL
         window.onload = () => {
             updateSelectionUI();
             updateCartCounter();
             renderDrawer();
-            renderPromoBlock();
             updateFloatingBarVisibility();
         };
     </script>
