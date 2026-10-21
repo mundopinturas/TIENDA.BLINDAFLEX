@@ -269,6 +269,11 @@ header .logo img {
         .qty-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); line-height: 1.1; margin-bottom: 4px;}
         .badge-discount { background: var(--c-naranja); color: var(--c-blanco); font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 6px; }
         .qty-info p { font-size: 13px; color: var(--c-turquesa-dark); font-weight: 700; margin-top: 4px;}
+        .qty-info .kit-components { font-size: 11px; color: var(--c-texto-light); font-weight: 500; line-height: 1.35; margin-top: 4px; max-width: 245px; }
+        .qty-info .kit-extra { font-size: 12px; font-weight: 700; color: var(--c-turquesa-dark); margin-top: 5px; }
+        .qty-price { flex-shrink: 0; margin-left: 8px; }
+        .summary-kit-components { font-size: 12px; font-weight: 500; line-height: 1.45; color: var(--c-texto-light); padding-left: 18px; margin-top: 4px; }
+        @media (max-width: 390px) { .qty-info .kit-components { font-size: 10.5px; } .unit-price { font-size: 18px; } }
         
         .qty-price { text-align: right; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
         .unit-price { font-size: 20px; font-weight: 900; color: var(--c-azul); line-height: 1; margin-bottom: 4px;}
@@ -596,6 +601,10 @@ header .logo img {
                             <div class="cs-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg></div>
                             <div class="cs-text"><strong>PAGÁ AL RECIBIR</strong><span>Efectivo, QR o tarjetas</span></div>
                         </div>
+                        <div class="cs-item">
+                            <div class="cs-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3V6zm12 3h3l3 4v3h-6V9zm-9 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM1 4v14h3a4 4 0 0 1 8 0h4a4 4 0 0 1 6 0h1v-6l-4-5h-4V4H1z"/></svg></div>
+                            <div class="cs-text"><strong>ENVÍO GRATIS</strong><span>Córdoba Capital y zonas cercanas con cobertura</span></div>
+                        </div>
                     </div>
 
                     <button class="btn-primary btn-promo-hero" onclick="scrollToCompra()">VER PROMOCIONES</button>
@@ -683,7 +692,7 @@ header .logo img {
                         </div>
                         
                         <div class="comparer-container" id="comparer-container">
-                            <img src="assets/images/techo-sin-blindaflex.png" alt="Techo antes de aplicar impermeabilizante Blindaflex." class="comparer-img-before">
+                            <img src="assets/images/techo-sin-blindaflex.jpg" alt="Techo antes de aplicar impermeabilizante Blindaflex." class="comparer-img-before">
                             <div class="comparer-label label-before">SIN BLINDAFLEX</div>
                             
                             <img src="assets/images/techo-con-blindaflex.png" alt="Techo después de aplicar Blindaje para Techos Blindaflex." class="comparer-img-after" id="comparer-img-after">
@@ -1294,6 +1303,10 @@ header .logo img {
             { qty: 4, label: "4 BALDES" }
         ];
 
+        // Descripción del único kit que acompaña cada pedido, independientemente de la cantidad de baldes.
+        const KIT_COMPONENTES_BREVE = 'Sellador 280 ml + pistola aplicadora + rodillo 22 cm + pincel';
+        const KIT_COMPONENTES_RESUMEN = 'Sellador híbrido Unipega 280 ml, pistola aplicadora metálica, rodillo de 22 cm y pincel profesional.';
+
         function renderQtySelector() {
             const container = document.getElementById('qty-container');
             container.innerHTML = '';
@@ -1304,7 +1317,7 @@ header .logo img {
                 const saveTag = t.discount > 0 ? `<div class="badge-discount">${t.discount * 100}% OFF</div>` : '';
                 const unitFinal = pd.final / t.qty; 
                 
-                const briefInfo = t.qty === 1 ? "Kit premium incluido" : "+ 1 sellador extra";
+                const briefInfo = "Kit premium incluido";
                 const maxAhorro = t.qty === 4 ? `<div class="badge-discount" style="background:var(--c-naranja); color:#fff; margin-bottom:4px;">MÁXIMO AHORRO</div><br>` : '';
 
                 const html = `
@@ -1314,6 +1327,8 @@ header .logo img {
                             ${t.qty !== 4 ? saveTag : ''}
                             <h4>${t.label}</h4>
                             <p>${briefInfo}</p>
+                            <p class="kit-components">${KIT_COMPONENTES_BREVE}</p>
+                            ${t.qty >= 2 ? '<p class="kit-extra">+ 1 sellador extra</p>' : ''}
                         </div>
                         <div class="qty-price">
                             <div class="unit-price">${formatARS(unitFinal)} <span>c/u</span></div>
@@ -1334,7 +1349,9 @@ header .logo img {
                     <div class="qty-info">
                         <div class="badge-discount">25% OFF</div>
                         <h4>5 O MÁS BALDES</h4>
-                        <p>+ 1 sellador extra</p>
+                        <p>Kit premium incluido</p>
+                        <p class="kit-components">${KIT_COMPONENTES_BREVE}</p>
+                        <p class="kit-extra">+ 1 sellador extra</p>
                         <div class="custom-qty-wrapper" onclick="event.stopPropagation()">
                             <button class="custom-qty-btn" onclick="changeCustomQty(-1)">-</button>
                             <input type="number" class="custom-qty-input" value="${customQtyVal}" min="5" readonly>
@@ -1368,7 +1385,8 @@ header .logo img {
             }
             
             html += `<p class="summary-dyn-gift">✔ 1 kit premium de regalo.</p>`;
-            if(selectedQty >= 2) html += `<p class="summary-dyn-gift">✔ 1 sellador extra de regalo.</p>`;
+            html += `<p class="summary-kit-components">Incluye: ${KIT_COMPONENTES_RESUMEN}</p>`;
+            if(selectedQty >= 2) html += `<p class="summary-dyn-gift">✔ 1 sellador híbrido extra de regalo (por pedido).</p>`;
             html += `</div>`;
             
             html += `<div class="summary-dyn-totals">`;
