@@ -135,6 +135,12 @@ header .logo img {
         .hero-header h2 { font-size: 24px; font-weight: 900; color: var(--c-azul); line-height: 1.15; margin-bottom: 8px; text-transform: uppercase;}
         .hero-header p { font-size: 15px; font-weight: 500; color: var(--c-texto-light); }
 
+
+        /* Presentación del balde: formato apaisado y altura contenida en móvil. */
+        .hero-product-photo { margin: 0 auto 18px; width: 100%; max-width: 450px; text-align: center; }
+        .hero-product-photo img { width: 100%; height: auto; max-height: 245px; object-fit: contain; margin: 0 auto; }
+        .hero-product-photo figcaption { font-size: 12px; color: var(--c-texto-light); font-weight: 600; margin-top: 4px; }
+
         /* =========================================================
            BENEFICIOS TÉCNICOS Y FRANJA COMERCIAL
            ========================================================= */
@@ -574,6 +580,12 @@ header .logo img {
                         <p>Impermeabilizante elastomérico con tecnología hidrorrepelente.</p>
                     </div>
                     
+                    <!-- Balde Blindaje para Techos (misma presentación para ambos colores) -->
+                    <figure class="hero-product-photo">
+                        <img src="assets/images/balde-blindaje-techo" alt="Balde Blindaflex Blindaje para Techos de 20 kg" loading="lazy" decoding="async">
+                        <figcaption>Presentación de 20 kg · Disponible en blanco y gris</figcaption>
+                    </figure>
+
                     <div class="benefits-grid">
                         <div class="benefit-card">
                             <svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg>
@@ -697,7 +709,7 @@ header .logo img {
                         </div>
                         
                         <div class="comparer-container" id="comparer-container">
-                            <img src="assets/images/techo-sin-blindaflex.png" alt="Techo antes de aplicar impermeabilizante Blindaflex." class="comparer-img-before">
+                            <img src="assets/images/techo-sin-blindaflex.jpg" alt="Techo antes de aplicar impermeabilizante Blindaflex." class="comparer-img-before">
                             <div class="comparer-label label-before">SIN BLINDAFLEX</div>
                             
                             <img src="assets/images/techo-con-blindaflex.png" alt="Techo después de aplicar Blindaje para Techos Blindaflex." class="comparer-img-after" id="comparer-img-after">
