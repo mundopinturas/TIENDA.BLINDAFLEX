@@ -172,7 +172,14 @@ header .logo img {
         .promo-subtitle { font-size: 14px; color: var(--c-texto-light); text-align: center; margin-bottom: 24px; }
         
         .carousel-wrapper { position: relative; width: 100%; border-radius: 14px; overflow: hidden; background: transparent; box-shadow: 0 4px 12px rgba(7, 26, 36, 0.08); border: none; }
-        .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
         .carousel-track::-webkit-scrollbar { display: none; }
         .carousel-slide { min-width: 100%; scroll-snap-align: center; position: relative; height: auto; display: block; overflow: hidden; background: transparent; padding: 0; border: none; }
         .carousel-img-wrapper { width: 100%; height: auto; display: block; padding: 0; overflow: hidden; border: none; background: transparent; }
