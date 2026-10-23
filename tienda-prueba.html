@@ -1685,18 +1685,60 @@ header .logo img {
             const slideWidth = track.clientWidth;
             track.scrollBy({ left: slideWidth * direction, behavior: 'smooth' });
         }
-        function updateCarouselIndicator() {
-            if(!track) return;
-            const slideWidth = track.clientWidth;
-            const index = Math.round(track.scrollLeft / slideWidth) + 1;
-            const total = track.children.length;
-            const dotIndicator = document.getElementById('carousel-dots');
-            if(dotIndicator) dotIndicator.innerText = `${index} / ${total}`;
-            const prevNav = document.querySelector('.nav-prev');
-            const nextNav = document.querySelector('.nav-next');
-            if(prevNav) prevNav.style.display = index === 1 ? 'none' : 'flex';
-            if(nextNav) nextNav.style.display = index === total ? 'none' : 'flex';
-        }
+       function updateCarouselIndicator() {
+    if (!track) return;
+
+    const slideWidth = track.clientWidth;
+    if (!slideWidth) return;
+
+    const index = Math.round(track.scrollLeft / slideWidth) + 1;
+    const total = track.children.length;
+
+    const dotIndicator = document.getElementById('carousel-dots');
+    if (dotIndicator) dotIndicator.innerText = ${index} / ${total};
+
+    const prevNav = document.querySelector('.nav-prev');
+    const nextNav = document.querySelector('.nav-next');
+
+    if (prevNav) prevNav.style.display = index === 1 ? 'none' : 'flex';
+    if (nextNav) nextNav.style.display = index === total ? 'none' : 'flex';
+}
+        let carouselAutoTimer;
+let carouselPauseUntil = 0;
+
+function startCarouselAuto() {
+    clearInterval(carouselAutoTimer);
+
+    carouselAutoTimer = setInterval(() => {
+        if (!track || Date.now() < carouselPauseUntil) return;
+
+        const total = track.children.length;
+        const slideWidth = track.clientWidth;
+        if (!slideWidth || total < 2) return;
+
+        const index = Math.round(track.scrollLeft / slideWidth);
+        const nextIndex = index >= total - 1 ? 0 : index + 1;
+
+        track.scrollTo({
+            left: nextIndex * slideWidth,
+            behavior: 'smooth'
+        });
+    }, 4000);
+}
+
+if (track) {
+    ['touchstart', 'pointerdown', 'mousedown'].forEach(eventName => {
+        track.addEventListener(eventName, () => {
+            carouselPauseUntil = Date.now() + 6000;
+        }, { passive: true });
+    });
+
+    track.addEventListener('scroll', () => {
+        updateCarouselIndicator();
+    }, { passive: true });
+
+    startCarouselAuto();
+}
 
         // --- COMPARADOR ANTES/DESPUÉS LÓGICA ---
         const comparer = document.getElementById('comparer-container');
