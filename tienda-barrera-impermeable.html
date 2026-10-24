@@ -533,6 +533,28 @@
             #main-store > .container > .grid-desktop > .section-gap { margin-bottom: var(--gap-desk); }
             .gallery-item { flex-basis: 82%; min-width: 82%; width: 82%; }
         }
+
+        /* EXPERIENCIAS: carrusel horizontal con navegación accesible */
+        .reviews-intro { max-width: 690px; margin: 0 auto 24px; }
+        .reviews-shell { position: relative; }
+        .reviews-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding: 5px 2px 18px; overscroll-behavior-x: contain; }
+        .reviews-track::-webkit-scrollbar { display: none; }
+        .review-card { flex: 0 0 calc(100% - 4px); scroll-snap-align: start; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-soft); border-top: 3px solid var(--c-turquesa); min-height: 190px; display: flex; flex-direction: column; gap: 16px; }
+        .review-card p { color: var(--c-texto); font-size: 15px; line-height: 1.65; font-weight: 500; flex: 1; }
+        .review-meta { display: flex; align-items: center; gap: 10px; color: var(--c-texto-light); font-size: 12px; font-weight: 700; }
+        .review-mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--c-turquesa-light); color: var(--c-turquesa-dark); font-size: 18px; font-weight: 800; }
+        .reviews-controls { display: flex; align-items: center; justify-content: center; margin-top: 8px; }
+        .reviews-dots { display: flex; justify-content: center; align-items: center; gap: 7px; min-height: 24px; }
+        .reviews-dot { display: block; width: 17px; height: 4px; border-radius: 6px; background: #cbd5da; border: 0; padding: 0; cursor: pointer; transition: background .25s, width .25s; }
+        .reviews-dot.active { width: 30px; background: var(--c-turquesa); }
+        .review-stars { color: #e9a62c; letter-spacing: 3px; font-size: 18px; line-height: 1; font-weight: 900; }
+        .reviews-track { touch-action: pan-x pan-y pinch-zoom; -webkit-overflow-scrolling: touch; }
+        @media (prefers-reduced-motion: reduce) { .reviews-track { scroll-behavior: auto; } }
+        .reviews-arrow { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--c-gris-border); background: white; color: var(--c-azul); font-size: 23px; font-weight: 700; cursor: pointer; box-shadow: var(--shadow-soft); }
+        .reviews-arrow:hover { border-color: var(--c-turquesa); }
+        .reviews-counter { font-size: 13px; font-weight: 800; color: var(--c-texto-light); min-width: 54px; text-align: center; }
+        .reviews-transparency { margin-top: 18px; font-size: 12px; line-height: 1.55; color: var(--c-texto-light); text-align: center; }
+        @media (min-width: 768px) { .review-card { flex-basis: calc((100% - 20px) / 2); } .reviews-track { gap: 20px; } }
     </style>
 </head>
 <body>
@@ -879,6 +901,29 @@
                     </section>
                 </div>
             </div>
+
+            <!-- EXPERIENCIAS CON BLINDAFLEX: textos recreados a partir de comentarios verbales -->
+            <section class="section-gap" aria-labelledby="reviews-heading">
+                <h2 class="section-title" id="reviews-heading">EXPERIENCIAS CON BLINDAFLEX</h2>
+                <p class="section-subtitle reviews-intro">Lo que nuestros clientes nos cuentan sobre Barrera Impermeable.</p>
+                <div class="reviews-shell">
+                    <div class="reviews-track" id="reviews-track" tabindex="0" aria-label="Experiencias de clientes; deslizá para ver más">
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“La casa quedó preciosa, la verdad. Elegimos el greige y cambió muchísimo el frente. Y cuando llueve, el agua queda en gotitas sobre la pared. Nos encanta cómo quedó.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“La aplicamos nosotros y fue bastante sencilla de trabajar. El color quedó muy parejo y el frente se ve renovado. Muy conformes.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“Teníamos unas microfisuras que nos preocupaban por la humedad. Las reparamos antes de pintar y después aplicamos Blindaflex. Hasta ahora respondió muy bien, y la terminación quedó bárbara.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“Muy buen producto. Quedó hermoso el frente, lo recomiendo.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“Soy pintor y me gustó cómo se trabaja. Se extiende bien, la terminación queda prolija y los colores están muy logrados. El dueño quedó chocho con el cambio.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“Lo compramos más que nada para proteger la pared de la lluvia, pero nos sorprendió lo linda que quedó la casa. Ahora cada vez que llueve miramos cómo resbala el agua.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“Todo excelente, fácil de aplicar y muy linda terminación.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“En casa teníamos el frente bastante deslucido. Preparamos la superficie, arreglamos unas fisuritas y lo pintamos. Quedó como nuevo y se nota mucho el efecto repelente.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                        <article class="review-card"><div class="review-stars" aria-label="Cinco estrellas">★★★★★</div><p>“Me gustó mucho el color arcilla. Quedó cálido, moderno y con una terminación muy pareja. Estamos felices con el resultado.”</p><div class="review-meta"><span class="review-mark" aria-hidden="true">✦</span><span>Cliente Blindaflex · Nombre pendiente</span></div></article>
+                    </div>
+                </div>
+                <div class="reviews-controls" aria-label="Indicadores de comentarios">
+                    <div class="reviews-dots" id="reviews-dots"></div>
+                </div>
+                <p class="reviews-transparency">Comentarios redactados a partir de experiencias compartidas por clientes. Identificaciones pendientes de completar.</p>
+            </section>
 
             <!-- BLOQUE 10: FAQ -->
             <section class="section-gap card">
@@ -1644,6 +1689,140 @@
 
         function scrollToCompra() { document.getElementById('configurador').scrollIntoView({behavior:'smooth'}); }
         
+        // Carrusel de reseñas: autoplay visible, gesto táctil y rayitas interactivas.
+        (function initReviewsCarousel() {
+            const track = document.getElementById('reviews-track');
+            const dotsBox = document.getElementById('reviews-dots');
+            if (!track || !dotsBox) return;
+            const originals = Array.from(track.querySelectorAll('.review-card'));
+            const count = originals.length;
+            if (count < 2) return;
+            const buffer = Math.min(2, count);
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let position = buffer;
+            let timer = null, settleTimer = null, scrollTimer = null;
+            let moving = false, interacting = false, inView = true;
+            // Clones a ambos extremos: la transición del último al primero sigue hacia adelante.
+            originals.slice(-buffer).forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                track.insertBefore(clone, track.firstChild);
+            });
+            originals.slice(0, buffer).forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                track.appendChild(clone);
+            });
+            const slides = Array.from(track.querySelectorAll('.review-card'));
+            const dots = originals.map((_, i) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'reviews-dot';
+                dot.setAttribute('aria-label', 'Ver comentario ' + (i + 1));
+                dot.addEventListener('click', () => {
+                    stopAuto();
+                    interacting = false;
+                    moveTo(buffer + i, true);
+                    scheduleAuto();
+                });
+                dotsBox.appendChild(dot);
+                return dot;
+            });
+            function activeIndex() { return ((position - buffer) % count + count) % count; }
+            function updateDots() {
+                dots.forEach((dot, i) => {
+                    const active = i === activeIndex();
+                    dot.classList.toggle('active', active);
+                    if (active) dot.setAttribute('aria-current', 'true');
+                    else dot.removeAttribute('aria-current');
+                });
+            }
+            function offset(index) { return slides[index].offsetLeft - slides[0].offsetLeft; }
+            function jumpTo(index) {
+                position = index;
+                const previousSnap = track.style.scrollSnapType;
+                track.style.scrollSnapType = 'none';
+                track.scrollTo({left: offset(index), behavior: 'instant'});
+                // Restaurar snap después de posicionar, sin animar el salto invisible.
+                requestAnimationFrame(() => { track.style.scrollSnapType = previousSnap; });
+                updateDots();
+            }
+            function settle() {
+                moving = false;
+                if (position >= buffer + count) jumpTo(position - count);
+                else if (position < buffer) jumpTo(position + count);
+                updateDots();
+            }
+            function moveTo(index, smooth) {
+                clearTimeout(settleTimer);
+                position = index;
+                moving = true;
+                track.scrollTo({left: offset(index), behavior: smooth && !reducedMotion ? 'smooth' : 'instant'});
+                updateDots();
+                settleTimer = setTimeout(settle, smooth && !reducedMotion ? 800 : 35);
+            }
+            function stopAuto() { clearTimeout(timer); timer = null; }
+            function scheduleAuto(delay = 4300) {
+                stopAuto();
+                if (reducedMotion || document.hidden || !inView || interacting) return;
+                timer = setTimeout(() => {
+                    timer = null;
+                    if (!moving && !interacting && inView && !document.hidden) moveTo(position + 1, true);
+                    scheduleAuto();
+                }, delay);
+            }
+            // El carrusel nunca se bloquea por tener el cursor encima.
+            track.addEventListener('pointerdown', () => {
+                interacting = true;
+                stopAuto();
+            }, {passive:true});
+            function finishInteraction() {
+                interacting = false;
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    const left = track.scrollLeft;
+                    let closest = buffer, distance = Infinity;
+                    slides.forEach((slide, i) => {
+                        const diff = Math.abs(offset(i) - left);
+                        if (diff < distance) { closest = i; distance = diff; }
+                    });
+                    position = closest;
+                    settle();
+                    scheduleAuto(5000);
+                }, 250);
+            }
+            track.addEventListener('pointerup', finishInteraction, {passive:true});
+            track.addEventListener('pointercancel', finishInteraction, {passive:true});
+            track.addEventListener('scroll', () => {
+                if (moving || interacting) return;
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    const left = track.scrollLeft;
+                    let closest = buffer, distance = Infinity;
+                    slides.forEach((slide, i) => {
+                        const diff = Math.abs(offset(i) - left);
+                        if (diff < distance) { closest = i; distance = diff; }
+                    });
+                    position = closest;
+                    settle();
+                }, 180);
+            }, {passive:true});
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) stopAuto(); else scheduleAuto(1200);
+            });
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(entries => {
+                    inView = entries[0].isIntersecting;
+                    if (inView) scheduleAuto(1400);
+                    else stopAuto();
+                }, {threshold: 0.15});
+                observer.observe(track);
+            }
+            window.addEventListener('resize', () => jumpTo(position), {passive:true});
+            jumpTo(buffer);
+            scheduleAuto(1400);
+        })();
+
         function toggleFaq(btn) {
             btn.classList.toggle('active');
             const ans = btn.nextElementSibling;
