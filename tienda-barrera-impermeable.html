@@ -131,7 +131,6 @@
         .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 6px rgba(7, 26, 36, 0.1); }
         .btn-action { background: linear-gradient(180deg, var(--c-naranja) 0%, var(--c-naranja-dark) 100%); border-bottom: none; box-shadow: 0 8px 24px rgba(246, 90, 3, 0.25); }
         
-        /* Iconografía Tech Fina */
         .svg-thin { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
         /* =========================================================
@@ -148,9 +147,9 @@
         .desktop-nav { display: none; }
 
         /* =========================================================
-           BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4)
+           BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio)
            ========================================================= */
-        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 500px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); aspect-ratio: 3/4;}
+        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 600px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); aspect-ratio: 3/4;}
         .yt-track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
         .yt-track::-webkit-scrollbar { display: none; }
         .yt-slide { min-width: 100%; height: 100%; scroll-snap-align: center; position: relative; pointer-events: none; }
@@ -201,177 +200,182 @@
            ========================================================= */
         .color-section { margin-bottom: var(--gap-mob); }
         
-        /* A. Muestrario (+30% Altura, Colores Reales) */
-        .color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-        .color-swatch { border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); height: 104px; display: flex; align-items: center; justify-content: center; padding: 8px; cursor: pointer; transition: transform 0.2s, outline 0.2s; box-shadow: var(--shadow-soft); position: relative; overflow: hidden; outline: 3px solid transparent; outline-offset: 2px;}
+        .color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+        .color-swatch { border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); height: 104px; display: flex; align-items: flex-end; justify-content: center; padding: 8px; cursor: pointer; transition: transform 0.2s; box-shadow: var(--shadow-soft); position: relative;}
         .color-swatch:active { transform: scale(0.95); }
-        .color-swatch.selected { outline-color: var(--c-turquesa); transform: scale(1.02); z-index: 2; box-shadow: 0 6px 16px rgba(0,0,0,0.15);}
-        .color-name { font-size: 12px; font-weight: 900; text-transform: uppercase; width: 100%; text-align: center; letter-spacing: 0.5px;}
-        .color-note { font-size: 12px; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; font-weight: 500; line-height: 1.4;}
+        .color-swatch.selected { border: 2px solid var(--c-turquesa); box-shadow: 0 0 0 2px var(--c-turquesa-light); }
+        .color-name { font-size: 11px; font-weight: 800; text-transform: uppercase; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 4px; color: var(--c-azul); text-align: center; width: 100%;}
+        .color-note { font-size: 11px; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; font-weight: 500;}
         
-        /* Valores Cromáticos */
-        .bg-blanco { background-color: #F4F3F0; color: #071A24; }
-        .bg-greige { background-color: #c6b3a2; color: #FFFFFF; text-shadow: 0 1px 3px rgba(0,0,0,0.3);}
-        .bg-arcilla { background-color: #7B594E; color: #FFFFFF; }
-        .bg-ceniza { background-color: #A5A5A3; color: #FFFFFF; }
-        .bg-eclipse { background-color: #66676B; color: #FFFFFF; }
-        .bg-tormenta { background-color: #414143; color: #FFFFFF; }
+        .bg-blanco { background-color: #F4F3F0; }
+        .bg-greige { background-color: #c6b3a2; }
+        .bg-arcilla { background-color: #7B594E; }
+        .bg-ceniza { background-color: #A5A5A3; }
+        .bg-eclipse { background-color: #66676B; }
+        .bg-tormenta { background-color: #414143; }
 
-        /* B. Combinador (+50% Altura, - Margen) */
-        .combiner-box { background: var(--c-gris-claro); border-radius: var(--radius-md); padding: 24px 16px; margin-bottom: 32px; border: 1px dashed var(--c-gris-border); margin-left: -12px; margin-right: -12px;}
-        .combiner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 0 4px;}
-        .combiner-header h4 { font-size: 15px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;}
-        .btn-clear { background: none; border: none; font-size: 13px; color: var(--c-turquesa-dark); font-weight: 700; cursor: pointer; text-decoration: underline;}
+        .combiner-box { background: var(--c-gris-claro); border-radius: var(--radius-md); padding: 16px; margin-bottom: 32px; border: 1px dashed var(--c-gris-border);}
+        .combiner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;}
+        .combiner-header h4 { font-size: 14px; font-weight: 800; color: var(--c-azul); text-transform: uppercase;}
+        .btn-clear { background: none; border: none; font-size: 12px; color: var(--c-turquesa-dark); font-weight: 700; cursor: pointer; text-decoration: underline;}
         .combiner-display { display: flex; height: 150px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(0,0,0,0.1); box-shadow: var(--shadow-md); background: var(--c-blanco);}
         .combo-slot { flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; position: relative;}
-        .combo-empty { font-size: 13px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
+        .combo-empty { font-size: 11px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
 
-        /* C. Galería Inspiracional */
-        .gallery-wrapper { position: relative; width: 100%; overflow: hidden; border-radius: var(--radius-md); margin-bottom: var(--gap-mob); }
+        /* GALERÍA 3:2 (18 Imágenes) */
+        .gallery-wrapper { position: relative; width: 100%; overflow: hidden; border-radius: var(--radius-md); }
         .gallery-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; padding-bottom: 4px;}
         .gallery-track::-webkit-scrollbar { display: none; }
-        .gallery-item { min-width: 92%; aspect-ratio: 4/5; scroll-snap-align: center; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; box-shadow: var(--shadow-soft); position: relative; max-height: 550px;}
+        .gallery-item { min-width: 85%; aspect-ratio: 3 / 2 !important; scroll-snap-align: center; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; box-shadow: var(--shadow-soft); position: relative;}
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-disclaimer { font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500; line-height: 1.4; padding: 0 12px;}
         
-        .expand-icon { position: absolute; bottom: 16px; right: 16px; width: 40px; height: 40px; background: rgba(0, 175, 198, 0.9); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3);}
-        .expand-icon svg { width: 20px; height: 20px; fill: currentColor; }
-
-        /* Lightbox */
         .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 26, 36, 0.95); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(5px);}
         .lightbox.active { opacity: 1; pointer-events: auto; }
         .lb-content { position: relative; width: 90%; max-width: 1000px; max-height: 85vh; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         .lb-content img { width: 100%; height: 100%; object-fit: contain; }
-        .lb-close { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.5); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 28px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
-        .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
+        .lb-close { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
+        .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
         .lb-prev { left: 16px; }
         .lb-next { right: 16px; }
 
         /* =========================================================
-           BLOQUE 5: CALCULADORA DE CONSUMO REAL
+           BLOQUE 5: CALCULADORA DE CONSUMO
            ========================================================= */
         .calc-section { background: var(--c-azul-grad); color: var(--c-blanco); border: none; }
         .calc-section .section-title { color: var(--c-turquesa); }
         .calc-section .section-subtitle { color: var(--c-gris-claro); }
         
-        .calc-input-group { background: rgba(255,255,255,0.05); padding: 24px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; text-align: center;}
-        .calc-input-group label { display: block; font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--c-blanco);}
+        .calc-input-group { background: rgba(255,255,255,0.05); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; text-align: center;}
+        .calc-input-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--c-blanco);}
         .calc-flex { display: flex; justify-content: center; align-items: center; gap: 12px; }
-        .calc-input { width: 120px; padding: 14px; border: 2px solid var(--c-turquesa); border-radius: var(--radius-sm); font-size: 22px; font-weight: 900; text-align: center; color: var(--c-azul); background: var(--c-blanco); }
-        .calc-input:focus { outline: none; box-shadow: 0 0 0 4px rgba(0,175,198,0.3); }
-        .calc-unit { font-size: 20px; font-weight: 800; color: var(--c-turquesa); }
+        .calc-input { width: 100px; padding: 12px; border: 2px solid var(--c-turquesa); border-radius: var(--radius-sm); font-size: 18px; font-weight: 900; text-align: center; color: var(--c-azul); background: var(--c-blanco); }
+        .calc-input:focus { outline: none; box-shadow: 0 0 0 3px rgba(0,175,198,0.3); }
+        .calc-unit { font-size: 18px; font-weight: 800; color: var(--c-turquesa); }
 
-        .calc-results { display: none; background: var(--c-blanco); color: var(--c-azul); padding: 24px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: left;}
+        .calc-results { display: none; background: var(--c-blanco); color: var(--c-azul); padding: 20px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: left;}
         .calc-results.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
         
-        .res-title { font-size: 14px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
+        .res-title { font-size: 13px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
         .res-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 700; font-size: 15px;}
         .res-item.highlight { color: var(--c-turquesa-dark); font-size: 16px; }
-        .res-total { border-top: 2px dashed var(--c-gris-border); margin-top: 20px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center;}
-        .res-total span:first-child { font-size: 16px; font-weight: 800; }
-        .res-total span:last-child { font-size: 26px; font-weight: 900; color: var(--c-naranja); }
-        .calc-note { font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 16px; font-weight: 500; line-height: 1.4;}
+        .res-total { border-top: 2px dashed var(--c-gris-border); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: center;}
+        .res-total span:last-child { font-size: 24px; font-weight: 900; color: var(--c-naranja); }
+        .calc-note { font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; margin-top: 12px; font-weight: 500;}
 
         /* =========================================================
-           BLOQUE 6: CONFIGURADOR DE COMPRA (REDISEÑO TOTAL MULTIVARIANTE)
+           BLOQUE 6: ARMÁ TU PEDIDO (REDISEÑO TOTAL)
            ========================================================= */
-        .buy-section { border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech); scroll-margin-top: 80px;}
+        .config-box { background: var(--c-blanco); border-radius: var(--radius-lg); border: 1px solid var(--c-gris-border); box-shadow: var(--shadow-soft); padding: var(--pad-box); margin-bottom: var(--gap-mob); scroll-margin-top: 80px;}
+        .config-title { font-size: 24px; font-weight: 900; color: var(--c-azul); text-align: center; text-transform: uppercase; margin-bottom: 8px;}
+        .config-subtitle { font-size: 15px; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; font-weight: 500; line-height: 1.4;}
         
-        .conf-group { margin-bottom: 28px; }
-        .conf-label { font-size: 15px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; margin-bottom: 16px; display: block; border-bottom: 2px solid var(--c-gris-border); padding-bottom: 8px;}
+        .config-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+        @media(min-width: 992px) { .config-grid { grid-template-columns: 1.2fr 1fr; align-items: start; } }
         
-        /* Selectores de Color Reales (Pill con fondo exacto) */
-        .pill-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .pill-label { text-align: center; padding: 16px 8px; border: 3px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-weight: 800; font-size: 13px; text-transform: uppercase; transition: all 0.2s; user-select: none; box-shadow: var(--shadow-soft); position: relative; overflow: hidden;}
-        /* Text shadow para asegurar legibilidad en claros y oscuros */
-        .pill-label { text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
-        .bg-blanco.pill-label { text-shadow: none; border: 1px solid var(--c-gris-border); }
-        .pill-input { display: none; }
-        .pill-input:checked + .pill-label { border-color: var(--c-turquesa); box-shadow: 0 0 0 3px var(--c-turquesa-light); transform: scale(1.03); z-index: 1; }
+        .c-step { margin-bottom: 28px; }
+        .c-step-title { font-size: 13px; font-weight: 900; color: var(--c-azul); margin-bottom: 16px; border-bottom: 2px solid var(--c-gris-border); padding-bottom: 8px; text-transform: uppercase;}
         
-        /* Presentaciones Grid Mejorada (Precio Gigante) */
-        .pres-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-        .pres-card-new { border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px; cursor: pointer; transition: all 0.2s; background: var(--c-gris-bg); display: flex; flex-direction: column; align-items: center; text-align: center; position: relative;}
-        .pres-card-new.selected { border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 8px 24px rgba(0,175,198,0.15); transform: translateY(-3px);}
-        .pres-badge { background: var(--c-azul); color: var(--c-blanco); font-size: 14px; font-weight: 900; padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; display: inline-block;}
-        .pres-price-huge { font-size: 36px; font-weight: 900; color: var(--c-naranja); line-height: 1; margin-bottom: 8px; letter-spacing: -0.5px;}
-        .pres-desc { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
-        @media (min-width: 500px) { .pres-grid { grid-template-columns: 1fr 1fr; } }
+        /* Presentaciones */
+        .c-pres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .c-pres-card { border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 12px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--c-gris-bg); position: relative;}
+        .c-pres-card.selected { border-color: var(--c-turquesa); background: var(--c-turquesa-light); box-shadow: 0 4px 12px rgba(0,175,198,0.15); transform: translateY(-2px);}
+        .c-pres-card.selected::before { content: ''; position: absolute; top: -6px; right: -6px; width: 12px; height: 12px; background: var(--c-turquesa); border-radius: 50%; border: 2px solid white;}
+        .c-pres-kg { display: block; font-size: 20px; font-weight: 900; color: var(--c-azul); margin-bottom: 8px; line-height: 1;}
+        .c-pres-price { font-size: 18px; font-weight: 800; color: var(--c-naranja); background: rgba(246,90,3,0.1); padding: 4px 8px; border-radius: 6px; display: inline-block;}
         
-        /* Control Cantidad */
-        .qty-control { display: flex; align-items: center; justify-content: center; gap: 16px; background: var(--c-gris-bg); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--c-gris-border); max-width: 220px; margin: 0 auto;}
-        .qty-btn { width: 44px; height: 44px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-sm); font-weight: 900; font-size: 20px; color: var(--c-azul); cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-soft);}
-        .qty-input { width: 50px; text-align: center; border: none; background: transparent; font-weight: 900; font-size: 20px; color: var(--c-azul); pointer-events: none; }
+        /* Colores visuales reales */
+        .c-color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .c-color-card { cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .c-color-swatch { width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-sm); border: 2px solid rgba(0,0,0,0.1); position: relative; transition: all 0.2s; }
+        .c-color-card.selected .c-color-swatch { border-color: var(--c-turquesa); box-shadow: 0 0 0 3px var(--c-turquesa-light); transform: scale(1.05);}
+        .c-color-card.selected .c-color-swatch::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 20px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        .c-color-name { font-size: 13px; font-weight: 700; color: var(--c-texto); }
+        
+        /* Cantidad */
+        .c-qty-control { display: flex; align-items: center; justify-content: center; gap: 16px; background: var(--c-gris-bg); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--c-gris-border); max-width: 240px; }
+        .c-qty-btn { width: 40px; height: 40px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-sm); font-weight: 900; font-size: 20px; color: var(--c-azul); cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-soft);}
+        .c-qty-input { width: 50px; text-align: center; border: none; background: transparent; font-weight: 900; font-size: 20px; color: var(--c-azul); pointer-events: none; }
 
-        /* PRE-CARRITO: Resumen de tu selección / Multivariante */
-        .dynamic-summary-box { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; margin-top: 24px;}
-        .summary-dyn-title { font-size: 14px; font-weight: 900; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
+        /* Botón Sumar Local */
+        .btn-sumar { width: 100%; padding: 18px; background: var(--c-azul); color: white; border: none; border-radius: var(--radius-sm); font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(7,26,36,0.15); text-transform: uppercase; margin-top: 16px; transition: transform 0.2s; border-bottom: 2px solid var(--c-turquesa);}
+        .btn-sumar:active { transform: translateY(2px); box-shadow: 0 2px 6px rgba(7,26,36,0.1); }
         
-        /* Lista de items del pre-carrito */
-        .pre-cart-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;}
-        .pre-cart-item { display: flex; justify-content: space-between; align-items: center; background: var(--c-blanco); border: 1px solid var(--c-gris-border); padding: 12px; border-radius: var(--radius-sm); box-shadow: var(--shadow-soft);}
-        .pre-cart-item-info h5 { font-size: 13px; font-weight: 800; color: var(--c-azul); margin-bottom: 2px;}
-        .pre-cart-item-info span { font-size: 14px; font-weight: 900; color: var(--c-turquesa-dark); }
-        .btn-remove-pre { background: none; border: none; color: #dc2626; font-size: 20px; font-weight: bold; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center;}
-
-        /* Selección actual en vivo */
-        .current-selection-live { border-top: 1px dashed var(--c-gris-border); padding-top: 16px;}
-        .summary-dyn-content p { margin-bottom: 8px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center;}
-        .summary-dyn-content strong { color: var(--c-azul); font-weight: 800;}
-        .btn-add-variant { width: 100%; border: 2px dashed var(--c-turquesa); background: var(--c-turquesa-light); color: var(--c-turquesa-dark); font-weight: 800; font-size: 13px; padding: 12px; border-radius: var(--radius-sm); cursor: pointer; margin-top: 12px; transition: background 0.2s;}
-        .btn-add-variant:active { background: #bdf1f6; }
-
-        .summary-dyn-total { border-top: 2px solid var(--c-gris-border); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end;}
-        .summary-dyn-total span:first-child { font-size: 16px; font-weight: 900; color: var(--c-texto-light); }
-        .summary-dyn-total span:last-child { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1;}
+        /* Resumen Local (Sticky Desktop) */
+        .c-summary { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px; position: sticky; top: 80px;}
+        .c-summary h3 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 16px; text-transform: uppercase; border-bottom: 2px solid var(--c-gris-border); padding-bottom: 8px;}
+        
+        .c-summary-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; min-height: 60px;}
+        .c-sum-item { background: white; border: 1px solid var(--c-gris-border); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; position: relative; box-shadow: var(--shadow-soft);}
+        .c-sum-item-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-right: 24px;}
+        .c-sum-color-dot { width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.2); }
+        .c-sum-title { font-size: 14px; font-weight: 800; color: var(--c-azul); }
+        .c-sum-price-row { display: flex; justify-content: space-between; align-items: flex-end; font-size: 13px; font-weight: 600; color: var(--c-texto-light);}
+        .c-sum-sub { font-size: 16px; font-weight: 900; color: var(--c-turquesa-dark); }
+        .c-sum-remove { position: absolute; top: 12px; right: 12px; background: #fee2e2; border: none; color: #dc2626; cursor: pointer; font-size: 18px; line-height: 1; padding: 4px; border-radius: 4px; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px;}
+        .c-sum-remove svg { width: 16px; height: 16px; fill: currentColor; pointer-events: none;}
+        
+        .c-sum-empty { font-size: 14px; color: var(--c-texto-light); text-align: center; padding: 24px 0; font-weight: 500; font-style: italic;}
+        
+        .c-sum-totals { border-top: 2px solid var(--c-gris-border); padding-top: 16px; margin-bottom: 16px; }
+        .c-sum-totals-row { display: flex; justify-content: space-between; align-items: flex-end;}
+        .c-sum-totals-row span:first-child { font-size: 14px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase;}
+        .c-sum-totals-val { font-size: 24px; font-weight: 900; color: var(--c-naranja); line-height: 1;}
+        .c-envio-note { font-size: 12px; color: var(--c-texto-light); text-align: center; margin-bottom: 20px; font-weight: 500; line-height: 1.4;}
 
         /* =========================================================
-           BLOQUES INFORMATIVOS
+           BLOQUES 7, 8, 9, 10, 11
            ========================================================= */
-        .section-icon-main { width: 42px; height: 42px; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block; }
+        .section-icon-main { width: 36px; height: 36px; max-width: 36px; max-height: 36px; flex-shrink: 0; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block; }
         
+        /* Pagos */
         .pay-section-dark { background: var(--c-azul-grad); border: none; color: var(--c-blanco); }
         .pay-section-dark .section-title { color: var(--c-blanco); }
         .pay-methods { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
-        .pay-tag-dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(0,175,198,0.3); padding: 12px 16px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px); }
-        .pay-tag-dark svg { width: 20px; height: 20px; fill: var(--c-turquesa); }
-        .pay-note { font-size: 13px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500; line-height: 1.4;}
+        .pay-tag-dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(0,175,198,0.3); padding: 10px 14px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px); }
+        .pay-tag-dark svg { width: 18px; height: 18px; fill: var(--c-turquesa); }
+        .pay-note { font-size: 13px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500;}
 
+        /* Envíos */
         .shipping-highlight { text-align: center; margin-bottom: 24px; }
-        .shipping-highlight h3 { font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 8px;}
-        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
-        .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 16px; }
+        .shipping-highlight h3 { font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 4px;}
+        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; }
         .shipping-card.free-shipping { background: #eefafc; border-color: var(--c-turquesa); border-left: 4px solid var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon { background: var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon svg { fill: var(--c-blanco); stroke: var(--c-blanco);}
         .shipping-card.extended { border-left: 4px solid var(--c-naranja); }
-        .shipping-icon { width: 36px; height: 36px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
-        .shipping-icon svg { width: 20px; height: 20px; color: var(--c-turquesa-dark); }
-        .shipping-info h4 { font-size: 16px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
-        .shipping-info p { font-size: 14px; color: var(--c-texto-light); line-height: 1.4; }
+        .shipping-icon { width: 32px; height: 32px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
+        .shipping-icon svg { width: 18px; height: 18px; color: var(--c-turquesa-dark); }
+        .shipping-info h4 { font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
+        .shipping-info p { font-size: 13px; color: var(--c-texto-light); }
         
-        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 16px; border-radius: var(--radius-sm); font-weight: 800; font-size: 14px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
+        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 14px; border-radius: var(--radius-sm); font-weight: 800; font-size: 14px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
         .btn-outline:active { background: var(--c-turquesa-light); }
 
+        /* Cómo Comprar */
         .steps-grid { display: flex; flex-direction: column; gap: 16px; position: relative;}
-        .step-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-soft); z-index: 2;}
-        .step-num { font-size: 28px; font-weight: 900; color: var(--c-turquesa-light); -webkit-text-stroke: 1px var(--c-turquesa); line-height: 1; flex-shrink: 0; padding-top: 4px; width: 36px;}
-        .step-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 6px; text-transform: uppercase;}
-        .step-info p { font-size: 14px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
+        .step-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-soft); z-index: 2;}
+        .step-num { font-size: 24px; font-weight: 900; color: var(--c-turquesa-light); -webkit-text-stroke: 1px var(--c-turquesa); line-height: 1; flex-shrink: 0; padding-top: 4px; width: 36px;}
+        .step-info h4 { font-size: 15px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; text-transform: uppercase;}
+        .step-info p { font-size: 13px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
 
+        /* FAQ */
         .faq-item { border-bottom: 1px solid var(--c-gris-border); transition: background-color 0.3s; }
         .faq-item:last-child { border: none; }
-        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 20px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color 0.2s;}
-        .faq-question::after { content: "+"; color: var(--c-turquesa); font-size: 24px; transition: transform 0.3s; font-weight: 400;}
+        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 18px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color 0.2s;}
+        .faq-question::after { content: "+"; color: var(--c-turquesa); font-size: 22px; transition: transform 0.3s; font-weight: 400;}
         .faq-question.active { color: var(--c-turquesa-dark); }
         .faq-question.active::after { content: "-"; transform: rotate(180deg); color: var(--c-turquesa-dark);}
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;}
-        .faq-answer p { padding-bottom: 20px; line-height: 1.5; }
+        .faq-answer p { padding-bottom: 18px; }
 
+        /* Cierre */
         .closing-box { text-align: center; }
-        .closing-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; text-align: left; background: var(--c-gris-bg); padding: 24px; border-radius: var(--radius-md);}
-        .closing-list li { display: flex; align-items: flex-start; gap: 12px; font-weight: 700; font-size: 14px; color: var(--c-texto); line-height: 1.4;}
-        .closing-list svg { width: 24px; height: 24px; color: var(--c-turquesa); flex-shrink: 0;}
+        .closing-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; text-align: left; background: var(--c-gris-bg); padding: 20px; border-radius: var(--radius-md);}
+        .closing-list li { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; color: var(--c-texto);}
+        .closing-list svg { width: 20px; height: 20px; color: var(--c-turquesa); flex-shrink: 0;}
 
         /* =========================================================
            COMPONENTES FLOTANTES
@@ -381,18 +385,27 @@
         .fb-text { font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
         .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
 
-        /* Corrección Ícono Whatsapp Flotante GIGANTE (Fijado a !important) */
-        .wa-float { position: fixed; bottom: 84px; right: 16px; width: 56px !important; height: 56px !important; background: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 85; transition: transform 0.3s ease; }
-        .wa-float:active { transform: scale(0.9); }
-        .wa-float svg { width: 32px !important; height: 32px !important; fill: currentColor; }
-        body.has-floating-bar .wa-float { bottom: calc(84px + 64px); } 
+        /* BOTÓN WHATSAPP CORREGIDO: z-index superior, medidas !important para evitar herencias */
+        .whatsapp-float {
+            position: fixed !important; right: 18px !important; bottom: 92px !important;
+            width: 52px !important; height: 52px !important; display: flex !important;
+            align-items: center !important; justify-content: center !important;
+            border-radius: 50% !important; background: #25D366 !important; color: #fff !important;
+            box-shadow: 0 5px 18px rgba(7,26,36,.22) !important;
+            z-index: 9999 !important; /* Capa máxima interactiva antes de overlays */
+            pointer-events: auto !important;
+            transition: transform .2s ease, box-shadow .2s ease !important;
+        }
+        .whatsapp-float svg { width: 29px !important; height: 29px !important; fill: #fff !important; flex: none !important; }
+        .whatsapp-float:hover { transform: translateY(-2px) !important; box-shadow: 0 7px 20px rgba(7,26,36,.28) !important; }
+        body.has-floating-bar .whatsapp-float { bottom: calc(84px + 64px) !important; }
 
         /* =========================================================
-           CARRITO LATERAL (DRAWER UNIVERSAL)
+           CARRITO LATERAL (DRAWER)
            ========================================================= */
-        .cart-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(7, 26, 36, 0.8); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px);}
+        .cart-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(7, 26, 36, 0.8); z-index: 99990; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px);}
         .cart-overlay.open { opacity: 1; pointer-events: auto; }
-        .cart-drawer { position: fixed; top:0; right:-100%; width: 100%; max-width: 400px; height: 100%; background: var(--c-gris-bg); z-index: 1000; transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -8px 0 24px rgba(0,0,0,0.15);}
+        .cart-drawer { position: fixed; top:0; right:-100%; width: 100%; max-width: 400px; height: 100%; background: var(--c-gris-bg); z-index: 99999; transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -8px 0 24px rgba(0,0,0,0.15);}
         .cart-drawer.open { right: 0; }
         .cart-header { padding: 20px; background: var(--c-blanco); border-bottom: 1px solid var(--c-gris-border); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-soft); z-index: 2;}
         .cart-header h2 { font-size: 18px; font-weight: 900; color: var(--c-azul);}
@@ -424,9 +437,12 @@
         .form-control { width: 100%; padding: 12px 16px; border: 2px solid var(--c-gris-border); border-radius: var(--radius-sm); font-size: 15px; font-weight: 500; font-family: inherit; transition: all 0.2s; background: var(--c-gris-bg);}
         .form-control:focus { outline: none; border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 0 0 4px var(--c-turquesa-light); }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-        /* Icono WhatsApp Check out estricto */
-        .btn-whatsapp svg { width: 24px !important; height: 24px !important; }
+        
+        /* Botón Checkout sin ícono gigante */
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; background: linear-gradient(180deg, #25D366 0%, #1da851 100%); color: white; font-weight: 900; font-size: 16px; padding: 18px; border-radius: var(--radius-sm); border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-whatsapp:active { transform: translateY(2px); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
+        .btn-whatsapp svg { width: 24px !important; height: 24px !important; fill: white; flex-shrink:0; }
+        .privacy-note { font-size: 13px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500;}
 
         /* =========================================================
            FOOTER
@@ -440,8 +456,8 @@
         .footer-contact { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
         .footer-contact h5 { font-size: 12px; color: #8ba2ac; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
         .footer-wsp { font-size: 18px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
-        /* Icono WhatsApp Footer estricto */
-        .footer-wsp svg { width: 24px !important; height: 24px !important; fill: #25D366; }
+        /* Icono WA footer protegido */
+        .footer-wsp svg { width: 24px !important; height: 24px !important; fill: #25D366; flex-shrink:0; }
         .footer-bottom { text-align: center; font-size: 11px; color: #64748b; margin-top: 40px; }
 
         /* =========================================================
@@ -471,8 +487,8 @@
             .step-num { width: auto; }
             
             .floating-bar { display: none; }
-            .wa-float { bottom: 32px; right: 32px; width: 64px !important; height: 64px !important;}
-            body.has-floating-bar .wa-float { bottom: 32px; }
+            .whatsapp-float { bottom: 24px !important; right: 24px !important; width: 60px !important; height: 60px !important;}
+            body.has-floating-bar .whatsapp-float { bottom: 24px !important; }
         }
     </style>
 </head>
@@ -498,13 +514,12 @@
         </div>
     </header>
 
-    <main>
+    <main id="main-store">
         <div class="container">
             
-            <!-- BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio) -->
+            <!-- BLOQUE 1: VIDEOS YT (Carrusel Infinito 3:4) -->
             <section class="yt-carousel-wrapper" aria-label="Carrusel de videos">
                 <div class="yt-track" id="yt-track">
-                    <!-- IDs Editables -->
                     <div class="yt-slide" id="slide-0"><div id="player-0" style="width:100%; height:100%;"></div></div>
                     <div class="yt-slide" id="slide-1"><div id="player-1" style="width:100%; height:100%;"></div></div>
                     <div class="yt-slide" id="slide-2"><div id="player-2" style="width:100%; height:100%;"></div></div>
@@ -571,7 +586,7 @@
                 <h2 class="section-title">COLORES E INSPIRACIÓN</h2>
                 <p class="section-subtitle">Conocé nuestra paleta de terminación semimate y visualizá tus ideas.</p>
                 
-                <!-- A. Muestrario (+30% Altura, Colores Reales exactos) -->
+                <!-- A. Muestrario (Colores Reales) -->
                 <div class="color-grid">
                     <div class="color-swatch bg-blanco" onclick="toggleColorCombo(this, 'Blanco', '#F4F3F0')"><div class="color-name">Blanco</div></div>
                     <div class="color-swatch bg-greige" onclick="toggleColorCombo(this, 'Greige', '#c6b3a2')"><div class="color-name">Greige</div></div>
@@ -582,7 +597,7 @@
                 </div>
                 <div class="color-note">Los colores pueden presentar variaciones según la configuración de cada pantalla.</div>
 
-                <!-- B. Combinador (+50% Altura, - Margen) -->
+                <!-- B. Combinador -->
                 <div class="combiner-box">
                     <div class="combiner-header">
                         <h4>TU COMBINACIÓN (Hasta 3)</h4>
@@ -593,29 +608,34 @@
                     </div>
                 </div>
 
-                <!-- C. Galería Inspiracional (Expansible) -->
+                <!-- C. Galería Inspiracional (18 Imágenes, Aspect Ratio 3:2) -->
                 <div class="gallery-wrapper">
                     <div class="gallery-track" id="gallery-track">
-                        <!-- 13 Imágenes solicitadas -->
-                        <div class="gallery-item" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración fachada 4" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración fachada 5" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración fachada 6" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración fachada 7" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración fachada 8" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración fachada 9" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración fachada 10" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración fachada 11" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración fachada 12" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
-                        <div class="gallery-item" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración fachada 13" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración fachada 4" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración fachada 5" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración fachada 6" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración fachada 7" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración fachada 8" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración fachada 9" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración fachada 10" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración fachada 11" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración fachada 12" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración fachada 13" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(14)"><img src="assets/images/bi/carrusel-14.png" alt="Inspiración fachada 14" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(15)"><img src="assets/images/bi/carrusel-15.png" alt="Inspiración fachada 15" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(16)"><img src="assets/images/bi/carrusel-16.png" alt="Inspiración fachada 16" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(17)"><img src="assets/images/bi/carrusel-17.png" alt="Inspiración fachada 17" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(18)"><img src="assets/images/bi/carrusel-18.png" alt="Inspiración fachada 18" loading="lazy"></div>
                     </div>
                 </div>
+                <p class="gallery-disclaimer" style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500; padding: 0 12px; line-height: 1.45;">Imágenes ilustrativas. Los colores pueden presentar variaciones respecto del resultado real debido a la iluminación, la configuración de cada pantalla y las características de la superficie de aplicación. Para elegir el color definitivo, recomendamos verificar una muestra física.</p>
             </section>
 
             <div class="grid-desktop">
-                <!-- BLOQUE 5: CALCULADORA DE CONSUMO REAL -->
+                <!-- BLOQUE 5: CALCULADORA DE CONSUMO -->
                 <section class="section-gap card calc-section">
                     <h2 class="section-title" style="color:var(--c-turquesa);">CALCULÁ TU CONSUMO</h2>
                     <p class="section-subtitle" style="color:var(--c-gris-claro);">Ingresá los m² a pintar (rendimiento estimado hasta 3 m²/kg).</p>
@@ -638,95 +658,100 @@
                         <div class="res-total"><span>Costo Estimado:</span> <span id="res-price">$0</span></div>
                         <div class="calc-note">Recomendación optimizada para cubrir tu necesidad redondeando hacia arriba.</div>
                         
-                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">AGREGAR COMBINACIÓN AL PEDIDO</button>
+                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="document.getElementById('configurador').scrollIntoView({behavior: 'smooth'})">IR AL CONFIGURADOR DE PEDIDO</button>
                     </div>
                 </section>
 
-                <!-- BLOQUE 6: CONFIGURADOR DE COMPRA (MULTIVARIANTE) -->
-                <section id="configurador" class="section-gap card buy-section">
-                    <h2 class="section-title">CONFIGURÁ TU PEDIDO</h2>
+                <!-- BLOQUE 6: ARMÁ TU PEDIDO (REDISEÑO MULTIVARIANTE) -->
+                <section id="configurador" class="config-box">
+                    <h2 class="config-title">Armá tu pedido</h2>
+                    <p class="config-subtitle">Elegí los baldes que necesitás. Podés combinar presentaciones y colores.</p>
                     
-                    <div class="conf-group">
-                        <span class="conf-label">1. Elegí el Color</span>
-                        <div class="pill-selector" id="conf-color-selector">
-                            <label class="pill-label bg-blanco">
-                                <input type="radio" name="conf-color" value="Blanco" class="pill-input" checked onchange="updateConfigUI()"> Blanco
-                            </label>
-                            <label class="pill-label bg-greige">
-                                <input type="radio" name="conf-color" value="Greige" class="pill-input" onchange="updateConfigUI()"> Greige
-                            </label>
-                            <label class="pill-label bg-arcilla">
-                                <input type="radio" name="conf-color" value="Arcilla" class="pill-input" onchange="updateConfigUI()"> Arcilla
-                            </label>
-                            <label class="pill-label bg-ceniza">
-                                <input type="radio" name="conf-color" value="Gris Ceniza" class="pill-input" onchange="updateConfigUI()"> Ceniza
-                            </label>
-                            <label class="pill-label bg-eclipse">
-                                <input type="radio" name="conf-color" value="Gris Eclipse" class="pill-input" onchange="updateConfigUI()"> Eclipse
-                            </label>
-                            <label class="pill-label bg-tormenta">
-                                <input type="radio" name="conf-color" value="Gris Tormenta" class="pill-input" onchange="updateConfigUI()"> Tormenta
-                            </label>
+                    <div class="config-grid">
+                        <!-- Izquierda: Selectores -->
+                        <div class="config-steps">
+                            <!-- PASO 1 -->
+                            <div class="c-step">
+                                <h3 class="c-step-title">PASO 01 — ELEGÍ LA PRESENTACIÓN</h3>
+                                <div class="c-pres-grid">
+                                    <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12.5, 112200)">
+                                        <span class="c-pres-kg">12,5 kg</span>
+                                        <span class="c-pres-price">$112.200</span>
+                                    </div>
+                                    <div class="c-pres-card" id="c-pres-5" onclick="setPres(5, 48900)">
+                                        <span class="c-pres-kg">5 kg</span>
+                                        <span class="c-pres-price">$48.900</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- PASO 2 -->
+                            <div class="c-step">
+                                <h3 class="c-step-title">PASO 02 — ELEGÍ EL COLOR</h3>
+                                <div class="c-color-grid">
+                                    <div class="c-color-card selected" onclick="setColor(this, 'Blanco', '#F4F3F0')">
+                                        <div class="c-color-swatch bg-blanco"></div>
+                                        <span class="c-color-name">Blanco</span>
+                                    </div>
+                                    <div class="c-color-card" onclick="setColor(this, 'Greige', '#c6b3a2')">
+                                        <div class="c-color-swatch bg-greige"></div>
+                                        <span class="c-color-name">Greige</span>
+                                    </div>
+                                    <div class="c-color-card" onclick="setColor(this, 'Arcilla', '#7B594E')">
+                                        <div class="c-color-swatch bg-arcilla"></div>
+                                        <span class="c-color-name">Arcilla</span>
+                                    </div>
+                                    <div class="c-color-card" onclick="setColor(this, 'Gris Ceniza', '#A5A5A3')">
+                                        <div class="c-color-swatch bg-ceniza"></div>
+                                        <span class="c-color-name">Ceniza</span>
+                                    </div>
+                                    <div class="c-color-card" onclick="setColor(this, 'Gris Eclipse', '#66676B')">
+                                        <div class="c-color-swatch bg-eclipse"></div>
+                                        <span class="c-color-name">Eclipse</span>
+                                    </div>
+                                    <div class="c-color-card" onclick="setColor(this, 'Gris Tormenta', '#414143')">
+                                        <div class="c-color-swatch bg-tormenta"></div>
+                                        <span class="c-color-name">Tormenta</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PASO 3 -->
+                            <div class="c-step">
+                                <h3 class="c-step-title">PASO 03 — CANTIDAD</h3>
+                                <div class="c-qty-control">
+                                    <button class="c-qty-btn" onclick="setQty(-1)">-</button>
+                                    <input type="number" id="c-qty-val" class="c-qty-input" value="1" readonly>
+                                    <button class="c-qty-btn" onclick="setQty(1)">+</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Botón Sumar Variante -->
+                            <button class="btn-sumar" onclick="addVariantToOrder()">
+                                + Sumar al pedido · <span id="btn-sumar-price">$112.200</span>
+                            </button>
+                        </div>
+
+                        <!-- Derecha: Resumen en Vivo -->
+                        <div class="c-summary">
+                            <h3>Tu pedido</h3>
+                            <div class="c-summary-list" id="local-order-list">
+                                <div class="c-sum-empty">Todavía no agregaste productos.</div>
+                            </div>
+                            
+                            <div class="c-sum-totals">
+                                <div class="c-sum-totals-row">
+                                    <span>Subtotal:</span>
+                                    <span class="c-sum-totals-val" id="local-order-total">$0</span>
+                                </div>
+                            </div>
+                            <div class="c-envio-note">El envío se calcula según la zona de entrega.</div>
+                            
+                            <button class="btn-primary btn-action" onclick="proceedToCheckout()" style="border:none;">
+                                Continuar con mi pedido →
+                            </button>
                         </div>
                     </div>
-
-                    <div class="conf-group">
-                        <span class="conf-label">2. Elegí la Presentación</span>
-                        <div class="pres-grid">
-                            <div class="pres-card-new selected" id="card-pres-12" onclick="selectPresentation(12.5)">
-                                <div class="pres-badge">12.5 KG</div>
-                                <div class="pres-price-huge">$ 112.200</div>
-                                <div class="pres-desc">Rinde hasta 37 m²</div>
-                            </div>
-                            <div class="pres-card-new" id="card-pres-5" onclick="selectPresentation(5)">
-                                <div class="pres-badge">5 KG</div>
-                                <div class="pres-price-huge">$ 48.900</div>
-                                <div class="pres-desc">Rinde hasta 15 m²</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="conf-group">
-                        <span class="conf-label" style="text-align: center; border:none;">3. Cantidad de Baldes</span>
-                        <div class="qty-control">
-                            <button class="qty-btn" onclick="changeQty(-1)">-</button>
-                            <input type="number" id="conf-qty" class="qty-input" value="1" readonly>
-                            <button class="qty-btn" onclick="changeQty(1)">+</button>
-                        </div>
-                    </div>
-
-                    <!-- PRE-CARRITO LOCAL -->
-                    <div class="dynamic-summary-box">
-                        <div class="summary-dyn-title">RESUMEN DE TU SELECCIÓN</div>
-                        
-                        <!-- Lista de items pendientes a enviar al carrito general -->
-                        <div class="pre-cart-list" id="pre-cart-list"></div>
-                        
-                        <!-- Variante activa actual -->
-                        <div class="current-selection-live">
-                            <div class="summary-dyn-content">
-                                <p id="sum-desc"><strong>1 balde</strong> de Barrera Imp. (12.5 kg).</p>
-                                <p>Color: <strong id="sum-col">Blanco</strong>.</p>
-                            </div>
-                            <div class="summary-dyn-total" style="border:none; padding:0; margin-top:0;">
-                                <span style="font-size: 13px;">SUBTOTAL:</span>
-                                <span id="sum-tot" style="font-size:18px; color:var(--c-turquesa-dark);">$112.200</span>
-                            </div>
-                            <button class="btn-add-variant" onclick="addCurrentToPreCart()">+ SUMAR OTRA VARIANTE AL PEDIDO</button>
-                        </div>
-                        
-                        <div class="summary-dyn-total">
-                            <span>TOTAL DEL PEDIDO:</span>
-                            <span id="pre-cart-grand-total">$112.200</span>
-                        </div>
-                    </div>
-
-                    <!-- Botón que comitea el pre-cart al carrito global -->
-                    <button class="btn-primary btn-action" onclick="commitPreCartToCart()">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        AGREGAR AL CARRITO
-                    </button>
-                    <div style="font-size:12px; text-align:center; margin-top:12px; color:var(--c-texto-light); font-weight: 500;">Podés armar combinaciones y todo se agrupará en tu carrito principal.</div>
                 </section>
             </div>
 
@@ -790,7 +815,7 @@
                                 <div class="step-num">01</div>
                                 <div class="step-info">
                                     <h4>ELEGÍ</h4>
-                                    <p>Seleccioná color, presentación y cantidad en el configurador.</p>
+                                    <p>Armá tu pedido seleccionando color, presentación y cantidad en el configurador.</p>
                                 </div>
                             </div>
                             <div class="step-card">
@@ -861,7 +886,7 @@
         <button class="fb-btn" onclick="document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">VER PRECIOS</button>
     </div>
 
-    <!-- BOTÓN WA FLOTANTE (Corregido y blindado CSS) -->
+    <!-- BOTÓN WA FLOTANTE CORREGIDO (Clase con !important strict) -->
     <a class="whatsapp-float" href="https://wa.me/5493516318301?text=Hola%2C%20estoy%20viendo%20Barrera%20Impermeable%20y%20quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp" title="Consultar por WhatsApp">
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3.2A12.7 12.7 0 0 0 5.1 22.4L3.3 29l6.8-1.8A12.8 12.8 0 1 0 16 3.2zm0 23.3c-2 0-4-.5-5.6-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.5zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
     </a>
@@ -879,6 +904,7 @@
                 <span>Total a pagar:</span>
                 <span id="drawer-total">$0</span>
             </div>
+            <!-- Botón Checkout global actual, no alterar -->
             <button class="btn-primary" onclick="goToCheckout()" id="btn-checkout" disabled>CONTINUAR CON MI PEDIDO</button>
         </div>
     </aside>
@@ -955,7 +981,7 @@
         <div class="container footer-bottom">&copy; 2024 BLINDAFLEX. Todos los derechos reservados. Las imágenes son ilustrativas.</div>
     </footer>
 
-    <!-- ================== SCRIPT YOUTUBE API (CARRUSEL MÚLTIPLE) ================== -->
+    <!-- ================== SCRIPT DE YOUTUBE API ================== -->
     <script>
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
@@ -1046,9 +1072,9 @@
         }
     </script>
 
-    <!-- ================== SCRIPT LÓGICA PRINCIPAL (COMPARADOR, COLORES, CARRITO) ================== -->
+    <!-- ================== SCRIPT LÓGICA PRINCIPAL ================== -->
     <script>
-        // --- 1. COMPARADOR ANTES / DESPUÉS ---
+        // --- COMPARADOR ANTES / DESPUÉS ---
         const comparer = document.getElementById('comparer-container');
         const afterImg = document.getElementById('comp-img-after');
         const divider = document.getElementById('comp-divider');
@@ -1077,55 +1103,10 @@
             window.addEventListener('touchmove', slideComparer, {passive: true});
         }
 
-        // --- 2. COLORES Y COMBINADOR ---
-        let selectedColors = [];
-        
-        function toggleColorCombo(el, name, hex) {
-            const idx = selectedColors.findIndex(c => c.name === name);
-            if(idx > -1) {
-                selectedColors.splice(idx, 1);
-                el.classList.remove('selected');
-            } else {
-                if(selectedColors.length < 3) {
-                    selectedColors.push({name, hex});
-                    el.classList.add('selected');
-                } else {
-                    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
-                    selectedColors.pop();
-                    selectedColors.push({name, hex});
-                    selectedColors.forEach(c => {
-                        const allSwatches = document.querySelectorAll('.color-swatch');
-                        allSwatches.forEach(s => { if(s.innerText.includes(c.name) || (c.name==='Gris Ceniza'&&s.innerText.includes('Ceniza'))) s.classList.add('selected'); });
-                    });
-                }
-            }
-            renderCombiner();
-        }
-
-        function clearCombo() {
-            selectedColors = [];
-            document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
-            renderCombiner();
-        }
-
-        function renderCombiner() {
-            const display = document.getElementById('combo-display');
-            if(selectedColors.length === 0) {
-                display.innerHTML = '<div class="combo-slot combo-empty">Seleccioná hasta 3 colores en el muestrario superior</div>';
-                return;
-            }
-            let html = '';
-            selectedColors.forEach(c => {
-                const isDark = ['Gris Eclipse', 'Gris Tormenta', 'Arcilla', 'Gris Ceniza'].includes(c.name);
-                html += `<div class="combo-slot" style="background:${c.hex}; color:${isDark?'white':'#071A24'}; font-weight:800; font-size:12px; text-transform:uppercase;">${c.name}</div>`;
-            });
-            display.innerHTML = html;
-        }
-
-        // --- 3. GALERÍA INSPIRACIONAL ---
+        // --- GALERÍA INSPIRACIONAL (AUTOSCROLL Y LIGHTBOX) ---
         const galTrack = document.getElementById('gallery-track');
         let galIndex = 1;
-        const totalGal = 13;
+        const totalGal = 18; // Actualizado a 18
         let galTimer;
 
         function startGalAutoScroll() {
@@ -1169,160 +1150,143 @@
             startGalAutoScroll();
         }
 
-        // --- 4. CALCULADORA DE CONSUMO REAL (ALGORITMO OPTIMIZADO) ---
-        let rec12 = 0;
-        let rec5 = 0;
-
-        function calculateYield() {
-            const m2 = parseFloat(document.getElementById('calc-m2').value);
-            const resBox = document.getElementById('calc-result-box');
-            if(isNaN(m2) || m2 <= 0) { resBox.classList.remove('active'); return; }
-
-            const kgNeeded = Math.ceil(m2 / 3);
-            
-            let min_total_kg = Infinity;
-            let best_x = 0;
-            let best_y = 0;
-            const max_x = Math.ceil(kgNeeded / 12.5);
-            
-            for(let x = 0; x <= max_x; x++){
-                let remKg = kgNeeded - (12.5 * x);
-                let y = remKg > 0 ? Math.ceil(remKg / 5) : 0;
-                let total_kg = 12.5 * x + 5 * y;
-                
-                if (total_kg < min_total_kg) {
-                    min_total_kg = total_kg;
-                    best_x = x; 
-                    best_y = y;
-                } else if (total_kg === min_total_kg) {
-                    let cost1 = (best_x * 112200) + (best_y * 48900);
-                    let cost2 = (x * 112200) + (y * 48900);
-                    if (cost2 < cost1) { 
-                        best_x = x; 
-                        best_y = y; 
-                    }
-                }
-            }
-
-            rec12 = best_x;
-            rec5 = best_y;
-            const estPrice = (rec12 * 112200) + (rec5 * 48900);
-
-            document.getElementById('res-kg').innerText = `${kgNeeded} kg`;
-            document.getElementById('res-12').innerHTML = `Baldes de 12.5 kg: <span style="color:var(--c-azul); font-size:18px;">${rec12}</span>`;
-            document.getElementById('res-5').innerHTML = `Baldes de 5 kg: <span style="color:var(--c-azul); font-size:18px;">${rec5}</span>`;
-            document.getElementById('res-price').innerText = formatARS(estPrice);
-            resBox.classList.add('active');
-        }
-
-        // Pasa directamente al pre-carrito
-        function transferCalcToConfig() {
-            const color = document.querySelector('input[name="conf-color"]:checked').value;
-            let itemsAdded = 0;
-            if(rec12 > 0) { addToPreCartData(12.5, color, rec12); itemsAdded++; }
-            if(rec5 > 0) { addToPreCartData(5, color, rec5); itemsAdded++; }
-            
-            if(itemsAdded > 0) {
-                updateConfigUI();
-                document.getElementById('configurador').scrollIntoView({behavior: 'smooth'});
-            }
-        }
-
-        // --- 5. CONFIGURADOR DE COMPRA (PRE-CARRITO LOCAL) ---
-        const PRICES = { 12.5: 112200, 5: 48900 };
-        let configQty = 1;
-        let presSelected = 12.5;
-        let preCart = [];
-
-        function selectPresentation(kg) { presSelected = kg; updateConfigUI(); }
-        function changeQty(delta) { if(configQty + delta > 0) { configQty += delta; updateConfigUI(); } }
-
-        function addToPreCartData(presentation, color, qty) {
-            const existing = preCart.find(i => i.pres === presentation && i.color === color);
-            if(existing) {
-                existing.qty += qty;
-            } else {
-                preCart.push({
-                    id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
-                    pres: presentation,
-                    color: color,
-                    qty: qty,
-                    price: PRICES[presentation]
-                });
-            }
-        }
-
-        function addCurrentToPreCart() {
-            const color = document.querySelector('input[name="conf-color"]:checked').value;
-            addToPreCartData(presSelected, color, configQty);
-            configQty = 1; 
-            updateConfigUI();
-        }
-
-        function removePreCartItem(id) {
-            preCart = preCart.filter(i => i.id !== id);
-            updateConfigUI();
-        }
-
-        function updateConfigUI() {
-            // UI Activa
-            document.getElementById('card-pres-12').classList.toggle('selected', presSelected === 12.5);
-            document.getElementById('card-pres-5').classList.toggle('selected', presSelected === 5);
-            document.getElementById('conf-qty').value = configQty;
-            
-            const color = document.querySelector('input[name="conf-color"]:checked').value;
-            const subtotal = PRICES[presSelected] * configQty;
-            
-            document.getElementById('sum-desc').innerHTML = `<strong>${configQty} balde${configQty>1?'s':''}</strong> de Barrera Imp. (${presSelected} kg).`;
-            document.getElementById('sum-col').innerText = color;
-            document.getElementById('sum-tot').innerText = formatARS(subtotal);
-
-            // Lista Pre-Carrito
-            const container = document.getElementById('pre-cart-list');
-            let html = '';
-            let totalPreCart = 0;
-            
-            preCart.forEach(item => {
-                const sub = item.qty * item.price;
-                totalPreCart += sub;
-                html += `
-                    <div class="pre-cart-item">
-                        <div class="pre-cart-item-info">
-                            <h5>${item.qty}x Barrera Imp. ${item.pres}kg - ${item.color}</h5>
-                            <span>${formatARS(sub)}</span>
-                        </div>
-                        <button class="btn-remove-pre" onclick="removePreCartItem('${item.id}')">&times;</button>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-            
-            const grandTotal = totalPreCart + subtotal;
-            document.getElementById('pre-cart-grand-total').innerText = formatARS(grandTotal);
-        }
-
-        function commitPreCartToCart() {
-            // Commit de lo guardado
-            preCart.forEach(item => {
-                addToCartData(item.pres, item.color, item.qty);
-            });
-            // Commit de la seleccion activa
-            const color = document.querySelector('input[name="conf-color"]:checked').value;
-            addToCartData(presSelected, color, configQty);
-            
-            // Limpiar pre-cart
-            preCart = [];
-            configQty = 1;
-            
-            saveCart();
-            updateConfigUI();
-            openCartDrawer();
-        }
+        // --- NUEVA LÓGICA DE CONFIGURADOR MULTIVARIANTE (PRE-CARRITO) ---
+        const APP_PRICES = { 12.5: 112200, 5: 48900 };
+        let cfgPres = 12.5;
+        let cfgColor = 'Blanco';
+        let cfgColorHex = '#F4F3F0';
+        let cfgQty = 1;
+        let localOrder = []; // Lista temporal visual
 
         const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
 
-        // --- LÓGICA GLOBAL DEL CARRITO (Compatible con Techos) ---
+        function setPres(kg, price) {
+            cfgPres = kg;
+            document.querySelectorAll('.c-pres-card').forEach(el => el.classList.remove('selected'));
+            document.getElementById(`c-pres-${kg===12.5?'12':'5'}`).classList.add('selected');
+            updateBtnSumar();
+        }
+
+        function setColor(el, name, hex) {
+            cfgColor = name;
+            cfgColorHex = hex;
+            document.querySelectorAll('.c-color-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        function setQty(delta) {
+            if(cfgQty + delta > 0) {
+                cfgQty += delta;
+                document.getElementById('c-qty-val').value = cfgQty;
+                updateBtnSumar();
+            }
+        }
+
+        function updateBtnSumar() {
+            const total = APP_PRICES[cfgPres] * cfgQty;
+            document.getElementById('btn-sumar-price').innerText = formatARS(total);
+        }
+
+        function addVariantToOrder() {
+            const existing = localOrder.find(i => i.pres === cfgPres && i.color === cfgColor);
+            if(existing) {
+                existing.qty += cfgQty;
+            } else {
+                localOrder.push({
+                    id: Date.now().toString() + Math.random().toString(36).substr(2,5),
+                    pres: cfgPres,
+                    color: cfgColor,
+                    hex: cfgColorHex,
+                    qty: cfgQty,
+                    unitPrice: APP_PRICES[cfgPres]
+                });
+            }
+            
+            // Reset config to defaults visually for clear UX
+            cfgQty = 1;
+            document.getElementById('c-qty-val').value = 1;
+            updateBtnSumar();
+            
+            renderLocalOrder();
+        }
+
+        function removeLocalItem(id) {
+            localOrder = localOrder.filter(i => i.id !== id);
+            renderLocalOrder();
+        }
+
+        function renderLocalOrder() {
+            const listEl = document.getElementById('local-order-list');
+            const totalEl = document.getElementById('local-order-total');
+            
+            if(localOrder.length === 0) {
+                listEl.innerHTML = '<div class="c-sum-empty">Todavía no agregaste productos.</div>';
+                totalEl.innerText = '$0';
+                return;
+            }
+            
+            let html = '';
+            let grandTotal = 0;
+            
+            localOrder.forEach(item => {
+                const sub = item.qty * item.unitPrice;
+                grandTotal += sub;
+                html += `
+                    <div class="c-sum-item">
+                        <div class="c-sum-item-header">
+                            <div class="c-sum-color-dot" style="background:${item.hex};"></div>
+                            <span class="c-sum-title">${item.color} · ${item.pres} kg</span>
+                        </div>
+                        <div class="c-sum-price-row">
+                            <span>${item.qty} × ${formatARS(item.unitPrice)}</span>
+                            <span class="c-sum-sub">${formatARS(sub)}</span>
+                        </div>
+                        <button class="c-sum-remove" onclick="removeLocalItem('${item.id}')" aria-label="Quitar">
+                            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            listEl.innerHTML = html;
+            totalEl.innerText = formatARS(grandTotal);
+        }
+
+        // Conexión con Checkout y Carrito Global Compartido
+        function proceedToCheckout() {
+            if(localOrder.length === 0) {
+                alert('Seleccioná al menos un producto y hacé clic en "+ Sumar al pedido" antes de continuar.');
+                return;
+            }
+            
+            // 1. Mapear todo el pedido local a la función de guardado global del carrito
+            localOrder.forEach(item => {
+                addToCartData(item.pres, item.color, item.qty);
+            });
+            
+            // 2. Limpiar el armado local
+            localOrder = [];
+            renderLocalOrder();
+            
+            // 3. Guardar en Storage, lo cual actualiza todo el DOM del Cart
+            saveCart();
+            
+            // 4. Forzar el cambio de vista (Bug Fixed)
+            document.getElementById('main-store').style.display = 'none';
+            document.getElementById('checkout-view').style.display = 'block';
+            window.scrollTo(0,0);
+            
+            isCheckoutOpen = true; 
+            updateFloatingBarVisibility();
+            
+            // 5. Renderizar el resumen con la data global final
+            renderCheckoutSummary();
+        }
+
+        // LÓGICA GLOBAL DEL CARRITO (Compatible con Techos)
         const CART_EXPIRATION_MS = 30 * 60 * 1000;
+        let cart = loadCart();
+
         function loadCart() {
             const data = localStorage.getItem('blindaflex_cart_data');
             if(data) {
@@ -1335,18 +1299,18 @@
             return [];
         }
 
-        let cart = loadCart();
-
         function saveCart() {
             localStorage.setItem('blindaflex_cart_data', JSON.stringify({ items: cart, lastActivity: Date.now() }));
             updateCartCounter();
-            renderDrawer();
-            if(document.getElementById('checkout-view').style.display === 'block') renderCheckoutSummary();
+            // renderDrawer(); no es necesario si saltamos directo al checkout, 
+            // pero si está abierto, esto se invocaría. Como `proceedToCheckout` no abre el panel lateral, omitimos el redraw del panel aquí o lo dejamos porsi.
         }
 
+        // Adaptada para mantener la estructura compartida
         function addToCartData(presentation, color, qty) {
             const productName = `Barrera Impermeable (${presentation} kg)`;
-            const unitPrice = PRICES[presentation];
+            const unitPrice = APP_PRICES[presentation];
+            
             const existingItem = cart.find(i => i.type === 'barrera' && i.presentation === presentation && i.color === color);
             
             if(existingItem) {
@@ -1364,94 +1328,10 @@
             }
         }
 
-        function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); }
-        function changeCartQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if(item && item.qty + delta > 0) { item.qty += delta; saveCart(); }
-        }
-
-        function renderDrawer() {
-            const body = document.getElementById('cart-body');
-            if(cart.length === 0) {
-                body.innerHTML = '<div class="cart-empty-message">Tu carrito está vacío.</div>';
-                document.getElementById('drawer-total').innerText = '$0';
-                document.getElementById('cart-counter').innerText = '0';
-                document.getElementById('btn-checkout').disabled = true;
-                return;
-            }
-            
-            let html = '';
-            let grandTotal = 0;
-            
-            // Compatibilidad cruzada de descuentos si conviven productos de techo
-            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
-            let techosDisc = 0;
-            if(techosCount === 2) techosDisc = 0.15;
-            if(techosCount === 3) techosDisc = 0.20;
-            if(techosCount >= 4) techosDisc = 0.25;
-            let techoUnitPrice = 148000 * (1 - techosDisc);
-
-            if(techosCount > 0) {
-                let gifts = "1 Kit Premium";
-                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
-                html += `<div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:8px; border-radius:4px; text-align:center;">REGALOS (TECHOS):<br>${gifts.toUpperCase()}</div>`;
-            }
-            
-            cart.forEach(item => {
-                let lineTotal = 0;
-                let displayTitle = item.product;
-                if(item.type === 'barrera') { lineTotal = item.price * item.qty; } 
-                else { lineTotal = techoUnitPrice * item.qty; }
-                grandTotal += lineTotal;
-                
-                html += `
-                    <div class="cart-item">
-                        <button class="remove-item" onclick="removeFromCart('${item.id}')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
-                        <div class="cart-item-title">${displayTitle}</div>
-                        <div class="cart-item-meta">Color: ${item.color}</div>
-                        <div class="cart-item-controls">
-                            <div class="qty-controls">
-                                <button class="qty-btn-sm" onclick="changeCartQty('${item.id}', -1)">-</button>
-                                <span style="font-weight:900; font-size:14px; width:24px; text-align:center;">${item.qty}</span>
-                                <button class="qty-btn-sm" onclick="changeCartQty('${item.id}', 1)">+</button>
-                            </div>
-                            <div class="item-price">${formatARS(lineTotal)}</div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += `<button class="empty-cart-btn" onclick="if(confirm('¿Vaciar carrito?')) { cart = []; saveCart(); }">VACIAR CARRITO</button>`;
-            body.innerHTML = html;
-            document.getElementById('drawer-total').innerText = formatARS(grandTotal);
-            document.getElementById('btn-checkout').disabled = false;
-        }
-
         function updateCartCounter() {
             document.getElementById('cart-counter').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
         }
 
-        // --- DRAWER & CHECKOUT UI ---
-        let isCartOpen = false, isCheckoutOpen = false;
-        function openCartDrawer() {
-            document.getElementById('cart-overlay').classList.add('open');
-            document.getElementById('cart-drawer').classList.add('open');
-            isCartOpen = true; updateFloatingBarVisibility();
-        }
-        function closeCartDrawer() {
-            document.getElementById('cart-overlay').classList.remove('open');
-            document.getElementById('cart-drawer').classList.remove('open');
-            isCartOpen = false; updateFloatingBarVisibility();
-        }
-
-        function goToCheckout() {
-            closeCartDrawer();
-            document.getElementById('main-store').style.display = 'none';
-            document.getElementById('checkout-view').style.display = 'block';
-            window.scrollTo(0,0);
-            isCheckoutOpen = true; updateFloatingBarVisibility();
-            renderCheckoutSummary();
-        }
         function closeCheckout() {
             document.getElementById('main-store').style.display = 'block';
             document.getElementById('checkout-view').style.display = 'none';
@@ -1461,8 +1341,11 @@
 
         function renderCheckoutSummary() {
             const container = document.getElementById('checkout-summary');
+            if(!container) return;
+            
             let html = '', total = 0;
             
+            // Lógica de compatibilidad cruzada de descuentos si hay items de 'techo'
             let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
             let techosDisc = 0;
             if(techosCount === 2) techosDisc = 0.15;
@@ -1471,7 +1354,8 @@
             let techoUnitPrice = 148000 * (1 - techosDisc);
 
             cart.forEach(i => {
-                let sub = 0; let tStr = i.product;
+                let sub = 0;
+                let tStr = i.product;
                 if(i.type === 'barrera') { sub = i.price * i.qty; } 
                 else { sub = techoUnitPrice * i.qty; }
                 total += sub;
@@ -1500,8 +1384,13 @@
             const c = document.getElementById('f-calle').value;
             const num = document.getElementById('f-num').value;
             const cp = document.getElementById('f-cp').value;
+            const ref = document.getElementById('f-ref').value;
             
-            let m = `*NUEVO PEDIDO BLINDAFLEX*%0A%0A*CLIENTE*%0A👤 ${n}%0A📱 ${t}%0A📍 ${c} ${num}, ${l}%0A%0A*PEDIDO*%0A`;
+            let m = `*NUEVO PEDIDO BLINDAFLEX*%0A%0A*CLIENTE*%0A👤 ${n}%0A📱 ${t}%0A📍 ${c} ${num}, ${l}%0A`;
+            if(cp) m += `📮 CP: ${cp}%0A`;
+            if(ref) m += `📝 Ref: ${ref}%0A`;
+            
+            m += `%0A*DETALLE DEL PEDIDO*%0A`;
             let tot = 0;
             
             let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
@@ -1529,10 +1418,14 @@
             window.open(`https://wa.me/5493516318301?text=${m}`, '_blank');
         }
 
+        // Métodos vacíos para evitar errores con la barra de cabecera si el usuario toca el carrito principal desde el header (fallback simple)
+        function openCartDrawer() { alert("Para ver o modificar tu carrito completo, ingresá a 'Continuar con mi pedido' y finalizá los pasos en la tienda original."); }
+        
+        // --- BARRA FLOTANTE SCROLL ---
         function updateFloatingBarVisibility() {
             const bar = document.getElementById('floating-bar');
             const conf = document.getElementById('configurador');
-            if(isCartOpen || isCheckoutOpen) { bar.classList.remove('visible'); return; }
+            if(isCheckoutOpen) { bar.classList.remove('visible'); return; }
             if(conf) {
                 const rect = conf.getBoundingClientRect();
                 if(rect.top <= window.innerHeight && rect.bottom >= 0) bar.classList.remove('visible');
@@ -1542,6 +1435,7 @@
         window.addEventListener('scroll', updateFloatingBarVisibility, {passive:true});
 
         function scrollToCompra() { document.getElementById('configurador').scrollIntoView({behavior:'smooth'}); }
+        
         function toggleFaq(btn) {
             btn.classList.toggle('active');
             const ans = btn.nextElementSibling;
@@ -1550,9 +1444,7 @@
         }
 
         window.onload = () => {
-            updateConfigUI();
             updateCartCounter();
-            renderDrawer();
             updateFloatingBarVisibility();
         };
     </script>
