@@ -98,8 +98,8 @@
             --c-texto: #34434A;
             --c-texto-light: #64748b;
             
-            --gap-mob: 32px;
-            --gap-desk: 40px;
+            --gap-mob: 48px;
+            --gap-desk: 64px;
             --pad-box: 20px;
             --radius-lg: 16px;
             --radius-md: 12px;
@@ -222,6 +222,17 @@
         .combo-slot { flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; position: relative;}
         .combo-empty { font-size: 11px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
 
+        /* GALERÍA 3:2 (18 Imágenes) — mejoras localizadas */
+        .gallery-item { flex-shrink: 0; }
+        .gallery-zoom-hint { position:absolute; right:12px; bottom:12px; display:flex; align-items:center; gap:7px; padding:9px 12px; background:rgba(7,26,36,.87); color:#fff; border:1px solid rgba(255,255,255,.35); border-radius:9px; font-size:12px; font-weight:700; pointer-events:none; box-shadow:0 3px 12px rgba(0,0,0,.2); }
+        .gallery-zoom-hint svg { width:17px; height:17px; stroke:currentColor; fill:none; stroke-width:2; }
+        .gallery-item:focus-visible { outline:3px solid var(--c-turquesa); outline-offset:-3px; }
+        .combo-slot { min-width:0; flex-direction:column; gap:8px; }
+        .combo-slot-label { font-size:12px; font-weight:800; background:rgba(255,255,255,.88); padding:6px 9px; border-radius:6px; color:#071A24; text-align:center; max-width:95%; }
+        .color-swatch:focus-visible { outline:3px solid var(--c-turquesa); outline-offset:3px; }
+        .lb-content { width:min(96vw,1400px); max-width:1400px; max-height:90dvh; display:flex; align-items:center; justify-content:center; }
+        .lb-content img { width:auto; height:auto; max-width:100%; max-height:90dvh; object-fit:contain; }
+        @media(min-width:768px){ .gallery-item { min-width:72%; } }
         /* GALERÍA 3:2 (18 Imágenes) */
         .gallery-wrapper { position: relative; width: 100%; overflow: hidden; border-radius: var(--radius-md); }
         .gallery-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; padding-bottom: 4px;}
@@ -611,24 +622,24 @@
                 <!-- C. Galería Inspiracional (18 Imágenes, Aspect Ratio 3:2) -->
                 <div class="gallery-wrapper">
                     <div class="gallery-track" id="gallery-track">
-                        <div class="gallery-item" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración fachada 4" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración fachada 5" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración fachada 6" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración fachada 7" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración fachada 8" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración fachada 9" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración fachada 10" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración fachada 11" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración fachada 12" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración fachada 13" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(14)"><img src="assets/images/bi/carrusel-14.png" alt="Inspiración fachada 14" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(15)"><img src="assets/images/bi/carrusel-15.png" alt="Inspiración fachada 15" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(16)"><img src="assets/images/bi/carrusel-16.png" alt="Inspiración fachada 16" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(17)"><img src="assets/images/bi/carrusel-17.png" alt="Inspiración fachada 17" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(18)"><img src="assets/images/bi/carrusel-18.png" alt="Inspiración fachada 18" loading="lazy"></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 1" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(1)}" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 2" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(2)}" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 3" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(3)}" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 4" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(4)}" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración fachada 4" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 5" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(5)}" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración fachada 5" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 6" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(6)}" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración fachada 6" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 7" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(7)}" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración fachada 7" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 8" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(8)}" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración fachada 8" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 9" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(9)}" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración fachada 9" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 10" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(10)}" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración fachada 10" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 11" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(11)}" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración fachada 11" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 12" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(12)}" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración fachada 12" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 13" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(13)}" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración fachada 13" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 14" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(14)}" onclick="openLightbox(14)"><img src="assets/images/bi/carrusel-14.png" alt="Inspiración fachada 14" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 15" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(15)}" onclick="openLightbox(15)"><img src="assets/images/bi/carrusel-15.png" alt="Inspiración fachada 15" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 16" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(16)}" onclick="openLightbox(16)"><img src="assets/images/bi/carrusel-16.png" alt="Inspiración fachada 16" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 17" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(17)}" onclick="openLightbox(17)"><img src="assets/images/bi/carrusel-17.png" alt="Inspiración fachada 17" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 18" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(18)}" onclick="openLightbox(18)"><img src="assets/images/bi/carrusel-18.png" alt="Inspiración fachada 18" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
                     </div>
                 </div>
                 <p class="gallery-disclaimer" style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500; padding: 0 12px; line-height: 1.45;">Imágenes ilustrativas. Los colores pueden presentar variaciones respecto del resultado real debido a la iluminación, la configuración de cada pantalla y las características de la superficie de aplicación. Para elegir el color definitivo, recomendamos verificar una muestra física.</p>
@@ -1103,50 +1114,134 @@
             window.addEventListener('touchmove', slideComparer, {passive: true});
         }
 
-        // --- GALERÍA INSPIRACIONAL (AUTOSCROLL Y LIGHTBOX) ---
-        const galTrack = document.getElementById('gallery-track');
-        let galIndex = 1;
-        const totalGal = 18; // Actualizado a 18
-        let galTimer;
-
-        function startGalAutoScroll() {
-            galTimer = setInterval(() => {
-                if(!isGalleryAutoPlaying || !galTrack) return;
-                const slideWidth = galTrack.querySelector('.gallery-item').clientWidth + 12; 
-                galIndex++;
-                if(galIndex > totalGal) {
-                    galIndex = 1;
-                    galTrack.scrollTo({ left: 0, behavior: 'auto' }); 
-                } else {
-                    galTrack.scrollTo({ left: (galIndex-1) * slideWidth, behavior: 'smooth' });
-                }
-            }, 5000);
+        // --- COMBINADOR DE COLORES (1 a 3 tonos, independiente del selector de compra) ---
+        let comboColors = [];
+        function toggleColorCombo(el, name, hex) {
+            const existing = comboColors.findIndex(c => c.name === name);
+            if(existing >= 0) comboColors.splice(existing, 1);
+            else {
+                if(comboColors.length >= 3) comboColors.shift();
+                comboColors.push({name, hex});
+            }
+            renderColorCombo();
+        }
+        function clearCombo() { comboColors = []; renderColorCombo(); }
+        function renderColorCombo() {
+            document.querySelectorAll('.color-grid .color-swatch').forEach(el => {
+                const name = el.querySelector('.color-name')?.textContent?.trim();
+                const matched = comboColors.some(c => c.name === name || (name === 'Ceniza' && c.name === 'Gris Ceniza') || (name === 'Eclipse' && c.name === 'Gris Eclipse') || (name === 'Tormenta' && c.name === 'Gris Tormenta'));
+                el.classList.toggle('selected', matched);
+                el.setAttribute('aria-pressed', String(matched));
+            });
+            const display = document.getElementById('combo-display');
+            if(!display) return;
+            display.replaceChildren();
+            if(!comboColors.length) {
+                const empty = document.createElement('div');
+                empty.className = 'combo-slot combo-empty';
+                empty.textContent = 'Seleccioná hasta 3 colores en el muestrario superior';
+                display.appendChild(empty);
+                return;
+            }
+            comboColors.forEach(c => {
+                const slot = document.createElement('div');
+                slot.className = 'combo-slot';
+                slot.style.backgroundColor = c.hex;
+                const label = document.createElement('span');
+                label.className = 'combo-slot-label';
+                label.textContent = c.name;
+                slot.appendChild(label);
+                display.appendChild(slot);
+            });
         }
 
+        // --- GALERÍA INFINITA: clon al final y reposición invisible después de la transición ---
+        const galTrack = document.getElementById('gallery-track');
+        const totalGal = 18;
+        let galIndex = 1;
+        let galTimer;
+        let galResetTimer;
+        let galleryPointerDown = false;
         let lbCurrentIdx = 1;
+        const galItems = galTrack ? Array.from(galTrack.querySelectorAll('.gallery-item')) : [];
+        function galStep() {
+            if(!galTrack || !galItems.length) return 0;
+            const gap = parseFloat(getComputedStyle(galTrack).columnGap) || 0;
+            return galItems[0].getBoundingClientRect().width + gap;
+        }
+        function galJump(index) {
+            if(!galTrack) return;
+            const old = galTrack.style.scrollBehavior;
+            const oldSnap = galTrack.style.scrollSnapType;
+            galTrack.style.scrollBehavior = 'auto';
+            galTrack.style.scrollSnapType = 'none';
+            galTrack.scrollLeft = index * galStep();
+            galTrack.style.scrollBehavior = old;
+            galTrack.style.scrollSnapType = oldSnap;
+        }
+        function galMoveTo(index) {
+            if(!galTrack) return;
+            galIndex = index;
+            galTrack.scrollTo({left: galIndex * galStep(), behavior:'smooth'});
+        }
+        function galNormalize() {
+            if(!galTrack || galleryPointerDown) return;
+            const approx = Math.round(galTrack.scrollLeft / galStep());
+            if(approx >= totalGal + 1) { galJump(1); galIndex = 1; }
+            else if(approx <= 0) { galJump(totalGal); galIndex = totalGal; }
+            else galIndex = approx;
+        }
+        function startGalAutoScroll() {
+            clearInterval(galTimer);
+            galTimer = setInterval(() => {
+                if(!isGalleryAutoPlaying || !galTrack || galleryPointerDown || document.getElementById('lightbox').classList.contains('active')) return;
+                galNormalize();
+                galMoveTo(galIndex + 1);
+                clearTimeout(galResetTimer);
+                galResetTimer = setTimeout(galNormalize, 1100);
+            }, 5000);
+        }
         function openLightbox(idx) {
             isGalleryAutoPlaying = false;
             lbCurrentIdx = idx;
             document.getElementById('lb-img').src = `assets/images/bi/carrusel-${idx}.png`;
             document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         function closeLightbox(e) {
-            if(e.target.classList.contains('lightbox') || e.target.classList.contains('lb-close')) {
+            if(e.target.classList.contains('lightbox') || e.target.closest('.lb-close')) {
                 document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
                 isGalleryAutoPlaying = true;
             }
         }
         function navLightbox(dir, e) {
             e.stopPropagation();
-            lbCurrentIdx += dir;
-            if(lbCurrentIdx > totalGal) lbCurrentIdx = 1;
-            if(lbCurrentIdx < 1) lbCurrentIdx = totalGal;
+            lbCurrentIdx = ((lbCurrentIdx - 1 + dir + totalGal) % totalGal) + 1;
             document.getElementById('lb-img').src = `assets/images/bi/carrusel-${lbCurrentIdx}.png`;
         }
-
-        if(galTrack) {
-            galTrack.addEventListener('touchstart', () => isGalleryAutoPlaying = false, {passive:true});
-            galTrack.addEventListener('touchend', () => isGalleryAutoPlaying = true);
+        document.addEventListener('keydown', e => {
+            if(!document.getElementById('lightbox').classList.contains('active')) return;
+            if(e.key === 'Escape') closeLightbox({target:document.querySelector('.lb-close')});
+            if(e.key === 'ArrowRight') navLightbox(1,e);
+            if(e.key === 'ArrowLeft') navLightbox(-1,e);
+        });
+        if(galTrack && galItems.length) {
+            const firstClone = galItems[0].cloneNode(true);
+            const lastClone = galItems[galItems.length-1].cloneNode(true);
+            firstClone.setAttribute('aria-hidden','true');
+            lastClone.setAttribute('aria-hidden','true');
+            firstClone.tabIndex = -1;
+            lastClone.tabIndex = -1;
+            galTrack.insertBefore(lastClone, galItems[0]);
+            galTrack.appendChild(firstClone);
+            galJump(1);
+            galTrack.addEventListener('scrollend', galNormalize);
+            galTrack.addEventListener('pointerdown', () => {galleryPointerDown = true; isGalleryAutoPlaying = false;}, {passive:true});
+            window.addEventListener('pointerup', () => { if(galleryPointerDown) {galleryPointerDown=false; setTimeout(()=>{galNormalize();isGalleryAutoPlaying=true;},500);} }, {passive:true});
+            galTrack.addEventListener('touchstart', () => {galleryPointerDown=true;isGalleryAutoPlaying=false;}, {passive:true});
+            galTrack.addEventListener('touchend', () => {galleryPointerDown=false;setTimeout(()=>{galNormalize();isGalleryAutoPlaying=true;},650);}, {passive:true});
+            window.addEventListener('resize', () => galJump(galIndex));
             startGalAutoScroll();
         }
 
