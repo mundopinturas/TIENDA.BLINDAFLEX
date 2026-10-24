@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -131,7 +132,6 @@
         .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 6px rgba(7, 26, 36, 0.1); }
         .btn-action { background: linear-gradient(180deg, var(--c-naranja) 0%, var(--c-naranja-dark) 100%); border-bottom: none; box-shadow: 0 8px 24px rgba(246, 90, 3, 0.25); }
         
-        /* Iconografía Tech Fina */
         .svg-thin { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
         /* =========================================================
@@ -143,21 +143,22 @@
         .logo { display: flex; align-items: center; height: 100%; padding: 12px 0; }
         .logo img { max-height: 100%; width: auto; object-fit: contain; }
         .cart-btn { position: relative; background: none; border: none; fill: var(--c-blanco); padding: 8px; cursor: pointer; transition: transform 0.2s;}
+        .cart-btn:hover { transform: scale(1.05); }
         .cart-count { position: absolute; top: 2px; right: 2px; background-color: var(--c-naranja); color: var(--c-blanco); font-size: 11px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
         .desktop-nav { display: none; }
 
         /* =========================================================
-           BLOQUE 1: CARRUSEL DE VIDEOS YT
+           BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio)
            ========================================================= */
-        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 1000px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); }
+        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 600px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); }
         .yt-track { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
         .yt-track::-webkit-scrollbar { display: none; }
-        .yt-slide { min-width: 100%; scroll-snap-align: center; aspect-ratio: 4/3; position: relative; pointer-events: none; /* Bloqueado para evitar interactividad accidental, controlado por API */ }
+        .yt-slide { min-width: 100%; scroll-snap-align: center; aspect-ratio: 3/4; max-height: 75vh; position: relative; pointer-events: none; }
         .yt-slide iframe { width: 100%; height: 100%; object-fit: cover; border: none; transform: scale(1.02); }
         
         .vid-controls { position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
-        .vid-btn { background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); }
-        .vid-btn svg { width: 20px; height: 20px; fill: var(--c-blanco); }
+        .vid-btn { background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); }
+        .vid-btn svg { width: 22px; height: 22px; fill: var(--c-blanco); }
         .yt-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(7, 26, 36, 0.5); border: none; width: 40px; height: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; }
         .yt-prev { left: 0; border-radius: 0 8px 8px 0; }
         .yt-next { right: 0; border-radius: 8px 0 0 8px; }
@@ -200,179 +201,174 @@
            ========================================================= */
         .color-section { margin-bottom: var(--gap-mob); }
         
-        /* A. Muestrario */
+        /* A. Muestrario (30% más alto) */
         .color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
-        .color-swatch { border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); height: 80px; display: flex; align-items: flex-end; justify-content: center; padding: 8px; cursor: pointer; transition: transform 0.2s; box-shadow: var(--shadow-soft); position: relative;}
+        .color-swatch { border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); height: 104px; display: flex; align-items: flex-end; justify-content: center; padding: 8px; cursor: pointer; transition: transform 0.2s; box-shadow: var(--shadow-soft); position: relative; overflow: hidden;}
         .color-swatch:active { transform: scale(0.95); }
-        .color-swatch.selected { border: 2px solid var(--c-turquesa); box-shadow: 0 0 0 2px var(--c-turquesa-light); }
-        .color-name { font-size: 11px; font-weight: 800; text-transform: uppercase; background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 4px; color: var(--c-azul); text-align: center; width: 100%;}
+        .color-swatch.selected { border: 3px solid var(--c-turquesa); box-shadow: 0 0 0 2px var(--c-turquesa-light); }
+        .color-name { font-size: 12px; font-weight: 800; text-transform: uppercase; width: 100%; text-align: center; text-shadow: 0 1px 3px rgba(0,0,0,0.2);}
         .color-note { font-size: 11px; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; font-weight: 500;}
         
-        /* Valores Cromaticos Fidedignos Estimados (A ajustar según marca) */
-        .bg-blanco { background-color: #FAFAFA; }
-        .bg-greige { background-color: #D5CFC4; }
-        .bg-arcilla { background-color: #C2A58F; }
-        .bg-ceniza { background-color: #D0D4D6; }
-        .bg-eclipse { background-color: #7A8185; }
-        .bg-tormenta { background-color: #555A5D; }
+        /* Colores EXACTOS Blindaflex */
+        .bg-blanco { background-color: #F4F3F0 !important; color: #071A24; }
+        .bg-greige { background-color: #B6A18E !important; color: #071A24; }
+        .bg-arcilla { background-color: #7B594E !important; color: #FFFFFF; }
+        .bg-ceniza { background-color: #A5A5A3 !important; color: #071A24; }
+        .bg-eclipse { background-color: #66676B !important; color: #FFFFFF; }
+        .bg-tormenta { background-color: #414143 !important; color: #FFFFFF; }
 
-        /* B. Combinador */
-        .combiner-box { background: var(--c-gris-claro); border-radius: var(--radius-md); padding: 16px; margin-bottom: 32px; border: 1px dashed var(--c-gris-border);}
-        .combiner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;}
+        /* B. Combinador (Más presencia: -margins y +height) */
+        .combiner-box { background: var(--c-gris-claro); border-radius: var(--radius-md); padding: 24px 12px; margin-bottom: 32px; border: 1px dashed var(--c-gris-border); margin-left: -8px; margin-right: -8px;}
+        .combiner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;}
         .combiner-header h4 { font-size: 14px; font-weight: 800; color: var(--c-azul); text-transform: uppercase;}
         .btn-clear { background: none; border: none; font-size: 12px; color: var(--c-turquesa-dark); font-weight: 700; cursor: pointer; text-decoration: underline;}
-        .combiner-display { display: flex; height: 100px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(0,0,0,0.1); box-shadow: var(--shadow-md); background: var(--c-blanco);}
+        .combiner-display { display: flex; height: 150px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(0,0,0,0.1); box-shadow: var(--shadow-md); background: var(--c-blanco);}
         .combo-slot { flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; position: relative;}
-        .combo-empty { font-size: 11px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
+        .combo-empty { font-size: 12px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
 
         /* C. Galería Inspiracional */
         .gallery-wrapper { position: relative; width: 100%; overflow: hidden; border-radius: var(--radius-md); margin-bottom: var(--gap-mob); }
         .gallery-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; padding-bottom: 4px;}
         .gallery-track::-webkit-scrollbar { display: none; }
-        .gallery-item { min-width: 85%; aspect-ratio: 4/3; scroll-snap-align: center; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; box-shadow: var(--shadow-soft); position: relative;}
+        .gallery-item { min-width: 90%; aspect-ratio: 4/3; scroll-snap-align: center; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; box-shadow: var(--shadow-soft); position: relative;}
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
         
+        /* Indicador visual de expansión en galería */
+        .expand-icon { position: absolute; bottom: 12px; right: 12px; width: 36px; height: 36px; background: rgba(0, 175, 198, 0.85); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2);}
+        .expand-icon svg { width: 18px; height: 18px; fill: currentColor; }
+
         /* Lightbox */
         .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 26, 36, 0.95); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(5px);}
         .lightbox.active { opacity: 1; pointer-events: auto; }
         .lb-content { position: relative; width: 90%; max-width: 1000px; max-height: 85vh; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         .lb-content img { width: 100%; height: 100%; object-fit: contain; }
-        .lb-close { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
-        .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
+        .lb-close { position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.5); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 28px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
+        .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 10; display: flex; justify-content: center; align-items: center;}
         .lb-prev { left: 16px; }
         .lb-next { right: 16px; }
 
         /* =========================================================
-           BLOQUE 5: CALCULADORA DE CONSUMO
+           BLOQUE 5: CALCULADORA DE CONSUMO REAL
            ========================================================= */
         .calc-section { background: var(--c-azul-grad); color: var(--c-blanco); border: none; }
         .calc-section .section-title { color: var(--c-turquesa); }
         .calc-section .section-subtitle { color: var(--c-gris-claro); }
         
-        .calc-input-group { background: rgba(255,255,255,0.05); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; text-align: center;}
-        .calc-input-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--c-blanco);}
+        .calc-input-group { background: rgba(255,255,255,0.05); padding: 24px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; text-align: center;}
+        .calc-input-group label { display: block; font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--c-blanco);}
         .calc-flex { display: flex; justify-content: center; align-items: center; gap: 12px; }
-        .calc-input { width: 100px; padding: 12px; border: 2px solid var(--c-turquesa); border-radius: var(--radius-sm); font-size: 18px; font-weight: 900; text-align: center; color: var(--c-azul); background: var(--c-blanco); }
-        .calc-input:focus { outline: none; box-shadow: 0 0 0 3px rgba(0,175,198,0.3); }
-        .calc-unit { font-size: 18px; font-weight: 800; color: var(--c-turquesa); }
+        .calc-input { width: 120px; padding: 14px; border: 2px solid var(--c-turquesa); border-radius: var(--radius-sm); font-size: 22px; font-weight: 900; text-align: center; color: var(--c-azul); background: var(--c-blanco); }
+        .calc-input:focus { outline: none; box-shadow: 0 0 0 4px rgba(0,175,198,0.3); }
+        .calc-unit { font-size: 20px; font-weight: 800; color: var(--c-turquesa); }
 
-        .calc-results { display: none; background: var(--c-blanco); color: var(--c-azul); padding: 20px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: left;}
+        .calc-results { display: none; background: var(--c-blanco); color: var(--c-azul); padding: 24px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: left;}
         .calc-results.active { display: block; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
         
-        .res-title { font-size: 13px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
+        .res-title { font-size: 14px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
         .res-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 700; font-size: 15px;}
         .res-item.highlight { color: var(--c-turquesa-dark); font-size: 16px; }
-        .res-total { border-top: 2px dashed var(--c-gris-border); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: center;}
-        .res-total span:last-child { font-size: 24px; font-weight: 900; color: var(--c-naranja); }
-        .calc-note { font-size: 11px; color: rgba(255,255,255,0.5); text-align: center; margin-top: 12px; font-weight: 500;}
+        .res-total { border-top: 2px dashed var(--c-gris-border); margin-top: 20px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center;}
+        .res-total span:first-child { font-size: 16px; font-weight: 800; }
+        .res-total span:last-child { font-size: 26px; font-weight: 900; color: var(--c-naranja); }
+        .calc-note { font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 16px; font-weight: 500; line-height: 1.4;}
 
         /* =========================================================
-           BLOQUE 6: CONFIGURADOR DE COMPRA
+           BLOQUE 6: CONFIGURADOR DE COMPRA (DISEÑO OPTIMIZADO)
            ========================================================= */
         .buy-section { border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech); scroll-margin-top: 80px;}
         
-        .conf-group { margin-bottom: 24px; }
-        .conf-label { font-size: 14px; font-weight: 800; color: var(--c-azul); text-transform: uppercase; margin-bottom: 12px; display: block; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 6px;}
+        .conf-group { margin-bottom: 28px; }
+        .conf-label { font-size: 15px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; margin-bottom: 16px; display: block; border-bottom: 2px solid var(--c-gris-border); padding-bottom: 8px;}
         
-        /* Selectores tipo Pill */
-        .pill-selector { display: flex; flex-wrap: wrap; gap: 8px; }
-        .pill-label { flex: 1; min-width: 100px; text-align: center; padding: 12px 8px; border: 2px solid var(--c-gris-border); border-radius: var(--radius-sm); cursor: pointer; background: var(--c-gris-bg); font-weight: 800; font-size: 13px; color: var(--c-texto-light); transition: all 0.2s; user-select: none;}
+        /* Selectores de Color Reales */
+        .pill-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .pill-label { text-align: center; padding: 14px 8px; border: 3px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-weight: 800; font-size: 13px; text-transform: uppercase; transition: all 0.2s; user-select: none; box-shadow: var(--shadow-soft); text-shadow: 0 1px 2px rgba(0,0,0,0.2);}
         .pill-input { display: none; }
-        .pill-input:checked + .pill-label { border-color: var(--c-turquesa); background: var(--c-turquesa-light); color: var(--c-turquesa-dark); box-shadow: 0 2px 8px rgba(0,175,198,0.1); }
+        .pill-input:checked + .pill-label { border-color: var(--c-turquesa); box-shadow: 0 0 0 3px var(--c-turquesa-light); transform: scale(1.03); z-index: 1; }
         
-        /* Presentaciones Grid */
-        .pres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .pres-card { border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; cursor: pointer; transition: all 0.2s; background: var(--c-gris-bg); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;}
-        .pres-card.selected { border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 4px 12px rgba(0,175,198,0.1); }
-        .pres-kg { font-size: 18px; font-weight: 900; color: var(--c-azul); }
-        .pres-price { font-size: 14px; font-weight: 700; color: var(--c-naranja); background: rgba(246, 90, 3, 0.1); padding: 4px 8px; border-radius: 4px;}
+        /* Presentaciones Grid Mejorada */
+        .pres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .pres-card { border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 16px; cursor: pointer; transition: all 0.2s; background: var(--c-gris-bg); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;}
+        .pres-card.selected { border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 4px 16px rgba(0,175,198,0.15); transform: translateY(-2px);}
+        .pres-kg { font-size: 20px; font-weight: 900; color: var(--c-azul); }
+        .pres-price { font-size: 16px; font-weight: 800; color: var(--c-naranja); background: rgba(246, 90, 3, 0.1); padding: 6px 12px; border-radius: 6px; display: flex; align-items: baseline; gap: 4px;}
+        .pres-price small { font-size: 11px; color: var(--c-texto-light); }
         
         /* Control Cantidad */
-        .qty-control { display: flex; align-items: center; justify-content: center; gap: 16px; background: var(--c-gris-bg); padding: 8px; border-radius: var(--radius-sm); border: 1px solid var(--c-gris-border); max-width: 200px; margin: 0 auto;}
-        .qty-btn { width: 36px; height: 36px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-sm); font-weight: 900; font-size: 18px; color: var(--c-azul); cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-soft);}
-        .qty-input { width: 40px; text-align: center; border: none; background: transparent; font-weight: 900; font-size: 18px; color: var(--c-azul); pointer-events: none; }
+        .qty-control { display: flex; align-items: center; justify-content: center; gap: 16px; background: var(--c-gris-bg); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--c-gris-border); max-width: 220px; margin: 0 auto;}
+        .qty-btn { width: 44px; height: 44px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-sm); font-weight: 900; font-size: 20px; color: var(--c-azul); cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-soft);}
+        .qty-input { width: 50px; text-align: center; border: none; background: transparent; font-weight: 900; font-size: 20px; color: var(--c-azul); pointer-events: none; }
 
         /* Resumen Dinámico */
-        .dynamic-summary-box { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px; margin-top: 24px;}
-        .summary-dyn-title { font-size: 13px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
-        .summary-dyn-content p { margin-bottom: 6px; font-size: 14px; font-weight: 500;}
+        .dynamic-summary-box { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; margin-top: 24px;}
+        .summary-dyn-title { font-size: 14px; font-weight: 900; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
+        .summary-dyn-content p { margin-bottom: 8px; font-size: 15px; font-weight: 500; display: flex; justify-content: space-between;}
         .summary-dyn-content strong { color: var(--c-azul); font-weight: 800;}
-        .summary-dyn-total { border-top: 1px solid var(--c-gris-border); margin-top: 12px; padding-top: 12px; display: flex; justify-content: space-between; align-items: flex-end;}
-        .summary-dyn-total span:first-child { font-size: 14px; font-weight: 800; color: var(--c-texto-light); }
-        .summary-dyn-total span:last-child { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1;}
+        .summary-dyn-total { border-top: 2px solid var(--c-gris-border); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end;}
+        .summary-dyn-total span:first-child { font-size: 16px; font-weight: 900; color: var(--c-texto-light); }
+        .summary-dyn-total span:last-child { font-size: 28px; font-weight: 900; color: var(--c-azul); line-height: 1;}
 
         /* =========================================================
-           BLOQUES 7, 8, 9, 10, 11 (PAGOS, ENVÍOS, CÓMO COMPRAR, FAQ)
-           (Reutilizando clases maestras y componentes SVG)
+           BLOQUES INFORMATIVOS
            ========================================================= */
+        .section-icon-main { width: 42px; height: 42px; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block; }
         
-        /* Iconos de Sección Modernos */
-        .section-icon-main { width: 36px; height: 36px; color: var(--c-turquesa); margin: 0 auto 12px auto; display: block; }
-        
-        /* Pagos */
         .pay-section-dark { background: var(--c-azul-grad); border: none; color: var(--c-blanco); }
         .pay-section-dark .section-title { color: var(--c-blanco); }
         .pay-methods { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
-        .pay-tag-dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(0,175,198,0.3); padding: 10px 14px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px); }
-        .pay-tag-dark svg { width: 18px; height: 18px; fill: var(--c-turquesa); }
-        .pay-note { font-size: 13px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500;}
+        .pay-tag-dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(0,175,198,0.3); padding: 12px 16px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px); }
+        .pay-tag-dark svg { width: 20px; height: 20px; fill: var(--c-turquesa); }
+        .pay-note { font-size: 13px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500; line-height: 1.4;}
 
-        /* Envíos */
         .shipping-highlight { text-align: center; margin-bottom: 24px; }
-        .shipping-highlight h3 { font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 4px;}
-        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-        .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; }
+        .shipping-highlight h3 { font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 8px;}
+        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 16px; }
         .shipping-card.free-shipping { background: #eefafc; border-color: var(--c-turquesa); border-left: 4px solid var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon { background: var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon svg { fill: var(--c-blanco); stroke: var(--c-blanco);}
         .shipping-card.extended { border-left: 4px solid var(--c-naranja); }
-        .shipping-icon { width: 32px; height: 32px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
-        .shipping-icon svg { width: 18px; height: 18px; color: var(--c-turquesa-dark); }
-        .shipping-info h4 { font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
-        .shipping-info p { font-size: 13px; color: var(--c-texto-light); }
+        .shipping-icon { width: 36px; height: 36px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
+        .shipping-icon svg { width: 20px; height: 20px; color: var(--c-turquesa-dark); }
+        .shipping-info h4 { font-size: 16px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
+        .shipping-info p { font-size: 14px; color: var(--c-texto-light); line-height: 1.4; }
         
-        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 14px; border-radius: var(--radius-sm); font-weight: 800; font-size: 14px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
+        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 16px; border-radius: var(--radius-sm); font-weight: 800; font-size: 15px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
         .btn-outline:active { background: var(--c-turquesa-light); }
 
-        /* Cómo Comprar */
         .steps-grid { display: flex; flex-direction: column; gap: 16px; position: relative;}
-        .step-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-soft); z-index: 2;}
-        .step-num { font-size: 24px; font-weight: 900; color: var(--c-turquesa-light); -webkit-text-stroke: 1px var(--c-turquesa); line-height: 1; flex-shrink: 0; padding-top: 4px; width: 36px;}
-        .step-info h4 { font-size: 15px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; text-transform: uppercase;}
-        .step-info p { font-size: 13px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
+        .step-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-soft); z-index: 2;}
+        .step-num { font-size: 28px; font-weight: 900; color: var(--c-turquesa-light); -webkit-text-stroke: 1px var(--c-turquesa); line-height: 1; flex-shrink: 0; padding-top: 4px; width: 36px;}
+        .step-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 6px; text-transform: uppercase;}
+        .step-info p { font-size: 14px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
 
-        /* FAQ */
         .faq-item { border-bottom: 1px solid var(--c-gris-border); transition: background-color 0.3s; }
         .faq-item:last-child { border: none; }
-        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 18px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color 0.2s;}
-        .faq-question::after { content: "+"; color: var(--c-turquesa); font-size: 22px; transition: transform 0.3s; font-weight: 400;}
+        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 20px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color 0.2s;}
+        .faq-question::after { content: "+"; color: var(--c-turquesa); font-size: 24px; transition: transform 0.3s; font-weight: 400;}
         .faq-question.active { color: var(--c-turquesa-dark); }
         .faq-question.active::after { content: "-"; transform: rotate(180deg); color: var(--c-turquesa-dark);}
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;}
-        .faq-answer p { padding-bottom: 18px; }
+        .faq-answer p { padding-bottom: 20px; line-height: 1.5; }
 
-        /* Cierre */
         .closing-box { text-align: center; }
-        .closing-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; text-align: left; background: var(--c-gris-bg); padding: 20px; border-radius: var(--radius-md);}
-        .closing-list li { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; color: var(--c-texto);}
-        .closing-list svg { width: 20px; height: 20px; color: var(--c-turquesa); flex-shrink: 0;}
+        .closing-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; text-align: left; background: var(--c-gris-bg); padding: 24px; border-radius: var(--radius-md);}
+        .closing-list li { display: flex; align-items: flex-start; gap: 12px; font-weight: 700; font-size: 14px; color: var(--c-texto); line-height: 1.4;}
+        .closing-list svg { width: 24px; height: 24px; color: var(--c-turquesa); flex-shrink: 0;}
 
         /* =========================================================
            COMPONENTES FLOTANTES
            ========================================================= */
-        /* Barra de Compra Inferior */
         .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--c-azul); box-shadow: 0 -4px 16px rgba(0,0,0,0.15); border-top: 2px solid var(--c-turquesa); z-index: 90; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
         .floating-bar.visible { transform: translateY(0); }
-        .fb-text { font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
-        .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
+        .fb-text { font-size: 14px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
+        .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
 
-        /* Botón Flotante WhatsApp */
-        .wa-float { position: fixed; bottom: 84px; right: 16px; width: 56px; height: 56px; background: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 85; transition: transform 0.3s ease; }
+        .wa-float { position: fixed; bottom: 84px; right: 16px; width: 60px; height: 60px; background: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 85; transition: transform 0.3s ease; }
         .wa-float:active { transform: scale(0.9); }
-        .wa-float svg { width: 32px; height: 32px; fill: currentColor; }
-        /* Ajuste si la barra flotante está visible */
-        body.has-floating-bar .wa-float { bottom: calc(84px + 64px); } /* Aprox, ajustado por JS */
+        .wa-float svg { width: 36px; height: 36px; fill: currentColor; }
+        body.has-floating-bar .wa-float { bottom: calc(84px + 64px); }
 
         /* =========================================================
            CARRITO LATERAL (DRAWER)
@@ -383,21 +379,21 @@
         .cart-drawer.open { right: 0; }
         .cart-header { padding: 20px; background: var(--c-blanco); border-bottom: 1px solid var(--c-gris-border); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-soft); z-index: 2;}
         .cart-header h2 { font-size: 18px; font-weight: 900; color: var(--c-azul);}
-        .close-cart { background: var(--c-gris-claro); border: none; color: var(--c-azul); width: 32px; height: 32px; border-radius: 50%; font-size: 20px; font-weight: bold; cursor: pointer; }
+        .close-cart { background: var(--c-gris-claro); border: none; color: var(--c-azul); width: 36px; height: 36px; border-radius: 50%; font-size: 22px; font-weight: bold; cursor: pointer; }
         .cart-body { flex: 1; overflow-y: auto; padding: 20px; position: relative; }
         .cart-item { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 12px; position: relative; box-shadow: var(--shadow-soft);}
-        .cart-item-title { font-size: 14px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; padding-right: 32px; line-height: 1.2;}
-        .cart-item-meta { font-size: 12px; color: var(--c-texto-light); margin-bottom: 12px; font-weight: 600;}
-        .cart-item-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--c-gris-border); padding-top: 12px;}
-        .qty-controls { display: flex; align-items: center; gap: 8px; background: var(--c-gris-bg); padding: 4px; border-radius: var(--radius-sm);}
-        .qty-btn-sm { width: 28px; height: 28px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 4px; font-weight: 900; color: var(--c-azul); cursor: pointer;}
-        .item-price { font-weight: 900; font-size: 16px; color: var(--c-azul); }
+        .cart-item-title { font-size: 15px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; padding-right: 40px; line-height: 1.2;}
+        .cart-item-meta { font-size: 13px; color: var(--c-texto-light); margin-bottom: 12px; font-weight: 600;}
+        .cart-item-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--c-gris-border); padding-top: 16px;}
+        .qty-controls { display: flex; align-items: center; gap: 8px; background: var(--c-gris-bg); padding: 6px; border-radius: var(--radius-sm);}
+        .qty-btn-sm { width: 32px; height: 32px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 6px; font-weight: 900; color: var(--c-azul); cursor: pointer;}
+        .item-price { font-weight: 900; font-size: 18px; color: var(--c-azul); }
         .remove-item { position: absolute; top: 8px; right: 8px; background: #fee2e2; border: none; color: #dc2626; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
-        .remove-item svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none;}
+        .remove-item svg { width: 22px; height: 22px; fill: currentColor; pointer-events: none;}
         .cart-empty-message { text-align: center; padding: 40px 0; color: var(--c-texto-light); font-size: 15px; font-weight: 600; display: block; }
         .cart-footer { padding: 20px; background: var(--c-blanco); border-top: 1px solid var(--c-gris-border); box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 2;}
         .cart-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 900; color: var(--c-azul); margin-bottom: 16px; align-items: flex-end;}
-        .cart-total span:last-child { font-size: 24px; color: var(--c-naranja);}
+        .cart-total span:last-child { font-size: 26px; color: var(--c-naranja);}
         .empty-cart-btn { width: 100%; text-align: center; background: none; border: none; color: var(--c-texto-light); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 12px 0; margin-top: 8px; }
 
         /* =========================================================
@@ -405,10 +401,10 @@
            ========================================================= */
         #checkout-view { display: none; padding: 24px 0; min-height: 100vh;}
         .checkout-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-        .back-btn { background: var(--c-blanco); border: 1px solid var(--c-gris-border); width: 40px; height: 40px; border-radius: 50%; font-size: 20px; color: var(--c-azul); cursor: pointer; box-shadow: var(--shadow-soft); display: flex; justify-content: center; align-items: center; font-weight: bold;}
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 800; color: var(--c-texto); margin-bottom: 6px; }
-        .form-control { width: 100%; padding: 12px 16px; border: 2px solid var(--c-gris-border); border-radius: var(--radius-sm); font-size: 15px; font-weight: 500; font-family: inherit; transition: all 0.2s; background: var(--c-gris-bg);}
+        .back-btn { background: var(--c-blanco); border: 1px solid var(--c-gris-border); width: 44px; height: 44px; border-radius: 50%; font-size: 22px; color: var(--c-azul); cursor: pointer; box-shadow: var(--shadow-soft); display: flex; justify-content: center; align-items: center; font-weight: bold;}
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 800; color: var(--c-texto); margin-bottom: 8px; }
+        .form-control { width: 100%; padding: 14px 16px; border: 2px solid var(--c-gris-border); border-radius: var(--radius-sm); font-size: 15px; font-weight: 500; font-family: inherit; transition: all 0.2s; background: var(--c-gris-bg);}
         .form-control:focus { outline: none; border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 0 0 4px var(--c-turquesa-light); }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -416,15 +412,15 @@
            FOOTER
            ========================================================= */
         footer { background: var(--c-azul); color: var(--c-blanco); padding: 40px 16px 24px; margin-top: 48px; border-top: 4px solid var(--c-turquesa); }
-        .footer-logo img { max-height: 28px; margin-bottom: 16px; }
-        .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 24px; max-width: 300px; }
-        .footer-nav { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-        .footer-nav a { color: var(--c-blanco); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;}
+        .footer-logo img { max-height: 32px; margin-bottom: 16px; }
+        .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 24px; max-width: 320px; line-height: 1.5; }
+        .footer-nav { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+        .footer-nav a { color: var(--c-blanco); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;}
         .footer-nav a::before { content: ''; width: 6px; height: 6px; background: var(--c-turquesa); border-radius: 50%; }
         .footer-contact { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
-        .footer-contact h5 { font-size: 12px; color: #8ba2ac; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
-        .footer-wsp { font-size: 18px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 8px;}
-        .footer-bottom { text-align: center; font-size: 11px; color: #64748b; margin-top: 32px; }
+        .footer-contact h5 { font-size: 13px; color: #8ba2ac; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;}
+        .footer-wsp { font-size: 20px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
+        .footer-bottom { text-align: center; font-size: 12px; color: #64748b; margin-top: 40px; }
 
         /* =========================================================
            MEDIA QUERIES (ESCRITORIO)
@@ -438,26 +434,23 @@
             .desktop-nav a { font-size: 14px; font-weight: 700; transition: color 0.2s; text-transform: uppercase;}
             .desktop-nav a:hover { color: var(--c-turquesa); }
             
-            .hero-section { flex-direction: row; align-items: center; gap: 48px; margin-top: 40px;}
-            .video-wrapper { flex: 1.2; height: 500px; }
-            .hero-text-block { flex: 1; }
-            .hero-header { text-align: left; margin-top: 0; }
-            .hero-header h2 { font-size: 32px; }
-            .benefits-compact { grid-template-columns: repeat(2, 1fr); margin-bottom: 0;}
+            .hero-product { flex-direction: row; gap: 48px; align-items: center; }
+            .hero-img-box { flex: 1; max-width: 400px; }
+            .hero-text { flex: 1.2; text-align: left; }
+            .benefits-compact { grid-template-columns: repeat(2, 1fr); }
             
             .grid-desktop { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;}
             
             .section-title { font-size: 28px; }
             .comparer-container { max-width: 850px; }
-            .comp-handle { width: 50px; height: 50px; }
             
             .steps-grid { flex-direction: row; }
             .step-card { flex: 1; flex-direction: column; align-items: center; text-align: center;}
             .step-num { width: auto; }
             
             .floating-bar { display: none; }
-            .wa-float { bottom: 24px; }
-            body.has-floating-bar .wa-float { bottom: 24px; }
+            .wa-float { bottom: 32px; right: 32px; width: 64px; height: 64px;}
+            body.has-floating-bar .wa-float { bottom: 32px; }
         }
     </style>
 </head>
@@ -486,7 +479,7 @@
     <main>
         <div class="container">
             
-            <!-- BLOQUE 1: CARRUSEL DE VIDEOS -->
+            <!-- BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio) -->
             <section class="yt-carousel-wrapper" aria-label="Carrusel de videos">
                 <div class="yt-track" id="yt-track">
                     <div class="yt-slide" id="slide-0"><div id="player-0" style="width:100%; height:100%;"></div></div>
@@ -509,63 +502,34 @@
                 </div>
             </section>
 
-            <div class="grid-desktop">
-                <!-- BLOQUE 2: PRODUCTO Y BENEFICIOS -->
-                <section class="section-gap hero-product">
-                    <div class="hero-img-box">
-                        <img src="assets/images/bi/balde.png" alt="Balde de Barrera Impermeable Blindaflex">
-                    </div>
-                    <div class="hero-text">
-                        <h1>BARRERA IMPERMEABLE</h1>
-                        <p>Una pintura para proteger y renovar frentes y muros exteriores con tecnología avanzada.</p>
-                        
-                        <div class="benefits-compact">
-                            <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg><span>HIDRORREPELENCIA</span></div>
-                            <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v2c0 1.66 1.34 3 3 3h14c1.66 0 3-1.34 3-3v-2c0-1.66-1.34-3-3-3zm1 5c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v2zM6 11h2v2H6zm4 0h4v2h-4z"/></svg><span>ALTA ELASTICIDAD</span></div>
-                            <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg><span>RESINA 100% ACRÍLICA</span></div>
-                            <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3zM11 1h2v4h-2zm0 18h2v4h-2zm8.17-10.76l1.42-1.42 2.83 2.83-1.42 1.42zm-15.56 12.02l1.42-1.42 2.83 2.83-1.42 1.42zM23 11h-4v2h4zM5 11H1v2h4zm13.34 8.24l1.42 1.42-2.83 2.83-1.42-1.42zM7.76 4.93L6.34 3.51 3.51 6.34l1.42 1.42z"/></svg><span>MÁXIMA DURACIÓN<br>DE COLORES</span></div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- BLOQUE 5: CALCULADORA (Ubicada aquí en desktop para mejor flujo visual, en HTML sigue el orden) -->
-                <section class="section-gap card calc-section">
-                    <h2 class="section-title">CALCULÁ TU CONSUMO</h2>
-                    <p class="section-subtitle">Ingresá los m² a pintar (rendimiento estimado hasta 3 m²/kg).</p>
+            <!-- BLOQUE 2: PRODUCTO Y BENEFICIOS -->
+            <section class="section-gap hero-product">
+                <div class="hero-img-box">
+                    <img src="assets/images/bi/balde.png" alt="Balde de Barrera Impermeable Blindaflex">
+                </div>
+                <div class="hero-text">
+                    <h2 class="section-title" style="font-size: 28px;">BARRERA IMPERMEABLE</h2>
+                    <p class="section-subtitle">Una pintura para proteger y renovar frentes y muros exteriores con tecnología avanzada.</p>
                     
-                    <div class="calc-input-group">
-                        <label for="calc-m2">Superficie a impermeabilizar</label>
-                        <div class="calc-flex">
-                            <input type="number" id="calc-m2" class="calc-input" placeholder="0" min="1" oninput="calculateYield()">
-                            <span class="calc-unit">m²</span>
-                        </div>
+                    <div class="benefits-compact">
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg><span>HIDRORREPELENCIA</span></div>
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v2c0 1.66 1.34 3 3 3h14c1.66 0 3-1.34 3-3v-2c0-1.66-1.34-3-3-3zm1 5c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v2zM6 11h2v2H6zm4 0h4v2h-4z"/></svg><span>ALTA ELASTICIDAD</span></div>
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg><span>RESINA 100% ACRÍLICA</span></div>
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3zM11 1h2v4h-2zm0 18h2v4h-2zm8.17-10.76l1.42-1.42 2.83 2.83-1.42 1.42zm-15.56 12.02l1.42-1.42 2.83 2.83-1.42 1.42zM23 11h-4v2h4zM5 11H1v2h4zm13.34 8.24l1.42 1.42-2.83 2.83-1.42-1.42zM7.76 4.93L6.34 3.51 3.51 6.34l1.42 1.42z"/></svg><span>MÁXIMA DURACIÓN<br>DE COLORES</span></div>
                     </div>
-
-                    <div id="calc-result-box" class="calc-results">
-                        <div class="res-title">NECESITÁS APROXIMADAMENTE:</div>
-                        <div class="res-item">Pintura Total: <span class="highlight" id="res-kg">0 kg</span></div>
-                        <div class="res-title" style="margin-top:16px;">PRESENTACIONES RECOMENDADAS:</div>
-                        <div class="res-item" id="res-12">Baldes de 12.5 kg: <span>0</span></div>
-                        <div class="res-item" id="res-5">Baldes de 5 kg: <span>0</span></div>
-                        
-                        <div class="res-total">TOTAL ESTIMADO: <span id="res-price">$0</span></div>
-                        <div class="calc-note">El rendimiento puede variar según rugosidad y absorción de la superficie.</div>
-                        
-                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px;" onclick="transferCalcToConfig()">SELECCIONAR ESTAS CANTIDADES</button>
-                    </div>
-                </section>
-            </div>
+                </div>
+            </section>
 
             <!-- BLOQUE 3: COMPARADOR ANTES Y DESPUÉS -->
             <section class="section-gap">
                 <h2 class="section-title">MIRÁ LA DIFERENCIA</h2>
-                <p class="section-subtitle">Compará el aspecto de un muro antes y después de aplicar Blindaflex.</p>
+                <p class="section-subtitle" style="margin-bottom:16px;">Compará el aspecto de un techo/muro antes y después de aplicar Blindaflex.</p>
                 
                 <div class="comparer-container" id="comparer-container">
-                    <img src="assets/images/bi/antes.png" alt="Muro antes de aplicar Barrera Impermeable" class="comp-img">
+                    <img src="assets/images/techo-sin-blindaflex.png" alt="Techo antes de aplicar impermeabilizante Blindaflex." class="comp-img">
                     <div class="comp-label label-before">SIN BLINDAFLEX</div>
                     
-                    <img src="assets/images/bi/despues.png" alt="Muro después de aplicar Barrera Impermeable" class="comp-img comp-img-after" id="comp-img-after">
+                    <img src="assets/images/techo-con-blindaflex.png" alt="Techo después de aplicar Blindaje para Techos Blindaflex." class="comp-img comp-img-after" id="comp-img-after">
                     <div class="comp-label label-after">CON BLINDAFLEX</div>
                     
                     <div class="comp-divider" id="comp-divider">
@@ -582,74 +546,102 @@
                 <h2 class="section-title">COLORES E INSPIRACIÓN</h2>
                 <p class="section-subtitle">Conocé nuestra paleta de terminación semimate y visualizá tus ideas.</p>
                 
-                <!-- A. Muestrario -->
+                <!-- A. Muestrario (30% más alto, Colores Reales) -->
                 <div class="color-grid">
-                    <div class="color-swatch bg-blanco" onclick="toggleColorCombo(this, 'Blanco', '#FAFAFA')"><div class="color-name">Blanco</div></div>
-                    <div class="color-swatch bg-greige" onclick="toggleColorCombo(this, 'Greige', '#D5CFC4')"><div class="color-name">Greige</div></div>
-                    <div class="color-swatch bg-arcilla" onclick="toggleColorCombo(this, 'Arcilla', '#C2A58F')"><div class="color-name">Arcilla</div></div>
-                    <div class="color-swatch bg-ceniza" onclick="toggleColorCombo(this, 'Gris Ceniza', '#D0D4D6')"><div class="color-name">Ceniza</div></div>
-                    <div class="color-swatch bg-eclipse" onclick="toggleColorCombo(this, 'Gris Eclipse', '#7A8185')"><div class="color-name" style="color:white; background:rgba(0,0,0,0.4);">Eclipse</div></div>
-                    <div class="color-swatch bg-tormenta" onclick="toggleColorCombo(this, 'Gris Tormenta', '#555A5D')"><div class="color-name" style="color:white; background:rgba(0,0,0,0.4);">Tormenta</div></div>
+                    <div class="color-swatch bg-blanco" onclick="toggleColorCombo(this, 'Blanco', '#F4F3F0')"><div class="color-name">Blanco</div></div>
+                    <div class="color-swatch bg-greige" onclick="toggleColorCombo(this, 'Greige', '#B6A18E')"><div class="color-name">Greige</div></div>
+                    <div class="color-swatch bg-arcilla" onclick="toggleColorCombo(this, 'Arcilla', '#7B594E')"><div class="color-name">Arcilla</div></div>
+                    <div class="color-swatch bg-ceniza" onclick="toggleColorCombo(this, 'Gris Ceniza', '#A5A5A3')"><div class="color-name">Ceniza</div></div>
+                    <div class="color-swatch bg-eclipse" onclick="toggleColorCombo(this, 'Gris Eclipse', '#66676B')"><div class="color-name">Eclipse</div></div>
+                    <div class="color-swatch bg-tormenta" onclick="toggleColorCombo(this, 'Gris Tormenta', '#414143')"><div class="color-name">Tormenta</div></div>
                 </div>
                 <div class="color-note">Los colores pueden presentar variaciones según la configuración de cada pantalla.</div>
 
-                <!-- B. Combinador -->
+                <!-- B. Combinador (Mayor presencia) -->
                 <div class="combiner-box">
                     <div class="combiner-header">
                         <h4>TU COMBINACIÓN (Hasta 3)</h4>
                         <button class="btn-clear" onclick="clearCombo()">Limpiar</button>
                     </div>
                     <div class="combiner-display" id="combo-display">
-                        <div class="combo-slot combo-empty">Seleccioná un color arriba</div>
+                        <div class="combo-slot combo-empty">Seleccioná hasta 3 colores en el muestrario superior</div>
                     </div>
                 </div>
 
-                <!-- C. Galería -->
+                <!-- C. Galería Inspiracional (Expansible) -->
                 <div class="gallery-wrapper">
                     <div class="gallery-track" id="gallery-track">
-                        <!-- Las 13 imágenes requeridas -->
-                        <div class="gallery-item" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración fachada 4" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración fachada 5" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración fachada 6" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración fachada 7" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración fachada 8" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración fachada 9" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración fachada 10" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración fachada 11" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración fachada 12" loading="lazy"></div>
-                        <div class="gallery-item" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración fachada 13" loading="lazy"></div>
+                        <div class="gallery-item" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración fachada 4" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración fachada 5" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración fachada 6" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración fachada 7" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración fachada 8" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración fachada 9" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración fachada 10" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración fachada 11" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración fachada 12" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
+                        <div class="gallery-item" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración fachada 13" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
                     </div>
                 </div>
             </section>
 
             <div class="grid-desktop">
+                <!-- BLOQUE 5: CALCULADORA DE CONSUMO REAL -->
+                <section class="section-gap card calc-section">
+                    <h2 class="section-title" style="color:var(--c-turquesa);">CALCULÁ TU CONSUMO</h2>
+                    <p class="section-subtitle" style="color:var(--c-gris-claro);">Ingresá los m² a pintar (rendimiento estimado hasta 3 m²/kg).</p>
+                    
+                    <div class="calc-input-group">
+                        <label for="calc-m2">Superficie a impermeabilizar</label>
+                        <div class="calc-flex">
+                            <input type="number" id="calc-m2" class="calc-input" placeholder="0" min="1" oninput="calculateYield()">
+                            <span class="calc-unit">m²</span>
+                        </div>
+                    </div>
+
+                    <div id="calc-result-box" class="calc-results">
+                        <div class="res-title">NECESITÁS APROXIMADAMENTE:</div>
+                        <div class="res-item">Pintura Total: <span class="highlight" id="res-kg">0 kg</span></div>
+                        <div class="res-title" style="margin-top:16px;">COMBINACIÓN RECOMENDADA:</div>
+                        <div class="res-item" id="res-12">Baldes de 12.5 kg: <span>0</span></div>
+                        <div class="res-item" id="res-5">Baldes de 5 kg: <span>0</span></div>
+                        
+                        <div class="res-total"><span>Costo Estimado:</span> <span id="res-price">$0</span></div>
+                        <div class="calc-note">Recomendación optimizada para cubrir tu necesidad redondeando hacia arriba.</div>
+                        
+                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">CONFIGURAR ESTAS CANTIDADES</button>
+                    </div>
+                </section>
+
                 <!-- BLOQUE 6: CONFIGURADOR DE COMPRA -->
                 <section id="configurador" class="section-gap card buy-section">
                     <h2 class="section-title">CONFIGURÁ TU PEDIDO</h2>
                     
                     <div class="conf-group">
                         <span class="conf-label">1. Elegí el Color</span>
+                        <!-- Etiquetas tipo pastilla coloreadas -->
                         <div class="pill-selector" id="conf-color-selector">
-                            <input type="radio" name="conf-color" id="cc-blanco" value="Blanco" class="pill-input" checked onchange="updateSummary()">
-                            <label for="cc-blanco" class="pill-label">Blanco</label>
-                            
-                            <input type="radio" name="conf-color" id="cc-greige" value="Greige" class="pill-input" onchange="updateSummary()">
-                            <label for="cc-greige" class="pill-label">Greige</label>
-                            
-                            <input type="radio" name="conf-color" id="cc-arcilla" value="Arcilla" class="pill-input" onchange="updateSummary()">
-                            <label for="cc-arcilla" class="pill-label">Arcilla</label>
-                            
-                            <input type="radio" name="conf-color" id="cc-ceniza" value="Gris Ceniza" class="pill-input" onchange="updateSummary()">
-                            <label for="cc-ceniza" class="pill-label">Ceniza</label>
-                            
-                            <input type="radio" name="conf-color" id="cc-eclipse" value="Gris Eclipse" class="pill-input" onchange="updateSummary()">
-                            <label for="cc-eclipse" class="pill-label">Eclipse</label>
-                            
-                            <input type="radio" name="conf-color" id="cc-tormenta" value="Gris Tormenta" class="pill-input" onchange="updateSummary()">
-                            <label for="cc-tormenta" class="pill-label">Tormenta</label>
+                            <label class="pill-label bg-blanco">
+                                <input type="radio" name="conf-color" value="Blanco" class="pill-input" checked onchange="updateConfigUI()"> Blanco
+                            </label>
+                            <label class="pill-label bg-greige">
+                                <input type="radio" name="conf-color" value="Greige" class="pill-input" onchange="updateConfigUI()"> Greige
+                            </label>
+                            <label class="pill-label bg-arcilla">
+                                <input type="radio" name="conf-color" value="Arcilla" class="pill-input" onchange="updateConfigUI()"> Arcilla
+                            </label>
+                            <label class="pill-label bg-ceniza">
+                                <input type="radio" name="conf-color" value="Gris Ceniza" class="pill-input" onchange="updateConfigUI()"> Ceniza
+                            </label>
+                            <label class="pill-label bg-eclipse">
+                                <input type="radio" name="conf-color" value="Gris Eclipse" class="pill-input" onchange="updateConfigUI()"> Eclipse
+                            </label>
+                            <label class="pill-label bg-tormenta">
+                                <input type="radio" name="conf-color" value="Gris Tormenta" class="pill-input" onchange="updateConfigUI()"> Tormenta
+                            </label>
                         </div>
                     </div>
 
@@ -658,11 +650,11 @@
                         <div class="pres-grid">
                             <div class="pres-card selected" id="card-pres-12" onclick="selectPresentation(12.5)">
                                 <span class="pres-kg">12.5 KG</span>
-                                <span class="pres-price">$112.200</span>
+                                <span class="pres-price">$112.200 <small>c/u</small></span>
                             </div>
                             <div class="pres-card" id="card-pres-5" onclick="selectPresentation(5)">
                                 <span class="pres-kg">5 KG</span>
-                                <span class="pres-price">$48.900</span>
+                                <span class="pres-price">$48.900 <small>c/u</small></span>
                             </div>
                         </div>
                     </div>
@@ -692,9 +684,12 @@
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                         AGREGAR AL CARRITO
                     </button>
+                    <div style="font-size:11px; text-align:center; margin-top:8px; color:var(--c-texto-light);">Podés sumar diferentes colores y tamaños en la misma compra.</div>
                 </section>
+            </div>
 
-                <!-- BLOQUES INFORMATIVOS -->
+            <!-- BLOQUES INFORMATIVOS (7, 8, 9, 10, 11) -->
+            <div class="grid-desktop">
                 <div>
                     <!-- BLOQUE 7: PAGOS -->
                     <section class="section-gap card pay-section-dark">
@@ -738,7 +733,9 @@
                             </div>
                         </div>
                     </section>
+                </div>
 
+                <div>
                     <!-- BLOQUE 9: CÓMO COMPRAR -->
                     <section class="section-gap card">
                         <h2 class="section-title">COMPRAR ES MUY FÁCIL</h2>
@@ -747,55 +744,55 @@
                                 <div class="step-num">01</div>
                                 <div class="step-info">
                                     <h4>ELEGÍ</h4>
-                                    <p>Seleccioná color, presentación y cantidad.</p>
+                                    <p>Seleccioná color, presentación y cantidad en el configurador.</p>
                                 </div>
                             </div>
                             <div class="step-card">
                                 <div class="step-num">02</div>
                                 <div class="step-info">
                                     <h4>ENVIÁ TU PEDIDO</h4>
-                                    <p>Completá tus datos y envialo por WhatsApp.</p>
+                                    <p>Completá tus datos de entrega y envialo por WhatsApp.</p>
                                 </div>
                             </div>
                             <div class="step-card">
                                 <div class="step-num">03</div>
                                 <div class="step-info">
                                     <h4>RECIBÍ Y PAGÁ</h4>
-                                    <p>Coordinamos la entrega y pagás al recibir.</p>
+                                    <p>Coordinamos la entrega personalmente y pagás al recibir.</p>
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- BLOQUE 10: FAQ -->
+                    <section class="section-gap card">
+                        <svg class="section-icon-main svg-thin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
+                        <div class="faq-container">
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">¿Para qué superficies sirve Barrera Impermeable?</button>
+                                <div class="faq-answer"><p>Está diseñada específicamente para frentes, fachadas y muros exteriores compatibles con pinturas acrílicas.</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">¿Se puede utilizar en techos?</button>
+                                <div class="faq-answer"><p>No, para techos y terrazas recomendamos utilizar nuestro producto especializado "Blindaje para Techos".</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">¿Cuánto rinde?</button>
+                                <div class="faq-answer"><p>El rendimiento orientativo es de hasta 3 m² terminados por kilogramo, dependiendo de la absorción y rugosidad de la superficie.</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">¿Qué significa que sea hidrorrepelente?</button>
+                                <div class="faq-answer"><p>Significa que su tecnología hace que el agua de lluvia forme gotas y resbale sobre la superficie, previniendo la absorción de humedad exterior.</p></div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question" onclick="toggleFaq(this)">¿Cómo funciona el pago al recibir?</button>
+                                <div class="faq-answer"><p>En zonas habilitadas de entrega local, abonás el producto directamente cuando te lo entregamos. En zonas extendidas solo se solicita el pago anticipado del envío.</p></div>
                             </div>
                         </div>
                     </section>
                 </div>
             </div>
-
-            <!-- BLOQUE 10: FAQ -->
-            <section class="section-gap card">
-                <svg class="section-icon-main svg-thin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">¿Para qué superficies sirve Barrera Impermeable?</button>
-                        <div class="faq-answer"><p>Está diseñada específicamente para frentes, fachadas y muros exteriores compatibles con pinturas acrílicas.</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">¿Se puede utilizar en techos?</button>
-                        <div class="faq-answer"><p>No, para techos y terrazas recomendamos utilizar nuestro producto especializado "Blindaje para Techos".</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">¿Cuánto rinde?</button>
-                        <div class="faq-answer"><p>El rendimiento orientativo es de hasta 3 m² terminados por kilogramo, dependiendo de la absorción y rugosidad de la superficie.</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">¿Qué significa que sea hidrorrepelente?</button>
-                        <div class="faq-answer"><p>Significa que su tecnología hace que el agua de lluvia forme gotas y resbale sobre la superficie, previniendo la absorción de humedad exterior.</p></div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFaq(this)">¿Cómo funciona el pago al recibir?</button>
-                        <div class="faq-answer"><p>En zonas habilitadas de entrega local, abonás el producto directamente cuando te lo entregamos. En zonas extendidas solo se solicita el pago anticipado del envío.</p></div>
-                    </div>
-                </div>
-            </section>
 
             <!-- BLOQUE 11: CIERRE COMERCIAL -->
             <section class="section-gap closing-box">
@@ -806,7 +803,7 @@
                     <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> Terminación semimate en 6 colores de tendencia.</li>
                     <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> Compra rápida y asesoramiento directo de fábrica.</li>
                 </ul>
-                <button class="btn-primary btn-action" onclick="scrollToCompra()">COMPRAR BARRERA IMPERMEABLE</button>
+                <button class="btn-primary btn-action" onclick="document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">COMPRAR BARRERA IMPERMEABLE</button>
             </section>
 
         </div>
@@ -815,7 +812,7 @@
     <!-- BARRA FLOTANTE -->
     <div id="floating-bar" class="floating-bar">
         <div class="fb-text">BARRERA IMPERMEABLE</div>
-        <button class="fb-btn" onclick="scrollToCompra()">VER PRECIOS</button>
+        <button class="fb-btn" onclick="document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">VER PRECIOS</button>
     </div>
 
     <!-- BOTÓN WA FLOTANTE -->
@@ -911,11 +908,12 @@
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        const videoIds = ['obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI']; // Editable IDs
+        // Identificadores provisionales listos para reemplazo
+        const videoIds = ['obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI']; 
         const players = [];
         let currentVideoIndex = 0;
         let isGlobalMute = true;
-        let isGalleryAutoPlaying = true; // Para pausa de la galeria de imagenes
+        let isGalleryAutoPlaying = true; 
 
         function onYouTubeIframeAPIReady() {
             videoIds.forEach((id, index) => {
@@ -929,15 +927,14 @@
 
         function onPlayerReady(event) {
             event.target.mute();
-            if(players.length === videoIds.length) setupYTObserver(); // Iniciar cuando todos esten listos
+            if(players.length === videoIds.length) setupYTObserver(); 
         }
 
         function onPlayerStateChange(event) {
-            // Si el video actual termina, pasar al siguiente
             if (event.data === YT.PlayerState.ENDED) {
                 let pIndex = players.findIndex(p => p === event.target);
                 if(pIndex !== -1 && pIndex === currentVideoIndex) {
-                    manualVideoChange(1); // Mover al siguiente automaticamente
+                    manualVideoChange(1); 
                 }
             }
         }
@@ -994,7 +991,6 @@
                 }
             });
         }
-
     </script>
 
     <!-- ================== SCRIPT LÓGICA PRINCIPAL (COMPARADOR, COLORES, CARRITO) ================== -->
@@ -1041,9 +1037,6 @@
                     selectedColors.push({name, hex});
                     el.classList.add('selected');
                 } else {
-                    // Si ya hay 3, reemplazar el último
-                    const prevEl = document.querySelector(`.color-grid .color-swatch.selected:has(.color-name:contains('${selectedColors[2].name}'))`);
-                    // Simplificación sin jQuery: quitar selected a todos y re-seleccionar
                     document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
                     selectedColors.pop();
                     selectedColors.push({name, hex});
@@ -1085,11 +1078,11 @@
         function startGalAutoScroll() {
             galTimer = setInterval(() => {
                 if(!isGalleryAutoPlaying || !galTrack) return;
-                const slideWidth = galTrack.querySelector('.gallery-item').clientWidth + 12; // ancho + gap
+                const slideWidth = galTrack.querySelector('.gallery-item').clientWidth + 12; 
                 galIndex++;
                 if(galIndex > totalGal) {
                     galIndex = 1;
-                    galTrack.scrollTo({ left: 0, behavior: 'auto' }); // reset sin smooth
+                    galTrack.scrollTo({ left: 0, behavior: 'auto' }); 
                 } else {
                     galTrack.scrollTo({ left: (galIndex-1) * slideWidth, behavior: 'smooth' });
                 }
@@ -1124,8 +1117,7 @@
             startGalAutoScroll();
         }
 
-        // --- 4. CALCULADORA DE CONSUMO ---
-        const YIELD = 3; // m2 per kg
+        // --- 4. CALCULADORA DE CONSUMO REAL ---
         let rec12 = 0;
         let rec5 = 0;
 
@@ -1134,17 +1126,31 @@
             const resBox = document.getElementById('calc-result-box');
             if(isNaN(m2) || m2 <= 0) { resBox.classList.remove('active'); return; }
 
-            const kgNeeded = Math.ceil(m2 / YIELD);
-            rec12 = Math.floor(kgNeeded / 12.5);
-            const remainder = kgNeeded - (rec12 * 12.5);
+            // 1 kg rinde hasta 3m2
+            const kgNeeded = Math.ceil(m2 / 3);
             
-            rec5 = 0;
-            if(remainder > 0) {
-                if(remainder <= 5) { rec5 = 1; }
-                else if(remainder <= 10) { rec5 = 2; }
-                else { rec12++; }
+            let min_total_kg = Infinity;
+            let best_x = 0;
+            let best_y = 0;
+            let max_x = Math.ceil(kgNeeded / 12.5);
+            
+            for(let x=0; x<=max_x; x++){
+                let rem = kgNeeded - (12.5 * x);
+                let y = rem > 0 ? Math.ceil(rem / 5) : 0;
+                let total_kg = 12.5 * x + 5 * y;
+                
+                if (total_kg < min_total_kg) {
+                    min_total_kg = total_kg;
+                    best_x = x; best_y = y;
+                } else if (total_kg === min_total_kg) {
+                    let cost1 = (best_x * 112200) + (best_y * 48900);
+                    let cost2 = (x * 112200) + (y * 48900);
+                    if (cost2 < cost1) { best_x = x; best_y = y; }
+                }
             }
 
+            rec12 = best_x;
+            rec5 = best_y;
             const estPrice = (rec12 * 112200) + (rec5 * 48900);
 
             document.getElementById('res-kg').innerText = `${kgNeeded} kg`;
@@ -1156,10 +1162,10 @@
 
         function transferCalcToConfig() {
             if(rec12 > 0) {
-                presSelected = 12.5;
+                selectPresentation(12.5);
                 configQty = rec12;
             } else if(rec5 > 0) {
-                presSelected = 5;
+                selectPresentation(5);
                 configQty = rec5;
             }
             updateConfigUI();
@@ -1196,7 +1202,9 @@
             document.getElementById('sum-tot').innerText = formatARS(subtotal);
         }
 
-        // Lógica Global Carrito compartida (30 mins caducidad)
+        const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
+
+        // Lógica Global Carrito (30 mins caducidad)
         const CART_EXPIRATION_MS = 30 * 60 * 1000;
         function loadCart() {
             const data = localStorage.getItem('blindaflex_cart_data');
@@ -1235,7 +1243,7 @@
                     color: color,
                     qty: configQty,
                     price: unitPrice,
-                    type: 'barrera' // Tag para diferenciar descuentos de techo
+                    type: 'barrera' 
                 });
             }
             saveCart();
@@ -1262,7 +1270,6 @@
             let grandTotal = 0;
             
             cart.forEach(item => {
-                // Cálculo simple unitario para Barrera (Los descuentos aplican a Techos si hubiere convivencia)
                 const lineTotal = item.price * item.qty;
                 grandTotal += lineTotal;
                 
@@ -1293,7 +1300,7 @@
             document.getElementById('cart-counter').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
         }
 
-        // --- DRAWER & CHECKOUT UI ---
+        // --- 6. DRAWER & CHECKOUT UI ---
         let isCartOpen = false, isCheckoutOpen = false;
         function openCartDrawer() {
             document.getElementById('cart-overlay').classList.add('open');
@@ -1344,7 +1351,7 @@
             const num = document.getElementById('f-num').value;
             const cp = document.getElementById('f-cp').value;
             
-            let m = `*NUEVO PEDIDO BARRERA IMPERMEABLE*%0A%0A*CLIENTE*%0A👤 ${n}%0A📱 ${t}%0A📍 ${c} ${num}, ${l}%0A%0A*PEDIDO*%0A`;
+            let m = `*NUEVO PEDIDO BLINDAFLEX*%0A%0A*CLIENTE*%0A👤 ${n}%0A📱 ${t}%0A📍 ${c} ${num}, ${l}%0A%0A*PEDIDO*%0A`;
             let tot = 0;
             cart.forEach(i => {
                 const sub = i.price * i.qty; tot += sub;
@@ -1354,6 +1361,7 @@
             window.open(`https://wa.me/5493516318301?text=${m}`, '_blank');
         }
 
+        // --- 7. BARRA FLOTANTE SCROLL ---
         function updateFloatingBarVisibility() {
             const bar = document.getElementById('floating-bar');
             const conf = document.getElementById('configurador');
@@ -1365,6 +1373,7 @@
             }
         }
         window.addEventListener('scroll', updateFloatingBarVisibility, {passive:true});
+        window.addEventListener('resize', updateFloatingBarVisibility, {passive:true});
 
         function scrollToCompra() { document.getElementById('configurador').scrollIntoView({behavior:'smooth'}); }
         function toggleFaq(btn) {
