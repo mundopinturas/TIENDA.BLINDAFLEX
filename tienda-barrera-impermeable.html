@@ -131,6 +131,7 @@
         .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 6px rgba(7, 26, 36, 0.1); }
         .btn-action { background: linear-gradient(180deg, var(--c-naranja) 0%, var(--c-naranja-dark) 100%); border-bottom: none; box-shadow: 0 8px 24px rgba(246, 90, 3, 0.25); }
         
+        /* Iconografía Tech Fina */
         .svg-thin { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
         /* =========================================================
@@ -147,7 +148,7 @@
         .desktop-nav { display: none; }
 
         /* =========================================================
-           BLOQUE 1: VIDEOS YT (3:4 Ratio)
+           BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4)
            ========================================================= */
         .yt-carousel-wrapper { position: relative; width: 100%; max-width: 500px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); aspect-ratio: 3/4;}
         .yt-track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
@@ -156,8 +157,8 @@
         .yt-slide iframe { width: 100%; height: 100%; object-fit: cover; border: none; transform: scale(1.02); }
         
         .vid-controls { position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
-        .vid-btn { background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); }
-        .vid-btn svg { width: 20px; height: 20px; fill: var(--c-blanco); }
+        .vid-btn { background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); }
+        .vid-btn svg { width: 22px; height: 22px; fill: var(--c-blanco); }
         .yt-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(7, 26, 36, 0.5); border: none; width: 40px; height: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; }
         .yt-prev { left: 0; border-radius: 0 8px 8px 0; }
         .yt-next { right: 0; border-radius: 8px 0 0 8px; }
@@ -208,7 +209,7 @@
         .color-name { font-size: 12px; font-weight: 900; text-transform: uppercase; width: 100%; text-align: center; letter-spacing: 0.5px;}
         .color-note { font-size: 12px; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; font-weight: 500; line-height: 1.4;}
         
-        /* Valores Cromaticos Fidedignos */
+        /* Valores Cromáticos */
         .bg-blanco { background-color: #F4F3F0; color: #071A24; }
         .bg-greige { background-color: #c6b3a2; color: #FFFFFF; text-shadow: 0 1px 3px rgba(0,0,0,0.3);}
         .bg-arcilla { background-color: #7B594E; color: #FFFFFF; }
@@ -225,7 +226,7 @@
         .combo-slot { flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; position: relative;}
         .combo-empty { font-size: 13px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
 
-        /* C. Galería Inspiracional (Más presencia e ícono) */
+        /* C. Galería Inspiracional */
         .gallery-wrapper { position: relative; width: 100%; overflow: hidden; border-radius: var(--radius-md); margin-bottom: var(--gap-mob); }
         .gallery-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; padding-bottom: 4px;}
         .gallery-track::-webkit-scrollbar { display: none; }
@@ -272,7 +273,7 @@
         .calc-note { font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 16px; font-weight: 500; line-height: 1.4;}
 
         /* =========================================================
-           BLOQUE 6: CONFIGURADOR DE COMPRA (REDISEÑO TOTAL)
+           BLOQUE 6: CONFIGURADOR DE COMPRA (REDISEÑO TOTAL MULTIVARIANTE)
            ========================================================= */
         .buy-section { border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech); scroll-margin-top: 80px;}
         
@@ -302,14 +303,27 @@
         .qty-btn { width: 44px; height: 44px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-sm); font-weight: 900; font-size: 20px; color: var(--c-azul); cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-soft);}
         .qty-input { width: 50px; text-align: center; border: none; background: transparent; font-weight: 900; font-size: 20px; color: var(--c-azul); pointer-events: none; }
 
-        /* Resumen Dinámico */
+        /* PRE-CARRITO: Resumen de tu selección / Multivariante */
         .dynamic-summary-box { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; margin-top: 24px;}
         .summary-dyn-title { font-size: 14px; font-weight: 900; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
-        .summary-dyn-content p { margin-bottom: 8px; font-size: 15px; font-weight: 500; display: flex; justify-content: space-between;}
+        
+        /* Lista de items del pre-carrito */
+        .pre-cart-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;}
+        .pre-cart-item { display: flex; justify-content: space-between; align-items: center; background: var(--c-blanco); border: 1px solid var(--c-gris-border); padding: 12px; border-radius: var(--radius-sm); box-shadow: var(--shadow-soft);}
+        .pre-cart-item-info h5 { font-size: 13px; font-weight: 800; color: var(--c-azul); margin-bottom: 2px;}
+        .pre-cart-item-info span { font-size: 14px; font-weight: 900; color: var(--c-turquesa-dark); }
+        .btn-remove-pre { background: none; border: none; color: #dc2626; font-size: 20px; font-weight: bold; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center;}
+
+        /* Selección actual en vivo */
+        .current-selection-live { border-top: 1px dashed var(--c-gris-border); padding-top: 16px;}
+        .summary-dyn-content p { margin-bottom: 8px; font-size: 14px; font-weight: 500; display: flex; justify-content: space-between; align-items: center;}
         .summary-dyn-content strong { color: var(--c-azul); font-weight: 800;}
+        .btn-add-variant { width: 100%; border: 2px dashed var(--c-turquesa); background: var(--c-turquesa-light); color: var(--c-turquesa-dark); font-weight: 800; font-size: 13px; padding: 12px; border-radius: var(--radius-sm); cursor: pointer; margin-top: 12px; transition: background 0.2s;}
+        .btn-add-variant:active { background: #bdf1f6; }
+
         .summary-dyn-total { border-top: 2px solid var(--c-gris-border); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end;}
         .summary-dyn-total span:first-child { font-size: 16px; font-weight: 900; color: var(--c-texto-light); }
-        .summary-dyn-total span:last-child { font-size: 28px; font-weight: 900; color: var(--c-azul); line-height: 1;}
+        .summary-dyn-total span:last-child { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1;}
 
         /* =========================================================
            BLOQUES INFORMATIVOS
@@ -325,7 +339,7 @@
 
         .shipping-highlight { text-align: center; margin-bottom: 24px; }
         .shipping-highlight h3 { font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 8px;}
-        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
         .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 16px; }
         .shipping-card.free-shipping { background: #eefafc; border-color: var(--c-turquesa); border-left: 4px solid var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon { background: var(--c-turquesa); }
@@ -336,7 +350,7 @@
         .shipping-info h4 { font-size: 16px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
         .shipping-info p { font-size: 14px; color: var(--c-texto-light); line-height: 1.4; }
         
-        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 16px; border-radius: var(--radius-sm); font-weight: 800; font-size: 15px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
+        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 16px; border-radius: var(--radius-sm); font-weight: 800; font-size: 14px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
         .btn-outline:active { background: var(--c-turquesa-light); }
 
         .steps-grid { display: flex; flex-direction: column; gap: 16px; position: relative;}
@@ -362,16 +376,15 @@
         /* =========================================================
            COMPONENTES FLOTANTES
            ========================================================= */
-        /* Barra de Compra Inferior */
         .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--c-azul); box-shadow: 0 -4px 16px rgba(0,0,0,0.15); border-top: 2px solid var(--c-turquesa); z-index: 90; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
         .floating-bar.visible { transform: translateY(0); }
         .fb-text { font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
         .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
 
-        /* Botón Flotante WhatsApp */
-        .wa-float { position: fixed; bottom: 84px; right: 16px; width: 56px; height: 56px; background: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 85; transition: transform 0.3s ease; }
+        /* Corrección Ícono Whatsapp Flotante GIGANTE (Fijado a !important) */
+        .wa-float { position: fixed; bottom: 84px; right: 16px; width: 56px !important; height: 56px !important; background: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 85; transition: transform 0.3s ease; }
         .wa-float:active { transform: scale(0.9); }
-        .wa-float svg { width: 32px; height: 32px; fill: currentColor; }
+        .wa-float svg { width: 32px !important; height: 32px !important; fill: currentColor; }
         body.has-floating-bar .wa-float { bottom: calc(84px + 64px); } 
 
         /* =========================================================
@@ -412,6 +425,9 @@
         .form-control:focus { outline: none; border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 0 0 4px var(--c-turquesa-light); }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
+        /* Icono WhatsApp Check out estricto */
+        .btn-whatsapp svg { width: 24px !important; height: 24px !important; }
+
         /* =========================================================
            FOOTER
            ========================================================= */
@@ -424,6 +440,8 @@
         .footer-contact { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
         .footer-contact h5 { font-size: 12px; color: #8ba2ac; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
         .footer-wsp { font-size: 18px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
+        /* Icono WhatsApp Footer estricto */
+        .footer-wsp svg { width: 24px !important; height: 24px !important; fill: #25D366; }
         .footer-bottom { text-align: center; font-size: 11px; color: #64748b; margin-top: 40px; }
 
         /* =========================================================
@@ -447,24 +465,22 @@
             
             .section-title { font-size: 28px; }
             .comparer-container { max-width: 850px; }
-            .comp-handle { width: 50px; height: 50px; }
             
             .steps-grid { flex-direction: row; }
             .step-card { flex: 1; flex-direction: column; align-items: center; text-align: center;}
             .step-num { width: auto; }
             
             .floating-bar { display: none; }
-            .wa-float { bottom: 24px; right: 24px; width: 60px; height: 60px;}
-            body.has-floating-bar .wa-float { bottom: 24px; }
+            .wa-float { bottom: 32px; right: 32px; width: 64px !important; height: 64px !important;}
+            body.has-floating-bar .wa-float { bottom: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ================== H1 SEMÁNTICO ================== -->
     <h1 class="sr-only">Barrera Impermeable — Pintura para Frentes y Fachadas Blindaflex</h1>
 
-    <!-- ================== HEADER ================== -->
+    <!-- HEADER -->
     <header>
         <div class="container header-content">
             <button class="menu-btn" aria-label="Menú"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></button>
@@ -482,11 +498,10 @@
         </div>
     </header>
 
-    <!-- ================== VISTA PRINCIPAL (TIENDA) ================== -->
-    <main id="main-store">
+    <main>
         <div class="container">
             
-            <!-- BLOQUE 1: VIDEOS YT (Carrusel Infinito 3:4) -->
+            <!-- BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio) -->
             <section class="yt-carousel-wrapper" aria-label="Carrusel de videos">
                 <div class="yt-track" id="yt-track">
                     <!-- IDs Editables -->
@@ -536,10 +551,10 @@
                 </div>
                 
                 <div class="comparer-container" id="comparer-container">
-                    <img src="assets/images/techo-sin-blindaflex.png" alt="Muro antes de aplicar Barrera Impermeable" class="comp-img">
+                    <img src="assets/images/bi/antes.png" alt="Muro antes de aplicar Barrera Impermeable" class="comp-img">
                     <div class="comp-label label-before">SIN BLINDAFLEX</div>
                     
-                    <img src="assets/images/techo-con-blindaflex.png" alt="Muro después de aplicar Barrera Impermeable" class="comp-img comp-img-after" id="comp-img-after">
+                    <img src="assets/images/bi/despues.png" alt="Muro después de aplicar Barrera Impermeable" class="comp-img comp-img-after" id="comp-img-after">
                     <div class="comp-label label-after">CON BLINDAFLEX</div>
                     
                     <div class="comp-divider" id="comp-divider">
@@ -556,7 +571,7 @@
                 <h2 class="section-title">COLORES E INSPIRACIÓN</h2>
                 <p class="section-subtitle">Conocé nuestra paleta de terminación semimate y visualizá tus ideas.</p>
                 
-                <!-- A. Muestrario (+30% Altura, Colores Reales) -->
+                <!-- A. Muestrario (+30% Altura, Colores Reales exactos) -->
                 <div class="color-grid">
                     <div class="color-swatch bg-blanco" onclick="toggleColorCombo(this, 'Blanco', '#F4F3F0')"><div class="color-name">Blanco</div></div>
                     <div class="color-swatch bg-greige" onclick="toggleColorCombo(this, 'Greige', '#c6b3a2')"><div class="color-name">Greige</div></div>
@@ -623,17 +638,16 @@
                         <div class="res-total"><span>Costo Estimado:</span> <span id="res-price">$0</span></div>
                         <div class="calc-note">Recomendación optimizada para cubrir tu necesidad redondeando hacia arriba.</div>
                         
-                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">AGREGAR COMBINACIÓN AL CARRITO</button>
+                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">AGREGAR COMBINACIÓN AL PEDIDO</button>
                     </div>
                 </section>
 
-                <!-- BLOQUE 6: CONFIGURADOR DE COMPRA (REDISEÑO TOTAL MULTIVARIANTE) -->
+                <!-- BLOQUE 6: CONFIGURADOR DE COMPRA (MULTIVARIANTE) -->
                 <section id="configurador" class="section-gap card buy-section">
                     <h2 class="section-title">CONFIGURÁ TU PEDIDO</h2>
                     
                     <div class="conf-group">
                         <span class="conf-label">1. Elegí el Color</span>
-                        <!-- Etiquetas tipo pastilla coloreadas -->
                         <div class="pill-selector" id="conf-color-selector">
                             <label class="pill-label bg-blanco">
                                 <input type="radio" name="conf-color" value="Blanco" class="pill-input" checked onchange="updateConfigUI()"> Blanco
@@ -681,23 +695,38 @@
                         </div>
                     </div>
 
+                    <!-- PRE-CARRITO LOCAL -->
                     <div class="dynamic-summary-box">
-                        <div class="summary-dyn-title">RESUMEN DE SELECCIÓN</div>
-                        <div class="summary-dyn-content">
-                            <p id="sum-desc"><strong>1 balde</strong> de Barrera Impermeable (12.5 kg).</p>
-                            <p>Color: <strong id="sum-col">Blanco</strong>.</p>
+                        <div class="summary-dyn-title">RESUMEN DE TU SELECCIÓN</div>
+                        
+                        <!-- Lista de items pendientes a enviar al carrito general -->
+                        <div class="pre-cart-list" id="pre-cart-list"></div>
+                        
+                        <!-- Variante activa actual -->
+                        <div class="current-selection-live">
+                            <div class="summary-dyn-content">
+                                <p id="sum-desc"><strong>1 balde</strong> de Barrera Imp. (12.5 kg).</p>
+                                <p>Color: <strong id="sum-col">Blanco</strong>.</p>
+                            </div>
+                            <div class="summary-dyn-total" style="border:none; padding:0; margin-top:0;">
+                                <span style="font-size: 13px;">SUBTOTAL:</span>
+                                <span id="sum-tot" style="font-size:18px; color:var(--c-turquesa-dark);">$112.200</span>
+                            </div>
+                            <button class="btn-add-variant" onclick="addCurrentToPreCart()">+ SUMAR OTRA VARIANTE AL PEDIDO</button>
                         </div>
+                        
                         <div class="summary-dyn-total">
-                            <span>SUBTOTAL:</span>
-                            <span id="sum-tot">$112.200</span>
+                            <span>TOTAL DEL PEDIDO:</span>
+                            <span id="pre-cart-grand-total">$112.200</span>
                         </div>
                     </div>
 
-                    <button class="btn-primary btn-action" onclick="addToCart()">
+                    <!-- Botón que comitea el pre-cart al carrito global -->
+                    <button class="btn-primary btn-action" onclick="commitPreCartToCart()">
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                         AGREGAR AL CARRITO
                     </button>
-                    <div style="font-size:12px; text-align:center; margin-top:12px; color:var(--c-texto-light); font-weight: 500;">Podés sumar diferentes colores y tamaños en la misma compra. Todo se agrupará en tu carrito.</div>
+                    <div style="font-size:12px; text-align:center; margin-top:12px; color:var(--c-texto-light); font-weight: 500;">Podés armar combinaciones y todo se agrupará en tu carrito principal.</div>
                 </section>
             </div>
 
@@ -745,6 +774,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div style="font-size: 13px; color: var(--c-texto-light); text-align: center; margin-bottom: 16px; font-weight: 500;">La cobertura y el costo de entrega se confirman según tu dirección.</div>
+
+                        <a href="https://wa.me/5493516318301?text=Hola,%20quisiera%20consultar%20la%20zona%20de%20cobertura%20para%20envíos." target="_blank" class="btn-outline">
+                            <svg viewBox="0 0 24 24" width="18" height="18" style="fill:var(--c-turquesa-dark); flex-shrink:0;"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                            CONSULTÁ TU ZONA POR WHATSAPP
+                        </a>
                     </section>
 
                     <!-- BLOQUE 9: CÓMO COMPRAR -->
@@ -826,7 +861,7 @@
         <button class="fb-btn" onclick="document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">VER PRECIOS</button>
     </div>
 
-    <!-- BOTÓN WA FLOTANTE -->
+    <!-- BOTÓN WA FLOTANTE (Corregido y blindado CSS) -->
     <a class="whatsapp-float" href="https://wa.me/5493516318301?text=Hola%2C%20estoy%20viendo%20Barrera%20Impermeable%20y%20quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp" title="Consultar por WhatsApp">
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3.2A12.7 12.7 0 0 0 5.1 22.4L3.3 29l6.8-1.8A12.8 12.8 0 1 0 16 3.2zm0 23.3c-2 0-4-.5-5.6-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.5zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
     </a>
@@ -870,7 +905,11 @@
                             <div class="form-group"><label>Código Postal</label><input type="text" id="f-cp" class="form-control"></div>
                             <div class="form-group"><label>Referencia</label><input type="text" id="f-ref" class="form-control"></div>
                         </div>
-                        <button type="submit" class="btn-primary btn-action" style="margin-top:16px;">ENVIAR PEDIDO POR WHATSAPP</button>
+                        <button type="submit" class="btn-primary btn-action" style="margin-top:16px;">
+                            <!-- Botón WA icono no gigante -->
+                            <svg viewBox="0 0 24 24" width="24" height="24" style="fill:white; flex-shrink:0;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
+                            ENVIAR PEDIDO POR WHATSAPP
+                        </button>
                     </form>
                 </div>
                 <div class="form-card" style="background: var(--c-azul-grad); color: var(--c-blanco);">
@@ -905,7 +944,11 @@
             <div>
                 <div class="footer-contact">
                     <h5>VENTAS Y ASESORAMIENTO</h5>
-                    <div class="footer-wsp"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>+54 9 351 631 8301</div>
+                    <div class="footer-wsp">
+                        <!-- Icono footer no gigante -->
+                        <svg viewBox="0 0 24 24" width="24" height="24" style="fill:#25D366; flex-shrink:0;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
+                        +54 9 351 631 8301
+                    </div>
                 </div>
             </div>
         </div>
@@ -919,7 +962,7 @@
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        const videoIds = ['obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI']; // Editable IDs
+        const videoIds = ['obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI']; 
         const players = [];
         let currentVideoIndex = 0;
         let isGlobalMute = true;
@@ -941,7 +984,6 @@
         }
 
         function onPlayerStateChange(event) {
-            // Si el video actual termina, pasar al siguiente en loop
             if (event.data === YT.PlayerState.ENDED) {
                 let pIndex = players.findIndex(p => p === event.target);
                 if(pIndex !== -1 && pIndex === currentVideoIndex) {
@@ -1002,7 +1044,6 @@
                 }
             });
         }
-
     </script>
 
     <!-- ================== SCRIPT LÓGICA PRINCIPAL (COMPARADOR, COLORES, CARRITO) ================== -->
@@ -1081,7 +1122,7 @@
             display.innerHTML = html;
         }
 
-        // --- 3. GALERÍA INSPIRACIONAL (AUTOSCROLL Y LIGHTBOX) ---
+        // --- 3. GALERÍA INSPIRACIONAL ---
         const galTrack = document.getElementById('gallery-track');
         let galIndex = 1;
         const totalGal = 13;
@@ -1090,7 +1131,7 @@
         function startGalAutoScroll() {
             galTimer = setInterval(() => {
                 if(!isGalleryAutoPlaying || !galTrack) return;
-                const slideWidth = galTrack.querySelector('.gallery-item').clientWidth + 12; // ancho + gap
+                const slideWidth = galTrack.querySelector('.gallery-item').clientWidth + 12; 
                 galIndex++;
                 if(galIndex > totalGal) {
                     galIndex = 1;
@@ -1101,7 +1142,6 @@
             }, 5000);
         }
 
-        // Lightbox
         let lbCurrentIdx = 1;
         function openLightbox(idx) {
             isGalleryAutoPlaying = false;
@@ -1130,7 +1170,6 @@
         }
 
         // --- 4. CALCULADORA DE CONSUMO REAL (ALGORITMO OPTIMIZADO) ---
-        // 1kg = 3m2. Buscamos siempre redondear los kg hacia arriba y buscar la combinación más barata con 12.5 y 5.
         let rec12 = 0;
         let rec5 = 0;
 
@@ -1144,7 +1183,6 @@
             let min_total_kg = Infinity;
             let best_x = 0;
             let best_y = 0;
-            
             const max_x = Math.ceil(kgNeeded / 12.5);
             
             for(let x = 0; x <= max_x; x++){
@@ -1177,42 +1215,57 @@
             resBox.classList.add('active');
         }
 
-        // Pasa directamente los elementos de la calculadora al carrito unificado
+        // Pasa directamente al pre-carrito
         function transferCalcToConfig() {
             const color = document.querySelector('input[name="conf-color"]:checked').value;
             let itemsAdded = 0;
-            if(rec12 > 0) {
-                addToCartData(12.5, color, rec12);
-                itemsAdded++;
-            }
-            if(rec5 > 0) {
-                addToCartData(5, color, rec5);
-                itemsAdded++;
-            }
+            if(rec12 > 0) { addToPreCartData(12.5, color, rec12); itemsAdded++; }
+            if(rec5 > 0) { addToPreCartData(5, color, rec5); itemsAdded++; }
+            
             if(itemsAdded > 0) {
-                saveCart();
-                openCartDrawer();
+                updateConfigUI();
+                document.getElementById('configurador').scrollIntoView({behavior: 'smooth'});
             }
         }
 
-        // --- 5. CONFIGURADOR DE COMPRA ---
+        // --- 5. CONFIGURADOR DE COMPRA (PRE-CARRITO LOCAL) ---
         const PRICES = { 12.5: 112200, 5: 48900 };
         let configQty = 1;
         let presSelected = 12.5;
+        let preCart = [];
 
-        function selectPresentation(kg) {
-            presSelected = kg;
-            updateConfigUI();
-        }
+        function selectPresentation(kg) { presSelected = kg; updateConfigUI(); }
+        function changeQty(delta) { if(configQty + delta > 0) { configQty += delta; updateConfigUI(); } }
 
-        function changeQty(delta) {
-            if(configQty + delta > 0) {
-                configQty += delta;
-                updateConfigUI();
+        function addToPreCartData(presentation, color, qty) {
+            const existing = preCart.find(i => i.pres === presentation && i.color === color);
+            if(existing) {
+                existing.qty += qty;
+            } else {
+                preCart.push({
+                    id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+                    pres: presentation,
+                    color: color,
+                    qty: qty,
+                    price: PRICES[presentation]
+                });
             }
         }
 
+        function addCurrentToPreCart() {
+            const color = document.querySelector('input[name="conf-color"]:checked').value;
+            addToPreCartData(presSelected, color, configQty);
+            configQty = 1; 
+            updateConfigUI();
+        }
+
+        function removePreCartItem(id) {
+            preCart = preCart.filter(i => i.id !== id);
+            updateConfigUI();
+        }
+
         function updateConfigUI() {
+            // UI Activa
             document.getElementById('card-pres-12').classList.toggle('selected', presSelected === 12.5);
             document.getElementById('card-pres-5').classList.toggle('selected', presSelected === 5);
             document.getElementById('conf-qty').value = configQty;
@@ -1220,9 +1273,50 @@
             const color = document.querySelector('input[name="conf-color"]:checked').value;
             const subtotal = PRICES[presSelected] * configQty;
             
-            document.getElementById('sum-desc').innerHTML = `<strong>${configQty} balde${configQty>1?'s':''}</strong> de Barrera Impermeable (${presSelected} kg).`;
+            document.getElementById('sum-desc').innerHTML = `<strong>${configQty} balde${configQty>1?'s':''}</strong> de Barrera Imp. (${presSelected} kg).`;
             document.getElementById('sum-col').innerText = color;
             document.getElementById('sum-tot').innerText = formatARS(subtotal);
+
+            // Lista Pre-Carrito
+            const container = document.getElementById('pre-cart-list');
+            let html = '';
+            let totalPreCart = 0;
+            
+            preCart.forEach(item => {
+                const sub = item.qty * item.price;
+                totalPreCart += sub;
+                html += `
+                    <div class="pre-cart-item">
+                        <div class="pre-cart-item-info">
+                            <h5>${item.qty}x Barrera Imp. ${item.pres}kg - ${item.color}</h5>
+                            <span>${formatARS(sub)}</span>
+                        </div>
+                        <button class="btn-remove-pre" onclick="removePreCartItem('${item.id}')">&times;</button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+            
+            const grandTotal = totalPreCart + subtotal;
+            document.getElementById('pre-cart-grand-total').innerText = formatARS(grandTotal);
+        }
+
+        function commitPreCartToCart() {
+            // Commit de lo guardado
+            preCart.forEach(item => {
+                addToCartData(item.pres, item.color, item.qty);
+            });
+            // Commit de la seleccion activa
+            const color = document.querySelector('input[name="conf-color"]:checked').value;
+            addToCartData(presSelected, color, configQty);
+            
+            // Limpiar pre-cart
+            preCart = [];
+            configQty = 1;
+            
+            saveCart();
+            updateConfigUI();
+            openCartDrawer();
         }
 
         const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
@@ -1253,7 +1347,6 @@
         function addToCartData(presentation, color, qty) {
             const productName = `Barrera Impermeable (${presentation} kg)`;
             const unitPrice = PRICES[presentation];
-            
             const existingItem = cart.find(i => i.type === 'barrera' && i.presentation === presentation && i.color === color);
             
             if(existingItem) {
@@ -1271,15 +1364,7 @@
             }
         }
 
-        function addToCart() {
-            const color = document.querySelector('input[name="conf-color"]:checked').value;
-            addToCartData(presSelected, color, configQty);
-            saveCart();
-            openCartDrawer();
-        }
-
         function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); }
-        
         function changeCartQty(id, delta) {
             const item = cart.find(i => i.id === id);
             if(item && item.qty + delta > 0) { item.qty += delta; saveCart(); }
@@ -1298,7 +1383,7 @@
             let html = '';
             let grandTotal = 0;
             
-            // Lógica de compatibilidad cruzada: Techos tiene descuento por volumen, Barrera precio fijo.
+            // Compatibilidad cruzada de descuentos si conviven productos de techo
             let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
             let techosDisc = 0;
             if(techosCount === 2) techosDisc = 0.15;
@@ -1315,12 +1400,8 @@
             cart.forEach(item => {
                 let lineTotal = 0;
                 let displayTitle = item.product;
-                
-                if(item.type === 'barrera') {
-                    lineTotal = item.price * item.qty;
-                } else {
-                    lineTotal = techoUnitPrice * item.qty;
-                }
+                if(item.type === 'barrera') { lineTotal = item.price * item.qty; } 
+                else { lineTotal = techoUnitPrice * item.qty; }
                 grandTotal += lineTotal;
                 
                 html += `
@@ -1390,8 +1471,7 @@
             let techoUnitPrice = 148000 * (1 - techosDisc);
 
             cart.forEach(i => {
-                let sub = 0;
-                let tStr = i.product;
+                let sub = 0; let tStr = i.product;
                 if(i.type === 'barrera') { sub = i.price * i.qty; } 
                 else { sub = techoUnitPrice * i.qty; }
                 total += sub;
