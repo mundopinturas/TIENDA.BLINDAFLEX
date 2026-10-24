@@ -54,7 +54,7 @@
               },
               {
                 "@type": "Offer",
-                "name": "Barrera Impermeable 12.5 kg",
+                "name": "Barrera Impermeable 12 kg",
                 "price": "112200",
                 "priceCurrency": "ARS",
                 "availability": "https://schema.org/InStock"
@@ -695,13 +695,13 @@
                         <div class="res-title">NECESITÁS APROXIMADAMENTE:</div>
                         <div class="res-item">Pintura Total: <span class="highlight" id="res-kg">0 kg</span></div>
                         <div class="res-title" style="margin-top:16px;">COMBINACIÓN RECOMENDADA:</div>
-                        <div class="res-item" id="res-12">Baldes de 12.5 kg: <span>0</span></div>
+                        <div class="res-item" id="res-12">Baldes de 12 kg: <span>0</span></div>
                         <div class="res-item" id="res-5">Baldes de 5 kg: <span>0</span></div>
                         
                         <div class="res-total"><span>Costo Estimado:</span> <span id="res-price">$0</span></div>
-                        <div class="calc-note">Recomendación optimizada para cubrir tu necesidad redondeando hacia arriba.</div>
+                        <div class="calc-note">Combinación con el menor excedente posible, sin calcular menos pintura que la necesaria.</div>
                         
-                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="document.getElementById('configurador').scrollIntoView({behavior: 'smooth'})">IR AL CONFIGURADOR DE PEDIDO</button>
+                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="applyYieldToOrder()">ELEGIR COLOR Y SUMAR BALDES AL PEDIDO</button>
                     </div>
                 </section>
 
@@ -717,8 +717,8 @@
                             <div class="c-step">
                                 <h3 class="c-step-title">PASO 01 — ELEGÍ LA PRESENTACIÓN</h3>
                                 <div class="c-pres-grid">
-                                    <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12.5, 112200)">
-                                        <span class="c-pres-kg">12,5 kg</span>
+                                    <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12, 112200)">
+                                        <span class="c-pres-kg">12 kg</span>
                                         <span class="c-pres-price">$112.200</span>
                                     </div>
                                     <div class="c-pres-card" id="c-pres-5" onclick="setPres(5, 48900)">
@@ -900,6 +900,18 @@
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFaq(this)">¿Qué significa que sea hidrorrepelente?</button>
                         <div class="faq-answer"><p>Significa que su tecnología hace que el agua de lluvia forme gotas y resbale sobre la superficie, previniendo la absorción de humedad exterior.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Cómo se prepara la pared antes de pintar?</button>
+                        <div class="faq-answer"><p>La superficie debe estar firme, limpia y seca, sin polvo, grasa, pintura floja ni partes desprendidas. Repará previamente las grietas y fisuras con un sellador adecuado y dejá curar las reparaciones antes de aplicar la pintura. Si hay humedad de origen estructural o filtraciones activas, solucioná primero su causa.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Cómo se aplica y cuánto se diluye?</button>
+                        <div class="faq-answer"><p>Aplicá tres manos uniformes con rodillo, pincel o herramienta apropiada. Para la primera mano, diluí con un 15 % de agua limpia; para la segunda y tercera, con un 10 % de agua. Mezclá bien antes y durante la aplicación. Evitá aplicar sobre superficies mojadas o bajo lluvia inminente.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Cuánto tiempo hay que esperar entre manos?</button>
+                        <div class="faq-answer"><p>Como referencia, esperá aproximadamente 6 horas entre manos y verificá que la capa anterior esté seca. El tiempo puede variar según temperatura, humedad y ventilación. Confirmá el intervalo definitivo con la ficha técnica del producto.</p></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFaq(this)">¿Cómo funciona el pago al recibir?</button>
@@ -1277,9 +1289,78 @@
             startGalAutoScroll();
         }
 
+        // CALCULADORA DE CONSUMO: 3 m² terminados por kg, envases de 12 y 5 kg.
+        let yieldRecommendation = null;
+        function calculateYield() {
+            const area = Number(document.getElementById('calc-m2').value);
+            const box = document.getElementById('calc-result-box');
+            if (!Number.isFinite(area) || area <= 0) {
+                yieldRecommendation = null;
+                box.classList.remove('active');
+                return;
+            }
+            const needed = area / 3;
+            // Búsqueda exacta entre combinaciones enteras. Primero menor sobrante,
+            // luego menos envases y finalmente menor precio.
+            let best = null;
+            const max12 = Math.ceil(needed / 12) + 1;
+            for (let n12 = 0; n12 <= max12; n12++) {
+                const n5 = Math.max(0, Math.ceil((needed - n12 * 12 - 1e-9) / 5));
+                const kg = n12 * 12 + n5 * 5;
+                if (kg + 1e-9 < needed) continue;
+                const option = { n12, n5, kg, count: n12 + n5, price: n12 * 112200 + n5 * 48900 };
+                if (!best || option.kg < best.kg ||
+                    (option.kg === best.kg && option.count < best.count) ||
+                    (option.kg === best.kg && option.count === best.count && option.price < best.price)) best = option;
+            }
+            yieldRecommendation = best;
+            document.getElementById('res-kg').textContent = needed.toLocaleString('es-AR', {maximumFractionDigits: 2}) + ' kg';
+            document.querySelector('#res-12 span').textContent = best.n12;
+            document.querySelector('#res-5 span').textContent = best.n5;
+            document.getElementById('res-price').textContent = formatARS(best.price);
+            box.classList.add('active');
+        }
+
+        function applyYieldToOrder() {
+            if (!yieldRecommendation) return;
+            // El usuario elige primero el color en el configurador. No sumamos
+            // automáticamente para evitar cargar pintura en un color incorrecto.
+            const target = document.getElementById('configurador');
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+            let prompt = document.getElementById('yield-apply-prompt');
+            if (!prompt) {
+                prompt = document.createElement('div');
+                prompt.id = 'yield-apply-prompt';
+                prompt.style.cssText = 'background:#e0f7fa;border:1px solid #00AFC6;border-radius:10px;padding:16px;margin:0 0 20px;color:#071A24;font-size:14px;line-height:1.5';
+                target.querySelector('.config-grid').before(prompt);
+            }
+            prompt.innerHTML = '<strong>Tu cálculo está listo.</strong> Elegí el color de los baldes y luego tocá «Sumar combinación calculada». Todos los baldes se agregarán en ese color. Si necesitás distintos colores, podés ajustar el pedido después.';
+            let btn = document.getElementById('yield-apply-btn');
+            if (!btn) {
+                btn = document.createElement('button');
+                btn.id = 'yield-apply-btn';
+                btn.type = 'button';
+                btn.className = 'btn-primary';
+                btn.style.cssText = 'margin-top:12px;font-size:13px';
+                btn.textContent = 'SUMAR COMBINACIÓN CALCULADA';
+                btn.onclick = function () {
+                    if (!yieldRecommendation) return;
+                    [[12, yieldRecommendation.n12], [5, yieldRecommendation.n5]].forEach(([pres, qty]) => {
+                        if (!qty) return;
+                        const existing = localOrder.find(i => i.pres === pres && i.color === cfgColor);
+                        if (existing) existing.qty += qty;
+                        else localOrder.push({id:Date.now().toString()+Math.random().toString(36).slice(2,7),pres,color:cfgColor,hex:cfgColorHex,qty,unitPrice:APP_PRICES[pres]});
+                    });
+                    renderLocalOrder();
+                    document.querySelector('.c-summary').scrollIntoView({behavior:'smooth',block:'center'});
+                };
+                prompt.appendChild(btn);
+            } else prompt.appendChild(btn);
+        }
+
         // --- NUEVA LÓGICA DE CONFIGURADOR MULTIVARIANTE (PRE-CARRITO) ---
-        const APP_PRICES = { 12.5: 112200, 5: 48900 };
-        let cfgPres = 12.5;
+        const APP_PRICES = { 12: 112200, 5: 48900 };
+        let cfgPres = 12;
         let cfgColor = 'Blanco';
         let cfgColorHex = '#F4F3F0';
         let cfgQty = 1;
@@ -1290,7 +1371,7 @@
         function setPres(kg, price) {
             cfgPres = kg;
             document.querySelectorAll('.c-pres-card').forEach(el => el.classList.remove('selected'));
-            document.getElementById(`c-pres-${kg===12.5?'12':'5'}`).classList.add('selected');
+            document.getElementById(`c-pres-${kg===12?'12':'5'}`).classList.add('selected');
             updateBtnSumar();
         }
 
