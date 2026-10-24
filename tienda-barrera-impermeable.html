@@ -98,8 +98,8 @@
             --c-texto: #34434A;
             --c-texto-light: #64748b;
             
-            --gap-mob: 48px;
-            --gap-desk: 64px;
+            --gap-mob: 88px;
+            --gap-desk: 112px;
             --pad-box: 20px;
             --radius-lg: 16px;
             --radius-md: 12px;
@@ -500,6 +500,38 @@
             .floating-bar { display: none; }
             .whatsapp-float { bottom: 24px !important; right: 24px !important; width: 60px !important; height: 60px !important;}
             body.has-floating-bar .whatsapp-float { bottom: 24px !important; }
+        }
+
+        /* AJUSTE FINAL: separación visual entre BLOQUES, sin alterar su contenido */
+        #main-store > .container > .yt-carousel-wrapper,
+        #main-store > .container > .hero-product,
+        #main-store > .container > .comparer-section,
+        #main-store > .container > .color-section,
+        #main-store > .container > .grid-desktop,
+        #main-store > .container > .closing-box,
+        #main-store > .container > .config-box { margin-bottom: var(--gap-mob); }
+        #main-store > .container > .grid-desktop > .section-gap { margin-bottom: var(--gap-mob); }
+        /* Las fotografías son horizontales 1536 × 1024: jamás recortar ni estirar. */
+        .gallery-track { align-items: flex-start; }
+        .gallery-item {
+            flex: 0 0 94%; min-width: 94%; width: 94%;
+            height: auto !important; aspect-ratio: 3 / 2 !important;
+            align-self: flex-start;
+        }
+        .gallery-item img {
+            display: block; width: 100%; height: auto !important;
+            aspect-ratio: 3 / 2; object-fit: contain !important;
+        }
+        @media (min-width: 768px) {
+            #main-store > .container > .yt-carousel-wrapper,
+            #main-store > .container > .hero-product,
+            #main-store > .container > .comparer-section,
+            #main-store > .container > .color-section,
+            #main-store > .container > .grid-desktop,
+            #main-store > .container > .closing-box,
+            #main-store > .container > .config-box { margin-bottom: var(--gap-desk); }
+            #main-store > .container > .grid-desktop > .section-gap { margin-bottom: var(--gap-desk); }
+            .gallery-item { flex-basis: 82%; min-width: 82%; width: 82%; }
         }
     </style>
 </head>
