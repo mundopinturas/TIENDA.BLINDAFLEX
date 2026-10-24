@@ -147,17 +147,17 @@
         .desktop-nav { display: none; }
 
         /* =========================================================
-           BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio)
+           BLOQUE 1: VIDEOS YT (3:4 Ratio)
            ========================================================= */
-        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 600px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); }
-        .yt-track { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
+        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 500px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); aspect-ratio: 3/4;}
+        .yt-track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
         .yt-track::-webkit-scrollbar { display: none; }
-        .yt-slide { min-width: 100%; scroll-snap-align: center; aspect-ratio: 3/4; max-height: 75vh; position: relative; pointer-events: none; }
+        .yt-slide { min-width: 100%; height: 100%; scroll-snap-align: center; position: relative; pointer-events: none; }
         .yt-slide iframe { width: 100%; height: 100%; object-fit: cover; border: none; transform: scale(1.02); }
         
         .vid-controls { position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
-        .vid-btn { background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); }
-        .vid-btn svg { width: 22px; height: 22px; fill: var(--c-blanco); }
+        .vid-btn { background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); }
+        .vid-btn svg { width: 20px; height: 20px; fill: var(--c-blanco); }
         .yt-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(7, 26, 36, 0.5); border: none; width: 40px; height: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; }
         .yt-prev { left: 0; border-radius: 0 8px 8px 0; }
         .yt-next { right: 0; border-radius: 8px 0 0 8px; }
@@ -200,41 +200,40 @@
            ========================================================= */
         .color-section { margin-bottom: var(--gap-mob); }
         
-        /* A. Muestrario (30% más alto) */
-        .color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
-        .color-swatch { border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); height: 104px; display: flex; align-items: flex-end; justify-content: center; padding: 8px; cursor: pointer; transition: transform 0.2s; box-shadow: var(--shadow-soft); position: relative; overflow: hidden;}
+        /* A. Muestrario (+30% Altura, Colores Reales) */
+        .color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+        .color-swatch { border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.1); height: 104px; display: flex; align-items: center; justify-content: center; padding: 8px; cursor: pointer; transition: transform 0.2s, outline 0.2s; box-shadow: var(--shadow-soft); position: relative; overflow: hidden; outline: 3px solid transparent; outline-offset: 2px;}
         .color-swatch:active { transform: scale(0.95); }
-        .color-swatch.selected { border: 3px solid var(--c-turquesa); box-shadow: 0 0 0 2px var(--c-turquesa-light); }
-        .color-name { font-size: 12px; font-weight: 800; text-transform: uppercase; width: 100%; text-align: center; text-shadow: 0 1px 3px rgba(0,0,0,0.2);}
-        .color-note { font-size: 11px; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; font-weight: 500;}
+        .color-swatch.selected { outline-color: var(--c-turquesa); transform: scale(1.02); z-index: 2; box-shadow: 0 6px 16px rgba(0,0,0,0.15);}
+        .color-name { font-size: 12px; font-weight: 900; text-transform: uppercase; width: 100%; text-align: center; letter-spacing: 0.5px;}
+        .color-note { font-size: 12px; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; font-weight: 500; line-height: 1.4;}
         
-        /* Colores EXACTOS Blindaflex */
-        .bg-blanco { background-color: #F4F3F0 !important; color: #071A24; }
-        .bg-greige { background-color: #B6A18E !important; color: #071A24; }
-        .bg-arcilla { background-color: #7B594E !important; color: #FFFFFF; }
-        .bg-ceniza { background-color: #A5A5A3 !important; color: #071A24; }
-        .bg-eclipse { background-color: #66676B !important; color: #FFFFFF; }
-        .bg-tormenta { background-color: #414143 !important; color: #FFFFFF; }
+        /* Valores Cromaticos Fidedignos */
+        .bg-blanco { background-color: #F4F3F0; color: #071A24; }
+        .bg-greige { background-color: #c6b3a2; color: #FFFFFF; text-shadow: 0 1px 3px rgba(0,0,0,0.3);}
+        .bg-arcilla { background-color: #7B594E; color: #FFFFFF; }
+        .bg-ceniza { background-color: #A5A5A3; color: #FFFFFF; }
+        .bg-eclipse { background-color: #66676B; color: #FFFFFF; }
+        .bg-tormenta { background-color: #414143; color: #FFFFFF; }
 
-        /* B. Combinador (Más presencia: -margins y +height) */
-        .combiner-box { background: var(--c-gris-claro); border-radius: var(--radius-md); padding: 24px 12px; margin-bottom: 32px; border: 1px dashed var(--c-gris-border); margin-left: -8px; margin-right: -8px;}
-        .combiner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;}
-        .combiner-header h4 { font-size: 14px; font-weight: 800; color: var(--c-azul); text-transform: uppercase;}
-        .btn-clear { background: none; border: none; font-size: 12px; color: var(--c-turquesa-dark); font-weight: 700; cursor: pointer; text-decoration: underline;}
+        /* B. Combinador (+50% Altura, - Margen) */
+        .combiner-box { background: var(--c-gris-claro); border-radius: var(--radius-md); padding: 24px 16px; margin-bottom: 32px; border: 1px dashed var(--c-gris-border); margin-left: -12px; margin-right: -12px;}
+        .combiner-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 0 4px;}
+        .combiner-header h4 { font-size: 15px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;}
+        .btn-clear { background: none; border: none; font-size: 13px; color: var(--c-turquesa-dark); font-weight: 700; cursor: pointer; text-decoration: underline;}
         .combiner-display { display: flex; height: 150px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(0,0,0,0.1); box-shadow: var(--shadow-md); background: var(--c-blanco);}
         .combo-slot { flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; position: relative;}
-        .combo-empty { font-size: 12px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
+        .combo-empty { font-size: 13px; color: var(--c-texto-light); text-align: center; padding: 10px; font-weight: 500;}
 
-        /* C. Galería Inspiracional */
+        /* C. Galería Inspiracional (Más presencia e ícono) */
         .gallery-wrapper { position: relative; width: 100%; overflow: hidden; border-radius: var(--radius-md); margin-bottom: var(--gap-mob); }
         .gallery-track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; padding-bottom: 4px;}
         .gallery-track::-webkit-scrollbar { display: none; }
-        .gallery-item { min-width: 90%; aspect-ratio: 4/3; scroll-snap-align: center; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; box-shadow: var(--shadow-soft); position: relative;}
+        .gallery-item { min-width: 92%; aspect-ratio: 4/5; scroll-snap-align: center; border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; box-shadow: var(--shadow-soft); position: relative; max-height: 550px;}
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Indicador visual de expansión en galería */
-        .expand-icon { position: absolute; bottom: 12px; right: 12px; width: 36px; height: 36px; background: rgba(0, 175, 198, 0.85); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2);}
-        .expand-icon svg { width: 18px; height: 18px; fill: currentColor; }
+        .expand-icon { position: absolute; bottom: 16px; right: 16px; width: 40px; height: 40px; background: rgba(0, 175, 198, 0.9); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3);}
+        .expand-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
         /* Lightbox */
         .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 26, 36, 0.95); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(5px);}
@@ -273,26 +272,30 @@
         .calc-note { font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; margin-top: 16px; font-weight: 500; line-height: 1.4;}
 
         /* =========================================================
-           BLOQUE 6: CONFIGURADOR DE COMPRA (DISEÑO OPTIMIZADO)
+           BLOQUE 6: CONFIGURADOR DE COMPRA (REDISEÑO TOTAL)
            ========================================================= */
         .buy-section { border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech); scroll-margin-top: 80px;}
         
         .conf-group { margin-bottom: 28px; }
         .conf-label { font-size: 15px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; margin-bottom: 16px; display: block; border-bottom: 2px solid var(--c-gris-border); padding-bottom: 8px;}
         
-        /* Selectores de Color Reales */
+        /* Selectores de Color Reales (Pill con fondo exacto) */
         .pill-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .pill-label { text-align: center; padding: 14px 8px; border: 3px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-weight: 800; font-size: 13px; text-transform: uppercase; transition: all 0.2s; user-select: none; box-shadow: var(--shadow-soft); text-shadow: 0 1px 2px rgba(0,0,0,0.2);}
+        .pill-label { text-align: center; padding: 16px 8px; border: 3px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-weight: 800; font-size: 13px; text-transform: uppercase; transition: all 0.2s; user-select: none; box-shadow: var(--shadow-soft); position: relative; overflow: hidden;}
+        /* Text shadow para asegurar legibilidad en claros y oscuros */
+        .pill-label { text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+        .bg-blanco.pill-label { text-shadow: none; border: 1px solid var(--c-gris-border); }
         .pill-input { display: none; }
         .pill-input:checked + .pill-label { border-color: var(--c-turquesa); box-shadow: 0 0 0 3px var(--c-turquesa-light); transform: scale(1.03); z-index: 1; }
         
-        /* Presentaciones Grid Mejorada */
-        .pres-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .pres-card { border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 16px; cursor: pointer; transition: all 0.2s; background: var(--c-gris-bg); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;}
-        .pres-card.selected { border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 4px 16px rgba(0,175,198,0.15); transform: translateY(-2px);}
-        .pres-kg { font-size: 20px; font-weight: 900; color: var(--c-azul); }
-        .pres-price { font-size: 16px; font-weight: 800; color: var(--c-naranja); background: rgba(246, 90, 3, 0.1); padding: 6px 12px; border-radius: 6px; display: flex; align-items: baseline; gap: 4px;}
-        .pres-price small { font-size: 11px; color: var(--c-texto-light); }
+        /* Presentaciones Grid Mejorada (Precio Gigante) */
+        .pres-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .pres-card-new { border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px; cursor: pointer; transition: all 0.2s; background: var(--c-gris-bg); display: flex; flex-direction: column; align-items: center; text-align: center; position: relative;}
+        .pres-card-new.selected { border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 8px 24px rgba(0,175,198,0.15); transform: translateY(-3px);}
+        .pres-badge { background: var(--c-azul); color: var(--c-blanco); font-size: 14px; font-weight: 900; padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; display: inline-block;}
+        .pres-price-huge { font-size: 36px; font-weight: 900; color: var(--c-naranja); line-height: 1; margin-bottom: 8px; letter-spacing: -0.5px;}
+        .pres-desc { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
+        @media (min-width: 500px) { .pres-grid { grid-template-columns: 1fr 1fr; } }
         
         /* Control Cantidad */
         .qty-control { display: flex; align-items: center; justify-content: center; gap: 16px; background: var(--c-gris-bg); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--c-gris-border); max-width: 220px; margin: 0 auto;}
@@ -359,18 +362,20 @@
         /* =========================================================
            COMPONENTES FLOTANTES
            ========================================================= */
+        /* Barra de Compra Inferior */
         .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--c-azul); box-shadow: 0 -4px 16px rgba(0,0,0,0.15); border-top: 2px solid var(--c-turquesa); z-index: 90; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
         .floating-bar.visible { transform: translateY(0); }
-        .fb-text { font-size: 14px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
-        .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
+        .fb-text { font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
+        .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
 
-        .wa-float { position: fixed; bottom: 84px; right: 16px; width: 60px; height: 60px; background: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 85; transition: transform 0.3s ease; }
+        /* Botón Flotante WhatsApp */
+        .wa-float { position: fixed; bottom: 84px; right: 16px; width: 56px; height: 56px; background: #25D366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 85; transition: transform 0.3s ease; }
         .wa-float:active { transform: scale(0.9); }
-        .wa-float svg { width: 36px; height: 36px; fill: currentColor; }
-        body.has-floating-bar .wa-float { bottom: calc(84px + 64px); }
+        .wa-float svg { width: 32px; height: 32px; fill: currentColor; }
+        body.has-floating-bar .wa-float { bottom: calc(84px + 64px); } 
 
         /* =========================================================
-           CARRITO LATERAL (DRAWER)
+           CARRITO LATERAL (DRAWER UNIVERSAL)
            ========================================================= */
         .cart-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(7, 26, 36, 0.8); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px);}
         .cart-overlay.open { opacity: 1; pointer-events: auto; }
@@ -378,21 +383,21 @@
         .cart-drawer.open { right: 0; }
         .cart-header { padding: 20px; background: var(--c-blanco); border-bottom: 1px solid var(--c-gris-border); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-soft); z-index: 2;}
         .cart-header h2 { font-size: 18px; font-weight: 900; color: var(--c-azul);}
-        .close-cart { background: var(--c-gris-claro); border: none; color: var(--c-azul); width: 36px; height: 36px; border-radius: 50%; font-size: 22px; font-weight: bold; cursor: pointer; }
+        .close-cart { background: var(--c-gris-claro); border: none; color: var(--c-azul); width: 32px; height: 32px; border-radius: 50%; font-size: 20px; font-weight: bold; cursor: pointer; }
         .cart-body { flex: 1; overflow-y: auto; padding: 20px; position: relative; }
         .cart-item { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 12px; position: relative; box-shadow: var(--shadow-soft);}
-        .cart-item-title { font-size: 15px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; padding-right: 40px; line-height: 1.2;}
-        .cart-item-meta { font-size: 13px; color: var(--c-texto-light); margin-bottom: 12px; font-weight: 600;}
-        .cart-item-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--c-gris-border); padding-top: 16px;}
-        .qty-controls { display: flex; align-items: center; gap: 8px; background: var(--c-gris-bg); padding: 6px; border-radius: var(--radius-sm);}
-        .qty-btn-sm { width: 32px; height: 32px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 6px; font-weight: 900; color: var(--c-azul); cursor: pointer;}
-        .item-price { font-weight: 900; font-size: 18px; color: var(--c-azul); }
+        .cart-item-title { font-size: 14px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; padding-right: 32px; line-height: 1.2;}
+        .cart-item-meta { font-size: 12px; color: var(--c-texto-light); margin-bottom: 12px; font-weight: 600;}
+        .cart-item-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--c-gris-border); padding-top: 12px;}
+        .qty-controls { display: flex; align-items: center; gap: 8px; background: var(--c-gris-bg); padding: 4px; border-radius: var(--radius-sm);}
+        .qty-btn-sm { width: 28px; height: 28px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 4px; font-weight: 900; color: var(--c-azul); cursor: pointer;}
+        .item-price { font-weight: 900; font-size: 16px; color: var(--c-azul); }
         .remove-item { position: absolute; top: 8px; right: 8px; background: #fee2e2; border: none; color: #dc2626; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
-        .remove-item svg { width: 22px; height: 22px; fill: currentColor; pointer-events: none;}
+        .remove-item svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none;}
         .cart-empty-message { text-align: center; padding: 40px 0; color: var(--c-texto-light); font-size: 15px; font-weight: 600; display: block; }
         .cart-footer { padding: 20px; background: var(--c-blanco); border-top: 1px solid var(--c-gris-border); box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 2;}
         .cart-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 900; color: var(--c-azul); margin-bottom: 16px; align-items: flex-end;}
-        .cart-total span:last-child { font-size: 26px; color: var(--c-naranja);}
+        .cart-total span:last-child { font-size: 24px; color: var(--c-naranja);}
         .empty-cart-btn { width: 100%; text-align: center; background: none; border: none; color: var(--c-texto-light); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 12px 0; margin-top: 8px; }
 
         /* =========================================================
@@ -400,10 +405,10 @@
            ========================================================= */
         #checkout-view { display: none; padding: 24px 0; min-height: 100vh;}
         .checkout-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-        .back-btn { background: var(--c-blanco); border: 1px solid var(--c-gris-border); width: 44px; height: 44px; border-radius: 50%; font-size: 22px; color: var(--c-azul); cursor: pointer; box-shadow: var(--shadow-soft); display: flex; justify-content: center; align-items: center; font-weight: bold;}
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 800; color: var(--c-texto); margin-bottom: 8px; }
-        .form-control { width: 100%; padding: 14px 16px; border: 2px solid var(--c-gris-border); border-radius: var(--radius-sm); font-size: 15px; font-weight: 500; font-family: inherit; transition: all 0.2s; background: var(--c-gris-bg);}
+        .back-btn { background: var(--c-blanco); border: 1px solid var(--c-gris-border); width: 40px; height: 40px; border-radius: 50%; font-size: 20px; color: var(--c-azul); cursor: pointer; box-shadow: var(--shadow-soft); display: flex; justify-content: center; align-items: center; font-weight: bold;}
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 800; color: var(--c-texto); margin-bottom: 6px; }
+        .form-control { width: 100%; padding: 12px 16px; border: 2px solid var(--c-gris-border); border-radius: var(--radius-sm); font-size: 15px; font-weight: 500; font-family: inherit; transition: all 0.2s; background: var(--c-gris-bg);}
         .form-control:focus { outline: none; border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 0 0 4px var(--c-turquesa-light); }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -411,15 +416,15 @@
            FOOTER
            ========================================================= */
         footer { background: var(--c-azul); color: var(--c-blanco); padding: 40px 16px 24px; margin-top: 48px; border-top: 4px solid var(--c-turquesa); }
-        .footer-logo img { max-height: 32px; margin-bottom: 16px; }
-        .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 24px; max-width: 320px; line-height: 1.5; }
+        .footer-logo img { max-height: 28px; margin-bottom: 16px; }
+        .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 24px; max-width: 300px; line-height: 1.5; }
         .footer-nav { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
         .footer-nav a { color: var(--c-blanco); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;}
         .footer-nav a::before { content: ''; width: 6px; height: 6px; background: var(--c-turquesa); border-radius: 50%; }
         .footer-contact { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
-        .footer-contact h5 { font-size: 13px; color: #8ba2ac; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;}
-        .footer-wsp { font-size: 20px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
-        .footer-bottom { text-align: center; font-size: 12px; color: #64748b; margin-top: 40px; }
+        .footer-contact h5 { font-size: 12px; color: #8ba2ac; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;}
+        .footer-wsp { font-size: 18px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
+        .footer-bottom { text-align: center; font-size: 11px; color: #64748b; margin-top: 40px; }
 
         /* =========================================================
            MEDIA QUERIES (ESCRITORIO)
@@ -442,22 +447,24 @@
             
             .section-title { font-size: 28px; }
             .comparer-container { max-width: 850px; }
+            .comp-handle { width: 50px; height: 50px; }
             
             .steps-grid { flex-direction: row; }
             .step-card { flex: 1; flex-direction: column; align-items: center; text-align: center;}
             .step-num { width: auto; }
             
             .floating-bar { display: none; }
-            .wa-float { bottom: 32px; right: 32px; width: 64px; height: 64px;}
-            body.has-floating-bar .wa-float { bottom: 32px; }
+            .wa-float { bottom: 24px; right: 24px; width: 60px; height: 60px;}
+            body.has-floating-bar .wa-float { bottom: 24px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ================== H1 SEMÁNTICO ================== -->
     <h1 class="sr-only">Barrera Impermeable — Pintura para Frentes y Fachadas Blindaflex</h1>
 
-    <!-- HEADER -->
+    <!-- ================== HEADER ================== -->
     <header>
         <div class="container header-content">
             <button class="menu-btn" aria-label="Menú"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></button>
@@ -475,12 +482,14 @@
         </div>
     </header>
 
-    <main>
+    <!-- ================== VISTA PRINCIPAL (TIENDA) ================== -->
+    <main id="main-store">
         <div class="container">
             
-            <!-- BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio) -->
+            <!-- BLOQUE 1: VIDEOS YT (Carrusel Infinito 3:4) -->
             <section class="yt-carousel-wrapper" aria-label="Carrusel de videos">
                 <div class="yt-track" id="yt-track">
+                    <!-- IDs Editables -->
                     <div class="yt-slide" id="slide-0"><div id="player-0" style="width:100%; height:100%;"></div></div>
                     <div class="yt-slide" id="slide-1"><div id="player-1" style="width:100%; height:100%;"></div></div>
                     <div class="yt-slide" id="slide-2"><div id="player-2" style="width:100%; height:100%;"></div></div>
@@ -504,11 +513,11 @@
             <!-- BLOQUE 2: PRODUCTO Y BENEFICIOS -->
             <section class="section-gap hero-product">
                 <div class="hero-img-box">
-                    <img src="assets/images/bi/balde.png" alt="Balde de Barrera Impermeable Blindaflex">
+                    <img src="assets/images/bi/balde.png" alt="Balde de Barrera Impermeable Blindaflex" loading="lazy">
                 </div>
                 <div class="hero-text">
                     <h2 class="section-title" style="font-size: 28px;">BARRERA IMPERMEABLE</h2>
-                    <p class="section-subtitle">Una pintura para proteger y renovar frentes y muros exteriores con tecnología avanzada.</p>
+                    <p class="section-subtitle" style="margin-bottom: 16px;">Una pintura para proteger y renovar frentes y muros exteriores con tecnología avanzada.</p>
                     
                     <div class="benefits-compact">
                         <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg><span>HIDRORREPELENCIA</span></div>
@@ -520,15 +529,17 @@
             </section>
 
             <!-- BLOQUE 3: COMPARADOR ANTES Y DESPUÉS -->
-            <section class="section-gap">
-                <h2 class="section-title">MIRÁ LA DIFERENCIA</h2>
-                <p class="section-subtitle" style="margin-bottom:16px;">Compará el aspecto de un techo/muro antes y después de aplicar Blindaflex.</p>
+            <section class="section-gap comparer-section">
+                <div class="comparer-header">
+                    <h2 class="section-title">MIRÁ LA DIFERENCIA</h2>
+                    <p class="section-subtitle" style="margin-bottom:16px;">Compará el aspecto de un muro antes y después de aplicar Blindaflex.</p>
+                </div>
                 
                 <div class="comparer-container" id="comparer-container">
-                    <img src="assets/images/techo-sin-blindaflex.png" alt="Techo antes de aplicar impermeabilizante Blindaflex." class="comp-img">
+                    <img src="assets/images/techo-sin-blindaflex.png" alt="Muro antes de aplicar Barrera Impermeable" class="comp-img">
                     <div class="comp-label label-before">SIN BLINDAFLEX</div>
                     
-                    <img src="assets/images/techo-con-blindaflex.png" alt="Techo después de aplicar Blindaje para Techos Blindaflex." class="comp-img comp-img-after" id="comp-img-after">
+                    <img src="assets/images/techo-con-blindaflex.png" alt="Muro después de aplicar Barrera Impermeable" class="comp-img comp-img-after" id="comp-img-after">
                     <div class="comp-label label-after">CON BLINDAFLEX</div>
                     
                     <div class="comp-divider" id="comp-divider">
@@ -545,10 +556,10 @@
                 <h2 class="section-title">COLORES E INSPIRACIÓN</h2>
                 <p class="section-subtitle">Conocé nuestra paleta de terminación semimate y visualizá tus ideas.</p>
                 
-                <!-- A. Muestrario (30% más alto, Colores Reales) -->
+                <!-- A. Muestrario (+30% Altura, Colores Reales) -->
                 <div class="color-grid">
                     <div class="color-swatch bg-blanco" onclick="toggleColorCombo(this, 'Blanco', '#F4F3F0')"><div class="color-name">Blanco</div></div>
-                    <div class="color-swatch bg-greige" onclick="toggleColorCombo(this, 'Greige', '#B6A18E')"><div class="color-name">Greige</div></div>
+                    <div class="color-swatch bg-greige" onclick="toggleColorCombo(this, 'Greige', '#c6b3a2')"><div class="color-name">Greige</div></div>
                     <div class="color-swatch bg-arcilla" onclick="toggleColorCombo(this, 'Arcilla', '#7B594E')"><div class="color-name">Arcilla</div></div>
                     <div class="color-swatch bg-ceniza" onclick="toggleColorCombo(this, 'Gris Ceniza', '#A5A5A3')"><div class="color-name">Ceniza</div></div>
                     <div class="color-swatch bg-eclipse" onclick="toggleColorCombo(this, 'Gris Eclipse', '#66676B')"><div class="color-name">Eclipse</div></div>
@@ -556,7 +567,7 @@
                 </div>
                 <div class="color-note">Los colores pueden presentar variaciones según la configuración de cada pantalla.</div>
 
-                <!-- B. Combinador (Mayor presencia) -->
+                <!-- B. Combinador (+50% Altura, - Margen) -->
                 <div class="combiner-box">
                     <div class="combiner-header">
                         <h4>TU COMBINACIÓN (Hasta 3)</h4>
@@ -570,6 +581,7 @@
                 <!-- C. Galería Inspiracional (Expansible) -->
                 <div class="gallery-wrapper">
                     <div class="gallery-track" id="gallery-track">
+                        <!-- 13 Imágenes solicitadas -->
                         <div class="gallery-item" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
                         <div class="gallery-item" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
                         <div class="gallery-item" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"><div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div></div>
@@ -611,11 +623,11 @@
                         <div class="res-total"><span>Costo Estimado:</span> <span id="res-price">$0</span></div>
                         <div class="calc-note">Recomendación optimizada para cubrir tu necesidad redondeando hacia arriba.</div>
                         
-                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">CONFIGURAR ESTAS CANTIDADES</button>
+                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">AGREGAR COMBINACIÓN AL CARRITO</button>
                     </div>
                 </section>
 
-                <!-- BLOQUE 6: CONFIGURADOR DE COMPRA -->
+                <!-- BLOQUE 6: CONFIGURADOR DE COMPRA (REDISEÑO TOTAL MULTIVARIANTE) -->
                 <section id="configurador" class="section-gap card buy-section">
                     <h2 class="section-title">CONFIGURÁ TU PEDIDO</h2>
                     
@@ -647,13 +659,15 @@
                     <div class="conf-group">
                         <span class="conf-label">2. Elegí la Presentación</span>
                         <div class="pres-grid">
-                            <div class="pres-card selected" id="card-pres-12" onclick="selectPresentation(12.5)">
-                                <span class="pres-kg">12.5 KG</span>
-                                <span class="pres-price">$112.200 <small>c/u</small></span>
+                            <div class="pres-card-new selected" id="card-pres-12" onclick="selectPresentation(12.5)">
+                                <div class="pres-badge">12.5 KG</div>
+                                <div class="pres-price-huge">$ 112.200</div>
+                                <div class="pres-desc">Rinde hasta 37 m²</div>
                             </div>
-                            <div class="pres-card" id="card-pres-5" onclick="selectPresentation(5)">
-                                <span class="pres-kg">5 KG</span>
-                                <span class="pres-price">$48.900 <small>c/u</small></span>
+                            <div class="pres-card-new" id="card-pres-5" onclick="selectPresentation(5)">
+                                <div class="pres-badge">5 KG</div>
+                                <div class="pres-price-huge">$ 48.900</div>
+                                <div class="pres-desc">Rinde hasta 15 m²</div>
                             </div>
                         </div>
                     </div>
@@ -683,17 +697,17 @@
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                         AGREGAR AL CARRITO
                     </button>
-                    <div style="font-size:11px; text-align:center; margin-top:8px; color:var(--c-texto-light);">Podés sumar diferentes colores y tamaños en la misma compra.</div>
+                    <div style="font-size:12px; text-align:center; margin-top:12px; color:var(--c-texto-light); font-weight: 500;">Podés sumar diferentes colores y tamaños en la misma compra. Todo se agrupará en tu carrito.</div>
                 </section>
             </div>
 
-            <!-- BLOQUES INFORMATIVOS (7, 8, 9, 10, 11) -->
+            <!-- BLOQUES INFORMATIVOS -->
             <div class="grid-desktop">
                 <div>
                     <!-- BLOQUE 7: PAGOS -->
                     <section class="section-gap card pay-section-dark">
                         <svg class="section-icon-main svg-thin" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line><line x1="6" y1="15" x2="10" y2="15"></line></svg>
-                        <h2 class="section-title">PAGÁ AL RECIBIR TU PEDIDO</h2>
+                        <h2 class="section-title" style="color: var(--c-blanco);">PAGÁ AL RECIBIR TU PEDIDO</h2>
                         <p class="section-subtitle" style="color: var(--c-gris-claro);">Comodidad y seguridad en la entrega.</p>
                         
                         <div class="pay-methods">
@@ -732,9 +746,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
 
-                <div>
                     <!-- BLOQUE 9: CÓMO COMPRAR -->
                     <section class="section-gap card">
                         <h2 class="section-title">COMPRAR ES MUY FÁCIL</h2>
@@ -762,36 +774,36 @@
                             </div>
                         </div>
                     </section>
-
-                    <!-- BLOQUE 10: FAQ -->
-                    <section class="section-gap card">
-                        <svg class="section-icon-main svg-thin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                        <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
-                        <div class="faq-container">
-                            <div class="faq-item">
-                                <button class="faq-question" onclick="toggleFaq(this)">¿Para qué superficies sirve Barrera Impermeable?</button>
-                                <div class="faq-answer"><p>Está diseñada específicamente para frentes, fachadas y muros exteriores compatibles con pinturas acrílicas.</p></div>
-                            </div>
-                            <div class="faq-item">
-                                <button class="faq-question" onclick="toggleFaq(this)">¿Se puede utilizar en techos?</button>
-                                <div class="faq-answer"><p>No, para techos y terrazas recomendamos utilizar nuestro producto especializado "Blindaje para Techos".</p></div>
-                            </div>
-                            <div class="faq-item">
-                                <button class="faq-question" onclick="toggleFaq(this)">¿Cuánto rinde?</button>
-                                <div class="faq-answer"><p>El rendimiento orientativo es de hasta 3 m² terminados por kilogramo, dependiendo de la absorción y rugosidad de la superficie.</p></div>
-                            </div>
-                            <div class="faq-item">
-                                <button class="faq-question" onclick="toggleFaq(this)">¿Qué significa que sea hidrorrepelente?</button>
-                                <div class="faq-answer"><p>Significa que su tecnología hace que el agua de lluvia forme gotas y resbale sobre la superficie, previniendo la absorción de humedad exterior.</p></div>
-                            </div>
-                            <div class="faq-item">
-                                <button class="faq-question" onclick="toggleFaq(this)">¿Cómo funciona el pago al recibir?</button>
-                                <div class="faq-answer"><p>En zonas habilitadas de entrega local, abonás el producto directamente cuando te lo entregamos. En zonas extendidas solo se solicita el pago anticipado del envío.</p></div>
-                            </div>
-                        </div>
-                    </section>
                 </div>
             </div>
+
+            <!-- BLOQUE 10: FAQ -->
+            <section class="section-gap card">
+                <svg class="section-icon-main svg-thin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Para qué superficies sirve Barrera Impermeable?</button>
+                        <div class="faq-answer"><p>Está diseñada específicamente para frentes, fachadas y muros exteriores compatibles con pinturas acrílicas.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Se puede utilizar en techos?</button>
+                        <div class="faq-answer"><p>No, para techos y terrazas recomendamos utilizar nuestro producto especializado "Blindaje para Techos".</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Cuánto rinde?</button>
+                        <div class="faq-answer"><p>El rendimiento orientativo es de hasta 3 m² terminados por kilogramo, dependiendo de la absorción y rugosidad de la superficie.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Qué significa que sea hidrorrepelente?</button>
+                        <div class="faq-answer"><p>Significa que su tecnología hace que el agua de lluvia forme gotas y resbale sobre la superficie, previniendo la absorción de humedad exterior.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">¿Cómo funciona el pago al recibir?</button>
+                        <div class="faq-answer"><p>En zonas habilitadas de entrega local, abonás el producto directamente cuando te lo entregamos. En zonas extendidas solo se solicita el pago anticipado del envío.</p></div>
+                    </div>
+                </div>
+            </section>
 
             <!-- BLOQUE 11: CIERRE COMERCIAL -->
             <section class="section-gap closing-box">
@@ -815,11 +827,11 @@
     </div>
 
     <!-- BOTÓN WA FLOTANTE -->
-    <a href="https://wa.me/5493516318301?text=Hola,%20quisiera%20hacer%20una%20consulta%20sobre%20Barrera%20Impermeable." class="wa-float" target="_blank" aria-label="Consultar por WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
+    <a class="whatsapp-float" href="https://wa.me/5493516318301?text=Hola%2C%20estoy%20viendo%20Barrera%20Impermeable%20y%20quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp" title="Consultar por WhatsApp">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3.2A12.7 12.7 0 0 0 5.1 22.4L3.3 29l6.8-1.8A12.8 12.8 0 1 0 16 3.2zm0 23.3c-2 0-4-.5-5.6-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.5zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
     </a>
 
-    <!-- CARRITO DRAWER -->
+    <!-- CARRITO DRAWER UNIVERSAL -->
     <div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
     <aside class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
@@ -907,8 +919,7 @@
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // Identificadores provisionales listos para reemplazo
-        const videoIds = ['obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI']; 
+        const videoIds = ['obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI']; // Editable IDs
         const players = [];
         let currentVideoIndex = 0;
         let isGlobalMute = true;
@@ -930,6 +941,7 @@
         }
 
         function onPlayerStateChange(event) {
+            // Si el video actual termina, pasar al siguiente en loop
             if (event.data === YT.PlayerState.ENDED) {
                 let pIndex = players.findIndex(p => p === event.target);
                 if(pIndex !== -1 && pIndex === currentVideoIndex) {
@@ -990,6 +1002,7 @@
                 }
             });
         }
+
     </script>
 
     <!-- ================== SCRIPT LÓGICA PRINCIPAL (COMPARADOR, COLORES, CARRITO) ================== -->
@@ -1062,7 +1075,7 @@
             }
             let html = '';
             selectedColors.forEach(c => {
-                const isDark = ['Gris Eclipse', 'Gris Tormenta'].includes(c.name);
+                const isDark = ['Gris Eclipse', 'Gris Tormenta', 'Arcilla', 'Gris Ceniza'].includes(c.name);
                 html += `<div class="combo-slot" style="background:${c.hex}; color:${isDark?'white':'#071A24'}; font-weight:800; font-size:12px; text-transform:uppercase;">${c.name}</div>`;
             });
             display.innerHTML = html;
@@ -1077,7 +1090,7 @@
         function startGalAutoScroll() {
             galTimer = setInterval(() => {
                 if(!isGalleryAutoPlaying || !galTrack) return;
-                const slideWidth = galTrack.querySelector('.gallery-item').clientWidth + 12; 
+                const slideWidth = galTrack.querySelector('.gallery-item').clientWidth + 12; // ancho + gap
                 galIndex++;
                 if(galIndex > totalGal) {
                     galIndex = 1;
@@ -1116,7 +1129,8 @@
             startGalAutoScroll();
         }
 
-        // --- 4. CALCULADORA DE CONSUMO REAL ---
+        // --- 4. CALCULADORA DE CONSUMO REAL (ALGORITMO OPTIMIZADO) ---
+        // 1kg = 3m2. Buscamos siempre redondear los kg hacia arriba y buscar la combinación más barata con 12.5 y 5.
         let rec12 = 0;
         let rec5 = 0;
 
@@ -1125,26 +1139,30 @@
             const resBox = document.getElementById('calc-result-box');
             if(isNaN(m2) || m2 <= 0) { resBox.classList.remove('active'); return; }
 
-            // 1 kg rinde hasta 3m2
             const kgNeeded = Math.ceil(m2 / 3);
             
             let min_total_kg = Infinity;
             let best_x = 0;
             let best_y = 0;
-            let max_x = Math.ceil(kgNeeded / 12.5);
             
-            for(let x=0; x<=max_x; x++){
-                let rem = kgNeeded - (12.5 * x);
-                let y = rem > 0 ? Math.ceil(rem / 5) : 0;
+            const max_x = Math.ceil(kgNeeded / 12.5);
+            
+            for(let x = 0; x <= max_x; x++){
+                let remKg = kgNeeded - (12.5 * x);
+                let y = remKg > 0 ? Math.ceil(remKg / 5) : 0;
                 let total_kg = 12.5 * x + 5 * y;
                 
                 if (total_kg < min_total_kg) {
                     min_total_kg = total_kg;
-                    best_x = x; best_y = y;
+                    best_x = x; 
+                    best_y = y;
                 } else if (total_kg === min_total_kg) {
                     let cost1 = (best_x * 112200) + (best_y * 48900);
                     let cost2 = (x * 112200) + (y * 48900);
-                    if (cost2 < cost1) { best_x = x; best_y = y; }
+                    if (cost2 < cost1) { 
+                        best_x = x; 
+                        best_y = y; 
+                    }
                 }
             }
 
@@ -1159,19 +1177,25 @@
             resBox.classList.add('active');
         }
 
+        // Pasa directamente los elementos de la calculadora al carrito unificado
         function transferCalcToConfig() {
+            const color = document.querySelector('input[name="conf-color"]:checked').value;
+            let itemsAdded = 0;
             if(rec12 > 0) {
-                selectPresentation(12.5);
-                configQty = rec12;
-            } else if(rec5 > 0) {
-                selectPresentation(5);
-                configQty = rec5;
+                addToCartData(12.5, color, rec12);
+                itemsAdded++;
             }
-            updateConfigUI();
-            document.getElementById('configurador').scrollIntoView({behavior: 'smooth'});
+            if(rec5 > 0) {
+                addToCartData(5, color, rec5);
+                itemsAdded++;
+            }
+            if(itemsAdded > 0) {
+                saveCart();
+                openCartDrawer();
+            }
         }
 
-        // --- 5. CONFIGURADOR Y CARRITO UNIVERSAL ---
+        // --- 5. CONFIGURADOR DE COMPRA ---
         const PRICES = { 12.5: 112200, 5: 48900 };
         let configQty = 1;
         let presSelected = 12.5;
@@ -1203,7 +1227,7 @@
 
         const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
 
-        // Lógica Global Carrito (30 mins caducidad)
+        // --- LÓGICA GLOBAL DEL CARRITO (Compatible con Techos) ---
         const CART_EXPIRATION_MS = 30 * 60 * 1000;
         function loadCart() {
             const data = localStorage.getItem('blindaflex_cart_data');
@@ -1226,30 +1250,36 @@
             if(document.getElementById('checkout-view').style.display === 'block') renderCheckoutSummary();
         }
 
-        function addToCart() {
-            const color = document.querySelector('input[name="conf-color"]:checked').value;
-            const productName = `Barrera Impermeable (${presSelected} kg)`;
-            const unitPrice = PRICES[presSelected];
+        function addToCartData(presentation, color, qty) {
+            const productName = `Barrera Impermeable (${presentation} kg)`;
+            const unitPrice = PRICES[presentation];
             
-            const existingItem = cart.find(i => i.product === productName && i.color === color);
+            const existingItem = cart.find(i => i.type === 'barrera' && i.presentation === presentation && i.color === color);
             
             if(existingItem) {
-                existingItem.qty += configQty;
+                existingItem.qty += qty;
             } else {
                 cart.push({
-                    id: Date.now().toString(),
+                    id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+                    type: 'barrera',
                     product: productName,
+                    presentation: presentation,
                     color: color,
-                    qty: configQty,
-                    price: unitPrice,
-                    type: 'barrera' 
+                    qty: qty,
+                    price: unitPrice
                 });
             }
+        }
+
+        function addToCart() {
+            const color = document.querySelector('input[name="conf-color"]:checked').value;
+            addToCartData(presSelected, color, configQty);
             saveCart();
             openCartDrawer();
         }
 
         function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); }
+        
         function changeCartQty(id, delta) {
             const item = cart.find(i => i.id === id);
             if(item && item.qty + delta > 0) { item.qty += delta; saveCart(); }
@@ -1268,14 +1298,35 @@
             let html = '';
             let grandTotal = 0;
             
+            // Lógica de compatibilidad cruzada: Techos tiene descuento por volumen, Barrera precio fijo.
+            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
+            let techosDisc = 0;
+            if(techosCount === 2) techosDisc = 0.15;
+            if(techosCount === 3) techosDisc = 0.20;
+            if(techosCount >= 4) techosDisc = 0.25;
+            let techoUnitPrice = 148000 * (1 - techosDisc);
+
+            if(techosCount > 0) {
+                let gifts = "1 Kit Premium";
+                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
+                html += `<div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:8px; border-radius:4px; text-align:center;">REGALOS (TECHOS):<br>${gifts.toUpperCase()}</div>`;
+            }
+            
             cart.forEach(item => {
-                const lineTotal = item.price * item.qty;
+                let lineTotal = 0;
+                let displayTitle = item.product;
+                
+                if(item.type === 'barrera') {
+                    lineTotal = item.price * item.qty;
+                } else {
+                    lineTotal = techoUnitPrice * item.qty;
+                }
                 grandTotal += lineTotal;
                 
                 html += `
                     <div class="cart-item">
                         <button class="remove-item" onclick="removeFromCart('${item.id}')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
-                        <div class="cart-item-title">${item.product}</div>
+                        <div class="cart-item-title">${displayTitle}</div>
                         <div class="cart-item-meta">Color: ${item.color}</div>
                         <div class="cart-item-controls">
                             <div class="qty-controls">
@@ -1299,7 +1350,7 @@
             document.getElementById('cart-counter').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
         }
 
-        // --- 6. DRAWER & CHECKOUT UI ---
+        // --- DRAWER & CHECKOUT UI ---
         let isCartOpen = false, isCheckoutOpen = false;
         function openCartDrawer() {
             document.getElementById('cart-overlay').classList.add('open');
@@ -1330,12 +1381,32 @@
         function renderCheckoutSummary() {
             const container = document.getElementById('checkout-summary');
             let html = '', total = 0;
+            
+            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
+            let techosDisc = 0;
+            if(techosCount === 2) techosDisc = 0.15;
+            if(techosCount === 3) techosDisc = 0.20;
+            if(techosCount >= 4) techosDisc = 0.25;
+            let techoUnitPrice = 148000 * (1 - techosDisc);
+
             cart.forEach(i => {
-                const sub = i.price * i.qty; total += sub;
+                let sub = 0;
+                let tStr = i.product;
+                if(i.type === 'barrera') { sub = i.price * i.qty; } 
+                else { sub = techoUnitPrice * i.qty; }
+                total += sub;
+                
                 html += `<div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:14px; font-weight:700;">
-                    <span>${i.qty}x ${i.product} (${i.color})</span><span>${formatARS(sub)}</span>
+                    <span>${i.qty}x ${tStr} (${i.color})</span><span>${formatARS(sub)}</span>
                 </div>`;
             });
+
+            if(techosCount > 0) {
+                let gifts = "1 Kit Premium";
+                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
+                html += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS (TECHOS):<br>${gifts}</div>`;
+            }
+
             html += `<div style="display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.2); padding-top:12px; margin-top:12px; font-size:18px; font-weight:900;"><span>TOTAL:</span><span>${formatARS(total)}</span></div>`;
             html += `<div style="font-size:11px; text-align:center; color:rgba(255,255,255,0.7); margin-top:12px;">El envío se coordina según zona. Pago contraentrega.</div>`;
             container.innerHTML = html;
@@ -1352,15 +1423,32 @@
             
             let m = `*NUEVO PEDIDO BLINDAFLEX*%0A%0A*CLIENTE*%0A👤 ${n}%0A📱 ${t}%0A📍 ${c} ${num}, ${l}%0A%0A*PEDIDO*%0A`;
             let tot = 0;
+            
+            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
+            let techosDisc = 0;
+            if(techosCount === 2) techosDisc = 0.15;
+            if(techosCount === 3) techosDisc = 0.20;
+            if(techosCount >= 4) techosDisc = 0.25;
+            let techoUnitPrice = 148000 * (1 - techosDisc);
+
             cart.forEach(i => {
-                const sub = i.price * i.qty; tot += sub;
+                let sub = 0;
+                if(i.type === 'barrera') { sub = i.price * i.qty; } 
+                else { sub = techoUnitPrice * i.qty; }
+                tot += sub;
                 m += `🔸 ${i.qty}x ${i.product}%0AColor: ${i.color}%0ASubtotal: ${formatARS(sub)}%0A%0A`;
             });
+            
+            if(techosCount > 0) {
+                let gifts = "1 Kit Premium";
+                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
+                m += `🎁 *Regalos de Techos:* ${gifts}%0A%0A`;
+            }
+
             m += `*TOTAL PRODUCTOS: ${formatARS(tot)}*%0A%0AEnvío a coordinar.%0APago al recibir.`;
             window.open(`https://wa.me/5493516318301?text=${m}`, '_blank');
         }
 
-        // --- 7. BARRA FLOTANTE SCROLL ---
         function updateFloatingBarVisibility() {
             const bar = document.getElementById('floating-bar');
             const conf = document.getElementById('configurador');
@@ -1372,7 +1460,6 @@
             }
         }
         window.addEventListener('scroll', updateFloatingBarVisibility, {passive:true});
-        window.addEventListener('resize', updateFloatingBarVisibility, {passive:true});
 
         function scrollToCompra() { document.getElementById('configurador').scrollIntoView({behavior:'smooth'}); }
         function toggleFaq(btn) {
