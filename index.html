@@ -399,9 +399,17 @@
         @media (prefers-reduced-motion:reduce) { .top-bar-track { animation:none; } .top-bar { overflow-x:auto; } }
         /* No se modifica ningún componente interno de las tres tarjetas. */
         @media (max-width:767px) {
-            .hero-section { margin-bottom:0; }
-            .benefits-overlap { position:relative; z-index:11; margin-top:-38px; }
+            /* Portada despejada: beneficios solo sobre la sección blanca. */
+            .hero-section { margin-bottom:0; padding-bottom:78px; }
+            .hero-kicker { margin-bottom:24px; }
+            .hero-content h1 { margin-bottom:24px; line-height:1.2; }
+            .hero-content p { line-height:1.65; margin-bottom:36px; }
+            .benefits-overlap { position:relative; z-index:11; margin-top:24px; }
+            /* Separación visible entre Tecnología Avanzada y Nuestras Soluciones. */
+            .catalog-section { padding-top: 52px; }
         }
+        /* Solo cambia el color de los íconos; se conservan sus SVG y geometría. */
+        .ben-icon { color:var(--c-turquesa); }
         .prod-app-combo { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin-bottom:12px; }
         .prod-app-combo .prod-app { margin-bottom:0; white-space:nowrap; }
         .prod-combo-plus { color:var(--c-turquesa-dark); font-size:18px; font-weight:800; line-height:1; }
