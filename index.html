@@ -38,7 +38,7 @@
           "@id": "https://blindaflex.com/#organization",
           "name": "Blindaflex",
           "url": "https://blindaflex.com/",
-          "logo": "https://blindaflex.com/assets/images/logo.png",
+          "logo": "assets/images/logo.png",
           "slogan": "No prometemos, lo demostramos.",
           "description": "Marca argentina fabricante de pinturas impermeabilizantes y recubrimientos protectores de superficies, orientada a productos de alta performance.",
           "contactPoint": {
@@ -77,9 +77,9 @@
             --c-texto: #34434A;
             --c-texto-light: #64748b;
             
-            --gap-mob: 36px;
+            --gap-mob: 40px;
             --gap-desk: 64px;
-            --pad-box: 20px;
+            --pad-box: 24px;
             --radius-lg: 16px;
             --radius-md: 12px;
             --radius-sm: 8px;
@@ -92,6 +92,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body { font-family: var(--font-main); color: var(--c-texto); background-color: var(--c-gris-bg); line-height: 1.45; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
@@ -102,10 +103,10 @@
         .section-gap { margin-bottom: var(--gap-mob); }
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
         
-        .section-title { font-size: 24px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 8px; text-transform: uppercase; line-height: 1.15; letter-spacing: -0.02em;}
-        .section-subtitle { font-size: 15px; font-weight: 500; color: var(--c-texto-light); text-align: center; margin-bottom: 24px; max-width: 600px; margin-inline: auto;}
+        .section-title { font-size: 26px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 8px; text-transform: uppercase; line-height: 1.15; letter-spacing: -0.02em;}
+        .section-subtitle { font-size: 15px; font-weight: 500; color: var(--c-texto-light); text-align: center; margin-bottom: 32px; max-width: 600px; margin-inline: auto;}
         
-        .btn-primary { display: inline-flex; justify-content: center; align-items: center; gap: 8px; background: var(--c-azul); color: var(--c-blanco); text-align: center; font-weight: 800; font-size: 15px; padding: 14px 28px; border-radius: var(--radius-sm); border: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--c-turquesa); box-shadow: 0 4px 12px rgba(7, 26, 36, 0.15);}
+        .btn-primary { display: inline-flex; justify-content: center; align-items: center; gap: 8px; background: var(--c-azul); color: var(--c-blanco); text-align: center; font-weight: 800; font-size: 15px; padding: 16px 32px; border-radius: var(--radius-sm); border: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--c-turquesa); box-shadow: 0 4px 12px rgba(7, 26, 36, 0.15);}
         .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 6px rgba(7, 26, 36, 0.1); }
         .btn-action { background: linear-gradient(180deg, var(--c-naranja) 0%, var(--c-naranja-dark) 100%); border-bottom: none; box-shadow: 0 8px 24px rgba(246, 90, 3, 0.25); }
         
@@ -115,27 +116,27 @@
            1. BARRA INFORMATIVA COMERCIAL SUPERIOR
            ========================================================= */
         .top-bar { background-color: var(--c-azul); color: var(--c-blanco); padding: 8px 16px; font-size: 12px; font-weight: 600; text-align: center; display: flex; justify-content: center; align-items: center; gap: 8px; letter-spacing: 0.02em;}
-        .top-bar svg { width: 16px; height: 16px; color: var(--c-turquesa); }
+        .top-bar svg { width: 16px; height: 16px; color: var(--c-turquesa); flex-shrink: 0;}
 
         /* =========================================================
            2. ENCABEZADO Y NAVEGACIÓN
            ========================================================= */
         header { background: var(--c-azul-grad); color: var(--c-blanco); position: sticky; top: 0; z-index: 100; height: 64px; box-shadow: var(--shadow-md); border-bottom: 2px solid var(--c-turquesa-dark); }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        .menu-btn { background: none; border: none; color: var(--c-blanco); padding: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;}
+        .menu-btn { background: none; border: none; color: var(--c-blanco); padding: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: -8px;}
         .menu-btn svg { width: 26px; height: 26px; fill: currentColor;}
         
         .logo { display: flex; align-items: center; height: 100%; padding: 8px 0; }
-        .logo img { height: 48px; width: auto; max-width: 200px; object-fit: contain; }
+        .logo img { height: 44px; width: auto; max-width: 180px; object-fit: contain; }
         
-        .cart-btn { position: relative; background: none; border: none; color: var(--c-blanco); padding: 8px; cursor: pointer; transition: transform 0.2s; display: flex; align-items: center; justify-content: center;}
+        .cart-btn { position: relative; background: none; border: none; color: var(--c-blanco); padding: 8px; cursor: pointer; transition: transform 0.2s; display: flex; align-items: center; justify-content: center; margin-right: -8px;}
         .cart-btn:hover { transform: scale(1.05); }
         .cart-btn svg { width: 28px; height: 28px; fill: currentColor;}
         .cart-count { position: absolute; top: 2px; right: 2px; background-color: var(--c-naranja); color: var(--c-blanco); font-size: 11px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
 
         /* Navegación Escritorio */
         .desktop-nav { display: none; height: 100%; align-items: center; gap: 32px; }
-        .desktop-nav a { font-size: 14px; font-weight: 700; transition: color 0.2s; text-transform: uppercase; position: relative; height: 100%; display: flex; align-items: center;}
+        .desktop-nav a { font-size: 13px; font-weight: 700; transition: color 0.2s; text-transform: uppercase; position: relative; height: 100%; display: flex; align-items: center; letter-spacing: 0.5px;}
         .desktop-nav a:hover, .desktop-nav a.active { color: var(--c-turquesa); }
         .has-dropdown { position: relative; }
         .has-dropdown > a { gap: 4px; }
@@ -143,7 +144,7 @@
         .has-dropdown:hover > a svg { transform: rotate(180deg); }
         .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--c-blanco); border-radius: var(--radius-sm); box-shadow: var(--shadow-md); opacity: 0; visibility: hidden; transition: all 0.2s; min-width: 240px; border: 1px solid var(--c-gris-border); padding: 8px 0; }
         .has-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .dropdown-menu a { display: block; padding: 12px 20px; color: var(--c-azul); font-size: 13px; font-weight: 600; text-transform: none; text-align: left; height: auto;}
+        .dropdown-menu a { display: block; padding: 12px 20px; color: var(--c-azul); font-size: 13px; font-weight: 600; text-transform: none; text-align: left; height: auto; letter-spacing: normal;}
         .dropdown-menu a:hover { background: var(--c-gris-bg); color: var(--c-turquesa-dark); }
 
         /* Menú Móvil Lateral */
@@ -153,13 +154,13 @@
         .mobile-menu.active { left: 0; }
         .mm-header { display: flex; justify-content: space-between; align-items: center; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .mm-header img { height: 32px; }
-        .mm-close { background: none; border: none; color: var(--c-blanco); font-size: 28px; cursor: pointer; }
+        .mm-close { background: none; border: none; color: var(--c-blanco); font-size: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;}
         
         .mm-nav { padding: 20px; display: flex; flex-direction: column; gap: 4px; flex-grow: 1;}
-        .mm-link { display: block; padding: 12px 0; color: var(--c-blanco); font-size: 16px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .mm-link { display: block; padding: 12px 0; color: var(--c-blanco); font-size: 15px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.05); text-transform: uppercase; letter-spacing: 0.5px;}
         .mm-link.active { color: var(--c-turquesa); }
         
-        .mm-dropdown-title { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; color: var(--c-blanco); font-size: 16px; font-weight: 700; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .mm-dropdown-title { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; color: var(--c-blanco); font-size: 15px; font-weight: 700; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); text-transform: uppercase; letter-spacing: 0.5px;}
         .mm-dropdown-title svg { width: 20px; height: 20px; fill: currentColor; transition: transform 0.2s;}
         .mm-dropdown-title.open svg { transform: rotate(180deg); color: var(--c-turquesa);}
         .mm-dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 16px;}
@@ -168,53 +169,56 @@
 
         .mm-footer { padding: 20px; background: rgba(0,0,0,0.2); }
         .mm-trust-box { background: rgba(0, 175, 198, 0.1); border: 1px solid rgba(0, 175, 198, 0.3); border-radius: var(--radius-sm); padding: 16px; }
-        .mm-trust-box h4 { color: var(--c-turquesa); font-size: 13px; font-weight: 800; margin-bottom: 4px; text-transform: uppercase;}
+        .mm-trust-box h4 { color: var(--c-turquesa); font-size: 13px; font-weight: 800; margin-bottom: 6px; text-transform: uppercase;}
         .mm-trust-box p { color: rgba(255,255,255,0.8); font-size: 12px; line-height: 1.4; }
 
         /* =========================================================
            3. PORTADA PRINCIPAL (HERO)
            ========================================================= */
-        .hero-section { position: relative; background-color: var(--c-azul); background-image: radial-gradient(circle at 100% 100%, rgba(0, 175, 198, 0.15) 0%, transparent 50%), linear-gradient(135deg, var(--c-azul) 0%, #0d2c3d 100%); color: var(--c-blanco); overflow: hidden; padding: 40px 0 60px 0;}
-        .hero-grid { display: flex; flex-direction: column; gap: 32px; }
+        .hero-section { position: relative; background-color: var(--c-azul); background-image: radial-gradient(circle at 100% 0%, rgba(0, 175, 198, 0.15) 0%, transparent 50%), linear-gradient(135deg, var(--c-azul) 0%, #0a222e 100%); color: var(--c-blanco); padding: 48px 0 64px 0; margin-bottom: var(--gap-mob);}
+        .hero-grid { display: flex; flex-direction: column; gap: 40px; }
         
         .hero-content { text-align: center; z-index: 2; position: relative;}
-        .hero-kicker { display: inline-block; font-size: 11px; font-weight: 800; color: var(--c-turquesa); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; background: rgba(0, 175, 198, 0.1); padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(0, 175, 198, 0.2); }
-        .hero-content h1 { font-size: 32px; font-weight: 900; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em;}
-        .hero-content p { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.8); margin-bottom: 28px; line-height: 1.5; max-width: 500px; margin-inline: auto;}
+        .hero-kicker { display: inline-block; font-size: 11px; font-weight: 800; color: var(--c-turquesa); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; background: rgba(0, 175, 198, 0.1); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(0, 175, 198, 0.25); }
+        .hero-content h1 { font-size: 30px; font-weight: 900; line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.02em;}
+        .hero-content p { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.85); margin-bottom: 32px; line-height: 1.5; max-width: 500px; margin-inline: auto;}
         
-        .hero-video-box { position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-tech); z-index: 2; aspect-ratio: 16/9; background: #000; border: 1px solid rgba(255,255,255,0.1);}
+        .hero-video-box { position: relative; width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-tech); z-index: 2; aspect-ratio: 16/9; background: #071A24; border: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: center; align-items: center;}
         .hero-video-box video { width: 100%; height: 100%; object-fit: cover; }
+        .video-fallback { position: absolute; color: rgba(255,255,255,0.4); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
         /* =========================================================
            4. TRES BENEFICIOS TECNOLÓGICOS
            ========================================================= */
-        .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: -30px; position: relative; z-index: 10; padding: 0 16px;}
-        .ben-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-md); transition: transform 0.2s;}
-        .ben-icon { width: 44px; height: 44px; background: var(--c-gris-bg); border-radius: 10px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; color: var(--c-azul);}
+        .benefits-section { margin-top: -32px; margin-bottom: var(--gap-mob); position: relative; z-index: 10;}
+        .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .ben-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px 20px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-md); transition: transform 0.2s;}
+        .ben-icon { width: 48px; height: 48px; background: var(--c-turquesa-light); border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; color: var(--c-turquesa-dark);}
         .ben-icon svg { width: 24px; height: 24px; }
-        .ben-text h3 { font-size: 15px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; text-transform: uppercase;}
-        .ben-text p { font-size: 13px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
+        .ben-text h3 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; text-transform: uppercase;}
+        .ben-text p { font-size: 14px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
 
         /* =========================================================
-           5. CATÁLOGO DE CINCO PRODUCTOS
+           5. CATÁLOGO DE PRODUCTOS
            ========================================================= */
-        .catalog-section { padding-top: 24px; margin-bottom: var(--gap-mob);}
+        .catalog-section { margin-bottom: var(--gap-mob);}
+        .catalog-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
         
-        .catalog-grid { display: flex; flex-direction: column; gap: 24px; }
         .prod-card { background: var(--c-blanco); border-radius: var(--radius-lg); border: 1px solid var(--c-gris-border); box-shadow: var(--shadow-soft); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;}
+        .prod-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #cbd5e1;}
         
-        .prod-img { width: 100%; aspect-ratio: 4/3; background: var(--c-gris-claro); display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; padding: 20px;}
+        .prod-img { width: 100%; aspect-ratio: 4/3; background: var(--c-gris-claro); display: flex; justify-content: center; align-items: center; position: relative; padding: 32px;}
         .prod-img img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
         
-        /* Fallback visual para imágenes faltantes */
-        .img-placeholder { color: var(--c-texto-light); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; text-align: center; border: 2px dashed #cbd5e1; border-radius: 8px; width: 80%; height: 80%; display: flex; justify-content: center; align-items: center;}
+        .img-placeholder { color: var(--c-texto-light); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: center; border: 2px dashed #cbd5e1; border-radius: 12px; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.5);}
         
-        .prod-info { padding: 24px; display: flex; flex-direction: column; flex-grow: 1;}
-        .prod-app { font-size: 11px; font-weight: 800; color: var(--c-turquesa-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: inline-block; background: var(--c-turquesa-light); padding: 4px 8px; border-radius: 4px; width: max-content;}
-        .prod-title { font-size: 20px; font-weight: 900; color: var(--c-azul); margin-bottom: 8px; line-height: 1.1;}
+        .prod-info { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start;}
+        .prod-app { font-size: 11px; font-weight: 800; color: var(--c-turquesa-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; background: var(--c-turquesa-light); padding: 6px 10px; border-radius: 6px; }
+        .prod-title { font-size: 20px; font-weight: 900; color: var(--c-azul); margin-bottom: 8px; line-height: 1.15;}
         .prod-desc { font-size: 14px; color: var(--c-texto-light); font-weight: 500; margin-bottom: 24px; line-height: 1.5; flex-grow: 1;}
-        .btn-prod { width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; font-weight: 800; font-size: 14px; padding: 12px; border-radius: var(--radius-sm); text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px;}
-        .btn-prod:hover, .btn-prod:active { background: var(--c-turquesa-light); }
+        
+        .btn-prod { width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; font-weight: 800; font-size: 14px; padding: 14px; border-radius: var(--radius-sm); text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none;}
+        .btn-prod:active { background: var(--c-turquesa-light); }
         .btn-prod svg { width: 18px; height: 18px; fill: currentColor;}
 
         /* =========================================================
@@ -228,34 +232,35 @@
         .trust-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; text-transform: uppercase;}
         .trust-info p { font-size: 14px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
         
-        .trust-footer { border-top: 1px solid var(--c-gris-border); padding-top: 20px; text-align: center; }
-        .trust-footer p { font-size: 13px; color: var(--c-texto); font-weight: 500; line-height: 1.5; margin-bottom: 12px; max-width: 600px; margin-inline: auto;}
+        .trust-footer { border-top: 1px solid var(--c-gris-border); padding-top: 24px; text-align: center; }
+        .trust-footer p { font-size: 13px; color: var(--c-texto); font-weight: 500; line-height: 1.5; margin-bottom: 16px; max-width: 700px; margin-inline: auto;}
         
-        .btn-dropdown-toggle { background: none; border: none; font-size: 13px; font-weight: 800; color: var(--c-turquesa-dark); text-decoration: underline; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 8px;}
+        .btn-dropdown-toggle { background: none; border: none; font-size: 13px; font-weight: 800; color: var(--c-turquesa-dark); text-decoration: underline; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 8px;}
         .btn-dropdown-toggle svg { width: 16px; height: 16px; fill: currentColor; transition: transform 0.2s;}
         .btn-dropdown-toggle.open svg { transform: rotate(180deg); }
         
-        .trust-details-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; text-align: left; background: var(--c-gris-bg); border-radius: var(--radius-sm); }
-        .trust-details-inner { padding: 16px; }
+        .trust-details-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; text-align: left; background: var(--c-gris-bg); border-radius: var(--radius-sm); margin-top: 8px;}
+        .trust-details-inner { padding: 20px; }
         .trust-details-inner ul { list-style: none; display: flex; flex-direction: column; gap: 12px;}
-        .trust-details-inner li { font-size: 13px; color: var(--c-texto); font-weight: 500; display: flex; gap: 8px; line-height: 1.4;}
+        .trust-details-inner li { font-size: 13px; color: var(--c-texto); font-weight: 500; display: flex; gap: 10px; line-height: 1.4;}
         .trust-details-inner li::before { content: '•'; color: var(--c-turquesa); font-weight: bold; font-size: 18px; line-height: 1;}
 
         /* =========================================================
            7. DEMOSTRACIÓN
            ========================================================= */
         .demo-section { text-align: center; margin-bottom: var(--gap-mob); }
-        .demo-kicker { display: block; font-size: 16px; font-weight: 900; color: var(--c-naranja); text-transform: uppercase; margin-bottom: 8px;}
+        .demo-kicker { display: block; font-size: 14px; font-weight: 900; color: var(--c-naranja); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;}
         
-        .demo-video-placeholder { width: 100%; aspect-ratio: 16/9; background: var(--c-azul); border-radius: var(--radius-md); border: 1px solid var(--c-gris-border); box-shadow: var(--shadow-md); display: flex; flex-direction: column; justify-content: center; align-items: center; color: rgba(255,255,255,0.5); padding: 20px;}
-        .demo-video-placeholder svg { width: 48px; height: 48px; fill: currentColor; margin-bottom: 12px; opacity: 0.5;}
-        .demo-video-placeholder span { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+        .demo-video-placeholder { width: 100%; aspect-ratio: 16/9; max-width: 800px; margin: 0 auto; background: var(--c-azul); border-radius: var(--radius-md); border: 1px solid var(--c-gris-border); box-shadow: var(--shadow-md); display: flex; flex-direction: column; justify-content: center; align-items: center; color: rgba(255,255,255,0.5); padding: 20px;}
+        .demo-video-placeholder svg { width: 48px; height: 48px; fill: currentColor; margin-bottom: 16px; opacity: 0.5;}
+        .demo-video-placeholder span { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
 
         /* =========================================================
            8. SELECTOR POR SUPERFICIE
            ========================================================= */
         .surface-section { background: var(--c-azul-grad); padding: 48px 20px; margin: 0 -20px var(--gap-mob) -20px; color: var(--c-blanco); text-align: center;}
         .surface-section .section-title { color: var(--c-blanco); }
+        .surface-section .section-subtitle { color: rgba(255,255,255,0.7); }
         
         .surface-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 800px; margin: 0 auto 32px auto;}
         .surf-tab { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); padding: 16px 8px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 8px;}
@@ -265,31 +270,31 @@
         .surf-tab span { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;}
         .surf-tab.active span { color: var(--c-turquesa); }
 
-        .surf-content-area { max-width: 800px; margin: 0 auto; min-height: 120px;}
+        .surf-content-area { max-width: 600px; margin: 0 auto; min-height: 120px;}
         .surf-panel { display: none; animation: fadeIn 0.3s ease; }
         .surf-panel.active { display: flex; flex-direction: column; gap: 12px; }
         @keyframes fadeIn { from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:translateY(0);} }
         
-        .surf-prod-link { display: flex; justify-content: space-between; align-items: center; background: var(--c-blanco); padding: 16px; border-radius: var(--radius-sm); color: var(--c-azul); text-decoration: none; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2);}
+        .surf-prod-link { display: flex; justify-content: space-between; align-items: center; background: var(--c-blanco); padding: 16px 20px; border-radius: var(--radius-sm); color: var(--c-azul); text-decoration: none; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
         .surf-prod-link:active { transform: scale(0.98); }
         .surf-prod-name { font-size: 15px; font-weight: 900; }
-        .surf-prod-link svg { width: 20px; height: 20px; fill: var(--c-turquesa-dark); }
+        .surf-prod-link svg { width: 24px; height: 24px; fill: var(--c-turquesa-dark); }
 
         /* =========================================================
            9. TECNOLOGÍA BLINDAFLEX
            ========================================================= */
-        .tech-section { text-align: center; margin-bottom: var(--gap-mob); padding: 32px 20px; background: var(--c-blanco); border-radius: var(--radius-lg); border: 1px solid var(--c-gris-border); box-shadow: var(--shadow-soft);}
-        .tech-logo { height: 32px; margin: 0 auto 16px auto; opacity: 0.8;}
+        .tech-section { text-align: center; margin-bottom: var(--gap-mob); padding: 40px 20px; background: var(--c-blanco); border-radius: var(--radius-lg); border: 1px solid var(--c-gris-border); box-shadow: var(--shadow-soft);}
+        .tech-logo { height: 36px; margin: 0 auto 20px auto; opacity: 0.9;}
         .tech-section p { font-size: 15px; font-weight: 500; color: var(--c-texto); line-height: 1.5; max-width: 700px; margin: 0 auto 24px auto;}
         
-        .btn-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 800; color: var(--c-turquesa-dark); text-transform: uppercase; text-decoration: underline; padding: 8px;}
-        .btn-link svg { width: 16px; height: 16px; fill: currentColor; }
+        .btn-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: var(--c-turquesa-dark); text-transform: uppercase; text-decoration: underline; padding: 8px;}
+        .btn-link svg { width: 18px; height: 18px; fill: currentColor; }
 
         /* =========================================================
            10. FOOTER
            ========================================================= */
-        footer { background: var(--c-azul); color: var(--c-blanco); padding: 48px 20px 24px; border-top: 4px solid var(--c-turquesa); }
-        .footer-logo img { max-height: 32px; margin-bottom: 16px; }
+        footer { background: var(--c-azul); color: var(--c-blanco); padding: 48px 20px 24px; border-top: 4px solid var(--c-turquesa); margin-top: 40px;}
+        .footer-logo img { max-height: 32px; margin-bottom: 20px; }
         .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 32px; max-width: 320px; line-height: 1.5; }
         .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px;}
         
@@ -301,7 +306,7 @@
         .footer-contact { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
         .footer-contact h5 { font-size: 12px; color: #8ba2ac; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;}
         .footer-wsp { font-size: 20px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
-        .footer-wsp svg { width: 24px; height: 24px; fill: #25D366; }
+        .footer-wsp svg { width: 24px !important; height: 24px !important; fill: #25D366; }
         .footer-bottom { text-align: center; font-size: 12px; color: #64748b; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;}
 
         /* =========================================================
@@ -325,8 +330,8 @@
         .qty-btn-sm { width: 28px; height: 28px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 4px; font-weight: 900; color: var(--c-azul); cursor: pointer; display: flex; justify-content: center; align-items: center;}
         .item-price { font-weight: 900; font-size: 16px; color: var(--c-azul); }
         
-        .remove-item { position: absolute; top: 8px; right: 8px; background: #fee2e2; border: none; color: #dc2626; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
-        .remove-item svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none;}
+        .remove-item { position: absolute; top: 8px; right: 8px; background: #fee2e2; border: none; color: #dc2626; cursor: pointer; font-size: 18px; line-height: 1; padding: 4px; border-radius: 4px; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;}
+        .remove-item svg { width: 18px; height: 18px; fill: currentColor; pointer-events: none;}
         
         .cart-empty-message { text-align: center; padding: 40px 0; color: var(--c-texto-light); font-size: 15px; font-weight: 600; display: block; }
         
@@ -335,7 +340,7 @@
         .cart-total span:last-child { font-size: 26px; color: var(--c-azul);}
         .empty-cart-btn { width: 100%; text-align: center; background: none; border: none; color: var(--c-texto-light); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 12px 0; margin-top: 8px; }
 
-        /* Estilo Checkout simplificado (Form) - Se habilita desde el carrito pero aquí en Home se usa un modal/vista over */
+        /* CHECKOUT MODAL HOME (Formulario de WhatsApp) */
         #checkout-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--c-gris-bg); z-index: 100000; overflow-y: auto; padding-bottom: 40px; }
         .checkout-container { max-width: 600px; margin: 0 auto; padding: 20px; }
         .chk-header { display: flex; align-items: center; gap: 16px; margin: 20px 0 24px 0; }
@@ -348,7 +353,8 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         
         .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; background: linear-gradient(180deg, #25D366 0%, #1da851 100%); color: white; font-weight: 900; font-size: 16px; padding: 18px; border-radius: var(--radius-sm); border: none; cursor: pointer; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); text-transform: uppercase; margin-top: 24px;}
-        .btn-whatsapp svg { width: 24px; height: 24px; fill: white; flex-shrink: 0;}
+        .btn-whatsapp svg { width: 24px !important; height: 24px !important; fill: white; flex-shrink: 0;}
+        .privacy-note { font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500;}
 
         /* =========================================================
            MEDIA QUERIES (ESCRITORIO)
@@ -361,28 +367,23 @@
             .desktop-nav { display: flex; flex-grow: 1; }
             .cart-btn { margin-left: auto; }
             
-            .hero-section { padding: 80px 0; }
-            .hero-grid { flex-direction: row; align-items: center; }
-            .hero-content { flex: 0 0 45%; text-align: left; }
+            .hero-section { padding: 64px 0 80px 0; }
+            .hero-grid { flex-direction: row; align-items: center; gap: 56px;}
+            .hero-content { flex: 0 0 40%; text-align: left; }
             .hero-content p { margin-inline: 0; }
-            .hero-video-box { flex: 0 0 55%; height: 450px;}
+            .hero-video-box { flex: 0 0 60%; height: auto;}
             
-            .benefits-grid { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin-inline: auto; margin-top: -40px;}
+            .benefits-grid { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: -40px auto var(--gap-desk) auto;}
             
-            .catalog-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-            /* Ajuste para que las últimas dos tarjetas queden centradas si son 5 en 3 columnas */
-            .catalog-grid > :nth-child(4) { grid-column: 1 / 3; justify-self: end; width: calc(50% + 190px); }
-            .catalog-grid > :nth-child(5) { grid-column: 2 / 4; justify-self: start; width: calc(50% + 190px); }
-            /* Alternativa más limpia: Grid con flexbox wrap centrado */
             .catalog-section { max-width: 100%; }
-            .catalog-grid { display: flex; flex-wrap: wrap; justify-content: center; }
-            .prod-card { width: calc(33.333% - 16px); min-width: 320px;}
+            .catalog-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px;}
+            .prod-card { width: calc(33.333% - 22px); min-width: 320px;}
             
             .trust-grid { flex-direction: row; justify-content: center; gap: 40px;}
             .trust-item { flex-direction: column; align-items: center; text-align: center; max-width: 250px;}
             
-            .surface-section { margin: 0 0 var(--gap-desk) 0; border-radius: var(--radius-lg); }
-            .surface-grid { grid-template-columns: repeat(4, 1fr); }
+            .surface-section { margin: 0 0 var(--gap-desk) 0; border-radius: var(--radius-lg); padding: 64px 20px;}
+            .surface-grid { grid-template-columns: repeat(4, 1fr); gap: 16px;}
             
             .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
         }
@@ -484,7 +485,7 @@
                 
                 <div class="hero-video-box">
                     <video autoplay muted loop playsinline id="hero-vid">
-                        <!-- Intento cargar el video, con un diseño de fallback manejado por CSS background si falla -->
+                        <!-- El navegador intentará cargar este video. Si no está en esa ruta aún, mostrará el fondo negro del contenedor que es estético -->
                         <source src="assets/videos/blindaflex-home-lluvia.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -528,8 +529,8 @@
                 <!-- Prod 1 -->
                 <article class="prod-card">
                     <div class="prod-img">
-                        <!-- Preparado para la imagen real -->
-                        <div class="img-placeholder">IMAGEN BARRERA IMPERMEABLE</div>
+                        <!-- Espacio reservado para la imagen del producto -->
+                        <div class="img-placeholder">BARRERA IMPERMEABLE</div>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Frentes y Fachadas</span>
@@ -545,7 +546,7 @@
                 <!-- Prod 2 -->
                 <article class="prod-card">
                     <div class="prod-img">
-                        <div class="img-placeholder">IMAGEN BLINDAJE TECHOS</div>
+                        <div class="img-placeholder">BLINDAJE PARA TECHOS</div>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilización de Techos</span>
@@ -561,7 +562,7 @@
                 <!-- Prod 3 -->
                 <article class="prod-card">
                     <div class="prod-img">
-                        <div class="img-placeholder">IMAGEN BLINDAJE REFLECTIVO</div>
+                        <div class="img-placeholder">BLINDAJE REFLECTIVO</div>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilización Reflectiva</span>
@@ -577,7 +578,7 @@
                 <!-- Prod 4 -->
                 <article class="prod-card">
                     <div class="prod-img">
-                        <div class="img-placeholder">IMAGEN BLINDAJE TRANSPARENTE</div>
+                        <div class="img-placeholder">BLINDAJE TRANSPARENTE</div>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Protección Transparente</span>
@@ -593,7 +594,7 @@
                 <!-- Prod 5 -->
                 <article class="prod-card">
                     <div class="prod-img">
-                        <div class="img-placeholder">IMAGEN BARRERA ANTIHONGO</div>
+                        <div class="img-placeholder">BARRERA ANTIHONGO</div>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Interiores y Ambientes Húmedos</span>
@@ -666,6 +667,7 @@
                 <h2 class="section-title">NO PROMETEMOS, LO DEMOSTRAMOS</h2>
                 <p class="section-subtitle">Mirá cómo actúa nuestra barrera protectora repeliendo el agua instantáneamente.</p>
                 
+                <!-- Espacio preparado para el video de demostración independiente -->
                 <div class="demo-video-placeholder">
                     <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                     <span>Video de demostración (Espacio preparado)</span>
@@ -676,4 +678,433 @@
         <!-- 8. SELECTOR POR SUPERFICIE -->
         <section class="surface-section">
             <h2 class="section-title">¿QUÉ SUPERFICIE NECESITÁS PROTEGER?</h2>
- 
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.7); max-width: 100%;">Seleccioná un área para ver los productos recomendados.</p>
+            
+            <div class="surface-grid">
+                <div class="surf-tab active" onclick="selectSurface('surf-frentes', this)">
+                    <svg class="surf-icon svg-thin" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <span>Frentes</span>
+                </div>
+                <div class="surf-tab" onclick="selectSurface('surf-techos', this)">
+                    <svg class="surf-icon svg-thin" viewBox="0 0 24 24"><path d="M2 10l10-8 10 8"></path><path d="M12 2v20"></path><line x1="2" y1="22" x2="22" y2="22"></line></svg>
+                    <span>Techos</span>
+                </div>
+                <div class="surf-tab" onclick="selectSurface('surf-ladrillos', this)">
+                    <svg class="surf-icon svg-thin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="9"></line><line x1="15" y1="9" x2="15" y2="15"></line><line x1="9" y1="15" x2="9" y2="21"></line></svg>
+                    <span>Ladrillos</span>
+                </div>
+                <div class="surf-tab" onclick="selectSurface('surf-interiores', this)">
+                    <svg class="surf-icon svg-thin" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                    <span>Interiores</span>
+                </div>
+            </div>
+            
+            <div class="surf-content-area">
+                <!-- Frentes -->
+                <div class="surf-panel active" id="surf-frentes">
+                    <a href="tienda-barrera-impermeable.html" class="surf-prod-link">
+                        <span class="surf-prod-name">Barrera Impermeable</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+                
+                <!-- Techos (2 productos) -->
+                <div class="surf-panel" id="surf-techos">
+                    <a href="tienda-blindaje-techos.html" class="surf-prod-link">
+                        <span class="surf-prod-name">Blindaje para Techos</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="tienda-bindaje-reflectivo.html" class="surf-prod-link">
+                        <span class="surf-prod-name">Blindaje Reflectivo</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+                
+                <!-- Ladrillos -->
+                <div class="surf-panel" id="surf-ladrillos">
+                    <a href="tienda-bindaje-transparente.html" class="surf-prod-link">
+                        <span class="surf-prod-name">Blindaje Transparente</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+                
+                <!-- Interiores -->
+                <div class="surf-panel" id="surf-interiores">
+                    <a href="tienda-barrera-antihongo.html" class="surf-prod-link">
+                        <span class="surf-prod-name">Barrera Antihongo</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. TECNOLOGÍA BLINDAFLEX -->
+        <div class="container">
+            <section class="tech-section">
+                <img src="assets/images/logo.png" alt="Blindaflex" class="tech-logo">
+                <h2 class="sr-only">Tecnología Blindaflex</h2>
+                <p>Desarrollamos pinturas impermeabilizantes y protectoras de superficies con tecnología de alta performance. Soluciones para techos, frentes e interiores, diseñadas para brindar protección y durabilidad.</p>
+                <a href="https://blindaflex.com" class="btn-link">
+                    Conocé nuestra tecnología
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <!-- 10. PIE DE PÁGINA -->
+    <footer id="footer">
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="padding:0; margin-bottom: 12px; display:inline-block;">
+                    <img src="assets/images/logo.png" alt="BLINDAFLEX" style="max-height: 28px;">
+                </a>
+                <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
+            </div>
+            
+            <div class="footer-nav">
+                <span class="footer-nav-title">Nuestros Productos</span>
+                <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+                <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
+            </div>
+
+            <div>
+                <div class="footer-nav" style="margin-bottom: 24px;">
+                    <span class="footer-nav-title">Tienda</span>
+                    <a href="#confianza">Envíos y formas de pago</a>
+                    <a href="https://blindaflex.com">Sitio institucional</a>
+                </div>
+                
+                <div class="footer-contact">
+                    <h5>VENTAS Y ASESORAMIENTO</h5>
+                    <a href="https://wa.me/5493516318301" class="footer-wsp" aria-label="Contacto por WhatsApp">
+                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
+                        +54 9 351 631 8301
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            &copy; 2026 BLINDAFLEX. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- ================== CARRITO LATERAL (COMPARTIDO GLOBALMENTE) ================== -->
+    <div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-title">
+        <div class="cart-header">
+            <h2 id="cart-title">MI CARRITO</h2>
+            <button class="close-cart" onclick="closeCartDrawer()" aria-label="Cerrar carrito">&times;</button>
+        </div>
+        <div class="cart-body" id="cart-body"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total a pagar:</span>
+                <span id="drawer-total">$0</span>
+            </div>
+            <!-- El Checkout directo es modal en la Home para no desviar de la página -->
+            <button class="btn-primary btn-action" style="width: 100%; border:none; padding:18px; font-size:15px;" onclick="openHomeCheckout()" id="btn-checkout" disabled>CONTINUAR CON MI PEDIDO</button>
+        </div>
+    </aside>
+
+    <!-- ================== CHECKOUT MODAL (HOME) ================== -->
+    <div id="checkout-view">
+        <div class="checkout-container">
+            <div class="chk-header">
+                <button class="chk-back" onclick="closeHomeCheckout()" aria-label="Volver al carrito">&#8592;</button>
+                <h2 class="section-title" style="margin:0; font-size: 20px;">DATOS DE ENTREGA</h2>
+            </div>
+            
+            <div class="card" style="margin-bottom: 24px;">
+                <form id="checkout-form" onsubmit="submitWhatsApp(event)">
+                    <div class="form-group"><label>Nombre y Apellido *</label><input type="text" id="f-nombre" class="form-control" required></div>
+                    <div class="form-group"><label>Teléfono / Celular *</label><input type="tel" id="f-tel" class="form-control" required></div>
+                    <div class="form-group"><label>Localidad o Barrio *</label><input type="text" id="f-loc" class="form-control" required></div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Calle *</label><input type="text" id="f-calle" class="form-control" required></div>
+                        <div class="form-group"><label>Número *</label><input type="text" id="f-num" class="form-control" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Código Postal</label><input type="text" id="f-cp" class="form-control"></div>
+                        <div class="form-group"><label>Referencia (Opcional)</label><input type="text" id="f-ref" class="form-control"></div>
+                    </div>
+                    <button type="submit" class="btn-whatsapp">
+                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
+                        ENVIAR PEDIDO
+                    </button>
+                    <div style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px;">El envío queda sujeto a confirmación según dirección.<br>Pago contraentrega disponible en zonas habilitadas.</div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT GLOBAL (UI, Menú, Video y Carrito Universal) -->
+    <script>
+        // -----------------------------------------------------
+        // 1. UI: Menú Móvil & Detalles de Envío
+        // -----------------------------------------------------
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function toggleMobileDropdown(el) {
+            el.classList.toggle('open');
+            const content = el.nextElementSibling;
+            if(el.classList.contains('open')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = "0";
+            }
+        }
+
+        function toggleTrustDetails(btn) {
+            btn.classList.toggle('open');
+            const isExpanded = btn.classList.contains('open');
+            btn.setAttribute('aria-expanded', isExpanded);
+            const content = btn.nextElementSibling;
+            if (isExpanded) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = "0";
+            }
+        }
+
+        function selectSurface(targetId, el) {
+            // Manejo de tabs del selector de superficie
+            document.querySelectorAll('.surf-tab').forEach(tab => tab.classList.remove('active'));
+            el.classList.add('active');
+            
+            document.querySelectorAll('.surf-panel').forEach(panel => {
+                panel.classList.remove('active');
+                if(panel.id === targetId) panel.classList.add('active');
+            });
+        }
+
+        // -----------------------------------------------------
+        // 2. HERO VIDEO (Autoplay condicional en viewport)
+        // -----------------------------------------------------
+        const heroVideo = document.getElementById('hero-vid');
+        if (heroVideo && 'IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        heroVideo.play().catch(e => console.log("Autoplay prevenido por el navegador."));
+                    } else {
+                        heroVideo.pause();
+                    }
+                });
+            }, { threshold: 0.2 });
+            videoObserver.observe(heroVideo);
+            
+            // Pausar si el usuario cambia de pestaña
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) heroVideo.pause();
+                else if (heroVideo.getBoundingClientRect().top < window.innerHeight && heroVideo.getBoundingClientRect().bottom > 0) {
+                    heroVideo.play().catch(e => {});
+                }
+            });
+        }
+
+        // -----------------------------------------------------
+        // 3. LÓGICA DEL CARRITO (Motor Compartido)
+        // -----------------------------------------------------
+        const CART_EXPIRATION_MS = 30 * 60 * 1000; // 30 mins
+        
+        function loadCart() {
+            const data = localStorage.getItem('blindaflex_cart_data');
+            if(data) {
+                try {
+                    const parsed = JSON.parse(data);
+                    if(Date.now() - parsed.lastActivity > CART_EXPIRATION_MS) return [];
+                    return parsed.items || [];
+                } catch(e) { return []; }
+            }
+            return [];
+        }
+
+        let cart = loadCart();
+
+        function saveCart() {
+            localStorage.setItem('blindaflex_cart_data', JSON.stringify({ items: cart, lastActivity: Date.now() }));
+            updateCartCounter();
+            renderDrawer();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            saveCart();
+        }
+
+        function changeCartQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if(item && item.qty + delta > 0) {
+                item.qty += delta;
+                saveCart();
+            }
+        }
+
+        function emptyCartConfirm() {
+            if(confirm("¿Querés eliminar todos los productos de tu carrito?")) {
+                cart = [];
+                saveCart();
+                closeHomeCheckout(); // Si estaba en modal de checkout, lo cierra
+            }
+        }
+
+        const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
+
+        function renderDrawer() {
+            const body = document.getElementById('cart-body');
+            const totalEl = document.getElementById('drawer-total');
+            const btnCheck = document.getElementById('btn-checkout');
+            
+            if(cart.length === 0) {
+                body.innerHTML = '<div class="cart-empty-message">Tu carrito está vacío.</div>';
+                totalEl.innerText = '$0';
+                btnCheck.disabled = true;
+                return;
+            }
+            
+            let html = '';
+            let grandTotal = 0;
+            
+            // Compatibilidad: Descuentos de Techo
+            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
+            let techosDisc = 0;
+            if(techosCount === 2) techosDisc = 0.15;
+            if(techosCount === 3) techosDisc = 0.20;
+            if(techosCount >= 4) techosDisc = 0.25;
+            let techoUnitPrice = 148000 * (1 - techosDisc);
+
+            if(techosCount > 0) {
+                let gifts = "1 Kit Premium";
+                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
+                html += `<div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:8px; border-radius:4px; text-align:center;">REGALOS (TECHOS):<br>${gifts.toUpperCase()}</div>`;
+            }
+            
+            cart.forEach(item => {
+                let lineTotal = 0;
+                let displayTitle = item.product;
+                
+                // Si es barrera, respeta su unitPrice guardado. Si es techo, aplica descuento por volumen.
+                if(item.type === 'barrera') {
+                    lineTotal = item.price * item.qty;
+                } else {
+                    lineTotal = techoUnitPrice * item.qty;
+                }
+                grandTotal += lineTotal;
+                
+                html += `
+                    <div class="cart-item">
+                        <button class="remove-item" onclick="removeFromCart('${item.id}')" aria-label="Quitar">
+                            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                        </button>
+                        <div class="cart-item-title">${displayTitle}</div>
+                        <div class="cart-item-meta">Color: ${item.color}</div>
+                        <div class="cart-item-controls">
+                            <div class="qty-controls">
+                                <button class="qty-btn-sm" onclick="changeCartQty('${item.id}', -1)">-</button>
+                                <span style="font-weight:900; font-size:14px; width:24px; text-align:center;">${item.qty}</span>
+                                <button class="qty-btn-sm" onclick="changeCartQty('${item.id}', 1)">+</button>
+                            </div>
+                            <div class="item-price">${formatARS(lineTotal)}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `<button class="empty-cart-btn" onclick="emptyCartConfirm()">VACIAR CARRITO</button>`;
+            
+            body.innerHTML = html;
+            totalEl.innerText = formatARS(grandTotal);
+            btnCheck.disabled = false;
+        }
+
+        function updateCartCounter() {
+            document.getElementById('cart-counter').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
+        }
+
+        function openCartDrawer() {
+            document.getElementById('cart-overlay').classList.add('open');
+            document.getElementById('cart-drawer').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            saveCart(); // Refresca timestamp al abrir
+        }
+
+        function closeCartDrawer() {
+            document.getElementById('cart-overlay').classList.remove('open');
+            document.getElementById('cart-drawer').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // -----------------------------------------------------
+        // 4. CHECKOUT DESDE LA HOME (Vía WhatsApp)
+        // -----------------------------------------------------
+        function openHomeCheckout() {
+            closeCartDrawer();
+            document.getElementById('checkout-view').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Evita scrollear la home detrás del modal
+        }
+
+        function closeHomeCheckout() {
+            document.getElementById('checkout-view').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function submitWhatsApp(e) {
+            e.preventDefault();
+            const n = document.getElementById('f-nombre').value;
+            const t = document.getElementById('f-tel').value;
+            const l = document.getElementById('f-loc').value;
+            const c = document.getElementById('f-calle').value;
+            const num = document.getElementById('f-num').value;
+            const cp = document.getElementById('f-cp').value;
+            const ref = document.getElementById('f-ref').value;
+            
+            let m = `*NUEVO PEDIDO BLINDAFLEX*%0A%0A*CLIENTE*%0A👤 ${n}%0A📱 ${t}%0A📍 ${c} ${num}, ${l}%0A`;
+            if(cp) m += `📮 CP: ${cp}%0A`;
+            if(ref) m += `📝 Ref: ${ref}%0A`;
+            
+            m += `%0A*DETALLE DEL PEDIDO*%0A`;
+            let tot = 0;
+            
+            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
+            let techosDisc = 0;
+            if(techosCount === 2) techosDisc = 0.15;
+            if(techosCount === 3) techosDisc = 0.20;
+            if(techosCount >= 4) techosDisc = 0.25;
+            let techoUnitPrice = 148000 * (1 - techosDisc);
+
+            cart.forEach(i => {
+                let sub = 0;
+                if(i.type === 'barrera') { sub = i.price * i.qty; } 
+                else { sub = techoUnitPrice * i.qty; }
+                tot += sub;
+                m += `🔸 ${i.qty}x ${i.product}%0AColor: ${i.color}%0ASubtotal: ${formatARS(sub)}%0A%0A`;
+            });
+            
+            if(techosCount > 0) {
+                let gifts = "1 Kit Premium";
+                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
+                m += `🎁 *Regalos de Techos:* ${gifts}%0A%0A`;
+            }
+
+            m += `*TOTAL PRODUCTOS: ${formatARS(tot)}*%0A%0AEnvío a coordinar según zona.%0APago al recibir.`;
+            window.open(`https://wa.me/5493516318301?text=${m}`, '_blank');
+        }
+
+        // Init
+        window.onload = () => {
+            updateCartCounter();
+            renderDrawer();
+        };
+    </script>
+</body>
+</html>
