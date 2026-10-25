@@ -1341,7 +1341,7 @@ header .logo img {
             if(data) {
                 try {
                     const parsed = JSON.parse(data);
-                    if(Date.now() - parsed.lastActivity > CART_EXPIRATION_MS) return [];
+                    // Carrito persistente entre visitas; no vence a los 30 minutos.
                     return parsed.items || [];
                 } catch(e) { return []; }
             }
@@ -2044,5 +2044,81 @@ header .logo img {
             updateFloatingBarVisibility();
         };
     </script>
+<style id="bf-unified-cart-css">
+#bf-keep-shopping{width:100%;display:block;margin-bottom:11px;padding:13px 12px;border:1.5px solid #00AFC6;border-radius:9px;background:#fff;color:#071A24;font-size:14px;font-weight:800;cursor:pointer;text-align:center}
+#bf-keep-shopping:focus-visible,.bf-menu-link:focus-visible{outline:3px solid #00AFC6;outline-offset:2px}
+.bf-cart-row{padding:15px 0;border-bottom:1px solid #e2e8f0;color:#071A24}
+.bf-cart-row strong{display:block;font-size:14px;margin-bottom:5px}
+.bf-cart-detail{font-size:12px;color:#64748b;line-height:1.5}
+.bf-cart-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
+.bf-cart-controls button{border:1px solid #cbd5e1;background:#fff;border-radius:7px;padding:6px 12px;color:#071A24;font-weight:800;cursor:pointer}
+.bf-cart-gift{padding:12px;border-radius:9px;background:#e0f7fa;color:#071A24;font-size:12px;line-height:1.55;margin:0 0 12px}
+.bf-cart-note{font-size:12px;color:#64748b;margin-top:10px}
+#bf-mobile-nav{position:fixed;inset:0;z-index:5000;display:none}
+#bf-mobile-nav.bf-open{display:block}
+#bf-mobile-nav .bf-backdrop{position:absolute;inset:0;background:rgba(7,26,36,.7)}
+#bf-mobile-nav .bf-panel{position:absolute;top:0;bottom:0;left:0;width:min(85vw,330px);background:#071A24;color:#fff;padding:24px;overflow-y:auto;box-shadow:4px 0 30px #0004}
+#bf-mobile-nav .bf-close{display:block;margin-left:auto;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
+#bf-mobile-nav .bf-menu-link{display:block;padding:16px 0;border-bottom:1px solid #ffffff22;font-weight:750;text-decoration:none;color:#fff;font-size:15px}
+</style>
+<script id="bf-unified-cart-script">
+(function(){
+'use strict';
+const KEY='blindaflex_cart_data';
+const money=n=>'$'+Math.round(n).toLocaleString('es-AR');
+const escapeHTML=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isRoof=i=>i.type==='techo'||(!i.type&&/Blindaje para Techos/i.test(i.product||''));
+const isBarrera=i=>i.type==='barrera'||/Barrera Impermeable/i.test(i.product||'');
+const roofQty=()=>cart.filter(isRoof).reduce((a,i)=>a+Number(i.qty||0),0);
+const discount=()=>{let q=roofQty();return q===2?.15:q===3?.20:q>=4?.25:0;};
+const subtotal=i=>Number(i.qty||0)*(isRoof(i)?148000*(1-discount()):Number(i.price||0));
+const cartTotal=()=>cart.reduce((a,i)=>a+subtotal(i),0);
+const reload=()=>{try{let o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items:[]}catch(e){return []}};
+const update=()=>{
+ const n=cart.reduce((a,i)=>a+Number(i.qty||0),0);
+ const counter=document.getElementById('cart-counter');if(counter)counter.textContent=n;
+ const checkout=document.getElementById('btn-checkout');if(checkout)checkout.disabled=n===0;
+ renderSharedCart();
+};
+function renderSharedCart(){
+ const body=document.getElementById('cart-body'),total=document.getElementById('drawer-total');
+ if(!body||!total)return;
+ total.textContent=money(cartTotal());
+ if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
+ let html='';let qty=roofQty();
+ if(qty){html+='<div class="bf-cart-gift"><strong>BLINDAJE PARA TECHOS · PROMOCIÓN</strong><div>'+qty+' balde(s) · '+(discount()*100)+'% de descuento en Techos</div><div>Regalo: 1 kit premium'+(qty>=2?' + 1 sellador extra':'')+'</div></div>'}
+ cart.forEach(i=>{
+  let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
+  html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
+ });
+ html+='<p class="bf-cart-note">El costo de envío se determina según la zona de entrega.</p>';
+ body.innerHTML=html;
+}
+function persist(){localStorage.setItem(KEY,JSON.stringify({items:cart,lastActivity:Date.now()}));update();if(document.getElementById('checkout-view')?.style.display==='block'&&typeof renderCheckoutSummary==='function')renderCheckoutSummary()}
+window.bfCartRefresh=()=>{cart=reload();update()};
+window.bfCartQty=(id,delta)=>{let item=cart.find(i=>String(i.id)===String(id));if(!item)return;item.qty=Number(item.qty||0)+delta;if(item.qty<=0)cart=cart.filter(i=>i!==item);persist()};
+window.bfCartRemove=id=>{cart=cart.filter(i=>String(i.id)!==String(id));persist()};
+window.renderDrawer=renderSharedCart;
+window.saveCart=persist;
+window.updateCartCounter=update;
+window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
+window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
+window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();if(typeof renderCheckoutSummary==='function')renderCheckoutSummary()};
+window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty())html+='<p style="margin-top:12px">🎁 Kit premium'+(roofQty()>=2?' + sellador extra':'')+' incluido · '+discount()*100+'% de descuento en Techos</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
+const footer=document.querySelector('#cart-drawer .cart-footer');
+if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',closeCartDrawer);let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
+document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty')))});
+window.addEventListener('pageshow',()=>{cart=reload();update()});
+window.addEventListener('storage',e=>{if(e.key===KEY){cart=reload();update()}});
+// Navegación común: las páginas de producto no tenían un menú móvil funcional.
+if(!document.getElementById('mobile-menu')){
+ let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a></nav>';
+ document.body.appendChild(nav);const close=()=>nav.classList.remove('bf-open');nav.querySelector('.bf-backdrop').addEventListener('click',close);nav.querySelector('.bf-close').addEventListener('click',close);
+ document.querySelector('header .menu-btn')?.addEventListener('click',()=>{closeCartDrawer();nav.classList.add('bf-open')});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeCartDrawer()}});
+}
+cart=reload();update();
+})();
+</script>
 </body>
 </html>
