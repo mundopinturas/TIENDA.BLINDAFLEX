@@ -413,6 +413,19 @@
         .prod-app-combo { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin-bottom:12px; }
         .prod-app-combo .prod-app { margin-bottom:0; white-space:nowrap; }
         .prod-combo-plus { color:var(--c-turquesa-dark); font-size:18px; font-weight:800; line-height:1; }
+
+        /* Refinamiento 25/10: ritmo visual de portada y tarjetas compactas. */
+        @media (max-width: 767px) {
+            .hero-section { padding-top: 52px; }
+            .hero-kicker { margin-bottom: 34px; }
+            .hero-content h2 { line-height: 1.25; margin-bottom: 28px; }
+            .hero-content p { line-height: 1.7; margin-bottom: 42px; }
+            .hero-grid { gap: 44px; }
+            .ben-card { padding-top: 17px; padding-bottom: 17px; }
+        }
+        /* Videos YouTube: caja 4:3 con encuadre central de contenido 16:9. */
+        .prod-img.prod-video { padding: 0; overflow: hidden; background: #071A24; }
+        .prod-video iframe { position:absolute; top:0; left:-16.6667%; width:133.3334%; height:100%; border:0; display:block; }
     </style>
 </head>
 <body>
@@ -556,9 +569,8 @@
                 
                 <!-- Prod 1 -->
                 <article class="prod-card">
-                    <div class="prod-img">
-                        <!-- Espacio reservado para la imagen del producto -->
-                        <div class="img-placeholder">BARRERA IMPERMEABLE</div>
+                    <div class="prod-img prod-video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/43Og1yjtUJk?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=43Og1yjtUJk&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Barrera Impermeable" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilizante frentes y muros</span>
@@ -573,8 +585,8 @@
 
                 <!-- Prod 2 -->
                 <article class="prod-card">
-                    <div class="prod-img">
-                        <div class="img-placeholder">BLINDAJE PARA TECHOS</div>
+                    <div class="prod-img prod-video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/KPY74Fo3rKw?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=KPY74Fo3rKw&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Blindaje para Techos" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilizante de techos</span>
@@ -589,8 +601,8 @@
 
                 <!-- Prod 3 -->
                 <article class="prod-card">
-                    <div class="prod-img">
-                        <div class="img-placeholder">BLINDAJE REFLECTIVO</div>
+                    <div class="prod-img prod-video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/6X6BUH6WQzA?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=6X6BUH6WQzA&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Blindaje Reflectivo" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
                     </div>
                     <div class="prod-info">
                         <div class="prod-app-combo"><span class="prod-app">Impermeabilizante de techos</span><span class="prod-combo-plus" aria-label="más">+</span><span class="prod-app">Reflexión solar</span></div>
@@ -605,8 +617,8 @@
 
                 <!-- Prod 4 -->
                 <article class="prod-card">
-                    <div class="prod-img">
-                        <div class="img-placeholder">BLINDAJE TRANSPARENTE</div>
+                    <div class="prod-img prod-video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/XA51PIw-qqY?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=XA51PIw-qqY&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Blindaje Transparente" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilizante transparente</span>
@@ -621,8 +633,8 @@
 
                 <!-- Prod 5 -->
                 <article class="prod-card">
-                    <div class="prod-img">
-                        <div class="img-placeholder">BARRERA ANTIHONGO</div>
+                    <div class="prod-img prod-video">
+                        <iframe src="https://www.youtube-nocookie.com/embed/rcKBkBDcSG4?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=rcKBkBDcSG4&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Barrera Antihongo" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Pintura antihongos</span>
