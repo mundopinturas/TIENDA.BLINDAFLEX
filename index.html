@@ -115,8 +115,8 @@
         /* =========================================================
            1. BARRA INFORMATIVA COMERCIAL SUPERIOR
            ========================================================= */
-        .top-bar { background-color: var(--c-azul); color: var(--c-blanco); padding: 8px 16px; font-size: 12px; font-weight: 600; text-align: center; display: flex; justify-content: center; align-items: center; gap: 8px; letter-spacing: 0.02em;}
-        .top-bar svg { width: 16px; height: 16px; color: var(--c-turquesa); flex-shrink: 0;}
+        .top-bar { background-color: var(--c-turquesa); color: var(--c-azul); padding: 8px 16px; font-size: 12px; font-weight: 600; text-align: center; display: flex; justify-content: center; align-items: center; gap: 8px; letter-spacing: 0.02em;}
+        .top-bar svg { width: 16px; height: 16px; color: var(--c-azul); flex-shrink: 0;}
 
         /* =========================================================
            2. ENCABEZADO Y NAVEGACIÓN
@@ -192,8 +192,8 @@
            ========================================================= */
         .benefits-section { margin-top: -32px; margin-bottom: var(--gap-mob); position: relative; z-index: 10;}
         .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-        .ben-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px 20px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-md); transition: transform 0.2s;}
-        .ben-icon { width: 48px; height: 48px; background: var(--c-turquesa-light); border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; color: var(--c-turquesa-dark);}
+        .ben-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 24px 20px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-md); transition: transform 0.2s;}
+        .ben-icon { width: 48px; height: 48px; background: var(--c-gris-bg); border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; color: var(--c-azul);}
         .ben-icon svg { width: 24px; height: 24px; }
         .ben-text h3 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; text-transform: uppercase;}
         .ben-text p { font-size: 14px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
@@ -213,8 +213,8 @@
         .img-placeholder { color: var(--c-texto-light); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: center; border: 2px dashed #cbd5e1; border-radius: 12px; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgba(255,255,255,0.5);}
         
         .prod-info { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; align-items: flex-start;}
-        .prod-app { font-size: 11px; font-weight: 800; color: var(--c-turquesa-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; background: var(--c-turquesa-light); padding: 6px 10px; border-radius: 6px; }
-        .prod-title { font-size: 20px; font-weight: 900; color: var(--c-azul); margin-bottom: 8px; line-height: 1.15;}
+        .prod-app { font-size: 13px; font-weight: 800; color: var(--c-turquesa-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; background: var(--c-turquesa-light); padding: 6px 10px; border-radius: 6px; }
+        .prod-title { font-size: 19px; font-weight: 900; color: var(--c-azul); margin-bottom: 8px; line-height: 1.15;}
         .prod-desc { font-size: 14px; color: var(--c-texto-light); font-weight: 500; margin-bottom: 24px; line-height: 1.5; flex-grow: 1;}
         
         .btn-prod { width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; font-weight: 800; font-size: 14px; padding: 14px; border-radius: var(--radius-sm); text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; gap: 8px; text-decoration: none;}
@@ -225,7 +225,7 @@
            6. BLOQUE DE CONFIANZA COMERCIAL
            ========================================================= */
         .trust-section { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-lg); padding: 32px 20px; box-shadow: var(--shadow-soft); margin-bottom: var(--gap-mob);}
-        .trust-grid { display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px;}
+        .trust-grid { display: flex; flex-direction: column; gap: 24px; margin-top: 30px; margin-bottom: 24px;}
         .trust-item { display: flex; align-items: flex-start; gap: 16px; }
         .trust-icon { width: 48px; height: 48px; background: var(--c-turquesa-light); border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; color: var(--c-turquesa-dark);}
         .trust-icon svg { width: 24px; height: 24px; }
@@ -284,7 +284,7 @@
            9. TECNOLOGÍA BLINDAFLEX
            ========================================================= */
         .tech-section { text-align: center; margin-bottom: var(--gap-mob); padding: 40px 20px; background: var(--c-blanco); border-radius: var(--radius-lg); border: 1px solid var(--c-gris-border); box-shadow: var(--shadow-soft);}
-        .tech-logo { height: 36px; margin: 0 auto 20px auto; opacity: 0.9;}
+        .tech-logo { height: auto; width: min(100%, 310px); max-height: 110px; object-fit: contain; margin: 0 auto 20px auto; opacity: 1;}
         .tech-section p { font-size: 15px; font-weight: 500; color: var(--c-texto); line-height: 1.5; max-width: 700px; margin: 0 auto 24px auto;}
         
         .btn-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; color: var(--c-turquesa-dark); text-transform: uppercase; text-decoration: underline; padding: 8px;}
@@ -294,12 +294,12 @@
            10. FOOTER
            ========================================================= */
         footer { background: var(--c-azul); color: var(--c-blanco); padding: 48px 20px 24px; border-top: 4px solid var(--c-turquesa); margin-top: 40px;}
-        .footer-logo img { max-height: 32px; margin-bottom: 20px; }
-        .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 32px; max-width: 320px; line-height: 1.5; }
-        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px;}
+        .footer-logo img { max-height: 70px; width: auto; margin-bottom: 20px; }
+        .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 0; max-width: 320px; line-height: 1.5; }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; align-items: start;}
         
         .footer-nav { display: flex; flex-direction: column; gap: 14px; }
-        .footer-nav-title { font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;}
+        .footer-nav-title { display: block; font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;}
         .footer-nav a { color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 500; transition: color 0.2s;}
         .footer-nav a:hover { color: var(--c-turquesa); }
         
@@ -387,6 +387,24 @@
             
             .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
         }
+
+        /* Ajustes puntuales: barra comercial, superposición original y etiqueta reflectiva. */
+        .top-bar { display:block; overflow:hidden; white-space:nowrap; padding:0; height:39px; background:var(--c-turquesa); color:var(--c-azul); }
+        .top-bar-track { display:flex; width:max-content; height:100%; align-items:center; animation:blindaflex-ticker 19s linear infinite; }
+        .top-bar-group { display:flex; align-items:center; justify-content:space-around; gap:26px; flex-shrink:0; padding-right:26px; }
+        .top-bar-item { display:inline-flex; align-items:center; gap:9px; font-size:13px; font-weight:800; letter-spacing:.025em; }
+        .top-bar-item svg { width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+        .top-bar-sep { font-size:20px; font-weight:700; }
+        @keyframes blindaflex-ticker { to { transform:translateX(-50%); } }
+        @media (prefers-reduced-motion:reduce) { .top-bar-track { animation:none; } .top-bar { overflow-x:auto; } }
+        /* No se modifica ningún componente interno de las tres tarjetas. */
+        @media (max-width:767px) {
+            .hero-section { margin-bottom:0; }
+            .benefits-overlap { position:relative; z-index:11; margin-top:-38px; }
+        }
+        .prod-app-combo { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin-bottom:12px; }
+        .prod-app-combo .prod-app { margin-bottom:0; white-space:nowrap; }
+        .prod-combo-plus { color:var(--c-turquesa-dark); font-size:18px; font-weight:800; line-height:1; }
     </style>
 </head>
 <body>
@@ -394,9 +412,11 @@
     <h1 class="sr-only">Especialistas en pinturas impermeabilizantes y protección de superficies</h1>
 
     <!-- 1. BARRA INFORMATIVA COMERCIAL -->
-    <div class="top-bar">
-        <svg viewBox="0 0 24 24" class="svg-thin"><rect x="3" y="8" width="12" height="10" rx="1"></rect><path d="M15 8h3l3 4v6h-6"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
-        Envío gratis en Córdoba y zonas cercanas seleccionadas · Pagá al recibir
+    <div class="top-bar" aria-label="Envío gratis en Córdoba ciudad y alrededores. Pagá al recibir.">
+        <div class="top-bar-track">
+            <div class="top-bar-group"><span class="top-bar-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 4v3h-7M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg><span>ENVÍO GRATIS EN CÓRDOBA CIUDAD Y ALREDEDORES</span></span><span class="top-bar-sep" aria-hidden="true">·</span><span class="top-bar-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/></svg><span>PAGÁ AL RECIBIR</span></span></div>
+            <div class="top-bar-group" aria-hidden="true"><span class="top-bar-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 4v3h-7M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg><span>ENVÍO GRATIS EN CÓRDOBA CIUDAD Y ALREDEDORES</span></span><span class="top-bar-sep" aria-hidden="true">·</span><span class="top-bar-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6 15h4"/></svg><span>PAGÁ AL RECIBIR</span></span></div>
+        </div>
     </div>
 
     <!-- 2. ENCABEZADO Y NAVEGACIÓN -->
@@ -493,7 +513,7 @@
         </section>
 
         <!-- 4. TRES BENEFICIOS TECNOLÓGICOS -->
-        <div class="container">
+        <div class="container benefits-overlap">
             <section class="benefits-grid section-gap">
                 <div class="ben-card">
                     <div class="ben-icon"><svg class="svg-thin" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
@@ -533,7 +553,7 @@
                         <div class="img-placeholder">BARRERA IMPERMEABLE</div>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-app">Frentes y Fachadas</span>
+                        <span class="prod-app">Impermeabilizante frentes y muros</span>
                         <h3 class="prod-title">Barrera Impermeable</h3>
                         <p class="prod-desc">Pintura impermeabilizante premium hidrorrepelente para muros exteriores.</p>
                         <a href="tienda-barrera-impermeable.html" class="btn-prod">
@@ -549,7 +569,7 @@
                         <div class="img-placeholder">BLINDAJE PARA TECHOS</div>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-app">Impermeabilización de Techos</span>
+                        <span class="prod-app">Impermeabilizante de techos</span>
                         <h3 class="prod-title">Blindaje para Techos</h3>
                         <p class="prod-desc">Impermeabilizante elastomérico con tecnología hidrorrepelente para losa y chapa.</p>
                         <a href="tienda-blindaje-techos.html" class="btn-prod">
@@ -565,7 +585,7 @@
                         <div class="img-placeholder">BLINDAJE REFLECTIVO</div>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-app">Impermeabilización Reflectiva</span>
+                        <div class="prod-app-combo"><span class="prod-app">Impermeabilizante de techos</span><span class="prod-combo-plus" aria-label="más">+</span><span class="prod-app">Reflexión solar</span></div>
                         <h3 class="prod-title">Blindaje Reflectivo</h3>
                         <p class="prod-desc">Protección para techos que reduce la temperatura interior reflejando la radiación solar.</p>
                         <a href="tienda-bindaje-reflectivo.html" class="btn-prod">
@@ -581,7 +601,7 @@
                         <div class="img-placeholder">BLINDAJE TRANSPARENTE</div>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-app">Protección Transparente</span>
+                        <span class="prod-app">Impermeabilizante transparente</span>
                         <h3 class="prod-title">Blindaje Transparente</h3>
                         <p class="prod-desc">Recubrimiento invisible que protege ladrillos y superficies compatibles de la humedad.</p>
                         <a href="tienda-bindaje-transparente.html" class="btn-prod">
@@ -597,7 +617,7 @@
                         <div class="img-placeholder">BARRERA ANTIHONGO</div>
                     </div>
                     <div class="prod-info">
-                        <span class="prod-app">Interiores y Ambientes Húmedos</span>
+                        <span class="prod-app">Pintura antihongos</span>
                         <h3 class="prod-title">Barrera Antihongo</h3>
                         <p class="prod-desc">Pintura especializada para evitar la formación de hongos y humedad en interiores.</p>
                         <a href="tienda-barrera-antihongo.html" class="btn-prod">
@@ -756,8 +776,8 @@
     <footer id="footer">
         <div class="container footer-grid">
             <div>
-                <a href="index.html" class="logo" style="padding:0; margin-bottom: 12px; display:inline-block;">
-                    <img src="assets/images/logo.png" alt="BLINDAFLEX" style="max-height: 28px;">
+                <a href="index.html" class="footer-logo" style="display:inline-block; margin-bottom: 12px;">
+                    <img src="assets/images/logo.png" alt="BLINDAFLEX">
                 </a>
                 <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
             </div>
