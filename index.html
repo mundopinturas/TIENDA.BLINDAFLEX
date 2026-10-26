@@ -1154,7 +1154,11 @@
 .bf-cart-detail{font-size:12px;color:#64748b;line-height:1.5}
 .bf-cart-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
 .bf-cart-controls button{border:1px solid #cbd5e1;background:#fff;border-radius:7px;padding:6px 12px;color:#071A24;font-weight:800;cursor:pointer}
-.bf-cart-gift{padding:12px;border-radius:9px;background:#e0f7fa;color:#071A24;font-size:12px;line-height:1.55;margin:0 0 12px}
+.bf-cart-gift{padding:15px 16px;border-radius:11px;background:linear-gradient(110deg,#E0F7FA,#F2F6F7);border:1px solid #82D4DE;border-left:4px solid #00AFC6;color:#071A24;font-size:14px;line-height:1.6;margin:0 0 15px;box-shadow:0 3px 12px rgba(7,26,36,.05)}
+.bf-cart-gift strong{display:block;font-size:15px;font-weight:900;letter-spacing:.15px;color:#071A24;margin-bottom:4px}
+.bf-cart-gift .bf-gift-emphasis{font-size:15px;font-weight:850;color:#007F91;margin-top:5px}
+.bf-cart-savings{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 4px;padding:12px 13px;background:#F0FAF8;border:1px solid #B6E5D7;border-radius:9px;color:#08745F;font-size:14px;font-weight:800}
+.bf-cart-savings strong{font-size:17px;white-space:nowrap}
 .bf-cart-note{font-size:12px;color:#64748b;margin-top:10px}
 #bf-mobile-nav{position:fixed;inset:0;z-index:5000;display:none}
 #bf-mobile-nav.bf-open{display:block}
@@ -1188,11 +1192,12 @@ function renderSharedCart(){
  total.textContent=money(cartTotal());
  if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
  let html='';let qty=roofQty();
- if(qty){html+='<div class="bf-cart-gift"><strong>BLINDAJE PARA TECHOS · PROMOCIÓN</strong><div>'+qty+' balde(s) · '+(discount()*100)+'% de descuento en Techos</div><div>Regalo: 1 kit premium'+(qty>=2?' + 1 sellador extra':'')+'</div></div>'}
+ if(qty){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div>'+qty+' balde(s) de Blindaje para Techos'+(discount()>0?' · '+(discount()*100)+'% de descuento':'')+'</div><div class="bf-gift-emphasis">✓ 1 kit premium de regalo'+(qty>=2?' + 1 sellador extra':'')+'</div></div>'}
  cart.forEach(i=>{
   let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
   html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
  });
+ if(qty&&discount()>0){const ahorro=Math.round(qty*148000*discount());html+='<div class="bf-cart-savings"><span>AHORRÁS EN BLINDAJE PARA TECHOS</span><strong>'+money(ahorro)+'</strong></div>';}
  html+='<p class="bf-cart-note">El costo de envío se determina según la zona de entrega.</p>';
  body.innerHTML=html;
 }
