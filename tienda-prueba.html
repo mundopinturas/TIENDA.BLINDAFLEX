@@ -131,6 +131,25 @@ header .logo img {
         .mute-toggle { position: absolute; bottom: 16px; right: 16px; background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; backdrop-filter: blur(4px); }
         .mute-toggle svg { width: 22px; height: 22px; fill: var(--c-blanco); }
 
+
+        /* ===== BLINDAFLEX · CARRUSEL DE 3 VIDEOS ===== */
+        .video-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; background: #101820; }
+        .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; }
+        .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
+        .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
+        .bf-vtap:focus-visible, .bf-vbtn:focus-visible, .bf-sound:focus-visible { outline: 3px solid #00afc6; outline-offset: -3px; }
+        .bf-vtap .bf-pause-indicator { display: none; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(3,17,29,.64); color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 26px; margin: auto; }
+        .bf-vtap.bf-paused { display: flex; align-items: center; justify-content: center; }
+        .bf-vtap.bf-paused .bf-pause-indicator { display: flex; }
+        .bf-vbtn { position: absolute; z-index: 6; top: 50%; transform: translateY(-50%); border: 1px solid rgba(255,255,255,.56); background: rgba(4,18,33,.43); color: #fff; border-radius: 50%; width: 40px; height: 40px; display: grid; place-items: center; font-size: 32px; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; backdrop-filter: blur(3px); }
+        .bf-prev { left: 10px; } .bf-next { right: 10px; }
+        .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
+        .bf-dots { position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; pointer-events: none; }
+        .bf-dot { display: block; width: 6px; height: 6px; background: rgba(255,255,255,.57); border-radius: 50%; transition: background .2s, width .2s; }
+        .bf-dot.bf-selected { width: 17px; background: #00afc6; border-radius: 8px; }
+        @media (max-width: 390px) { .bf-vbtn { width: 36px; height: 36px; font-size: 28px; } .bf-sound { font-size: 10px; } }
+        @media (prefers-reduced-motion: reduce) { .bf-vslide { transition-duration: .01ms !important; } }
+
         .hero-header { text-align: center; margin-top: 24px; margin-bottom: 20px; }
         .hero-header h2 { font-size: 24px; font-weight: 900; color: var(--c-azul); line-height: 1.15; margin-bottom: 8px; text-transform: uppercase;}
         .hero-header p { font-size: 15px; font-weight: 500; color: var(--c-texto-light); }
@@ -533,7 +552,7 @@ header .logo img {
 
             .section-icon-main { width: 42px; height: 42px; max-width: 42px; max-height: 42px; }
 
-            .floating-bar { display: none; }
+            .floating-bar { display: flex; }
         }
 
         /* Refinamiento tecnológico: movimiento sobrio y controles nítidos */
@@ -594,7 +613,35 @@ header .logo img {
         .whatsapp-float:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(7,26,36,.28); }
         .whatsapp-float:focus-visible { outline: 3px solid var(--c-turquesa); outline-offset: 3px; }
         @media (min-width: 768px) { .whatsapp-float { bottom: 24px; right: 24px; } }
-    </style>
+    
+/* Footer sincronizado con index.html */
+        footer { background: var(--c-azul); color: var(--c-blanco); padding: 48px 20px 24px; border-top: 4px solid var(--c-turquesa); margin-top: 40px;}
+        .footer-logo img { max-height: 70px; width: auto; margin-bottom: 20px; }
+        .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 0; max-width: 320px; line-height: 1.5; }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; align-items: start;}
+        
+        .footer-nav { display: flex; flex-direction: column; gap: 14px; }
+        .footer-nav-title { display: block; font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;}
+        .footer-nav a { color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 500; transition: color 0.2s;}
+        .footer-nav a:hover { color: var(--c-turquesa); }
+        
+        .footer-contact { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
+        .footer-contact h5 { font-size: 12px; color: #8ba2ac; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;}
+        .footer-wsp { font-size: 20px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
+        .footer-wsp svg { width: 24px !important; height: 24px !important; fill: #25D366; }
+        .footer-bottom { text-align: center; font-size: 12px; color: #64748b; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;}
+
+
+@media(min-width:992px){.footer-grid{grid-template-columns:1fr 1fr 1fr;}}
+
+/* Asistencia comercial secundaria, sin competir con el botón de compra */
+.bf-help-buy{display:flex;align-items:center;gap:11px;padding:16px 15px;margin:13px 0 9px;background:#EAF7F9;border:1px solid #A7DDE4;border-left:3px solid #00AFC6;border-radius:10px;box-shadow:0 3px 10px rgba(7,26,36,.05);color:#071A24;text-align:left;}
+.bf-help-buy svg{width:27px;height:27px;flex-shrink:0;stroke:#008FA3;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.bf-help-buy .bf-help-text{flex:1;min-width:0;line-height:1.45;font-size:14px;font-weight:700;}
+.bf-help-buy a{display:inline-block;color:#008FA3;text-decoration:underline;text-underline-offset:2px;font-weight:800;margin-top:5px;font-size:14px;}
+.bf-help-buy a:focus-visible{outline:2px solid #008FA3;outline-offset:3px;}
+
+</style>
 </head>
 <body>
 
@@ -633,15 +680,26 @@ header .logo img {
             
             <!-- SECCIÓN HERO -->
             <section class="section-gap hero-section">
-                <!-- Video Intacto -->
-                <div class="video-wrapper">
-                    <div id="yt-player-container" style="width: 100%; height: 100%; pointer-events: none;"></div>
-                    <button class="mute-toggle" id="mute-btn" onclick="videoControl()" aria-label="Activar sonido">
-                        <svg id="icon-unmute" viewBox="0 0 24 24" style="display:none;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                        <svg id="icon-mute" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                    </button>
+                <!-- Carrusel local · 3 MP4 · mismo tamaño que el video anterior -->
+                <div class="video-wrapper" id="bf-vcarousel" role="region" aria-label="Videos demostrativos de Blindaje para Techos">
+                    <div class="bf-vstage">
+                        <div class="bf-vslide" data-video="0">
+                            <video id="bf-video-0" src="assets/videos/blindaje-techos-1-hidrorrepelencia.mp4" muted autoplay playsinline webkit-playsinline preload="auto" aria-label="Video 1: hidrorrepelencia"></video>
+                        </div>
+                        <div class="bf-vslide" data-video="1">
+                            <video id="bf-video-1" src="assets/videos/blindaje-techos-2-elasticidad.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="Video 2: elasticidad"></video>
+                        </div>
+                        <div class="bf-vslide" data-video="2">
+                            <video id="bf-video-2" src="assets/videos/blindaje-techos-3-blindaje-integral.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="Video 3: protección integral"></video>
+                        </div>
+                        <button type="button" class="bf-vtap" id="bf-vtap" aria-label="Pausar o reanudar video"><span class="bf-pause-indicator" aria-hidden="true">▶</span></button>
+                    </div>
+                    <button type="button" class="bf-vbtn bf-prev" id="bf-prev" aria-label="Ver video anterior">&#8249;</button>
+                    <button type="button" class="bf-vbtn bf-next" id="bf-next" aria-label="Ver video siguiente">&#8250;</button>
+                    <div class="bf-dots" aria-hidden="true"><span class="bf-dot bf-selected"></span><span class="bf-dot"></span><span class="bf-dot"></span></div>
+                    <button type="button" class="bf-sound" id="bf-sound" aria-label="Activar sonido">🔇 ACTIVAR SONIDO</button>
                 </div>
-                
+
                 <div class="hero-text-block">
                     <div class="hero-header">
                         <h2>EL AGUA RESBALA.<br>TU TECHO QUEDA PROTEGIDO.</h2>
@@ -825,6 +883,8 @@ header .logo img {
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                             AGREGAR AL CARRITO
                         </button>
+<div class="bf-help-buy" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><div class="bf-help-text">¿Necesitás asesoramiento con tu compra?<div><a href="https://wa.me/5493516318301?text=Hola%2C%20estoy%20viendo%20Blindaje%20para%20Techos%20en%20la%20tienda%20Blindaflex%20y%20quisiera%20hacer%20una%20consulta%20sobre%20mi%20pedido." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre Blindaje para Techos">Escribinos por WhatsApp ↗</a></div></div></div>
+
                     </section>
 
                     <!-- BLOQUE CÓMO COMPRAR -->
@@ -1214,117 +1274,187 @@ header .logo img {
     </section>
 
     <!-- ================== FOOTER ================== -->
-    <footer>
-        <div class="container grid-desktop" style="gap:24px;">
-            <div>
-                <a href="tienda-index.html" class="logo" style="padding:0; margin-bottom: 12px; display:inline-block;">
-                    <img src="assets/images/logo.png" alt="BLINDAFLEX" style="max-height: 28px;">
-                </a>
-                <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies de alta tecnología.</p>
-                <div class="footer-nav">
-                    <a href="tienda-index.html">Inicio Tienda</a>
-                    <a href="https://blindaflex.com">Tecnología Blindaflex</a>
-                </div>
-            </div>
-            <div>
-                <div class="footer-contact">
-                    <h5>VENTAS Y ASESORAMIENTO</h5>
-                    <div class="footer-wsp">
-                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
+    <footer id="footer">
+<div class="container footer-grid">
+<div>
+<a class="footer-logo" href="index.html" style="display:inline-block; margin-bottom: 12px;">
+<img alt="BLINDAFLEX" src="assets/images/logo.png"/>
+</a>
+<p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
+</div>
+<div class="footer-nav">
+<span class="footer-nav-title">Nuestros Productos</span>
+<a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+<a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+<a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+<a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+<a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
+</div>
+<div>
+<div class="footer-nav" style="margin-bottom: 24px;">
+<span class="footer-nav-title">Tienda</span>
+<a href="index.html#confianza">Envíos y formas de pago</a>
+<a href="https://blindaflex.com">Sitio institucional</a>
+</div>
+<div class="footer-contact">
+<h5>VENTAS Y ASESORAMIENTO</h5>
+<a aria-label="Contacto por WhatsApp" class="footer-wsp" href="https://wa.me/5493516318301">
+<svg viewbox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"></path></svg>
                         +54 9 351 631 8301
-                    </div>
-                </div>
-            </div>
+                    </a>
+</div>
+</div>
+</div>
+<div class="container footer-bottom">
+            © 2026 BLINDAFLEX. Todos los derechos reservados.
         </div>
-        <div class="container footer-bottom">
-            &copy; 2026 BLINDAFLEX. Todos los derechos reservados. Las imágenes son ilustrativas.
-        </div>
-    </footer>
+</footer>
 
-    <!-- ================== SCRIPT DE YOUTUBE API ================== -->
+    <!-- ================== CARRUSEL HTML5 BLINDAFLEX ================== -->
     <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    (function () {
+        'use strict';
+        const root = document.getElementById('bf-vcarousel');
+        if (!root) return;
+        const slides = [...root.querySelectorAll('.bf-vslide')];
+        const videos = slides.map(slide => slide.querySelector('video'));
+        const dots = [...root.querySelectorAll('.bf-dot')];
+        const tap = document.getElementById('bf-vtap');
+        const soundButton = document.getElementById('bf-sound');
+        let active = 0;
+        let desiredSound = false;
+        let explicitlyPaused = false;
+        let visible = false;
+        let changing = false;
+        let pointerStart = null;
+        let suppressNextClick = false;
+        let changeTimeout;
 
-        let ytPlayer;
-        let isVideoReady = false;
-        let isMuted = true;
-
-        function onYouTubeIframeAPIReady() {
-            ytPlayer = new YT.Player('yt-player-container', {
-                videoId: 'wOd__Iwlrr8',
-                playerVars: {
-                    'autoplay': 1, 'controls': 0, 'disablekb': 1, 'fs': 0,
-                    'loop': 1, 'playlist': 'wOd__Iwlrr8', 'modestbranding': 1,
-                    'playsinline': 1, 'mute': 1, 'rel': 0
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+        const activeVideo = () => videos[active];
+        const offscreenPosition = (index, center) => {
+            if (index === center) return 0;
+            return index === (center + 1) % 3 ? 100 : -100;
+        };
+        function arrange(center) {
+            slides.forEach((slide, index) => {
+                slide.style.transition = 'none';
+                slide.style.transform = `translateX(${offscreenPosition(index, center)}%)`;
+                slide.style.zIndex = index === center ? '2' : '1';
+            });
+            dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===center));
+            root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${center + 1} de 3`);
+        }
+        function updateSound() {
+            const hasSound = !activeVideo().muted;
+            soundButton.textContent = hasSound ? '🔊 SILENCIAR' : '🔇 ACTIVAR SONIDO';
+            soundButton.setAttribute('aria-label',hasSound?'Silenciar video':'Activar sonido del video');
+        }
+        function updatePause() {
+            const paused = explicitlyPaused || (visible && activeVideo().paused);
+            tap.classList.toggle('bf-paused',paused);
+            tap.setAttribute('aria-label',paused?'Reanudar video':'Pausar video');
+        }
+        function pauseAll() { videos.forEach(v => { if (!v.paused) v.pause(); }); updatePause(); }
+        async function playCurrent() {
+            if (!visible || document.hidden || explicitlyPaused) { updatePause(); return; }
+            const v = activeVideo();
+            v.muted = !desiredSound;
+            try {
+                await v.play();
+            } catch(e) {
+                // El navegador puede bloquear audio en el cambio de video.
+                v.muted = true;
+                try { await v.play(); } catch (_) { /* Espera al toque del usuario. */ }
+            }
+            updateSound(); updatePause();
+        }
+        function switchVideo(direction) {
+            if (changing) return;
+            changing = true;
+            clearTimeout(changeTimeout);
+            const from = active;
+            const to = (from + direction + 3) % 3;
+            const outgoing = slides[from];
+            const incoming = slides[to];
+            videos[from].pause();
+            // Las flechas también reinician el video seleccionado, con o sin sonido.
+            videos[to].pause();
+            try { videos[to].currentTime = 0; } catch (_) {}
+            active = to;
+            explicitlyPaused = false;
+            incoming.style.transition = 'none';
+            incoming.style.transform = `translateX(${direction > 0 ? 100 : -100}%)`;
+            incoming.style.zIndex = '3';
+            outgoing.style.zIndex = '2';
+            // El tercer video avanza al primero desde la derecha, sin retroceso visual.
+            void incoming.offsetWidth;
+            const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 480;
+            incoming.style.transition = `transform ${motion}ms ease-in-out`;
+            outgoing.style.transition = `transform ${motion}ms ease-in-out`;
+            incoming.style.transform = 'translateX(0%)';
+            outgoing.style.transform = `translateX(${direction > 0 ? -100 : 100}%)`;
+            dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===active));
+            root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${active + 1} de 3`);
+            playCurrent();
+            changeTimeout = setTimeout(() => { arrange(active); changing = false; },motion + 45);
+        }
+        videos.forEach((video,index) => {
+            video.muted = true;
+            video.controls = false;
+            video.addEventListener('ended', () => {
+                if (index === active && visible && !explicitlyPaused) switchVideo(1);
+            });
+            video.addEventListener('error', () => {
+                if (index === active) {
+                    console.warn('Blindaflex: no se encontró el archivo del video', video.currentSrc);
+                    tap.classList.add('bf-paused');
                 }
             });
-        }
-
-        function onPlayerReady(event) {
-            isVideoReady = true;
-            event.target.mute();
-            setupVideoObserver();
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                ytPlayer.seekTo(0);
-                ytPlayer.playVideo();
+        });
+        arrange(active);
+        document.getElementById('bf-prev').addEventListener('click', () => switchVideo(-1));
+        document.getElementById('bf-next').addEventListener('click', () => switchVideo(1));
+        soundButton.addEventListener('click', async () => {
+            desiredSound = activeVideo().muted;
+            activeVideo().muted = !desiredSound;
+            // Una pulsación explícita desbloquea el audio cuando el navegador lo admite.
+            if (activeVideo().paused && visible) { explicitlyPaused = false; await playCurrent(); }
+            updateSound(); updatePause();
+        });
+        tap.addEventListener('click', () => {
+            if(suppressNextClick) { suppressNextClick = false; return; }
+            const v = activeVideo();
+            if (v.paused) { explicitlyPaused = false; playCurrent(); }
+            else { explicitlyPaused = true; pauseAll(); }
+            updatePause();
+        });
+        tap.addEventListener('pointerdown',e => { pointerStart={x:e.clientX,y:e.clientY}; });
+        tap.addEventListener('pointerup',e => {
+            if (!pointerStart) return;
+            const dx = e.clientX-pointerStart.x;
+            const dy = e.clientY-pointerStart.y;
+            pointerStart = null;
+            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)*1.25) {
+                suppressNextClick = true;
+                switchVideo(dx < 0 ? 1 : -1);
+                // El swipe puede terminar sin generar un evento click.
+                setTimeout(() => { suppressNextClick = false; },200);
             }
-        }
+        });
+        tap.addEventListener('pointercancel',() => { pointerStart = null; });
 
-        function setupVideoObserver() {
-            const videoWrapper = document.querySelector('.video-wrapper');
-            if(!videoWrapper) return;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        if(isVideoReady && document.visibilityState === 'visible') {
-                            ytPlayer.playVideo();
-                        }
-                    } else {
-                        if(isVideoReady) {
-                            ytPlayer.pauseVideo();
-                        }
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            observer.observe(videoWrapper);
-
-            document.addEventListener("visibilitychange", () => {
-                if (document.visibilityState === "hidden" && isVideoReady) {
-                    ytPlayer.pauseVideo();
-                } else if (document.visibilityState === "visible" && isVideoReady) {
-                    const rect = videoWrapper.getBoundingClientRect();
-                    if(rect.top < window.innerHeight && rect.bottom > 0) {
-                        ytPlayer.playVideo();
-                    }
-                }
-            });
-        }
-
-        function videoControl() {
-            if(!isVideoReady) return;
-            isMuted = !isMuted;
-            if(isMuted) {
-                ytPlayer.mute();
-                document.getElementById('icon-mute').style.display = 'block';
-                document.getElementById('icon-unmute').style.display = 'none';
-            } else {
-                ytPlayer.unMute();
-                document.getElementById('icon-mute').style.display = 'none';
-                document.getElementById('icon-unmute').style.display = 'block';
-            }
-        }
+        // Pausa al salir del área visible y continúa desde el mismo segundo al regresar.
+        if ('IntersectionObserver' in window) {
+            const observer=new IntersectionObserver(entries => {
+                visible = entries[0].intersectionRatio >= 0.45;
+                if (visible) playCurrent(); else pauseAll();
+            },{threshold:[0,0.25,0.45,0.6,1]});
+            observer.observe(root);
+        } else { visible=true; playCurrent(); }
+        document.addEventListener('visibilitychange',() => {
+            if(document.hidden) pauseAll(); else if(visible) playCurrent();
+        });
+    })();
     </script>
 
     <!-- ================== SCRIPT LÓGICA PRINCIPAL (COMPARADOR, CARRITO, ETC) ================== -->
@@ -1341,7 +1471,7 @@ header .logo img {
             if(data) {
                 try {
                     const parsed = JSON.parse(data);
-                    if(Date.now() - parsed.lastActivity > CART_EXPIRATION_MS) return [];
+                    // Carrito persistente entre visitas; no vence a los 30 minutos.
                     return parsed.items || [];
                 } catch(e) { return []; }
             }
@@ -1360,17 +1490,22 @@ header .logo img {
             }
         }
 
+        // Carrito compartido: el descuento por volumen corresponde solo a Blindaje para Techos.
+        function isTechoItem(item) { return item.type === 'techo' || (!item.type && /Blindaje para Techos/i.test(item.product || '')); }
         function getGlobalPricing() {
-            const totalBuckets = cart.reduce((sum, item) => sum + item.qty, 0);
-            let discount = 0;
-            if(totalBuckets === 2) discount = 0.15;
-            if(totalBuckets === 3) discount = 0.20;
-            if(totalBuckets >= 4) discount = 0.25;
-
-            const gifts = "1 Kit Premium de regalo";
-
+            const totalBuckets = cart.filter(isTechoItem).reduce((sum, item) => sum + Number(item.qty || 0), 0);
+            let discount = totalBuckets === 2 ? 0.15 : totalBuckets === 3 ? 0.20 : totalBuckets >= 4 ? 0.25 : 0;
+            const gifts = totalBuckets >= 2 ? '1 Kit Premium + 1 Sellador Extra' : totalBuckets ? '1 Kit Premium de regalo' : '';
             return { totalBuckets, discount, gifts };
         }
+        function getCartItemSubtotal(item) {
+            if (isTechoItem(item)) return Number(item.qty || 0) * PRECIO_BASE * (1 - getGlobalPricing().discount);
+            // Productos de Barrera Impermeable conservan su precio propio.
+            const prices = {12:112200, 5:48900};
+            const price = Number(item.price ?? item.unitPrice ?? prices[item.presentation] ?? 0);
+            return Number(item.qty || 0) * price;
+        }
+        function getCartTotal() { return cart.reduce((sum, item) => sum + getCartItemSubtotal(item), 0); }
 
         function getSinglePriceData(qty) {
             let discount = 0;
@@ -1545,14 +1680,16 @@ header .logo img {
             const color = document.querySelector('input[name="color"]:checked').value;
             const productTitle = "Blindaje para Techos (20kg)";
             
-            const existingItem = cart.find(i => i.product === productTitle && i.color === color);
+            const existingItem = cart.find(i => isTechoItem(i) && i.product === productTitle && i.color === color);
             
             if(existingItem) {
                 existingItem.qty += selectedQty;
             } else {
                 cart.push({
                     id: Date.now().toString() + Math.random().toString(36).substr(2, 5),
+                    type: 'techo',
                     product: productTitle,
+                    price: PRECIO_BASE,
                     color: color,
                     qty: selectedQty
                 });
@@ -1601,22 +1738,22 @@ header .logo img {
             }
             
             const globalPricing = getGlobalPricing();
-            const unitFinalPrice = PRECIO_BASE * (1 - globalPricing.discount);
+
             
             // El kit se entrega una sola vez por pedido.
             // La descripción se calcula con la cantidad total de baldes del carrito.
-            let html = `
+            let html = globalPricing.totalBuckets ? `
                 <div class="cart-gift-details">
                     <div class="cart-gift-heading">REGALOS INCLUIDOS:</div>
                     <div class="cart-gift-title">1 KIT PREMIUM DE REGALO</div>
                     <div class="cart-gift-components">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo de 22 cm con 2 fundas · Pincel profesional</div>
                     <div class="cart-gift-extra">Se entrega una sola vez por pedido.</div>
-                </div>`;
+                </div>` : "";
             
             let grandTotal = 0;
 
             cart.forEach(item => {
-                const itemSubtotal = item.qty * unitFinalPrice;
+                const itemSubtotal = getCartItemSubtotal(item);
                 grandTotal += itemSubtotal;
                 
                 html += `
@@ -1625,7 +1762,7 @@ header .logo img {
                             <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                         </button>
                         <div class="cart-item-title">${item.product}</div>
-                        <div class="cart-item-color">Color: ${item.color}</div>
+                        <div class="cart-item-color">${item.presentation ? `Presentación: ${item.presentation} kg · ` : ""}Color: ${item.color || "Sin especificar"}</div>
                         <div class="cart-item-controls">
                             <div class="qty-controls">
                                 <button class="qty-btn" onclick="changeCartQty('${item.id}', -1)">-</button>
@@ -1650,22 +1787,22 @@ header .logo img {
             if(!summaryContainer) return;
             
             const globalPricing = getGlobalPricing();
-            const unitFinalPrice = PRECIO_BASE * (1 - globalPricing.discount);
+
             
             let grandTotal = 0;
             let summaryHtml = '';
             
             cart.forEach(item => {
-                const itemSubtotal = item.qty * unitFinalPrice;
+                const itemSubtotal = getCartItemSubtotal(item);
                 grandTotal += itemSubtotal;
                 summaryHtml += `<div style="margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1);">
-                    <div style="font-size:14px; font-weight:700;">${item.qty}x ${item.product} (${item.color})</div>
+                    <div style="font-size:14px; font-weight:700;">${item.qty}x ${item.product} (${item.color || "Sin especificar"})</div>
                     <div style="font-size:16px; font-weight:900; text-align:right; margin-top:4px;">${formatARS(itemSubtotal)}</div>
                 </div>`;
             });
             
-            summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS INCLUIDOS:<br>${globalPricing.gifts}</div>`;
-            summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.8); margin-top:-6px; margin-bottom:12px; line-height:1.45;">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo de 22 cm con 2 fundas · Pincel profesional.<br>Se entrega una sola vez por pedido.</div>`;
+            if(globalPricing.totalBuckets) summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS INCLUIDOS:<br>${globalPricing.gifts}</div>`;
+            if(globalPricing.totalBuckets) summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.8); margin-top:-6px; margin-bottom:12px; line-height:1.45;">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo de 22 cm con 2 fundas · Pincel profesional.<br>Se entrega una sola vez por pedido.</div>`;
             
             summaryHtml += `<div style="display:flex; justify-content:space-between; margin-top:16px; border-top: 1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px; font-weight:900;"><span>TOTAL:</span> <span>${formatARS(grandTotal)}</span></div>`;
             summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.6); margin-top:12px; text-align:center;">Envío a confirmar según zona. Pago al recibir.</div>`;
@@ -1703,7 +1840,7 @@ header .logo img {
             const ref = document.getElementById('f-ref').value;
 
             const globalPricing = getGlobalPricing();
-            const unitFinalPrice = PRECIO_BASE * (1 - globalPricing.discount);
+
 
             let msg = `*NUEVO PEDIDO BLINDAFLEX* %0A%0A`;
             msg += `*DATOS DEL CLIENTE*%0A`;
@@ -1715,19 +1852,19 @@ header .logo img {
             let grandTotal = 0; 
             
             cart.forEach((item, index) => {
-                const itemSubtotal = item.qty * unitFinalPrice;
+                const itemSubtotal = getCartItemSubtotal(item);
                 msg += `🔸 *Item ${index+1}:* ${item.product}%0AColor: ${item.color}%0ACantidad: ${item.qty} balde(s)%0ASubtotal: ${formatARS(itemSubtotal)}%0A%0A`;
                 grandTotal += itemSubtotal;
             });
 
-            const originalTotal = globalPricing.totalBuckets * PRECIO_BASE;
+            const originalTotal = getCartTotal() + globalPricing.totalBuckets * PRECIO_BASE * globalPricing.discount;
             const totalAhorro = originalTotal - grandTotal;
 
             msg += `*RESUMEN*%0A`;
-            msg += `🎁 Regalos: ${globalPricing.gifts}%0A`;
-            msg += `   - Sellador de grietas y fisuras Blindaflex 1,2 kg%0A`;
-            msg += `   - Rodillo de 22 cm con 2 fundas%0A`;
-            msg += `   - Pincel profesional%0A`;
+            if(globalPricing.totalBuckets) msg += `🎁 Regalos: ${globalPricing.gifts}%0A`;
+            if(globalPricing.totalBuckets) msg += `   - Sellador de grietas y fisuras Blindaflex 1,2 kg%0A`;
+            if(globalPricing.totalBuckets) msg += `   - Rodillo de 22 cm con 2 fundas%0A`;
+            if(globalPricing.totalBuckets) msg += `   - Pincel profesional%0A`;
             msg += `💰 *TOTAL A PAGAR: ${formatARS(grandTotal)}*%0A`;
             if(totalAhorro > 0) msg += `🎉 Ahorraste: ${formatARS(totalAhorro)}%0A`;
             msg += `🚚 Envío: A confirmar según zona%0A💳 Pago: Al recibir los productos%0A`;
@@ -1753,6 +1890,7 @@ header .logo img {
             else floatBar.classList.remove('visible');
         }
         window.addEventListener('scroll', updateFloatingBarVisibility, {passive: true});
+        window.addEventListener('pageshow', updateFloatingBarVisibility);
         window.addEventListener('resize', updateFloatingBarVisibility, {passive: true});
 
         // Carrusel circular: primera imagen visible durante 4 segundos al entrar.
@@ -2037,5 +2175,86 @@ header .logo img {
             updateFloatingBarVisibility();
         };
     </script>
+<style id="bf-unified-cart-css">
+#bf-keep-shopping{width:100%;display:block;margin-bottom:11px;padding:13px 12px;border:1.5px solid #00AFC6;border-radius:9px;background:#fff;color:#071A24;font-size:14px;font-weight:800;cursor:pointer;text-align:center}
+#bf-keep-shopping:focus-visible,.bf-menu-link:focus-visible{outline:3px solid #00AFC6;outline-offset:2px}
+.bf-cart-row{padding:15px 0;border-bottom:1px solid #e2e8f0;color:#071A24}
+.bf-cart-row strong{display:block;font-size:14px;margin-bottom:5px}
+.bf-cart-detail{font-size:12px;color:#64748b;line-height:1.5}
+.bf-cart-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
+.bf-cart-controls button{border:1px solid #cbd5e1;background:#fff;border-radius:7px;padding:6px 12px;color:#071A24;font-weight:800;cursor:pointer}
+.bf-cart-gift{padding:15px 16px;border-radius:11px;background:linear-gradient(110deg,#E0F7FA,#F2F6F7);border:1px solid #82D4DE;border-left:4px solid #00AFC6;color:#071A24;font-size:14px;line-height:1.6;margin:0 0 15px;box-shadow:0 3px 12px rgba(7,26,36,.05)}
+.bf-cart-gift strong{display:block;font-size:15px;font-weight:900;letter-spacing:.15px;color:#071A24;margin-bottom:4px}
+.bf-cart-gift .bf-gift-emphasis{font-size:15px;font-weight:850;color:#007F91;margin-top:5px}
+.bf-cart-savings{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 4px;padding:12px 13px;background:#F0FAF8;border:1px solid #B6E5D7;border-radius:9px;color:#08745F;font-size:14px;font-weight:800}
+.bf-cart-savings strong{font-size:17px;white-space:nowrap}
+.bf-cart-note{font-size:12px;color:#64748b;margin-top:10px}
+#bf-mobile-nav{position:fixed;inset:0;z-index:5000;display:none}
+#bf-mobile-nav.bf-open{display:block}
+#bf-mobile-nav .bf-backdrop{position:absolute;inset:0;background:rgba(7,26,36,.7)}
+#bf-mobile-nav .bf-panel{position:absolute;top:0;bottom:0;left:0;width:min(85vw,330px);background:#071A24;color:#fff;padding:24px;overflow-y:auto;box-shadow:4px 0 30px #0004}
+#bf-mobile-nav .bf-close{display:block;margin-left:auto;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
+#bf-mobile-nav .bf-menu-link{display:block;padding:16px 0;border-bottom:1px solid #ffffff22;font-weight:750;text-decoration:none;color:#fff;font-size:15px}
+</style>
+<script id="bf-unified-cart-script">
+(function(){
+'use strict';
+const KEY='blindaflex_cart_data';
+const money=n=>'$'+Math.round(n).toLocaleString('es-AR');
+const escapeHTML=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isRoof=i=>i.type==='techo'||(!i.type&&/Blindaje para Techos/i.test(i.product||''));
+const isBarrera=i=>i.type==='barrera'||/Barrera Impermeable/i.test(i.product||'');
+const roofQty=()=>cart.filter(isRoof).reduce((a,i)=>a+Number(i.qty||0),0);
+const discount=()=>{let q=roofQty();return q===2?.15:q===3?.20:q>=4?.25:0;};
+const subtotal=i=>Number(i.qty||0)*(isRoof(i)?148000*(1-discount()):Number(i.price||0));
+const cartTotal=()=>cart.reduce((a,i)=>a+subtotal(i),0);
+const reload=()=>{try{let o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items:[]}catch(e){return []}};
+const update=()=>{
+ const n=cart.reduce((a,i)=>a+Number(i.qty||0),0);
+ const counter=document.getElementById('cart-counter');if(counter)counter.textContent=n;
+ const checkout=document.getElementById('btn-checkout');if(checkout)checkout.disabled=n===0;
+ renderSharedCart();
+};
+function renderSharedCart(){
+ const body=document.getElementById('cart-body'),total=document.getElementById('drawer-total');
+ if(!body||!total)return;
+ total.textContent=money(cartTotal());
+ if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
+ let html='';let qty=roofQty();
+ if(qty){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div>'+qty+' balde(s) de Blindaje para Techos'+(discount()>0?' · '+(discount()*100)+'% de descuento':'')+'</div><div class="bf-gift-emphasis">✓ 1 kit premium de regalo'+(qty>=2?' + 1 sellador extra':'')+'</div></div>'}
+ cart.forEach(i=>{
+  let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
+  html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
+ });
+ if(qty&&discount()>0){const ahorro=Math.round(qty*148000*discount());html+='<div class="bf-cart-savings"><span>AHORRÁS EN BLINDAJE PARA TECHOS</span><strong>'+money(ahorro)+'</strong></div>';}
+ html+='<p class="bf-cart-note">El costo de envío se determina según la zona de entrega.</p>';
+ body.innerHTML=html;
+}
+function persist(){localStorage.setItem(KEY,JSON.stringify({items:cart,lastActivity:Date.now()}));update();if(document.getElementById('checkout-view')?.style.display==='block'&&typeof renderCheckoutSummary==='function')renderCheckoutSummary()}
+window.bfCartRefresh=()=>{cart=reload();update()};
+window.bfCartQty=(id,delta)=>{let item=cart.find(i=>String(i.id)===String(id));if(!item)return;item.qty=Number(item.qty||0)+delta;if(item.qty<=0)cart=cart.filter(i=>i!==item);persist()};
+window.bfCartRemove=id=>{cart=cart.filter(i=>String(i.id)!==String(id));persist()};
+window.renderDrawer=renderSharedCart;
+window.saveCart=persist;
+window.updateCartCounter=update;
+window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
+window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
+window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();if(typeof renderCheckoutSummary==='function')renderCheckoutSummary()};
+window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty())html+='<p style="margin-top:12px">🎁 Kit premium'+(roofQty()>=2?' + sellador extra':'')+' incluido · '+discount()*100+'% de descuento en Techos</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
+const footer=document.querySelector('#cart-drawer .cart-footer');
+if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',closeCartDrawer);let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
+document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty')))});
+window.addEventListener('pageshow',()=>{cart=reload();update()});
+window.addEventListener('storage',e=>{if(e.key===KEY){cart=reload();update()}});
+// Navegación común: las páginas de producto no tenían un menú móvil funcional.
+if(!document.getElementById('mobile-menu')){
+ let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a></nav>';
+ document.body.appendChild(nav);const close=()=>nav.classList.remove('bf-open');nav.querySelector('.bf-backdrop').addEventListener('click',close);nav.querySelector('.bf-close').addEventListener('click',close);
+ document.querySelector('header .menu-btn')?.addEventListener('click',()=>{closeCartDrawer();nav.classList.add('bf-open')});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeCartDrawer()}});
+}
+cart=reload();update();
+})();
+</script>
 </body>
 </html>
