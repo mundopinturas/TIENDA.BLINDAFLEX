@@ -147,22 +147,27 @@
         .desktop-nav { display: none; }
 
         /* =========================================================
-           BLOQUE 1: CARRUSEL DE VIDEOS YT (3:4 Ratio)
+           BLOQUE 1: CARRUSEL BLINDAFLEX · 3 MP4
+           Se conserva el formato y la posición del reproductor original
            ========================================================= */
-        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 600px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #000; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); aspect-ratio: 3/4;}
-        .yt-track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
-        .yt-track::-webkit-scrollbar { display: none; }
-        .yt-slide { min-width: 100%; height: 100%; scroll-snap-align: center; position: relative; pointer-events: none; }
-        .yt-slide iframe { width: 100%; height: 100%; object-fit: cover; border: none; transform: scale(1.02); }
-        
-        .vid-controls { position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 10; }
-        .vid-btn { background: rgba(7, 26, 36, 0.85); border: 1px solid var(--c-turquesa); color: white; border-radius: 50%; width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; cursor: pointer; backdrop-filter: blur(4px); }
-        .vid-btn svg { width: 22px; height: 22px; fill: var(--c-blanco); }
-        .yt-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(7, 26, 36, 0.5); border: none; width: 40px; height: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; }
-        .yt-prev { left: 0; border-radius: 0 8px 8px 0; }
-        .yt-next { right: 0; border-radius: 8px 0 0 8px; }
-        .yt-nav svg { width: 24px; height: 24px; fill: var(--c-blanco); }
-        .yt-indicators { position: absolute; bottom: 16px; left: 16px; background: rgba(7, 26, 36, 0.85); color: var(--c-blanco); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 12px; z-index: 10; border: 1px solid rgba(255,255,255,0.2);}
+        .yt-carousel-wrapper { position: relative; width: 100%; max-width: 600px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #101820; box-shadow: var(--shadow-tech); border: 2px solid var(--c-azul); aspect-ratio: 3 / 4; }
+        /* ===== BLINDAFLEX · CARRUSEL DE 3 VIDEOS ===== */
+        .yt-carousel-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; background: #101820; }
+        .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; }
+        .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
+        .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
+        .bf-vtap:focus-visible, .bf-vbtn:focus-visible, .bf-sound:focus-visible { outline: 3px solid #00afc6; outline-offset: -3px; }
+        .bf-vtap .bf-pause-indicator { display: none; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(3,17,29,.64); color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 26px; margin: auto; }
+        .bf-vtap.bf-paused { display: flex; align-items: center; justify-content: center; }
+        .bf-vtap.bf-paused .bf-pause-indicator { display: flex; }
+        .bf-vbtn { position: absolute; z-index: 6; top: 50%; transform: translateY(-50%); border: 1px solid rgba(255,255,255,.56); background: rgba(4,18,33,.43); color: #fff; border-radius: 50%; width: 40px; height: 40px; display: grid; place-items: center; font-size: 32px; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; backdrop-filter: blur(3px); }
+        .bf-prev { left: 10px; } .bf-next { right: 10px; }
+        .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
+        .bf-dots { position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; pointer-events: none; }
+        .bf-dot { display: block; width: 6px; height: 6px; background: rgba(255,255,255,.57); border-radius: 50%; transition: background .2s, width .2s; }
+        .bf-dot.bf-selected { width: 17px; background: #00afc6; border-radius: 8px; }
+        @media (max-width: 390px) { .bf-vbtn { width: 36px; height: 36px; font-size: 28px; } .bf-sound { font-size: 10px; } }
+        @media (prefers-reduced-motion: reduce) { .bf-vslide { transition-duration: .01ms !important; } }
 
         /* =========================================================
            BLOQUE 2: PRODUCTO Y BENEFICIOS
@@ -610,28 +615,26 @@
     <main id="main-store">
         <div class="container">
             
-            <!-- BLOQUE 1: VIDEOS YT (Carrusel Infinito 3:4) -->
-            <section class="yt-carousel-wrapper" aria-label="Carrusel de videos">
-                <div class="yt-track" id="yt-track">
-                    <div class="yt-slide" id="slide-0"><div id="player-0" style="width:100%; height:100%;"></div></div>
-                    <div class="yt-slide" id="slide-1"><div id="player-1" style="width:100%; height:100%;"></div></div>
-                    <div class="yt-slide" id="slide-2"><div id="player-2" style="width:100%; height:100%;"></div></div>
-                    <div class="yt-slide" id="slide-3"><div id="player-3" style="width:100%; height:100%;"></div></div>
-                    <div class="yt-slide" id="slide-4"><div id="player-4" style="width:100%; height:100%;"></div></div>
+            <!-- BLOQUE 1: VIDEOS MP4 (carrusel infinito 3:4) -->
+                <!-- Carrusel local · 3 MP4 · mismas dimensiones del carrusel previo -->
+                <div class="yt-carousel-wrapper" id="bf-vcarousel" role="region" aria-label="Videos demostrativos de Barrera Impermeable">
+                    <div class="bf-vstage">
+                        <div class="bf-vslide" data-video="0">
+                            <video id="bf-video-0" src="assets/videos/barrera-impermeable-1-hidrorrepelencia.mp4" muted autoplay playsinline webkit-playsinline preload="auto" aria-label="Video 1: hidrorrepelencia"></video>
+                        </div>
+                        <div class="bf-vslide" data-video="1">
+                            <video id="bf-video-1" src="assets/videos/barrera-impermeable-2-proteccion.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="Video 2: protección y tecnología"></video>
+                        </div>
+                        <div class="bf-vslide" data-video="2">
+                            <video id="bf-video-2" src="assets/videos/barrera-impermeable-3-limpieza.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="Video 3: fácil limpieza"></video>
+                        </div>
+                        <button type="button" class="bf-vtap" id="bf-vtap" aria-label="Pausar o reanudar video"><span class="bf-pause-indicator" aria-hidden="true">▶</span></button>
+                    </div>
+                    <button type="button" class="bf-vbtn bf-prev" id="bf-prev" aria-label="Ver video anterior">&#8249;</button>
+                    <button type="button" class="bf-vbtn bf-next" id="bf-next" aria-label="Ver video siguiente">&#8250;</button>
+                    <div class="bf-dots" aria-hidden="true"><span class="bf-dot bf-selected"></span><span class="bf-dot"></span><span class="bf-dot"></span></div>
+                    <button type="button" class="bf-sound" id="bf-sound" aria-label="Activar sonido">🔇 ACTIVAR SONIDO</button>
                 </div>
-                
-                <button class="yt-nav yt-prev" onclick="manualVideoChange(-1)" aria-label="Video anterior"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-                <button class="yt-nav yt-next" onclick="manualVideoChange(1)" aria-label="Siguiente video"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
-                
-                <div class="yt-indicators" id="yt-indicator">1 / 5</div>
-                
-                <div class="vid-controls">
-                    <button class="vid-btn" id="mute-btn-global" onclick="toggleGlobalMute()" aria-label="Activar/Desactivar sonido">
-                        <svg id="icon-mute-g" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                        <svg id="icon-unmute-g" viewBox="0 0 24 24" style="display:none;"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                    </button>
-                </div>
-            </section>
 
             <!-- BLOQUE 2: PRODUCTO Y BENEFICIOS -->
             <section class="section-gap hero-product">
@@ -1123,95 +1126,151 @@
         </div>
 </footer>
 
-    <!-- ================== SCRIPT DE YOUTUBE API ================== -->
+    <!-- ================== CARRUSEL HTML5 BLINDAFLEX ================== -->
     <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    (function () {
+        'use strict';
+        const root = document.getElementById('bf-vcarousel');
+        if (!root) return;
+        const slides = [...root.querySelectorAll('.bf-vslide')];
+        const videos = slides.map(slide => slide.querySelector('video'));
+        const dots = [...root.querySelectorAll('.bf-dot')];
+        const tap = document.getElementById('bf-vtap');
+        const soundButton = document.getElementById('bf-sound');
+        let active = 0;
+        let desiredSound = false;
+        let explicitlyPaused = false;
+        let visible = false;
+        let changing = false;
+        let pointerStart = null;
+        let suppressNextClick = false;
+        let changeTimeout;
 
-        const videoIds = ['obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI', 'obzZo5q5VnI']; 
-        const players = [];
-        let currentVideoIndex = 0;
-        let isGlobalMute = true;
-        let isGalleryAutoPlaying = true; 
-
-        function onYouTubeIframeAPIReady() {
-            videoIds.forEach((id, index) => {
-                players[index] = new YT.Player(`player-${index}`, {
-                    videoId: id,
-                    playerVars: { 'autoplay': index === 0 ? 1 : 0, 'controls': 0, 'disablekb': 1, 'fs': 0, 'modestbranding': 1, 'playsinline': 1, 'mute': 1, 'rel': 0 },
-                    events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
-                });
+        const activeVideo = () => videos[active];
+        const offscreenPosition = (index, center) => {
+            if (index === center) return 0;
+            return index === (center + 1) % 3 ? 100 : -100;
+        };
+        function arrange(center) {
+            slides.forEach((slide, index) => {
+                slide.style.transition = 'none';
+                slide.style.transform = `translateX(${offscreenPosition(index, center)}%)`;
+                slide.style.zIndex = index === center ? '2' : '1';
             });
+            dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===center));
+            root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${center + 1} de 3`);
         }
-
-        function onPlayerReady(event) {
-            event.target.mute();
-            if(players.length === videoIds.length) setupYTObserver(); 
+        function updateSound() {
+            const hasSound = !activeVideo().muted;
+            soundButton.textContent = hasSound ? '🔊 SILENCIAR' : '🔇 ACTIVAR SONIDO';
+            soundButton.setAttribute('aria-label',hasSound?'Silenciar video':'Activar sonido del video');
         }
-
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                let pIndex = players.findIndex(p => p === event.target);
-                if(pIndex !== -1 && pIndex === currentVideoIndex) {
-                    manualVideoChange(1); 
-                }
+        function updatePause() {
+            const paused = explicitlyPaused || (visible && activeVideo().paused);
+            tap.classList.toggle('bf-paused',paused);
+            tap.setAttribute('aria-label',paused?'Reanudar video':'Pausar video');
+        }
+        function pauseAll() { videos.forEach(v => { if (!v.paused) v.pause(); }); updatePause(); }
+        async function playCurrent() {
+            if (!visible || document.hidden || explicitlyPaused) { updatePause(); return; }
+            const v = activeVideo();
+            v.muted = !desiredSound;
+            try {
+                await v.play();
+            } catch(e) {
+                // El navegador puede bloquear audio en el cambio de video.
+                v.muted = true;
+                try { await v.play(); } catch (_) { /* Espera al toque del usuario. */ }
             }
+            updateSound(); updatePause();
         }
-
-        function manualVideoChange(direction) {
-            if(players[currentVideoIndex] && typeof players[currentVideoIndex].pauseVideo === 'function') {
-                players[currentVideoIndex].pauseVideo();
-            }
-            
-            currentVideoIndex = (currentVideoIndex + direction + videoIds.length) % videoIds.length;
-            const track = document.getElementById('yt-track');
-            const slideWidth = track.clientWidth;
-            track.scrollTo({ left: currentVideoIndex * slideWidth, behavior: 'smooth' });
-            
-            document.getElementById('yt-indicator').innerText = `${currentVideoIndex + 1} / 5`;
-            
-            if(players[currentVideoIndex] && typeof players[currentVideoIndex].playVideo === 'function') {
-                players[currentVideoIndex].playVideo();
-            }
+        function switchVideo(direction) {
+            if (changing) return;
+            changing = true;
+            clearTimeout(changeTimeout);
+            const from = active;
+            const to = (from + direction + 3) % 3;
+            const outgoing = slides[from];
+            const incoming = slides[to];
+            videos[from].pause();
+            // Las flechas también reinician el video seleccionado, con o sin sonido.
+            videos[to].pause();
+            try { videos[to].currentTime = 0; } catch (_) {}
+            active = to;
+            explicitlyPaused = false;
+            incoming.style.transition = 'none';
+            incoming.style.transform = `translateX(${direction > 0 ? 100 : -100}%)`;
+            incoming.style.zIndex = '3';
+            outgoing.style.zIndex = '2';
+            // El tercer video avanza al primero desde la derecha, sin retroceso visual.
+            void incoming.offsetWidth;
+            const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 480;
+            incoming.style.transition = `transform ${motion}ms ease-in-out`;
+            outgoing.style.transition = `transform ${motion}ms ease-in-out`;
+            incoming.style.transform = 'translateX(0%)';
+            outgoing.style.transform = `translateX(${direction > 0 ? -100 : 100}%)`;
+            dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===active));
+            root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${active + 1} de 3`);
+            playCurrent();
+            changeTimeout = setTimeout(() => { arrange(active); changing = false; },motion + 45);
         }
-
-        function toggleGlobalMute() {
-            isGlobalMute = !isGlobalMute;
-            players.forEach(p => {
-                if(p && typeof p.mute === 'function') {
-                    if(isGlobalMute) p.mute(); else p.unMute();
+        videos.forEach((video,index) => {
+            video.muted = true;
+            video.controls = false;
+            video.addEventListener('ended', () => {
+                if (index === active && visible && !explicitlyPaused) switchVideo(1);
+            });
+            video.addEventListener('error', () => {
+                if (index === active) {
+                    console.warn('Blindaflex: no se encontró el archivo del video', video.currentSrc);
+                    tap.classList.add('bf-paused');
                 }
             });
-            document.getElementById('icon-mute-g').style.display = isGlobalMute ? 'block' : 'none';
-            document.getElementById('icon-unmute-g').style.display = isGlobalMute ? 'none' : 'block';
-        }
+        });
+        arrange(active);
+        document.getElementById('bf-prev').addEventListener('click', () => switchVideo(-1));
+        document.getElementById('bf-next').addEventListener('click', () => switchVideo(1));
+        soundButton.addEventListener('click', async () => {
+            desiredSound = activeVideo().muted;
+            activeVideo().muted = !desiredSound;
+            // Una pulsación explícita desbloquea el audio cuando el navegador lo admite.
+            if (activeVideo().paused && visible) { explicitlyPaused = false; await playCurrent(); }
+            updateSound(); updatePause();
+        });
+        tap.addEventListener('click', () => {
+            if(suppressNextClick) { suppressNextClick = false; return; }
+            const v = activeVideo();
+            if (v.paused) { explicitlyPaused = false; playCurrent(); }
+            else { explicitlyPaused = true; pauseAll(); }
+            updatePause();
+        });
+        tap.addEventListener('pointerdown',e => { pointerStart={x:e.clientX,y:e.clientY}; });
+        tap.addEventListener('pointerup',e => {
+            if (!pointerStart) return;
+            const dx = e.clientX-pointerStart.x;
+            const dy = e.clientY-pointerStart.y;
+            pointerStart = null;
+            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)*1.25) {
+                suppressNextClick = true;
+                switchVideo(dx < 0 ? 1 : -1);
+                // El swipe puede terminar sin generar un evento click.
+                setTimeout(() => { suppressNextClick = false; },200);
+            }
+        });
+        tap.addEventListener('pointercancel',() => { pointerStart = null; });
 
-        function setupYTObserver() {
-            const wrapper = document.querySelector('.yt-carousel-wrapper');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting && document.visibilityState === 'visible') {
-                        if(players[currentVideoIndex] && typeof players[currentVideoIndex].playVideo === 'function') players[currentVideoIndex].playVideo();
-                    } else {
-                        if(players[currentVideoIndex] && typeof players[currentVideoIndex].pauseVideo === 'function') players[currentVideoIndex].pauseVideo();
-                    }
-                });
-            }, { threshold: 0.2 });
-            observer.observe(wrapper);
-
-            document.addEventListener("visibilitychange", () => {
-                if (document.visibilityState === "hidden") {
-                    if(players[currentVideoIndex] && typeof players[currentVideoIndex].pauseVideo === 'function') players[currentVideoIndex].pauseVideo();
-                } else if (document.visibilityState === "visible") {
-                    const rect = wrapper.getBoundingClientRect();
-                    if(rect.top < window.innerHeight && rect.bottom > 0) {
-                        if(players[currentVideoIndex] && typeof players[currentVideoIndex].playVideo === 'function') players[currentVideoIndex].playVideo();
-                    }
-                }
-            });
-        }
+        // Pausa al salir del área visible y continúa desde el mismo segundo al regresar.
+        if ('IntersectionObserver' in window) {
+            const observer=new IntersectionObserver(entries => {
+                visible = entries[0].intersectionRatio >= 0.45;
+                if (visible) playCurrent(); else pauseAll();
+            },{threshold:[0,0.25,0.45,0.6,1]});
+            observer.observe(root);
+        } else { visible=true; playCurrent(); }
+        document.addEventListener('visibilitychange',() => {
+            if(document.hidden) pauseAll(); else if(visible) playCurrent();
+        });
+    })();
     </script>
 
     <!-- ================== SCRIPT LÓGICA PRINCIPAL ================== -->
