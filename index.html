@@ -423,9 +423,44 @@
             .hero-grid { gap: 44px; }
             .ben-card { padding-top: 17px; padding-bottom: 17px; }
         }
-        /* Videos YouTube: caja 4:3 con encuadre central de contenido 16:9. */
+        /* Videos locales de las tarjetas: misma caja original 4:3, sin controles. */
         .prod-img.prod-video { padding: 0; overflow: hidden; background: #071A24; }
-        .prod-video iframe { position:absolute; top:0; left:-16.6667%; width:133.3334%; height:100%; border:0; display:block; }
+        .prod-video .bf-catalog-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border:0; display:block; pointer-events:none; }
+
+        /* Corrección del ancho del hero en escritorio (40% + 60% + gap excedía 100%). */
+        @media (min-width:992px) {
+          .hero-content { flex:1 1 40%; min-width:0; }
+          .hero-video-box { flex:1 1 60%; min-width:0; }
+        }
+        /* Corrección localizada: evitar que el selector de superficies desborde la pantalla. */
+        html { max-width:100%; overflow-x:clip; }
+        body { max-width:100%; overflow-x:clip; }
+        @media (max-width:991px) {
+          .surface-section { margin-left:0; margin-right:0; max-width:100%; }
+          .container, .hero-grid, .catalog-grid, .prod-card { min-width:0; }
+        }
+        /* Ventas mayoristas: franja compacta premium, debajo del catálogo. */
+        .bf-wholesale { margin:0 auto var(--gap-mob); padding:0 20px; }
+        .bf-wholesale-inner { max-width:1140px; margin:auto; background:#071A24; border:1px solid rgba(255,255,255,.08); border-left:4px solid #00AFC6; border-radius:var(--radius-md); padding:26px 30px; display:flex; align-items:center; justify-content:space-between; gap:26px; box-shadow:0 8px 28px rgba(7,26,36,.11); }
+        .bf-wholesale h2 { font-size:clamp(19px,2vw,24px); line-height:1.22; color:#fff; font-weight:900; letter-spacing:-.025em; margin-bottom:7px; }
+        .bf-wholesale p { font-size:13px; color:#D4E3E7; line-height:1.5; max-width:660px; }
+        .bf-wholesale-cta { flex:none; min-width:158px; color:#071A24; background:#fff; border:1.5px solid #fff; border-radius:8px; padding:13px 20px; font-size:13px; font-weight:850; letter-spacing:.045em; cursor:pointer; transition:background .2s,border-color .2s; }
+        .bf-wholesale-cta:hover { background:#E0F7FA; border-color:#E0F7FA; }
+        .bf-wholesale-cta:focus-visible { outline:3px solid #00AFC6; outline-offset:3px; }
+        @media(max-width:640px){.bf-wholesale-inner{padding:22px 20px;align-items:stretch;flex-direction:column;gap:18px}.bf-wholesale-cta{width:100%}.bf-wholesale h2{font-size:21px}}
+        /* Formulario mayorista independiente del carrito y su checkout. */
+        .bf-wholesale-modal[hidden] { display:none !important; }
+        .bf-wholesale-modal { position:fixed; inset:0; z-index:200000; display:flex; align-items:center; justify-content:center; padding:16px; background:rgba(7,26,36,.75); }
+        .bf-wholesale-dialog { background:#fff; color:var(--c-texto); border-radius:16px; width:min(100%,500px); max-height:min(90dvh,800px); overflow-y:auto; overscroll-behavior:contain; padding:25px; box-shadow:0 18px 70px rgba(0,0,0,.25); }
+        .bf-wholesale-modalhead { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:8px; }
+        .bf-wholesale-modal h2 { font-size:21px; font-weight:900; color:var(--c-azul); line-height:1.25; }
+        .bf-wholesale-close { flex:none; width:34px; height:34px; border:0; border-radius:50%; font-size:26px; line-height:1; color:var(--c-azul); background:var(--c-gris-claro); cursor:pointer; }
+        .bf-wholesale-modal p { font-size:13px; margin-bottom:18px; line-height:1.5; }
+        .bf-wfield { display:block; margin-bottom:12px; font-weight:750; color:var(--c-azul); font-size:13px; }
+        .bf-wfield input,.bf-wfield select { margin-top:5px; width:100%; max-width:100%; min-height:43px; border:1px solid #cbd5e1; border-radius:7px; padding:10px 12px; color:var(--c-azul); background:#fff; font:inherit; font-weight:500; }
+        .bf-wfield input:focus,.bf-wfield select:focus { outline:2px solid var(--c-turquesa); outline-offset:1px; }
+        .bf-wholesale-send { width:100%; background:var(--c-azul); color:#fff; border:0; border-bottom:2px solid var(--c-turquesa); border-radius:8px; padding:14px 12px; margin-top:4px; font-size:14px; font-weight:850; cursor:pointer; }
+        .bf-wholesale-help { font-size:11px !important; color:#64748b; text-align:center; margin:8px 0 0 !important; }
     </style>
 </head>
 <body>
@@ -570,7 +605,7 @@
                 <!-- Prod 1 -->
                 <article class="prod-card">
                     <div class="prod-img prod-video">
-                        <iframe src="https://www.youtube-nocookie.com/embed/43Og1yjtUJk?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=43Og1yjtUJk&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Barrera Impermeable" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
+                        <video class="bf-catalog-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" aria-label="Video demostrativo: Barrera Impermeable"><source src="assets/videos/index-barrera-impermeable.mp4" type="video/mp4"></video>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilizante frentes y muros</span>
@@ -586,7 +621,7 @@
                 <!-- Prod 2 -->
                 <article class="prod-card">
                     <div class="prod-img prod-video">
-                        <iframe src="https://www.youtube-nocookie.com/embed/KPY74Fo3rKw?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=KPY74Fo3rKw&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Blindaje para Techos" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
+                        <video class="bf-catalog-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" aria-label="Video demostrativo: Blindaje para Techos"><source src="assets/videos/index-blindaje-para-techos.mp4" type="video/mp4"></video>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilizante de techos</span>
@@ -602,7 +637,7 @@
                 <!-- Prod 3 -->
                 <article class="prod-card">
                     <div class="prod-img prod-video">
-                        <iframe src="https://www.youtube-nocookie.com/embed/6X6BUH6WQzA?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=6X6BUH6WQzA&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Blindaje Reflectivo" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
+                        <video class="bf-catalog-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" aria-label="Video demostrativo: Blindaje Reflectivo"><source src="assets/videos/index-blindaje-reflectivo.mp4" type="video/mp4"></video>
                     </div>
                     <div class="prod-info">
                         <div class="prod-app-combo"><span class="prod-app">Impermeabilizante de techos</span><span class="prod-combo-plus" aria-label="más">+</span><span class="prod-app">Reflexión solar</span></div>
@@ -618,7 +653,7 @@
                 <!-- Prod 4 -->
                 <article class="prod-card">
                     <div class="prod-img prod-video">
-                        <iframe src="https://www.youtube-nocookie.com/embed/XA51PIw-qqY?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=XA51PIw-qqY&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Blindaje Transparente" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
+                        <video class="bf-catalog-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" aria-label="Video demostrativo: Blindaje Transparente"><source src="assets/videos/index-blindaje-transparente.mp4" type="video/mp4"></video>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Impermeabilizante transparente</span>
@@ -634,7 +669,7 @@
                 <!-- Prod 5 -->
                 <article class="prod-card">
                     <div class="prod-img prod-video">
-                        <iframe src="https://www.youtube-nocookie.com/embed/rcKBkBDcSG4?autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=rcKBkBDcSG4&amp;controls=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;disablekb=1" title="Video demostrativo: Barrera Antihongo" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1"></iframe>
+                        <video class="bf-catalog-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload noplaybackrate nofullscreen" aria-label="Video demostrativo: Barrera Antihongo"><source src="assets/videos/index-barrera-antihongo.mp4" type="video/mp4"></video>
                     </div>
                     <div class="prod-info">
                         <span class="prod-app">Pintura antihongos</span>
@@ -648,6 +683,18 @@
                 </article>
 
             </div>
+        </section>
+
+
+        <!-- CONSULTAS MAYORISTAS (bloque independiente del carrito) -->
+        <section class="bf-wholesale" aria-labelledby="bf-wholesale-title">
+          <div class="bf-wholesale-inner">
+            <div>
+              <h2 id="bf-wholesale-title">VENTAS MAYORISTAS</h2>
+              <p>Para pinturerías, ferreterías, distribuidores y profesionales. Consultanos por compras mayoristas.</p>
+            </div>
+            <button type="button" class="bf-wholesale-cta" id="bf-wholesale-open" aria-haspopup="dialog">CONTACTANOS</button>
+          </div>
         </section>
 
         <!-- 6. BLOQUE DE CONFIANZA COMERCIAL -->
@@ -791,6 +838,34 @@
             </section>
         </div>
     </main>
+
+
+    <!-- FORMULARIO DE CONSULTA MAYORISTA: no interviene en el carrito -->
+    <div class="bf-wholesale-modal" id="bf-wholesale-modal" hidden>
+      <div class="bf-wholesale-dialog" role="dialog" aria-modal="true" aria-labelledby="bf-wholesale-dialog-title">
+        <div class="bf-wholesale-modalhead">
+          <h2 id="bf-wholesale-dialog-title">Consulta mayorista</h2>
+          <button type="button" class="bf-wholesale-close" id="bf-wholesale-close" aria-label="Cerrar formulario">&times;</button>
+        </div>
+        <p>Completá estos datos para que podamos conocer tu negocio y responderte por WhatsApp.</p>
+        <form id="bf-wholesale-form">
+          <label class="bf-wfield">Nombre y apellido *<input name="nombre" type="text" autocomplete="name" maxlength="90" required></label>
+          <label class="bf-wfield">Comercio o empresa *<input name="empresa" type="text" maxlength="100" required></label>
+          <label class="bf-wfield">Actividad *<select name="actividad" required>
+            <option value="" disabled selected>Seleccioná una opción</option>
+            <option>Pinturería</option><option>Ferretería</option><option>Distribuidora</option><option>Constructora</option><option>Profesional aplicador</option><option>Otro comercio o empresa</option>
+          </select></label>
+          <label class="bf-wfield">Ciudad y provincia *<input name="ubicacion" type="text" maxlength="100" autocomplete="address-level2" required></label>
+          <label class="bf-wfield">Teléfono / WhatsApp *<input name="telefono" type="tel" inputmode="tel" maxlength="35" autocomplete="tel" required></label>
+          <label class="bf-wfield">Volumen de compra estimado <select name="volumen">
+            <option value="A definir">A definir</option><option>30 a 70 baldes</option><option>70 a 150 baldes</option><option>150 a 250 baldes</option><option>Más de 250 baldes</option>
+          </select></label>
+          <label class="bf-wfield">Productos de interés (opcional)<input name="productos" type="text" maxlength="180" placeholder="Ej.: impermeabilizantes para techos y frentes"></label>
+          <button type="submit" class="bf-wholesale-send">CONTINUAR POR WHATSAPP</button>
+          <p class="bf-wholesale-help">Se abrirá WhatsApp con tu consulta preparada. Revisala y presioná Enviar.</p>
+        </form>
+      </div>
+    </div>
 
     <!-- 10. PIE DE PÁGINA -->
     <footer id="footer">
@@ -1025,7 +1100,6 @@
 
             if(techosCount > 0) {
                 let gifts = "1 Kit Premium";
-                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
                 html += `<div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:8px; border-radius:4px; text-align:center;">REGALOS (TECHOS):<br>${gifts.toUpperCase()}</div>`;
             }
             
@@ -1132,8 +1206,7 @@
             
             if(techosCount > 0) {
                 let gifts = "1 Kit Premium";
-                if(techosCount >= 2) gifts = "1 Kit Premium + 1 Sellador Extra";
-                m += `🎁 *Regalos de Techos:* ${gifts}%0A%0A`;
+                m += `🎁 *Beneficios Techos:* ${gifts}${techosDisc > 0 ? ' + ' + (techosDisc*100) + '% de descuento' : ''}%0A%0A`;
             }
 
             m += `*TOTAL PRODUCTOS: ${formatARS(tot)}*%0A%0AEnvío a coordinar según zona.%0APago al recibir.`;
@@ -1192,7 +1265,7 @@ function renderSharedCart(){
  total.textContent=money(cartTotal());
  if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
  let html='';let qty=roofQty();
- if(qty){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div>'+qty+' balde(s) de Blindaje para Techos'+(discount()>0?' · '+(discount()*100)+'% de descuento':'')+'</div><div class="bf-gift-emphasis">✓ 1 kit premium de regalo'+(qty>=2?' + 1 sellador extra':'')+'</div></div>'}
+ if(qty){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div>'+qty+' balde(s) de Blindaje para Techos'+(discount()>0?' · '+(discount()*100)+'% de descuento':'')+'</div><div class="bf-gift-emphasis">✓ 1 kit premium de regalo</div></div>'}
  cart.forEach(i=>{
   let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
   html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
@@ -1211,7 +1284,7 @@ window.updateCartCounter=update;
 window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
 window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
 window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();if(typeof renderCheckoutSummary==='function')renderCheckoutSummary()};
-window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty())html+='<p style="margin-top:12px">🎁 Kit premium'+(roofQty()>=2?' + sellador extra':'')+' incluido · '+discount()*100+'% de descuento en Techos</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
+window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty())html+='<p style="margin-top:12px">🎁 Kit premium incluido'+(discount()>0?' · '+discount()*100+'% de descuento en Techos':'')+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
 const footer=document.querySelector('#cart-drawer .cart-footer');
 if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',closeCartDrawer);let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
 document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty')))});
@@ -1225,6 +1298,77 @@ if(!document.getElementById('mobile-menu')){
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeCartDrawer()}});
 }
 cart=reload();update();
+})();
+</script>
+
+<script id="bf-index-local-video-wholesale">
+(()=>{
+  'use strict';
+  // Five local silent product previews; preserve original 4:3 cards.
+  const previews=document.querySelectorAll('.bf-catalog-video');
+  previews.forEach(video=>{
+    video.muted=true;
+    video.defaultMuted=true;
+    video.loop=true;
+    video.playsInline=true;
+    video.controls=false;
+    video.addEventListener('volumechange',()=>{if(!video.muted||video.volume!==0){video.muted=true;video.volume=0;} });
+  });
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        const video=entry.target;
+        if(entry.isIntersecting && !document.hidden) video.play().catch(()=>{});
+        else video.pause();
+      });
+    },{threshold:.15});
+    previews.forEach(v=>io.observe(v));
+    document.addEventListener('visibilitychange',()=>previews.forEach(v=>{
+      if(document.hidden)v.pause();
+      else if(v.getBoundingClientRect().top<innerHeight && v.getBoundingClientRect().bottom>0)v.play().catch(()=>{});
+    }));
+  } else previews.forEach(v=>v.play().catch(()=>{}));
+  // Independent wholesale form: opens a WhatsApp message; does not submit or store data on the website.
+  const modal=document.getElementById('bf-wholesale-modal');
+  const open=document.getElementById('bf-wholesale-open');
+  const close=document.getElementById('bf-wholesale-close');
+  const form=document.getElementById('bf-wholesale-form');
+  let oldFocus=null;
+  function setModal(show){
+    if(show){oldFocus=document.activeElement;modal.hidden=false;document.body.style.overflow='hidden';form.elements.nombre.focus();}
+    else{modal.hidden=true;document.body.style.overflow='';if(oldFocus&&oldFocus.focus)oldFocus.focus();}
+  }
+  open.addEventListener('click',()=>setModal(true));
+  close.addEventListener('click',()=>setModal(false));
+  modal.addEventListener('click',event=>{if(event.target===modal)setModal(false);});
+  document.addEventListener('keydown',event=>{
+    if(modal.hidden)return;
+    if(event.key==='Escape'){setModal(false);return;}
+    if(event.key==='Tab'){
+      const els=[...modal.querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled])')];
+      const first=els[0],last=els[els.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+    }
+  });
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!form.reportValidity())return;
+    const fd=new FormData(form);
+    const val=k=>String(fd.get(k)||'').trim();
+    const msg=[
+      '*CONSULTA MAYORISTA – BLINDAFLEX*',
+      'Nombre: '+val('nombre'),
+      'Comercio / empresa: '+val('empresa'),
+      'Actividad: '+val('actividad'),
+      'Ubicación: '+val('ubicacion'),
+      'WhatsApp: '+val('telefono'),
+      'Volumen estimado: '+val('volumen'),
+      'Productos de interés: '+(val('productos')||'A definir')
+    ].join('\n');
+    const url='https://wa.me/5493516318301?text='+encodeURIComponent(msg);
+    window.open(url,'_blank','noopener,noreferrer');
+  });
 })();
 </script>
 </body>
