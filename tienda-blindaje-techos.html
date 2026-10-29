@@ -655,7 +655,7 @@ header .logo img {
                 <svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </button>
             
-            <a href="tienda-index.html" class="logo">
+            <a href="index.html" class="logo">
                 <img src="assets/images/logo.png" alt="BLINDAFLEX">
             </a>
 
@@ -1275,6 +1275,7 @@ header .logo img {
 <div class="footer-nav" style="margin-bottom: 24px;">
 <span class="footer-nav-title">Tienda</span>
 <a href="index.html#confianza">Envíos y formas de pago</a>
+<a href="index.html#mayoristas">Ventas mayoristas</a>
 <a href="https://blindaflex.com">Sitio institucional</a>
 </div>
 <div class="footer-contact">
@@ -1476,7 +1477,7 @@ header .logo img {
         function getGlobalPricing() {
             const totalBuckets = cart.filter(isTechoItem).reduce((sum, item) => sum + Number(item.qty || 0), 0);
             let discount = totalBuckets === 2 ? 0.15 : totalBuckets === 3 ? 0.20 : totalBuckets >= 4 ? 0.25 : 0;
-            const gifts = totalBuckets >= 2 ? '1 Kit Premium + 1 Sellador Extra' : totalBuckets ? '1 Kit Premium de regalo' : '';
+            const gifts = totalBuckets ? '1 Kit Premium de regalo' : '';
             return { totalBuckets, discount, gifts };
         }
         function getCartItemSubtotal(item) {
@@ -2202,7 +2203,7 @@ function renderSharedCart(){
  total.textContent=money(cartTotal());
  if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
  let html='';let qty=roofQty();
- if(qty){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div>'+qty+' balde(s) de Blindaje para Techos'+(discount()>0?' · '+(discount()*100)+'% de descuento':'')+'</div><div class="bf-gift-emphasis">✓ 1 kit premium de regalo'+(qty>=2?' + 1 sellador extra':'')+'</div></div>'}
+ if(qty){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div>'+qty+' balde(s) de Blindaje para Techos'+(discount()>0?' · '+(discount()*100)+'% de descuento':'')+'</div><div class="bf-gift-emphasis">✓ 1 kit premium de regalo</div></div>'}
  cart.forEach(i=>{
   let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
   html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
@@ -2221,7 +2222,7 @@ window.updateCartCounter=update;
 window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
 window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
 window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();if(typeof renderCheckoutSummary==='function')renderCheckoutSummary()};
-window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty())html+='<p style="margin-top:12px">🎁 Kit premium'+(roofQty()>=2?' + sellador extra':'')+' incluido · '+discount()*100+'% de descuento en Techos</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
+window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty())html+='<p style="margin-top:12px">🎁 Kit premium incluido'+(discount()>0?' · '+discount()*100+'% de descuento en Techos':'')+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
 const footer=document.querySelector('#cart-drawer .cart-footer');
 if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',closeCartDrawer);let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
 document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty')))});
@@ -2229,7 +2230,7 @@ window.addEventListener('pageshow',()=>{cart=reload();update()});
 window.addEventListener('storage',e=>{if(e.key===KEY){cart=reload();update()}});
 // Navegación común: las páginas de producto no tenían un menú móvil funcional.
 if(!document.getElementById('mobile-menu')){
- let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a></nav>';
+ let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a><a class="bf-menu-link" href="index.html#mayoristas">Ventas mayoristas</a></nav>';
  document.body.appendChild(nav);const close=()=>nav.classList.remove('bf-open');nav.querySelector('.bf-backdrop').addEventListener('click',close);nav.querySelector('.bf-close').addEventListener('click',close);
  document.querySelector('header .menu-btn')?.addEventListener('click',()=>{closeCartDrawer();nav.classList.add('bf-open')});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeCartDrawer()}});
