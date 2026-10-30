@@ -102,6 +102,15 @@
         .svg-thin { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
         /* =========================================================
+           BARRA INFORMATIVA DESLIZANTE
+           ========================================================= */
+        .top-bar-container { background-color: var(--c-azul); color: var(--c-blanco); overflow: hidden; white-space: nowrap; display: flex; width: 100%; }
+        .top-bar-track { display: flex; animation: marquee 20s linear infinite; }
+        .top-bar-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; padding: 8px 24px; white-space: nowrap; }
+        .top-bar-item svg { width: 16px; height: 16px; color: var(--c-turquesa); flex-shrink: 0; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* =========================================================
            HEADER
            ========================================================= */
         header { background: var(--c-azul-grad); color: var(--c-blanco); position: sticky; top: 0; z-index: 100; height: 64px; box-shadow: var(--shadow-md); border-bottom: 2px solid var(--c-turquesa-dark); }
@@ -129,9 +138,9 @@
         .desktop-nav { display: none; }
 
         /* =========================================================
-           BLOQUE 1: CARRUSEL DE IMÁGENES GRANDES (HERO)
+           BLOQUE 1: CARRUSEL DE IMÁGENES GRANDES (HERO 3:4)
            ========================================================= */
-        .img-carousel-wrapper { position: relative; width: 100%; max-width: 900px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #E5E9EC; box-shadow: var(--shadow-tech); border: 1px solid var(--c-gris-border); aspect-ratio: 4/3;}
+        .img-carousel-wrapper { position: relative; width: 100%; max-width: 450px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #E5E9EC; box-shadow: var(--shadow-tech); border: 1px solid var(--c-gris-border); aspect-ratio: 3/4;}
         .ic-track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
         .ic-track::-webkit-scrollbar { display: none; }
         .ic-slide { min-width: 100%; height: 100%; scroll-snap-align: center; position: relative; }
@@ -166,7 +175,7 @@
         .highlight-banner p { margin: 0; font-size: 14px; font-weight: 700; color: var(--c-turquesa-dark); line-height: 1.4;}
 
         /* =========================================================
-           BLOQUE 3: KIT PREMIUM Y PROMOCIONES (Estilo Techos)
+           BLOQUE 3: KIT PREMIUM Y PROMOCIONES
            ========================================================= */
         .promo-kit-section { margin-top: 0; }
         .promo-title { font-size: 22px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 8px;}
@@ -202,7 +211,7 @@
         .gl-info p { color: var(--c-gris-claro); font-size: 13px; font-weight: 500; }
 
         /* =========================================================
-           BLOQUE 4: CALCULADORA DE CONSUMO
+           BLOQUE 4: CALCULADORA DE CONSUMO (Ajustada 1kg/m2)
            ========================================================= */
         .calc-section { background: var(--c-azul-grad); color: var(--c-blanco); border: none; }
         .calc-section .section-title { color: var(--c-turquesa); }
@@ -222,18 +231,14 @@
         .res-title { font-size: 14px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 16px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;}
         .res-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 700; font-size: 15px;}
         .res-item.highlight { color: var(--c-turquesa-dark); font-size: 16px; }
-        .res-total { border-top: 2px dashed var(--c-gris-border); margin-top: 20px; padding-top: 20px; display: flex; justify-content: space-between; align-items: center;}
-        .res-total span:first-child { font-size: 16px; font-weight: 800; }
-        .res-total span:last-child { font-size: 26px; font-weight: 900; color: var(--c-naranja); }
 
         /* =========================================================
-           BLOQUE 5: CONFIGURADOR DE COMPRA (ESTILO FIJO)
+           BLOQUE 5: CONFIGURADOR DE COMPRA (REFLECTIVO)
            ========================================================= */
         .buy-section { border: 2px solid var(--c-turquesa-light); box-shadow: var(--shadow-tech); scroll-margin-top: 80px;}
         .buy-title-h2 { font-size: 24px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 8px; line-height: 1.1;}
         .buy-subtitle { font-size: 14px; font-weight: 500; color: var(--c-texto-light); text-align: center; margin-bottom: 24px; line-height: 1.4;}
         
-        /* Opciones fijas visuales (Color y Presentación bloqueadas) */
         .fixed-options { display: flex; gap: 12px; margin-bottom: 24px; }
         .f-opt { flex: 1; background: var(--c-gris-bg); border: 1px solid var(--c-turquesa); border-radius: var(--radius-sm); padding: 12px; text-align: center; box-shadow: inset 0 0 0 1px var(--c-turquesa-light);}
         .f-opt span { display: block; font-size: 11px; color: var(--c-texto-light); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;}
@@ -271,51 +276,46 @@
            ========================================================= */
         .section-icon-main { width: 36px; height: 36px; max-width: 36px; max-height: 36px; flex-shrink: 0; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block; }
         
-        /* Pagos */
         .pay-section-dark { background: var(--c-azul-grad); border: none; color: var(--c-blanco); }
         .pay-section-dark .section-title { color: var(--c-blanco); }
         .pay-methods { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 16px; }
-        .pay-tag-dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(0,175,198,0.3); padding: 12px 16px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px); }
-        .pay-tag-dark svg { width: 20px; height: 20px; fill: var(--c-turquesa); }
-        .pay-note { font-size: 13px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500; line-height: 1.4;}
+        .pay-tag-dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(0,175,198,0.3); padding: 10px 14px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px); }
+        .pay-tag-dark svg { width: 18px; height: 18px; fill: var(--c-turquesa); }
+        .pay-note { font-size: 13px; color: rgba(255,255,255,0.7); text-align: center; font-weight: 500;}
 
-        /* Envíos */
         .shipping-highlight { text-align: center; margin-bottom: 24px; }
-        .shipping-highlight h3 { font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 8px;}
-        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-        .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 16px; }
+        .shipping-highlight h3 { font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 4px;}
+        .shipping-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        .shipping-card { background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; }
         .shipping-card.free-shipping { background: #eefafc; border-color: var(--c-turquesa); border-left: 4px solid var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon { background: var(--c-turquesa); }
         .shipping-card.free-shipping .shipping-icon svg { fill: var(--c-blanco); stroke: var(--c-blanco);}
         .shipping-card.extended { border-left: 4px solid var(--c-naranja); }
-        .shipping-icon { width: 36px; height: 36px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
-        .shipping-icon svg { width: 20px; height: 20px; color: var(--c-turquesa-dark); }
-        .shipping-info h4 { font-size: 16px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
-        .shipping-info p { font-size: 14px; color: var(--c-texto-light); line-height: 1.4; }
+        .shipping-icon { width: 32px; height: 32px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0; }
+        .shipping-icon svg { width: 18px; height: 18px; color: var(--c-turquesa-dark); }
+        .shipping-info h4 { font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;}
+        .shipping-info p { font-size: 13px; color: var(--c-texto-light); }
         
-        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 16px; border-radius: var(--radius-sm); font-weight: 800; font-size: 15px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
+        .btn-outline { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: 2px solid var(--c-turquesa); color: var(--c-turquesa-dark); background: transparent; padding: 14px; border-radius: var(--radius-sm); font-weight: 800; font-size: 14px; cursor: pointer; transition: background 0.2s; text-transform: uppercase;}
         .btn-outline:active { background: var(--c-turquesa-light); }
 
-        /* Cómo Comprar */
         .steps-grid { display: flex; flex-direction: column; gap: 16px; position: relative;}
-        .step-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-soft); z-index: 2;}
-        .step-num { font-size: 28px; font-weight: 900; color: var(--c-turquesa-light); -webkit-text-stroke: 1px var(--c-turquesa); line-height: 1; flex-shrink: 0; padding-top: 4px; width: 36px;}
-        .step-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 6px; text-transform: uppercase;}
+        .step-card { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-soft); z-index: 2;}
+        .step-num { font-size: 24px; font-weight: 900; color: var(--c-turquesa-light); -webkit-text-stroke: 1px var(--c-turquesa); line-height: 1; flex-shrink: 0; padding-top: 4px; width: 36px;}
+        .step-info h4 { font-size: 16px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; text-transform: uppercase;}
         .step-info p { font-size: 14px; font-weight: 500; color: var(--c-texto-light); line-height: 1.4;}
 
-        /* FAQ Accordion */
         .faq-item { border-bottom: 1px solid var(--c-gris-border); transition: background-color 0.3s; }
         .faq-item:last-child { border: none; }
-        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 20px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color 0.2s;}
+        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 18px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color 0.2s;}
         .faq-question::after { content: "+"; color: var(--c-turquesa); font-size: 24px; transition: transform 0.3s; font-weight: 400;}
         .faq-question.active { color: var(--c-turquesa-dark); }
         .faq-question.active::after { content: "-"; transform: rotate(180deg); color: var(--c-turquesa-dark);}
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;}
-        .faq-answer p { padding-bottom: 20px; line-height: 1.5; }
+        .faq-answer p { padding-bottom: 18px; }
 
-        /* Cierre */
         .closing-box { text-align: center; }
-        .closing-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; text-align: left; background: var(--c-gris-bg); padding: 24px; border-radius: var(--radius-md);}
+        .closing-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; text-align: left; background: var(--c-gris-bg); padding: 20px; border-radius: var(--radius-md);}
         .closing-list li { display: flex; align-items: flex-start; gap: 12px; font-weight: 700; font-size: 14px; color: var(--c-texto); line-height: 1.4;}
         .closing-list svg { width: 24px; height: 24px; color: var(--c-turquesa); flex-shrink: 0;}
 
@@ -324,7 +324,7 @@
            ========================================================= */
         .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--c-azul); box-shadow: 0 -4px 16px rgba(0,0,0,0.15); border-top: 2px solid var(--c-turquesa); z-index: 90; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
         .floating-bar.visible { transform: translateY(0); }
-        .fb-text { font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
+        .fb-text { font-size: 14px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
         .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
 
         .whatsapp-float { position: fixed !important; right: 18px !important; bottom: 92px !important; width: 56px !important; height: 56px !important; display: flex !important; align-items: center !important; justify-content: center !important; border-radius: 50% !important; background: #25D366 !important; color: #fff !important; box-shadow: 0 5px 18px rgba(37,26,36,.22) !important; z-index: 9999 !important; pointer-events: auto !important; transition: transform .2s ease, box-shadow .2s ease !important; }
@@ -333,7 +333,7 @@
         body.has-floating-bar .whatsapp-float { bottom: calc(84px + 64px) !important; } 
 
         /* =========================================================
-           CARRITO LATERAL (DRAWER UNIVERSAL)
+           CARRITO LATERAL (COMPARTIDO)
            ========================================================= */
         .cart-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(7, 26, 36, 0.8); z-index: 99990; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px);}
         .cart-overlay.open { opacity: 1; pointer-events: auto; }
@@ -341,16 +341,18 @@
         .cart-drawer.open { right: 0; }
         .cart-header { padding: 20px; background: var(--c-blanco); border-bottom: 1px solid var(--c-gris-border); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-soft); z-index: 2;}
         .cart-header h2 { font-size: 18px; font-weight: 900; color: var(--c-azul);}
-        .close-cart { background: var(--c-gris-claro); border: none; color: var(--c-azul); width: 36px; height: 36px; border-radius: 50%; font-size: 22px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center;}
+        .close-cart { background: var(--c-gris-claro); border: none; color: var(--c-azul); width: 32px; height: 32px; border-radius: 50%; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center;}
         
         .cart-body { flex: 1; overflow-y: auto; padding: 20px; position: relative; }
         .cart-item { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 12px; position: relative; box-shadow: var(--shadow-soft);}
-        .cart-item-title { font-size: 14px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; padding-right: 40px; line-height: 1.3;}
+        .cart-item-title { font-size: 14px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; padding-right: 32px; line-height: 1.3;}
         .cart-item-meta { font-size: 12px; color: var(--c-texto-light); margin-bottom: 12px; font-weight: 600;}
+        
         .cart-item-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--c-gris-border); padding-top: 12px;}
         .qty-controls { display: flex; align-items: center; gap: 8px; background: var(--c-gris-bg); padding: 4px; border-radius: var(--radius-sm);}
         .qty-btn-sm { width: 28px; height: 28px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 4px; font-weight: 900; color: var(--c-azul); cursor: pointer;}
         .item-price { font-weight: 900; font-size: 16px; color: var(--c-azul); }
+        
         .remove-item { position: absolute; top: 8px; right: 8px; background: #fee2e2; border: none; color: #dc2626; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
         .remove-item svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none;}
         
@@ -361,9 +363,7 @@
         .cart-total span:last-child { font-size: 26px; color: var(--c-azul);}
         .empty-cart-btn { width: 100%; text-align: center; background: none; border: none; color: var(--c-texto-light); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 12px 0; margin-top: 8px; }
 
-        /* =========================================================
-           CHECKOUT VIEW (MODAL EN HOME)
-           ========================================================= */
+        /* CHECKOUT MODAL HOME */
         #checkout-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--c-gris-bg); z-index: 100000; overflow-y: auto; padding-bottom: 40px; }
         .checkout-container { max-width: 600px; margin: 0 auto; padding: 20px; }
         .chk-header { display: flex; align-items: center; gap: 16px; margin: 20px 0 24px 0; }
@@ -379,8 +379,35 @@
         .btn-whatsapp svg { width: 24px !important; height: 24px !important; fill: white; flex-shrink: 0;}
 
         /* =========================================================
-           FOOTER
+           MEDIA QUERIES (ESCRITORIO)
            ========================================================= */
+        @media (min-width: 992px) {
+            .section-gap { margin-bottom: var(--gap-desk); }
+            
+            .header-content { justify-content: flex-start; gap: 40px; }
+            .menu-btn { display: none; }
+            .desktop-nav { display: flex; flex-grow: 1; }
+            .cart-btn { margin-left: auto; }
+            
+            .hero-product { flex-direction: row; gap: 48px; align-items: center; }
+            .hero-img-box { flex: 1; max-width: 400px; }
+            .hero-text { flex: 1.2; text-align: left; }
+            .benefits-compact { grid-template-columns: repeat(2, 1fr); }
+            
+            .grid-desktop { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;}
+            
+            .section-title { font-size: 28px; }
+            
+            .steps-grid { flex-direction: row; }
+            .step-card { flex: 1; flex-direction: column; align-items: center; text-align: center;}
+            .step-num { width: auto; }
+            
+            .floating-bar { display: none; }
+            .whatsapp-float { bottom: 24px !important; right: 24px !important; width: 64px !important; height: 64px !important;}
+            body.has-floating-bar .whatsapp-float { bottom: 24px !important; }
+        }
+
+        /* Footer sincronizado con el resto del sitio */
         footer { background: var(--c-azul); color: var(--c-blanco); padding: 48px 20px 24px; border-top: 4px solid var(--c-turquesa); margin-top: 40px;}
         .footer-logo img { max-height: 70px; width: auto; margin-bottom: 20px; }
         .footer-desc { font-size: 13px; color: #8ba2ac; margin-bottom: 0; max-width: 320px; line-height: 1.5; }
@@ -394,56 +421,28 @@
         .footer-contact { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
         .footer-contact h5 { font-size: 12px; color: #8ba2ac; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;}
         .footer-wsp { font-size: 20px; font-weight: 900; color: var(--c-blanco); display: flex; align-items: center; gap: 10px;}
-        .footer-wsp svg { width: 24px !important; height: 24px !important; fill: #25D366; flex-shrink:0; }
+        .footer-wsp svg { width: 24px !important; height: 24px !important; fill: #25D366; }
         .footer-bottom { text-align: center; font-size: 12px; color: #64748b; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;}
-
-        /* =========================================================
-           MEDIA QUERIES (ESCRITORIO)
-           ========================================================= */
-        @media (min-width: 992px) {
-            .section-gap { margin-bottom: var(--gap-desk); }
-            
-            .header-content { justify-content: flex-start; gap: 40px; }
-            .menu-btn { display: none; }
-            .desktop-nav { display: flex; flex-grow: 1; }
-            .cart-btn { margin-left: auto; }
-            
-            .hero-section { padding: 64px 0 80px 0; }
-            .hero-grid { flex-direction: row; align-items: center; gap: 56px;}
-            .hero-content { flex: 0 0 45%; text-align: left; }
-            .hero-content p { margin-inline: 0; }
-            
-            /* Ajuste del carrusel en Desktop */
-            .img-carousel-wrapper { flex: 0 0 55%; margin: 0; width: 100%; max-width: none; }
-            
-            .benefits-grid { grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: -40px auto var(--gap-desk) auto;}
-            
-            .catalog-section { max-width: 100%; }
-            .catalog-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px;}
-            .prod-card { width: calc(33.333% - 22px); min-width: 320px;}
-            
-            .trust-grid { flex-direction: row; justify-content: center; gap: 40px;}
-            .trust-item { flex-direction: column; align-items: center; text-align: center; max-width: 250px;}
-            
-            .surface-section { margin: 0 0 var(--gap-desk) 0; border-radius: var(--radius-lg); padding: 64px 20px;}
-            .surface-grid { grid-template-columns: repeat(4, 1fr); gap: 16px;}
-            
-            .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
-
-            .floating-bar { display: none; }
-            .whatsapp-float { bottom: 32px !important; right: 32px !important; width: 64px !important; height: 64px !important;}
-            body.has-floating-bar .whatsapp-float { bottom: 32px !important; }
-        }
+        
+        @media(min-width:992px){.footer-grid{grid-template-columns:1fr 1fr 1fr;}}
     </style>
 </head>
 <body>
 
-    <h1 class="sr-only">Blindaje Reflectivo — Impermeabilización y reflexión solar | Blindaflex</h1>
+    <h1 class="sr-only">Blindaje Reflectivo — Pintura Impermeabilizante y Reflectiva Blindaflex</h1>
 
-    <!-- 1. BARRA INFORMATIVA COMERCIAL -->
-    <div class="top-bar">
-        <svg viewBox="0 0 24 24" class="svg-thin"><rect x="3" y="8" width="12" height="10" rx="1"></rect><path d="M15 8h3l3 4v6h-6"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
-        Envío gratis en Córdoba y zonas cercanas seleccionadas · Pagá al recibir
+    <!-- 1. BARRA INFORMATIVA COMERCIAL (MARQUEE CSS) -->
+    <div class="top-bar-container">
+        <div class="top-bar-track">
+            <div class="top-bar-item">
+                <svg class="svg-thin" viewBox="0 0 24 24"><rect x="3" y="8" width="12" height="10" rx="1"></rect><path d="M15 8h3l3 4v6h-6"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                Envío gratis en Córdoba y zonas cercanas seleccionadas · Pagá al recibir
+            </div>
+            <div class="top-bar-item">
+                <svg class="svg-thin" viewBox="0 0 24 24"><rect x="3" y="8" width="12" height="10" rx="1"></rect><path d="M15 8h3l3 4v6h-6"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                Envío gratis en Córdoba y zonas cercanas seleccionadas · Pagá al recibir
+            </div>
+        </div>
     </div>
 
     <!-- 2. ENCABEZADO Y NAVEGACIÓN -->
@@ -468,7 +467,7 @@
                     <div class="dropdown-menu">
                         <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
                         <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                        <a href="tienda-bindaje-reflectivo.html" class="active">Blindaje Reflectivo</a>
+                        <a href="tienda-bindaje-reflectivo.html" class="active" style="color: var(--c-turquesa);">Blindaje Reflectivo</a>
                         <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                         <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
                     </div>
@@ -478,7 +477,7 @@
             </nav>
 
             <button class="cart-btn" onclick="openCartDrawer()" aria-label="Ver carrito">
-                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                <svg viewBox="0 0 24 24" width="28" height="28"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 <span class="cart-count" id="cart-counter">0</span>
             </button>
         </div>
@@ -521,7 +520,7 @@
     </nav>
 
     <main id="main-store">
-        <!-- 3. BLOQUE 1: CARRUSEL DE IMÁGENES GRANDES (HERO) -->
+        <!-- 3. BLOQUE 1: CARRUSEL DE IMÁGENES GRANDES (HERO 3:4) -->
         <div class="container">
             <div class="img-carousel-wrapper" id="hero-carousel">
                 <div class="ic-track" id="ic-track">
@@ -555,7 +554,7 @@
                         <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg><span>TECNOLOGÍA REFLECTIVA</span></div>
                         <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v2c0 1.66 1.34 3 3 3h14c1.66 0 3-1.34 3-3v-2c0-1.66-1.34-3-3-3zm1 5c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v2zM6 11h2v2H6zm4 0h4v2h-4z"/></svg><span>IMPERMEABILIZACIÓN ELASTOMÉRICA</span></div>
                         <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg><span>HIDRORREPELENCIA</span></div>
-                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3zM11 1h2v4h-2zm0 18h2v4h-2zm8.17-10.76l1.42-1.42 2.83 2.83-1.42 1.42zm-15.56 12.02l1.42-1.42 2.83 2.83-1.42 1.42zM23 11h-4v2h4zM5 11H1v2h4zm13.34 8.24l1.42 1.42-2.83 2.83-1.42-1.42zM7.76 4.93L6.34 3.51 3.51 6.34l1.42 1.42z"/></svg><span>ALTA RESISTENCIA UV</span></div>
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3zM11 1h2v4h-2zm0 18h2v4h-2zm8.17-10.76l1.42-1.42 2.83 2.83-1.42 1.42zM23 11h-4v2h4zM5 11H1v2h4zm13.34 8.24l1.42 1.42-2.83 2.83-1.42-1.42zM7.76 4.93L6.34 3.51 3.51 6.34l1.42 1.42z"/></svg><span>ALTA RESISTENCIA UV</span></div>
                         <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zm-7-8l-3 4-2-2-3 4h14z"/></svg><span>CUBRE MICROFISURAS</span></div>
                         <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg><span>RESINA 100% ACRÍLICA</span></div>
                     </div>
@@ -733,15 +732,15 @@
                             <div style="background: #eefafc; border: 1px solid var(--c-turquesa); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; border-left: 4px solid var(--c-turquesa);">
                                 <div style="width: 32px; height: 32px; background: var(--c-turquesa); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0;"><svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: var(--c-blanco);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
                                 <div>
-                                    <h4 style="font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;">ZONA A: ENVÍO GRATIS</h4>
-                                    <p style="font-size: 13px; color: var(--c-texto-light);">Córdoba Capital (anillo Circunvalación) y zonas cercanas habilitadas (aprox. 30 km).</p>
+                                    <h4 style="font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;">ENVÍO GRATIS</h4>
+                                    <p style="font-size: 13px; color: var(--c-texto-light);">Córdoba Capital dentro del anillo de Circunvalación y zonas cercanas incluidas en nuestra cobertura.</p>
                                 </div>
                             </div>
                             <div style="background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; border-left: 4px solid var(--c-naranja);">
                                 <div style="width: 32px; height: 32px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0;"><svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: var(--c-turquesa-dark);"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
                                 <div>
-                                    <h4 style="font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;">ZONA B: EXTENDIDAS</h4>
-                                    <p style="font-size: 13px; color: var(--c-texto-light);">$10.000 por pedido (áreas de 30 a 48 km).</p>
+                                    <h4 style="font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;">ZONAS EXTENDIDAS</h4>
+                                    <p style="font-size: 13px; color: var(--c-texto-light);">$10.000 por pedido.<br>Costo fijo por compra completa, sin importar la cantidad de baldes.</p>
                                 </div>
                             </div>
                         </div>
@@ -779,10 +778,8 @@
                             <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cuántas manos debo aplicar?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Se recomienda aplicar la cantidad de manos necesarias hasta alcanzar el consumo mínimo de 1 kg/m² para asegurar la formación de la película protectora.</p></div></div>
                             <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cómo se diluye?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Para la primera mano (imprimación), podés diluir con un 20% de agua. Las manos siguientes deben aplicarse sin diluir. Mezclar enérgicamente antes de aplicar.</p></div></div>
                             <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Sobre qué superficies se puede aplicar?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Es apto para techos de losas y chapas que estén correctamente preparados, limpios, firmes y secos.</p></div></div>
-                            <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Por qué se comercializa en color blanco?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Porque el color blanco puro es fundamental para maximizar la reflexión de la radiación solar, lo que ayuda a reducir la transferencia de calor hacia el interior.</p></div></div>
-                            <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Es lo mismo que un aislante térmico?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">No, los aislantes térmicos tienen masa y evitan la conducción del calor. Blindaje Reflectivo actúa por reflectancia (rebotando los rayos solares), lo cual complementa la aislación y reduce la temperatura superficial de la cubierta.</p></div></div>
-                            <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cómo se prepara la superficie?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">La superficie debe estar completamente limpia, seca, libre de polvo, grasas, hongos o pinturas descascaradas antes de la aplicación.</p></div></div>
-                            <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cuánto debo esperar entre manos?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Se debe dejar secar completamente la mano anterior antes de aplicar la siguiente (el tiempo varía según las condiciones climáticas).</p></div></div>
+                            <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cómo se prepara la superficie?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">La superficie debe estar firme, limpia y seca, sin polvo, grasa, pintura floja ni partes desprendidas. Reparar fisuras o grietas existentes. Si hay humedad de origen estructural o filtraciones activas, solucioná primero su causa.</p></div></div>
+                            <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cuánto tiempo debo esperar entre manos?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Tiempo de secado mínimo 6hs a 8hs de acuerdo a condiciones climáticas.</p></div></div>
                             <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cuántos kits recibo al comprar varios baldes?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Se entrega 1 (un) único Kit Premium de regalo por pedido, independientemente de la cantidad de baldes o productos diferentes que sumes a tu carrito.</p></div></div>
                             <div style="border-bottom: 1px solid var(--c-gris-border);"><button style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="toggleFaq(this)">¿Cómo funcionan las promociones y el envío?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">El descuento por cantidad se aplica automáticamente en el carrito sobre el subtotal de Blindaje Reflectivo. El envío gratis o con costo fijo se confirma vía WhatsApp según tu dirección exacta.</p></div></div>
                         </div>
@@ -865,29 +862,40 @@
     </section>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="container grid-desktop" style="gap:24px;">
+    <footer id="footer">
+        <div class="container footer-grid">
             <div>
-                <a href="index.html" class="logo" style="padding:0; margin-bottom: 12px; display:inline-block;"><img src="assets/images/logo.png" alt="BLINDAFLEX" style="max-height: 28px;"></a>
-                <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies de alta tecnología.</p>
-                <div class="footer-nav">
-                    <a href="index.html">Inicio Tienda</a>
-                    <a href="https://blindaflex.com">Tecnología Blindaflex</a>
-                </div>
+                <a class="footer-logo" href="index.html" style="display:inline-block; margin-bottom: 12px;">
+                    <img alt="BLINDAFLEX" src="assets/images/logo.png"/>
+                </a>
+                <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
+            </div>
+            <div class="footer-nav">
+                <span class="footer-nav-title">Nuestros Productos</span>
+                <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+                <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
             <div>
+                <div class="footer-nav" style="margin-bottom: 24px;">
+                    <span class="footer-nav-title">Tienda</span>
+                    <a href="index.html#confianza">Envíos y formas de pago</a>
+                    <a href="index.html#mayoristas">Ventas mayoristas</a>
+                    <a href="https://blindaflex.com">Sitio institucional</a>
+                </div>
                 <div class="footer-contact">
                     <h5>VENTAS Y ASESORAMIENTO</h5>
-                    <div class="footer-wsp">
-                        <svg viewBox="0 0 24 24" width="24" height="24" style="fill:#25D366; flex-shrink:0;"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
+                    <a aria-label="Contacto por WhatsApp" class="footer-wsp" href="https://wa.me/5493516318301">
+                        <svg viewbox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"></path></svg>
                         +54 9 351 631 8301
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <a href="index.html#mayoristas" style="color: var(--c-turquesa); text-decoration: underline; margin-bottom: 12px; display: inline-block;">Ventas mayoristas</a><br>
-            &copy; 2026 BLINDAFLEX. Todos los derechos reservados. Las imágenes son ilustrativas.
+            © 2026 BLINDAFLEX. Todos los derechos reservados.
         </div>
     </footer>
 
@@ -912,62 +920,102 @@
         }
 
         // --- 2. CARRUSEL HERO (IMÁGENES 3x) ---
-        const heroTrack = document.getElementById('ic-track');
-        let heroTimer;
-        function startHeroAutoScroll() {
-            heroTimer = setInterval(() => {
-                if(!heroTrack) return;
-                const width = heroTrack.clientWidth;
-                const current = Math.round(heroTrack.scrollLeft / width);
-                let next = current + 1;
-                if(next >= 3) next = 0;
-                heroTrack.scrollTo({ left: next * width, behavior: 'smooth' });
-                updateHeroIndicators(next);
-            }, 5000);
-        }
-        function manualImageChange(dir) {
-            if(!heroTrack) return;
-            clearInterval(heroTimer);
-            const width = heroTrack.clientWidth;
-            const current = Math.round(heroTrack.scrollLeft / width);
-            let next = current + dir;
-            if(next < 0) next = 2;
-            if(next > 2) next = 0;
-            heroTrack.scrollTo({ left: next * width, behavior: 'smooth' });
-            updateHeroIndicators(next);
-            startHeroAutoScroll(); // Resume
-        }
-        function updateHeroIndicators(idx) {
-            const dots = document.querySelectorAll('#ic-indicators .ic-dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === idx);
-            });
-        }
-        if(heroTrack) {
-            heroTrack.addEventListener('touchstart', () => clearInterval(heroTimer), {passive: true});
-            heroTrack.addEventListener('touchend', startHeroAutoScroll, {passive: true});
-            startHeroAutoScroll();
+        function initInfiniteCarousel(trackId, intervalMs) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+            
+            const originalSlides = Array.from(track.children).filter(c => c.tagName === 'DIV');
+            const total = originalSlides.length;
+            if (total <= 1) return;
+
+            // Clonar la primera imagen al final para hacer el loop infinito invisible
+            const firstClone = originalSlides[0].cloneNode(true);
+            firstClone.setAttribute('aria-hidden', 'true');
+            track.appendChild(firstClone);
+
+            let currentIndex = 0;
+            let timer;
+            let isInteracting = false;
+
+            let indicators = [];
+            if (trackId === 'ic-track') indicators = document.querySelectorAll('#ic-indicators .ic-dot');
+            if (trackId === 'gift-carousel') indicators = document.querySelectorAll('#kit-dots .ic-dot');
+
+            function updateDots() {
+                const activeIdx = currentIndex % total;
+                indicators.forEach((dot, i) => dot.classList.toggle('active', i === activeIdx));
+            }
+
+            function goToNext() {
+                if (isInteracting) return;
+                currentIndex++;
+                track.style.scrollBehavior = 'smooth';
+                track.scrollLeft = currentIndex * track.clientWidth;
+                updateDots();
+
+                // Si llegó al clon (último visual), resetea a 0 silenciosamente tras la transición
+                if (currentIndex === total) {
+                    setTimeout(() => {
+                        if (isInteracting) return;
+                        track.style.scrollBehavior = 'auto';
+                        track.scrollLeft = 0;
+                        currentIndex = 0;
+                        // Pequeño timeout para permitir que el navegador asimile el scroll 'auto'
+                        setTimeout(() => track.style.scrollBehavior = 'smooth', 50);
+                    }, 500); 
+                }
+            }
+
+            function goToPrev() {
+                if (currentIndex === 0) {
+                    // Si estamos en el 0 y tocan Prev, saltamos al clon final en modo auto
+                    track.style.scrollBehavior = 'auto';
+                    track.scrollLeft = total * track.clientWidth;
+                    currentIndex = total;
+                    // Forzar reflow para que el navegador lo aplique ya
+                    track.offsetHeight; 
+                }
+                currentIndex--;
+                track.style.scrollBehavior = 'smooth';
+                track.scrollLeft = currentIndex * track.clientWidth;
+                updateDots();
+            }
+
+            function startAuto() {
+                clearInterval(timer);
+                timer = setInterval(goToNext, intervalMs);
+            }
+
+            // Exponer al global
+            if (trackId === 'ic-track') {
+                window.manualImageChange = function(dir) {
+                    clearInterval(timer);
+                    if (dir > 0) goToNext();
+                    else goToPrev();
+                    startAuto();
+                }
+            }
+            if (trackId === 'gift-carousel') {
+                window.moveKitCarousel = function(dir) {
+                    clearInterval(timer);
+                    if (dir > 0) goToNext();
+                    else goToPrev();
+                    startAuto();
+                }
+            }
+
+            track.addEventListener('touchstart', () => { isInteracting = true; clearInterval(timer); }, {passive: true});
+            track.addEventListener('touchend', () => { isInteracting = false; startAuto(); }, {passive: true});
+            track.addEventListener('pointerdown', () => { isInteracting = true; clearInterval(timer); }, {passive: true});
+            track.addEventListener('pointerup', () => { isInteracting = false; startAuto(); }, {passive: true});
+            track.addEventListener('pointercancel', () => { isInteracting = false; startAuto(); }, {passive: true});
+
+            startAuto();
         }
 
-        // --- 3. CARRUSEL KIT (Igual a Techos) ---
-        const kitTrack = document.getElementById('gift-carousel');
-        function moveKitCarousel(direction) {
-            if(!kitTrack) return;
-            const slideWidth = kitTrack.clientWidth;
-            kitTrack.scrollBy({ left: slideWidth * direction, behavior: 'smooth' });
-        }
-        function updateKitIndicator() {
-            if(!kitTrack) return;
-            const slideWidth = kitTrack.clientWidth;
-            const index = Math.round(kitTrack.scrollLeft / slideWidth);
-            const dots = document.querySelectorAll('#kit-dots .ic-dot');
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-            
-            const prevNav = document.querySelector('.promo-kit-section .nav-prev');
-            const nextNav = document.querySelector('.promo-kit-section .nav-next');
-            if(prevNav) prevNav.style.display = index === 0 ? 'none' : 'flex';
-            if(nextNav) nextNav.style.display = index === dots.length - 1 ? 'none' : 'flex';
-        }
+        initInfiniteCarousel('ic-track', 5000);
+        initInfiniteCarousel('gift-carousel', 4000);
+
 
         // --- 4. CALCULADORA DE CONSUMO (1kg/m2) ---
         function calculateYield() {
@@ -1161,8 +1209,6 @@
             const totalBuckets = cart.reduce((s, i) => s + Number(i.qty), 0);
             
             // Regalo unificado: 1 Kit por pedido. 
-            // Para mantener compatibilidad estricta con "Techos" si está solo o mezclado, la indicación prioritaria es: "1 Kit Premium". 
-            // El prompt dice: "Si se compran ambos productos, corresponde un único kit en total. El kit no tiene costo adicional. No agregar un sellador extra como segundo regalo."
             const gifts = totalBuckets > 0 ? "1 Kit Premium de regalo" : "";
 
             return { techosCount, techosDisc, reflectivoCount, reflectivoDisc, totalBuckets, gifts };
@@ -1173,9 +1219,9 @@
             if(item.type === 'reflectivo') {
                 return item.qty * PRECIO_BASE_REFLECTIVO * (1 - pricing.reflectivoDisc);
             } else if (item.type === 'barrera') {
-                return item.qty * item.price; // Barrera es precio fijo por presentación
+                return item.qty * item.price; // Barrera es precio fijo
             } else {
-                // Techos (Default para items sin tipo si vienen del HTML anterior)
+                // Techos 
                 return item.qty * 148000 * (1 - pricing.techosDisc);
             }
         }
@@ -1372,7 +1418,7 @@
             
             cart.forEach((item, index) => {
                 const lineSubtotal = getLineSubtotal(item);
-                const originalLine = item.price * item.qty; // El precio almacenado es el base (170120, 148000 o los de Barrera)
+                const originalLine = item.price * item.qty; 
                 
                 m += `🔸 ${item.qty}x ${item.product}%0AColor: ${item.color}%0ASubtotal: ${formatARS(lineSubtotal)}%0A%0A`;
                 grandTotal += lineSubtotal;
