@@ -1473,15 +1473,20 @@ header .logo img {
         }
 
         // Carrito compartido: el descuento por volumen corresponde solo a Blindaje para Techos.
-        function isTechoItem(item) { return item.type === 'techo' || (!item.type && /Blindaje para Techos/i.test(item.product || '')); }
+        function isTechoItem(item) { return item.type === 'techo' || /Blindaje para Techos/i.test(item.product || ''); }
+        function isReflectivoItem(item) { return item.type === 'reflectivo' || /Blindaje Reflectivo/i.test(item.product || ''); }
         function getGlobalPricing() {
             const totalBuckets = cart.filter(isTechoItem).reduce((sum, item) => sum + Number(item.qty || 0), 0);
-            let discount = totalBuckets === 2 ? 0.15 : totalBuckets === 3 ? 0.20 : totalBuckets >= 4 ? 0.25 : 0;
-            const gifts = totalBuckets ? '1 Kit Premium de regalo' : '';
-            return { totalBuckets, discount, gifts };
+            let discount = totalBuckets === 2 ? 0.12 : totalBuckets === 3 ? 0.17 : totalBuckets >= 4 ? 0.22 : 0;
+            const reflectivoBuckets = cart.filter(isReflectivoItem).reduce((sum,item)=>sum+Number(item.qty||0),0);
+            const reflectivoDiscount = reflectivoBuckets===2 ? .12 : reflectivoBuckets===3 ? .17 : reflectivoBuckets>=4 ? .22 : 0;
+            const kitEligible = totalBuckets + reflectivoBuckets > 0;
+            const gifts = kitEligible ? '1 Kit Premium de regalo' : '';
+            return { totalBuckets, discount, reflectivoBuckets, reflectivoDiscount, kitEligible, gifts };
         }
         function getCartItemSubtotal(item) {
             if (isTechoItem(item)) return Number(item.qty || 0) * PRECIO_BASE * (1 - getGlobalPricing().discount);
+            if (isReflectivoItem(item)) return Number(item.qty || 0) * 170120 * (1 - getGlobalPricing().reflectivoDiscount);
             // Productos de Barrera Impermeable conservan su precio propio.
             const prices = {12:112200, 5:48900};
             const price = Number(item.price ?? item.unitPrice ?? prices[item.presentation] ?? 0);
@@ -1491,9 +1496,9 @@ header .logo img {
 
         function getSinglePriceData(qty) {
             let discount = 0;
-            if (qty == 2) discount = 0.15;
-            if (qty == 3) discount = 0.20;
-            if (qty >= 4) discount = 0.25;
+            if (qty == 2) discount = 0.12;
+            if (qty == 3) discount = 0.17;
+            if (qty >= 4) discount = 0.22;
 
             const original = PRECIO_BASE * qty;
             const final = original * (1 - discount);
@@ -1557,7 +1562,7 @@ header .logo img {
             const customHtml = `
                 <div class="qty-card ${isCustomActive}" onclick="selectQty(${customQtyVal})" id="card-custom" style="align-items:flex-start;">
                     <div class="qty-info">
-                        <div class="badge-discount">25% OFF</div>
+                        <div class="badge-discount">22% OFF</div>
                         <h4>5 O MÁS BALDES</h4>
                         <p>Kit premium incluido</p>
                         <p class="kit-components">${KIT_COMPONENTES_BREVE}</p>
@@ -1724,7 +1729,7 @@ header .logo img {
             
             // El kit se entrega una sola vez por pedido.
             // La descripción se calcula con la cantidad total de baldes del carrito.
-            let html = globalPricing.totalBuckets ? `
+            let html = globalPricing.kitEligible ? `
                 <div class="cart-gift-details">
                     <div class="cart-gift-heading">REGALOS INCLUIDOS:</div>
                     <div class="cart-gift-title">1 KIT PREMIUM DE REGALO</div>
@@ -1783,8 +1788,8 @@ header .logo img {
                 </div>`;
             });
             
-            if(globalPricing.totalBuckets) summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS INCLUIDOS:<br>${globalPricing.gifts}</div>`;
-            if(globalPricing.totalBuckets) summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.8); margin-top:-6px; margin-bottom:12px; line-height:1.45;">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo de 22 cm con 2 fundas · Pincel profesional.<br>Se entrega una sola vez por pedido.</div>`;
+            if(globalPricing.kitEligible) summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS INCLUIDOS:<br>${globalPricing.gifts}</div>`;
+            if(globalPricing.kitEligible) summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.8); margin-top:-6px; margin-bottom:12px; line-height:1.45;">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo de 22 cm con 2 fundas · Pincel profesional.<br>Se entrega una sola vez por pedido.</div>`;
             
             summaryHtml += `<div style="display:flex; justify-content:space-between; margin-top:16px; border-top: 1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px; font-weight:900;"><span>TOTAL:</span> <span>${formatARS(grandTotal)}</span></div>`;
             summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.6); margin-top:12px; text-align:center;">Envío a confirmar según zona. Pago al recibir.</div>`;
@@ -1839,14 +1844,14 @@ header .logo img {
                 grandTotal += itemSubtotal;
             });
 
-            const originalTotal = getCartTotal() + globalPricing.totalBuckets * PRECIO_BASE * globalPricing.discount;
+            const originalTotal = getCartTotal() + globalPricing.totalBuckets * PRECIO_BASE * globalPricing.discount + globalPricing.reflectivoBuckets * 170120 * globalPricing.reflectivoDiscount;
             const totalAhorro = originalTotal - grandTotal;
 
             msg += `*RESUMEN*%0A`;
-            if(globalPricing.totalBuckets) msg += `🎁 Regalos: ${globalPricing.gifts}%0A`;
-            if(globalPricing.totalBuckets) msg += `   - Sellador de grietas y fisuras Blindaflex 1,2 kg%0A`;
-            if(globalPricing.totalBuckets) msg += `   - Rodillo de 22 cm con 2 fundas%0A`;
-            if(globalPricing.totalBuckets) msg += `   - Pincel profesional%0A`;
+            if(globalPricing.kitEligible) msg += `🎁 Regalos: ${globalPricing.gifts}%0A`;
+            if(globalPricing.kitEligible) msg += `   - Sellador de grietas y fisuras Blindaflex 1,2 kg%0A`;
+            if(globalPricing.kitEligible) msg += `   - Rodillo de 22 cm con 2 fundas%0A`;
+            if(globalPricing.kitEligible) msg += `   - Pincel profesional%0A`;
             msg += `💰 *TOTAL A PAGAR: ${formatARS(grandTotal)}*%0A`;
             if(totalAhorro > 0) msg += `🎉 Ahorraste: ${formatARS(totalAhorro)}%0A`;
             msg += `🚚 Envío: A confirmar según zona%0A💳 Pago: Al recibir los productos%0A`;
@@ -2186,9 +2191,12 @@ const money=n=>'$'+Math.round(n).toLocaleString('es-AR');
 const escapeHTML=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isRoof=i=>i.type==='techo'||(!i.type&&/Blindaje para Techos/i.test(i.product||''));
 const isBarrera=i=>i.type==='barrera'||/Barrera Impermeable/i.test(i.product||'');
+const isReflectivo=i=>i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'');
 const roofQty=()=>cart.filter(isRoof).reduce((a,i)=>a+Number(i.qty||0),0);
-const discount=()=>{let q=roofQty();return q===2?.15:q===3?.20:q>=4?.25:0;};
-const subtotal=i=>Number(i.qty||0)*(isRoof(i)?148000*(1-discount()):Number(i.price||0));
+const discount=()=>{let q=roofQty();return q===2?.12:q===3?.17:q>=4?.22:0;};
+const reflQty=()=>cart.filter(isReflectivo).reduce((a,i)=>a+Number(i.qty||0),0);
+const reflDiscount=()=>{let q=reflQty();return q===2?.12:q===3?.17:q>=4?.22:0;};
+const subtotal=i=>Number(i.qty||0)*(isRoof(i)?148000*(1-discount()):isReflectivo(i)?170120*(1-reflDiscount()):Number(i.price??i.unitPrice??0));
 const cartTotal=()=>cart.reduce((a,i)=>a+subtotal(i),0);
 const reload=()=>{try{let o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items:[]}catch(e){return []}};
 const update=()=>{
@@ -2203,12 +2211,13 @@ function renderSharedCart(){
  total.textContent=money(cartTotal());
  if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
  let html='';let qty=roofQty();
- if(qty){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div>'+qty+' balde(s) de Blindaje para Techos'+(discount()>0?' · '+(discount()*100)+'% de descuento':'')+'</div><div class="bf-gift-emphasis">✓ 1 kit premium de regalo</div></div>'}
+ if(qty||reflQty()){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div class="bf-gift-emphasis">✓ 1 KIT PREMIUM DE REGALO</div><div>Rodillo 22 cm con 2 fundas · Sellador de grietas y fisuras 1,2 kg · Pincel profesional</div><small>Un único kit por pedido.</small></div>'}
  cart.forEach(i=>{
   let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
   html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
  });
- if(qty&&discount()>0){const ahorro=Math.round(qty*148000*discount());html+='<div class="bf-cart-savings"><span>AHORRÁS EN BLINDAJE PARA TECHOS</span><strong>'+money(ahorro)+'</strong></div>';}
+ if(qty&&discount()>0){const ahorro=Math.round(qty*148000*discount());html+='<div class="bf-cart-savings"><span>BLINDAJE PARA TECHOS · '+discount()*100+'% OFF · AHORRÁS</span><strong>'+money(ahorro)+'</strong></div>';}
+ if(reflQty()&&reflDiscount()>0){const ahorro=Math.round(reflQty()*170120*reflDiscount());html+='<div class="bf-cart-savings"><span>BLINDAJE REFLECTIVO · '+reflDiscount()*100+'% OFF · AHORRÁS</span><strong>'+money(ahorro)+'</strong></div>';}
  html+='<p class="bf-cart-note">El costo de envío se determina según la zona de entrega.</p>';
  body.innerHTML=html;
 }
@@ -2222,7 +2231,7 @@ window.updateCartCounter=update;
 window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
 window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
 window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();if(typeof renderCheckoutSummary==='function')renderCheckoutSummary()};
-window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty())html+='<p style="margin-top:12px">🎁 Kit premium incluido'+(discount()>0?' · '+discount()*100+'% de descuento en Techos':'')+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
+window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty()||reflQty())html+='<p style="margin-top:12px">🎁 1 kit premium incluido por pedido</p>';if(discount())html+='<p>Techos: '+discount()*100+'% de descuento · Ahorrás '+money(roofQty()*148000*discount())+'</p>';if(reflDiscount())html+='<p>Reflectivo: '+reflDiscount()*100+'% de descuento · Ahorrás '+money(reflQty()*170120*reflDiscount())+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
 const footer=document.querySelector('#cart-drawer .cart-footer');
 if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',closeCartDrawer);let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
 document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty')))});
