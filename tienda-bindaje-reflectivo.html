@@ -690,12 +690,10 @@
                             </div>
                         </div>
 
-                        <div id="calc-result-box" style="display: none; background: var(--c-blanco); color: var(--c-azul); padding: 20px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: left;">
-                            <div style="font-size: 13px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;">CANTIDAD RECOMENDADA:</div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 700; font-size: 15px;">Baldes de 20 kg: <span style="color: var(--c-turquesa-dark); font-size: 18px;" id="res-baldes">0</span></div>
-                            
-                            <div style="font-size: 11px; color: rgba(0,0,0,0.5); text-align: center; margin-top: 12px; font-weight: 500;">Calculado redondeando hacia arriba. Rinde ~20 m² por balde.</div>
-                            
+                        <div id="calc-result-box" style="display: none; background: var(--c-blanco); color: var(--c-azul); padding: 20px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: center;">
+                            <div style="font-size: 13px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;">CANTIDAD RECOMENDADA</div>
+                            <span id="res-baldes" style="display:none;">0</span>
+                            <div id="res-baldes-label" style="font-size: 30px; line-height: 1.1; font-weight: 900; color: var(--c-turquesa-dark); margin: 12px 0 4px 0;">0 BALDES DE 20 KG</div>
                             <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">SELECCIONAR ESTA CANTIDAD</button>
                         </div>
                     </section>
@@ -1028,7 +1026,7 @@
             startAuto();
         }
 
-        initInfiniteCarousel('ic-track', 5000);
+        initInfiniteCarousel('ic-track', 2500);
         initInfiniteCarousel('gift-carousel', 4000);
 
 
@@ -1042,6 +1040,7 @@
             const baldes = Math.ceil(m2 / 20);
             
             document.getElementById('res-baldes').innerText = baldes;
+            document.getElementById('res-baldes-label').innerText = `${baldes} BALDE${baldes === 1 ? '' : 'S'} DE 20 KG`;
             resBox.style.display = 'block';
             resBox.classList.add('active');
         }
@@ -1215,7 +1214,7 @@
             const techosDisc = techosCount>=4?.25:techosCount===3?.20:techosCount===2?.15:0;
             const reflectivoDisc = reflectivoCount>=4?.22:reflectivoCount===3?.17:reflectivoCount===2?.12:0;
             const kitEligible = cart.some(isEligibleKit);
-            return {techosCount,reflectivoCount,techosDisc,reflectivoDisc,kitEligible,gifts:kitEligible?'1 kit premium de regalo':''};
+            return {techosCount,reflectivoCount,techosDisc,reflectivoDisc,kitEligible,gifts:kitEligible?'1 kit premium de regalo':'',giftDetails:'Rodillo de 22 cm con 2 fundas, sellador de grietas y fisuras 1,2 kg y pincel profesional.'};
         }
         function getLineSubtotal(item) {
             const pricing = getGlobalPricing();
@@ -1299,10 +1298,16 @@
             let html = '';
             if(pricing.kitEligible) {
                 html += `
-                    <div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:12px; border-radius:4px; text-align:center;">
-                        <span style="display:block; margin-bottom:4px; font-size:11px;">REGALOS INCLUIDOS:</span>
-                        <span style="font-size:13px; font-weight:900;">${pricing.gifts.toUpperCase()}</span>
-                        <span style="display:block; margin-top:4px; font-size:11px; font-weight:500; color:var(--c-texto);">Un único kit por pedido.</span>
+                    <div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:12px; border-radius:10px; text-align:left; border:1px solid rgba(0,175,198,.25);">
+                        <div style="display:flex; align-items:flex-start; gap:10px;">
+                            <span style="font-size:20px; line-height:1;">🎁</span>
+                            <div>
+                                <span style="display:block; margin-bottom:4px; font-size:11px; letter-spacing:.3px;">DE REGALO</span>
+                                <span style="display:block; font-size:13px; font-weight:900; color:var(--c-azul);">1 KIT PREMIUM</span>
+                                <span style="display:block; margin-top:4px; font-size:11px; font-weight:500; color:var(--c-texto);">${pricing.giftDetails}</span>
+                                <span style="display:block; margin-top:5px; font-size:11px; font-weight:700; color:var(--c-texto);">Se entrega una sola vez por pedido.</span>
+                            </div>
+                        </div>
                     </div>`;
             }
             
@@ -1377,7 +1382,7 @@
             if(pricing.techosDisc>0) summaryHtml += `<p>Descuento Techos: ${Math.round(pricing.techosDisc*100)}%</p>`;
             if(pricing.reflectivoDisc>0) summaryHtml += `<p>Descuento Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}%</p>`;
             if(pricing.kitEligible) {
-                summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS INCLUIDOS:<br>${pricing.gifts}</div>`;
+                summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700; line-height:1.5;">🎁 <strong>DE REGALO: 1 KIT PREMIUM</strong><br><span style="font-weight:500; color:rgba(255,255,255,0.82);">${pricing.giftDetails}</span><br><span style="font-size:11px; color:rgba(255,255,255,0.72);">Se entrega una sola vez por pedido.</span></div>`;
             }
             
             summaryHtml += `<div style="display:flex; justify-content:space-between; margin-top:16px; border-top: 1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px; font-weight:900;"><span>TOTAL:</span> <span>${formatARS(grandTotal)}</span></div>`;
@@ -1440,7 +1445,9 @@
             if(pricing.techosDisc>0) m += `Descuento en Techos: ${Math.round(pricing.techosDisc*100)}%25%0A`;
             if(pricing.reflectivoDisc>0) m += `Descuento en Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}%25%0A`;
             if(pricing.kitEligible) {
-                m += `🎁 Regalos: ${pricing.gifts}%0A`;
+                m += `🎁 Regalo: 1 Kit Premium%0A`;
+                m += `   Incluye: ${pricing.giftDetails}%0A`;
+                m += `   Se entrega una sola vez por pedido.%0A`;
             }
             m += `💰 *TOTAL A PAGAR: ${formatARS(grandTotal)}*%0A`;
             if(totalAhorro > 0) m += `🎉 Ahorraste: ${formatARS(totalAhorro)}%0A`;
