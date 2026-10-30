@@ -849,7 +849,7 @@
                 <span id="drawer-total">$0</span>
             </div>
             <button type="button" class="btn-primary" onclick="closeCartDrawer()" style="width:100%; background:var(--c-blanco); color:var(--c-azul); border:2px solid var(--c-turquesa); box-shadow:none; padding:14px; font-size:14px; border-radius:var(--radius-sm); margin-bottom:12px;">SEGUIR COMPRANDO</button>
-            <button class="btn-primary" onclick="goToCheckout()" id="btn-checkout" disabled style="width: 100%; border:none; padding:18px; font-size:15px; border-radius: var(--radius-sm); background: var(--c-naranja); text-transform: uppercase;">CONTINUAR CON MI PEDIDO</button>
+            <button type="button" class="btn-primary" onclick="goToCheckout()" id="btn-checkout" disabled style="width: 100%; border:none; padding:18px; font-size:15px; border-radius: var(--radius-sm); background: var(--c-naranja); text-transform: uppercase;">CONTINUAR CON MI PEDIDO</button>
         </div>
     </aside>
 
@@ -1232,6 +1232,8 @@
         }
 
         let cart = loadCart();
+        let isCartOpen = false;
+        let isCheckoutOpen = false;
 
         function saveCart() {
             localStorage.setItem('blindaflex_cart_data', JSON.stringify({ items: cart, lastActivity: Date.now() }));
@@ -1346,8 +1348,11 @@
                     </div>`;
             }
             
-            if(pricing.techosDisc>0) html += `<div class="bf-discount-note">Blindaje para Techos: ${Math.round(pricing.techosDisc*100)}% de descuento.</div>`;
-            if(pricing.reflectivoDisc>0) html += `<div class="bf-discount-note">Blindaje Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}% de descuento.</div>`;
+            const ahorroTechos = cart.filter(isRoof).reduce((sum,item)=>sum + getOriginalSubtotal(item)-getLineSubtotal(item),0);
+            const ahorroReflectivo = cart.filter(isReflectivo).reduce((sum,item)=>sum + getOriginalSubtotal(item)-getLineSubtotal(item),0);
+            if(pricing.techosDisc>0) html += `<div class="bf-discount-note">Blindaje para Techos: ${Math.round(pricing.techosDisc*100)}% de descuento. <strong>¡Te ahorrás ${formatARS(ahorroTechos)}!</strong></div>`;
+            if(pricing.reflectivoDisc>0) html += `<div class="bf-discount-note">Blindaje Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}% de descuento. <strong>¡Te ahorrás ${formatARS(ahorroReflectivo)}!</strong></div>`;
+            if(getSavings()>0) html += `<div class="bf-discount-note" style="background:var(--c-azul); color:#fff;">AHORRO TOTAL: ${formatARS(getSavings())}</div>`;
             let grandTotal = 0;
 
             cart.forEach(item => {
@@ -1414,8 +1419,11 @@
                 </div>`;
             });
             
-            if(pricing.techosDisc>0) summaryHtml += `<p>Descuento Techos: ${Math.round(pricing.techosDisc*100)}%</p>`;
-            if(pricing.reflectivoDisc>0) summaryHtml += `<p>Descuento Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}%</p>`;
+            const ahorroTechos = cart.filter(isRoof).reduce((sum,item)=>sum + getOriginalSubtotal(item)-getLineSubtotal(item),0);
+            const ahorroReflectivo = cart.filter(isReflectivo).reduce((sum,item)=>sum + getOriginalSubtotal(item)-getLineSubtotal(item),0);
+            if(pricing.techosDisc>0) summaryHtml += `<p>Descuento Techos: ${Math.round(pricing.techosDisc*100)}% — Ahorrás ${formatARS(ahorroTechos)}</p>`;
+            if(pricing.reflectivoDisc>0) summaryHtml += `<p>Descuento Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}% — Ahorrás ${formatARS(ahorroReflectivo)}</p>`;
+            if(getSavings()>0) summaryHtml += `<p style="color:var(--c-turquesa); font-weight:900;">AHORRO TOTAL: ${formatARS(getSavings())}</p>`;
             if(pricing.kitEligible) {
                 summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700; line-height:1.5;">🎁 <strong>DE REGALO: 1 KIT PREMIUM</strong><br><span style="font-weight:500; color:rgba(255,255,255,0.82);">${pricing.giftDetails}</span><br><span style="font-size:11px; color:rgba(255,255,255,0.72);">Se entrega una sola vez por pedido.</span></div>`;
             }
@@ -1427,17 +1435,19 @@
         }
 
         function goToCheckout() {
+            if (!cart.length) return;
             closeCartDrawer();
-            document.getElementById('main-store').style.display = 'none';
-            document.getElementById('checkout-view').style.display = 'block';
-            window.scrollTo(0,0);
             isCheckoutOpen = true;
-            updateFloatingBarVisibility();
+            document.getElementById('checkout-view').style.display = 'block';
+            const form = document.getElementById('checkout-form');
+            if (form) form.scrollTop = 0;
+            document.getElementById('checkout-view').scrollTop = 0;
+            window.scrollTo(0,0);
             renderCheckoutSummary();
+            updateFloatingBarVisibility();
         }
 
         function closeCheckout() {
-            document.getElementById('main-store').style.display = 'block';
             document.getElementById('checkout-view').style.display = 'none';
             window.scrollTo(0,0);
             isCheckoutOpen = false;
