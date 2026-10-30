@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
     <!-- SEO TÉCNICO Y METADATOS -->
-    <title>Blindaje Reflectivo | Impermeabilizante y Aislante | Blindaflex</title>
+    <title>Blindaje Reflectivo | Impermeabilizante reflectivo para techos | Blindaflex</title>
     <meta name="description" content="Blindaje Reflectivo de Blindaflex. Impermeabilización elastomérica que protege del agua y reduce el calentamiento de la cubierta reflejando la radiación solar.">
     <link rel="canonical" href="https://tienda.blindaflex.com/tienda-bindaje-reflectivo.html">
     <meta name="robots" content="index, follow">
@@ -33,7 +33,6 @@
         "url": "https://tienda.blindaflex.com/tienda-bindaje-reflectivo.html",
         "priceCurrency": "ARS",
         "price": "170120",
-        "priceValidUntil": "2025-12-31",
         "itemCondition": "https://schema.org/NewCondition",
         "availability": "https://schema.org/InStock",
         "seller": { "@type": "Organization", "name": "Blindaflex" }
@@ -144,7 +143,7 @@
         .ic-track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
         .ic-track::-webkit-scrollbar { display: none; }
         .ic-slide { min-width: 100%; height: 100%; scroll-snap-align: center; position: relative; }
-        .ic-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .ic-slide img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
         
         .ic-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(7, 26, 36, 0.6); border: 1px solid rgba(255,255,255,0.4); width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 10; backdrop-filter: blur(4px); transition: background 0.2s;}
         .ic-nav:active { background: var(--c-azul); }
@@ -203,12 +202,18 @@
         .gift-level.primary { border-left: 4px solid var(--c-turquesa); }
         
         .gl-icon { width: 44px; height: 44px; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;}
-        .gl-icon svg { width: 24px; height: 24px; fill: var(--c-turquesa); }
+        .gl-icon svg { width: 24px; height: 24px; fill: var(--c-blanco); }
         
         .gl-info { display: flex; flex-direction: column; }
         .gl-info .gl-kicker { font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;}
         .gl-info h4 { color: var(--c-blanco); font-size: 16px; font-weight: 900; line-height: 1.2; margin-bottom: 4px; }
         .gl-info p { color: var(--c-gris-claro); font-size: 13px; font-weight: 500; }
+
+        .gift-level.secondary { border-left: 4px solid var(--c-naranja); background: rgba(255,255,255,0.07); }
+        .gift-level.primary .gl-icon svg { fill: var(--c-turquesa); }
+        .gift-level.secondary .gl-icon svg { fill: var(--c-naranja); }
+        .gift-level.secondary h4 { color: var(--c-naranja); }
+        .promo-note { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 20px; text-align: center; font-weight: 500; line-height: 1.4; }
 
         /* =========================================================
            BLOQUE 4: CALCULADORA DE CONSUMO (Ajustada 1kg/m2)
@@ -363,6 +368,8 @@
         .cart-total span:last-child { font-size: 26px; color: var(--c-azul);}
         .empty-cart-btn { width: 100%; text-align: center; background: none; border: none; color: var(--c-texto-light); font-size: 13px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 12px 0; margin-top: 8px; }
 
+        .bf-discount-note{padding:8px 12px;margin-bottom:7px;border-radius:7px;background:#E0F7FA;color:#007F91;font-size:13px;font-weight:800}
+
         /* CHECKOUT MODAL HOME */
         #checkout-view { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--c-gris-bg); z-index: 100000; overflow-y: auto; padding-bottom: 40px; }
         .checkout-container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -429,7 +436,7 @@
 </head>
 <body>
 
-    <h1 class="sr-only">Blindaje Reflectivo — Pintura Impermeabilizante y Reflectiva Blindaflex</h1>
+
 
     <!-- 1. BARRA INFORMATIVA COMERCIAL (MARQUEE CSS) -->
     <div class="top-bar-container">
@@ -524,9 +531,9 @@
         <div class="container">
             <div class="img-carousel-wrapper" id="hero-carousel">
                 <div class="ic-track" id="ic-track">
-                    <div class="ic-slide"><img src="assets/images/reflectivo-carrusel-1.webp" alt="Techo de losa blanca impermeabilizada"></div>
-                    <div class="ic-slide"><img src="assets/images/reflectivo-carrusel-2.webp" alt="Cubierta blanca bajo radiación solar"></div>
-                    <div class="ic-slide"><img src="assets/images/reflectivo-carrusel-3.webp" alt="Aplicación de membrana blanca con rodillo sobre techo"></div>
+                    <div class="ic-slide"><img decoding="async" src="assets/images/reflectivo-carrusel-1.png" alt="Blindaje Reflectivo: refleja la radiación solar y ayuda a reducir el calentamiento del techo"></div>
+                    <div class="ic-slide"><img decoding="async" src="assets/images/reflectivo-carrusel-2.png" alt="Blindaje Reflectivo: membrana blanca hidrorrepelente que protege el techo frente a la lluvia"></div>
+                    <div class="ic-slide"><img decoding="async" src="assets/images/reflectivo-carrusel-3.png" alt="Protección integral Blindaje Reflectivo: reflexión solar, impermeabilización y elasticidad"></div>
                 </div>
                 
                 <button class="ic-nav ic-prev" onclick="manualImageChange(-1)" aria-label="Imagen anterior"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
@@ -623,11 +630,19 @@
                                 <div class="gl-info">
                                     <div class="gl-kicker">EN TODAS LAS COMPRAS</div>
                                     <h4>1 KIT PREMIUM DE REGALO</h4>
-                                    <p>Incluye rodillo de 22 cm con 2 fundas, pincel y sellador elastomérico de 1,2 kg.</p>
+                                    <p>Incluye sellador de grietas y fisuras 1,2 kg, rodillo de 22 cm con 2 fundas y pincel profesional.</p>
+                                </div>
+                            </div>
+                            <div class="gift-level secondary">
+                                <div class="gl-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm-1 14-4-4 1.41-1.41L11 13.17l4.59-4.58L17 10z"/></svg></div>
+                                <div class="gl-info">
+                                    <div class="gl-kicker">IMPORTANTE</div>
+                                    <h4>EL KIT SE ENTREGA UNA SOLA VEZ POR PEDIDO</h4>
+                                    <p>NO se suman por cantidad de baldes comprados.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="promo-note" style="color:var(--c-blanco); font-weight: 700;">Se entrega un único kit por pedido desde el primer balde.</div>
+                        <div class="promo-note">Un kit por pedido, incluido desde el primer balde.</div>
                     </section>
                 </div>
 
@@ -1170,19 +1185,16 @@
         }
 
         // --- 6. CARRITO GLOBAL UNIFICADO (Techos, Barrera, Reflectivo) ---
-        const CART_EXPIRATION_MS = 30 * 60 * 1000;
-        const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
-
+        const formatARS = num => "$" + Math.round(Number(num)||0).toLocaleString('es-AR');
+        const isRoof = item => item.type === 'techo' || (!item.type && /Blindaje para Techos/i.test(item.product || ''));
+        const isReflectivo = item => item.type === 'reflectivo' || /Blindaje Reflectivo/i.test(item.product || '');
+        const isEligibleKit = item => isRoof(item) || isReflectivo(item);
+        const cleanText = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         function loadCart() {
-            const data = localStorage.getItem('blindaflex_cart_data');
-            if(data) {
-                try {
-                    const parsed = JSON.parse(data);
-                    if(Date.now() - parsed.lastActivity > CART_EXPIRATION_MS) return [];
-                    return parsed.items || [];
-                } catch(e) { return []; }
-            }
-            return [];
+            try {
+                const parsed = JSON.parse(localStorage.getItem('blindaflex_cart_data') || '{}');
+                return Array.isArray(parsed.items) ? parsed.items.filter(i => i && Number(i.qty)>0).map(i=>({...i, qty:Math.max(1,Math.floor(Number(i.qty)))})) : [];
+            } catch(e) { return []; }
         }
 
         let cart = loadCart();
@@ -1198,33 +1210,25 @@
 
         // Lógica de cálculo global por tipos de producto
         function getGlobalPricing() {
-            // Techos
-            const techosCount = cart.filter(i => i.type === 'techo' || (!i.type && /Blindaje para Techos/i.test(i.product))).reduce((s, i) => s + Number(i.qty), 0);
-            let techosDisc = techosCount >= 4 ? 0.25 : techosCount === 3 ? 0.20 : techosCount === 2 ? 0.15 : 0;
-            
-            // Reflectivo
-            const reflectivoCount = cart.filter(i => i.type === 'reflectivo').reduce((s, i) => s + Number(i.qty), 0);
-            let reflectivoDisc = reflectivoCount >= 4 ? 0.22 : reflectivoCount === 3 ? 0.17 : reflectivoCount === 2 ? 0.12 : 0;
-
-            const totalBuckets = cart.reduce((s, i) => s + Number(i.qty), 0);
-            
-            // Regalo unificado: 1 Kit por pedido. 
-            const gifts = totalBuckets > 0 ? "1 Kit Premium de regalo" : "";
-
-            return { techosCount, techosDisc, reflectivoCount, reflectivoDisc, totalBuckets, gifts };
+            const techosCount = cart.filter(isRoof).reduce((s,i)=>s+Number(i.qty||0),0);
+            const reflectivoCount = cart.filter(isReflectivo).reduce((s,i)=>s+Number(i.qty||0),0);
+            const techosDisc = techosCount>=4?.25:techosCount===3?.20:techosCount===2?.15:0;
+            const reflectivoDisc = reflectivoCount>=4?.22:reflectivoCount===3?.17:reflectivoCount===2?.12:0;
+            const kitEligible = cart.some(isEligibleKit);
+            return {techosCount,reflectivoCount,techosDisc,reflectivoDisc,kitEligible,gifts:kitEligible?'1 kit premium de regalo':''};
         }
-
         function getLineSubtotal(item) {
             const pricing = getGlobalPricing();
-            if(item.type === 'reflectivo') {
-                return item.qty * PRECIO_BASE_REFLECTIVO * (1 - pricing.reflectivoDisc);
-            } else if (item.type === 'barrera') {
-                return item.qty * item.price; // Barrera es precio fijo
-            } else {
-                // Techos 
-                return item.qty * 148000 * (1 - pricing.techosDisc);
-            }
+            const qty = Number(item.qty)||0;
+            if(isReflectivo(item)) return qty * PRECIO_BASE_REFLECTIVO * (1-pricing.reflectivoDisc);
+            if(isRoof(item)) return qty * 148000 * (1-pricing.techosDisc);
+            // Barrera y otros artículos conservan su precio unitario almacenado.
+            return qty * Number(item.price||0);
         }
+        function getOriginalSubtotal(item) {
+            return Number(item.qty||0)*(isReflectivo(item)?PRECIO_BASE_REFLECTIVO:isRoof(item)?148000:Number(item.price||0));
+        }
+        function getSavings() { return cart.reduce((s,i)=>s+getOriginalSubtotal(i)-getLineSubtotal(i),0); }
 
         function getCartTotal() {
             return cart.reduce((sum, item) => sum + getLineSubtotal(item), 0);
@@ -1263,8 +1267,8 @@
                 const newQty = item.qty + delta;
                 if(newQty > 0) {
                     item.qty = newQty;
-                    saveCart();
-                }
+                } else { cart = cart.filter(i => i !== item); }
+                saveCart();
             }
         }
 
@@ -1293,7 +1297,7 @@
             const pricing = getGlobalPricing();
             
             let html = '';
-            if(pricing.totalBuckets > 0) {
+            if(pricing.kitEligible) {
                 html += `
                     <div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:12px; border-radius:4px; text-align:center;">
                         <span style="display:block; margin-bottom:4px; font-size:11px;">REGALOS INCLUIDOS:</span>
@@ -1302,6 +1306,8 @@
                     </div>`;
             }
             
+            if(pricing.techosDisc>0) html += `<div class="bf-discount-note">Blindaje para Techos: ${Math.round(pricing.techosDisc*100)}% de descuento.</div>`;
+            if(pricing.reflectivoDisc>0) html += `<div class="bf-discount-note">Blindaje Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}% de descuento.</div>`;
             let grandTotal = 0;
 
             cart.forEach(item => {
@@ -1313,8 +1319,8 @@
                         <button class="remove-item" onclick="removeFromCart('${item.id}')" aria-label="Eliminar">
                             <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                         </button>
-                        <div class="cart-item-title">${item.product}</div>
-                        <div class="cart-item-color">${item.presentation ? `Presentación: ${item.presentation}kg<br>` : ''}Color: ${item.color}</div>
+                        <div class="cart-item-title">${cleanText(item.product)}</div>
+                        <div class="cart-item-color">${item.presentation ? `Presentación: ${cleanText(item.presentation)} kg<br>` : ''}Color: ${cleanText(item.color)}</div>
                         <div class="cart-item-controls">
                             <div class="qty-controls">
                                 <button class="qty-btn-sm" onclick="changeCartQty('${item.id}', -1)">-</button>
@@ -1340,7 +1346,8 @@
             document.getElementById('cart-drawer').classList.add('open');
             isCartOpen = true;
             updateFloatingBarVisibility();
-            saveCart(); 
+            updateCartCounter();
+            renderDrawer();
         }
 
         function closeCartDrawer() {
@@ -1362,12 +1369,14 @@
                 const lineSubtotal = getLineSubtotal(item);
                 grandTotal += lineSubtotal;
                 summaryHtml += `<div style="margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1);">
-                    <div style="font-size:14px; font-weight:700;">${item.qty}x ${item.product} (${item.color})</div>
+                    <div style="font-size:14px; font-weight:700;">${item.qty}x ${cleanText(item.product)} (${cleanText(item.color)})</div>
                     <div style="font-size:16px; font-weight:900; text-align:right; margin-top:4px;">${formatARS(lineSubtotal)}</div>
                 </div>`;
             });
             
-            if(pricing.totalBuckets > 0) {
+            if(pricing.techosDisc>0) summaryHtml += `<p>Descuento Techos: ${Math.round(pricing.techosDisc*100)}%</p>`;
+            if(pricing.reflectivoDisc>0) summaryHtml += `<p>Descuento Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}%</p>`;
+            if(pricing.kitEligible) {
                 summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS INCLUIDOS:<br>${pricing.gifts}</div>`;
             }
             
@@ -1418,7 +1427,7 @@
             
             cart.forEach((item, index) => {
                 const lineSubtotal = getLineSubtotal(item);
-                const originalLine = item.price * item.qty; 
+                const originalLine = getOriginalSubtotal(item); 
                 
                 m += `🔸 ${item.qty}x ${item.product}%0AColor: ${item.color}%0ASubtotal: ${formatARS(lineSubtotal)}%0A%0A`;
                 grandTotal += lineSubtotal;
@@ -1428,14 +1437,16 @@
             const totalAhorro = originalTotal - grandTotal;
 
             m += `*RESUMEN*%0A`;
-            if(pricing.totalBuckets > 0) {
+            if(pricing.techosDisc>0) m += `Descuento en Techos: ${Math.round(pricing.techosDisc*100)}%25%0A`;
+            if(pricing.reflectivoDisc>0) m += `Descuento en Reflectivo: ${Math.round(pricing.reflectivoDisc*100)}%25%0A`;
+            if(pricing.kitEligible) {
                 m += `🎁 Regalos: ${pricing.gifts}%0A`;
             }
             m += `💰 *TOTAL A PAGAR: ${formatARS(grandTotal)}*%0A`;
             if(totalAhorro > 0) m += `🎉 Ahorraste: ${formatARS(totalAhorro)}%0A`;
             m += `🚚 Envío: A confirmar según zona%0A💳 Pago: Al recibir los productos%0A`;
 
-            window.open(`https://wa.me/5493516318301?text=${m}`, '_blank');
+            window.open('https://wa.me/5493516318301?text=' + encodeURIComponent(m.replace(/%0A/g,'\n')), '_blank', 'noopener');
         }
 
         // --- BARRA FLOTANTE ---
