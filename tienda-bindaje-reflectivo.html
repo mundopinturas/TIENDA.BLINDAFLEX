@@ -433,6 +433,22 @@
         .footer-bottom { text-align: center; font-size: 12px; color: #64748b; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;}
         
         @media(min-width:992px){.footer-grid{grid-template-columns:1fr 1fr 1fr;}}
+
+        /* Menú móvil: lista compacta y legible, sin SVG sobredimensionado */
+        .mm-products-label { display:block; color:#fff; font-size:14px; font-weight:800; letter-spacing:.5px; padding:16px 0 8px; }
+        .mm-products-list { display:flex; flex-direction:column; gap:0; padding:0 0 12px 12px; border-bottom:1px solid rgba(255,255,255,.12); }
+        .mm-products-list a { display:block; color:rgba(255,255,255,.75); font-size:14px; font-weight:600; padding:9px 0; line-height:1.25; }
+        .mm-products-list a[aria-current="page"] { color:var(--c-turquesa); font-weight:800; }
+        .mobile-menu { width:82%; max-width:330px; }
+        .mm-header { flex-shrink:0; }
+        .mm-footer { margin-top:auto; }
+        .mm-trust-box h4 { color:#fff; font-size:13px; margin-bottom:6px; }
+        .mm-trust-box p { color:#b0c0c7; font-size:12px; line-height:1.45; }
+        /* Beneficios: presencia contenida y menos altura */
+        .benefits-compact { gap:8px; }
+        .bc-card { padding:12px 9px; gap:7px; border-bottom-width:2px; }
+        .bc-card svg { width:22px; height:22px; fill:none; stroke:var(--c-azul); stroke-width:1.6; stroke-linejoin:round; stroke-linecap:round; }
+        .bc-card span { font-size:11px; line-height:1.25; }
     </style>
 <!-- VERSION: REFLECTIVO-2026-10-29-R2 · MENÚ MÓVIL / REGALOS / CALCULADORA / PNG / CARRUSELES -->
 </head>
@@ -502,20 +518,14 @@
         <div class="mm-nav">
             <a href="index.html" class="mm-link">Inicio</a>
             
-            <div class="mm-dropdown">
-                <div class="mm-dropdown-title open" onclick="toggleMobileDropdown(this)">
-                    Productos
-                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                </div>
-                <div class="mm-dropdown-content" style="max-height: 300px;">
-                    <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
-                    <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                    <a href="tienda-bindaje-reflectivo.html" style="color: var(--c-turquesa);">Blindaje Reflectivo</a>
-                    <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
-                    <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
-                </div>
+            <div class="mm-products-label">PRODUCTOS</div>
+            <div class="mm-products-list">
+                <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+                <a href="tienda-bindaje-reflectivo.html" aria-current="page">Blindaje Reflectivo</a>
+                <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
-            
             <a href="#confianza" class="mm-link" onclick="toggleMobileMenu()">Envíos y formas de pago</a>
             <a href="index.html#mayoristas" class="mm-link" onclick="toggleMobileMenu()">Ventas mayoristas</a>
             <a href="#footer" class="mm-link" onclick="toggleMobileMenu()">Contacto</a>
@@ -650,6 +660,27 @@
 
                 <!-- COLUMNA DERECHA -->
                 <div>
+                    <!-- 7. CALCULADORA DE CONSUMO -->
+                    <section class="section-gap card calc-section" style="background: var(--c-azul-grad); color: var(--c-blanco); border: none;">
+                        <h2 class="section-title" style="color:var(--c-turquesa);">CALCULÁ TU CONSUMO</h2>
+                        <p class="section-subtitle" style="color:var(--c-gris-claro);">Ingresá los m² a pintar (rendimiento mínimo 1 kg/m²).</p>
+                        
+                        <div class="calc-input-group" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; text-align: center;">
+                            <label for="calc-m2" style="display: block; font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--c-blanco);">Superficie a impermeabilizar</label>
+                            <div style="display: flex; justify-content: center; align-items: center; gap: 12px;">
+                                <input type="number" id="calc-m2" style="width: 100px; padding: 12px; border: 2px solid var(--c-turquesa); border-radius: var(--radius-sm); font-size: 18px; font-weight: 900; text-align: center; color: var(--c-azul); background: var(--c-blanco);" placeholder="0" min="1" oninput="calculateYield()">
+                                <span style="font-size: 18px; font-weight: 800; color: var(--c-turquesa);">m²</span>
+                            </div>
+                        </div>
+
+                        <div id="calc-result-box" style="display: none; background: var(--c-blanco); color: var(--c-azul); padding: 20px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: center;">
+                            <div style="font-size: 13px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;">CANTIDAD RECOMENDADA</div>
+                            <span id="res-baldes" style="display:none;">0</span>
+                            <div id="res-baldes-label" style="font-size: 30px; line-height: 1.1; font-weight: 900; color: var(--c-turquesa-dark); margin: 12px 0 4px 0;">0 BALDES DE 20 KG</div>
+                            <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">SELECCIONAR ESTA CANTIDAD</button>
+                        </div>
+                    </section>
+
                     <!-- 6. SELECTOR DE COMPRA (REFLECTIVO) -->
                     <section id="compra" class="section-gap card buy-section">
                         <h2 class="buy-title-h2">COMPRÁ MÁS, AHORRÁ MÁS</h2>
@@ -679,26 +710,7 @@
                         </button>
                     </section>
 
-                    <!-- 7. CALCULADORA DE CONSUMO -->
-                    <section class="section-gap card calc-section" style="background: var(--c-azul-grad); color: var(--c-blanco); border: none;">
-                        <h2 class="section-title" style="color:var(--c-turquesa);">CALCULÁ TU CONSUMO</h2>
-                        <p class="section-subtitle" style="color:var(--c-gris-claro);">Ingresá los m² a pintar (rendimiento mínimo 1 kg/m²).</p>
-                        
-                        <div class="calc-input-group" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; text-align: center;">
-                            <label for="calc-m2" style="display: block; font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--c-blanco);">Superficie a impermeabilizar</label>
-                            <div style="display: flex; justify-content: center; align-items: center; gap: 12px;">
-                                <input type="number" id="calc-m2" style="width: 100px; padding: 12px; border: 2px solid var(--c-turquesa); border-radius: var(--radius-sm); font-size: 18px; font-weight: 900; text-align: center; color: var(--c-azul); background: var(--c-blanco);" placeholder="0" min="1" oninput="calculateYield()">
-                                <span style="font-size: 18px; font-weight: 800; color: var(--c-turquesa);">m²</span>
-                            </div>
-                        </div>
 
-                        <div id="calc-result-box" style="display: none; background: var(--c-blanco); color: var(--c-azul); padding: 20px; border-radius: var(--radius-md); margin-bottom: 16px; text-align: center;">
-                            <div style="font-size: 13px; font-weight: 800; color: var(--c-texto-light); text-transform: uppercase; margin-bottom: 12px; border-bottom: 1px solid var(--c-gris-border); padding-bottom: 8px;">CANTIDAD RECOMENDADA</div>
-                            <span id="res-baldes" style="display:none;">0</span>
-                            <div id="res-baldes-label" style="font-size: 30px; line-height: 1.1; font-weight: 900; color: var(--c-turquesa-dark); margin: 12px 0 4px 0;">0 BALDES DE 20 KG</div>
-                            <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="transferCalcToConfig()">SELECCIONAR ESTA CANTIDAD</button>
-                        </div>
-                    </section>
                 </div>
             </div>
 
@@ -1025,11 +1037,31 @@
             track.addEventListener('pointerup', () => { isInteracting = false; startAuto(); }, {passive: true});
             track.addEventListener('pointercancel', () => { isInteracting = false; startAuto(); }, {passive: true});
 
-            startAuto();
+            if (trackId === 'kit-carousel' && 'IntersectionObserver' in window) {
+                clearInterval(timer);
+                let kitWasVisible = false;
+                const visibleObserver = new IntersectionObserver((entries) => {
+                    const visible = entries[0].isIntersecting;
+                    if (visible && !kitWasVisible) {
+                        clearInterval(timer);
+                        currentIndex = 0;
+                        track.style.scrollBehavior = 'auto';
+                        track.scrollLeft = 0;
+                        updateDots();
+                        startAuto();
+                    } else if (!visible) {
+                        clearInterval(timer);
+                    }
+                    kitWasVisible = visible;
+                }, {threshold: 0.35});
+                visibleObserver.observe(track);
+            } else {
+                startAuto();
+            }
         }
 
         initInfiniteCarousel('ic-track', 2500);
-        initInfiniteCarousel('kit-carousel', 4000);
+        initInfiniteCarousel('kit-carousel', 8000);
 
 
         // --- 4. CALCULADORA DE CONSUMO (1kg/m2) ---
