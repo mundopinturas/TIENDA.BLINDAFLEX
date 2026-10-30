@@ -2247,5 +2247,101 @@ if(!document.getElementById('mobile-menu')){
 cart=reload();update();
 })();
 </script>
+<script id="bf-cart-4-pages-2026-10-30">
+/* Carrito compartido: único kit por familia de producto elegible, no por pedido. */
+(function(){
+'use strict';
+const KEY_BF='blindaflex_cart_data';
+const KIT_BF='Rodillo de 22 cm con 2 fundas, sellador elastomérico Blindaflex para grietas y fisuras de 1,2 kg y pincel profesional.';
+const formatBF=v=>'$'+Math.round(v).toLocaleString('es-AR');
+const escBF=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const familyBF=i=> i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'')?'reflectivo':i.type==='techo'||/Blindaje para Techos/i.test(i.product||'')?'techos':'otro';
+const getCartBF=()=>{try {const data=JSON.parse(localStorage.getItem(KEY_BF)||'{}');return Array.isArray(data.items)?data.items.filter(i=>i&&Number(i.qty)>0).map(i=>({...i,qty:Math.max(1,Math.floor(Number(i.qty)))})):[];}catch(e){return []}};
+const promotionBF=items=>{
+ const qt=f=>items.filter(i=>familyBF(i)===f).reduce((n,i)=>n+Number(i.qty||0),0);
+ const qtyT=qt('techos'),qtyR=qt('reflectivo');
+ const percent=q=>q>=4?22:q===3?17:q===2?12:0;
+ const pT=percent(qtyT),pR=percent(qtyR);
+ const oldPrice=i=>familyBF(i)==='techos'?148000:familyBF(i)==='reflectivo'?170120:Number(i.price??i.unitPrice??0);
+ const baseLine=i=>Number(i.qty||0)*oldPrice(i);
+ const totalLine=i=>Math.round(baseLine(i)*(1-(familyBF(i)==='techos'?pT:familyBF(i)==='reflectivo'?pR:0)/100));
+ const lines=items.map(i=>({...i,family:familyBF(i),base:baseLine(i),subtotal:totalLine(i)}));
+ const savedFor=f=>lines.filter(i=>i.family===f).reduce((n,i)=>n+i.base-i.subtotal,0);
+ return {lines,qtyT,qtyR,pT,pR,kitCount:Number(qtyT>0)+Number(qtyR>0),savedT:savedFor('techos'),savedR:savedFor('reflectivo'),total:lines.reduce((n,i)=>n+i.subtotal,0),saved:lines.reduce((n,i)=>n+i.base-i.subtotal,0)};
+};
+const kitBF=p=>{
+ if(!p.kitCount)return '';
+ const entries=[];
+ if(p.qtyT)entries.push('1 kit por Blindaje para Techos');
+ if(p.qtyR)entries.push('1 kit por Blindaje Reflectivo');
+ return `<div class="bf-unified-gifts" style="background:#e4f6f8;color:#071a24;padding:13px;border-radius:9px;margin-bottom:13px;border:1px solid #00afc6;"><strong>🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO</strong><div style="font-size:12px;margin:6px 0;">${entries.map(escBF).join(' · ')}</div><div style="font-size:12px;line-height:1.5;">${KIT_BF}</div><div style="font-size:11px;margin-top:7px;">Se entrega 1 kit por familia de producto elegible, sin importar cuántos baldes comprás de cada una.</div></div>`;
+};
+const ratesBF=p=>{
+ let h='';
+ if(p.pT)h+=`<div style="font-size:12px;margin:7px 0;"><strong>Techos: ${p.pT}% de descuento</strong> · Te ahorrás ${formatBF(p.savedT)}</div>`;
+ if(p.pR)h+=`<div style="font-size:12px;margin:7px 0;"><strong>Reflectivo: ${p.pR}% de descuento</strong> · Te ahorrás ${formatBF(p.savedR)}</div>`;
+ return h;
+};
+window.renderDrawer=function(){
+ const el=document.getElementById('cart-body'),total=document.getElementById('drawer-total'),btn=document.getElementById('btn-checkout');if(!el)return;
+ const items=getCartBF(),p=promotionBF(items);if(total)total.textContent=formatBF(p.total);if(btn)btn.disabled=!items.length;
+ if(!items.length){el.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>';return;}
+ let h=kitBF(p)+ratesBF(p);
+ for(const i of p.lines){
+ const id=escBF(i.id), qty=Number(i.qty||0);
+ h+=`<div class="cart-item" style="padding:12px 0;border-bottom:1px solid #ddd;"><div style="display:flex;justify-content:space-between;gap:10px;"><strong>${escBF(i.product)}</strong><button type="button" data-bf-remove="${id}" style="border:0;background:none;color:#b34134;cursor:pointer;">Quitar</button></div><div style="font-size:12px;margin:5px 0;">${i.presentation?'Presentación: '+escBF(i.presentation)+' kg · ':''}Color: ${escBF(i.color||'Sin especificar')}</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:9px;"><div style="display:flex;align-items:center;gap:12px;"><button type="button" data-bf-delta="-1" data-bf-id="${id}" aria-label="Restar unidad" style="padding:5px 9px;">−</button><strong>${qty}</strong><button type="button" data-bf-delta="1" data-bf-id="${id}" aria-label="Sumar unidad" style="padding:5px 9px;">+</button></div><strong>${formatBF(i.subtotal)}</strong></div></div>`;
+ }
+ if(p.saved)h+=`<div style="padding:12px 0;font-weight:800;color:#00899b;">AHORRO TOTAL: ${formatBF(p.saved)}</div>`;
+ el.innerHTML=h;
+};
+window.renderCheckoutSummary=function(){
+ const el=document.getElementById('checkout-summary');if(!el)return;
+ const p=promotionBF(getCartBF());let h=p.lines.map(i=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #8884;"><span>${Number(i.qty)} × ${escBF(i.product)} (${escBF(i.color||'')})</span><strong>${formatBF(i.subtotal)}</strong></div>`).join('');
+ h+=kitBF(p)+ratesBF(p);
+ if(p.saved)h+=`<p><strong>AHORRO TOTAL: ${formatBF(p.saved)}</strong></p>`;
+ h+=`<div style="display:flex;justify-content:space-between;margin:14px 0;font-size:18px;font-weight:900;"><span>TOTAL</span><span>${formatBF(p.total)}</span></div>`;
+ el.innerHTML=h;
+};
+window.submitWhatsApp=function(e){
+ if(e)e.preventDefault();const p=promotionBF(getCartBF());if(!p.lines.length)return;
+ const val=id=>(document.getElementById(id)?.value||'').trim();
+ const rows=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+val('f-nombre'),'Teléfono: '+val('f-tel'),'Localidad/Barrio: '+val('f-loc'),'Dirección: '+val('f-calle')+' '+val('f-num')];
+ if(val('f-cp'))rows.push('Código postal: '+val('f-cp'));if(val('f-ref'))rows.push('Referencia: '+val('f-ref'));
+ rows.push('','*DETALLE DEL PEDIDO*');
+ for(const i of p.lines)rows.push(`${Number(i.qty)} × ${i.product} · ${i.color||'Sin especificar'}${i.presentation?' · '+i.presentation+' kg':''}`,'Subtotal: '+formatBF(i.subtotal),'');
+ if(p.pT)rows.push('Blindaje para Techos: '+p.pT+'% OFF · Ahorro: '+formatBF(p.savedT));
+ if(p.pR)rows.push('Blindaje Reflectivo: '+p.pR+'% OFF · Ahorro: '+formatBF(p.savedR));
+ if(p.kitCount){rows.push(`🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO`);if(p.qtyT)rows.push('1 kit por Blindaje para Techos');if(p.qtyR)rows.push('1 kit por Blindaje Reflectivo');rows.push('Contenido de cada kit: '+KIT_BF);}
+ if(p.saved)rows.push('AHORRO TOTAL: '+formatBF(p.saved));
+ rows.push('*TOTAL PRODUCTOS: '+formatBF(p.total)+'*','Envío según zona de entrega.','Pago al recibir en zonas habilitadas.');
+ window.open('https://wa.me/5493516318301?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
+};
+const foot=document.querySelector('#cart-drawer .cart-footer');
+if(foot&&!foot.querySelector('[data-bf-continue]')){
+ const b=document.createElement('button');b.type='button';b.textContent='SEGUIR COMPRANDO';b.setAttribute('data-bf-continue','');b.className='btn-primary';b.style.cssText='width:100%;padding:12px;background:#fff;color:#071a24;border:1px solid #00afc6;margin:8px 0;border-radius:5px;cursor:pointer;';
+ b.onclick=()=>window.closeCartDrawer?.();foot.insertBefore(b,foot.querySelector('#btn-checkout'));
+}
+if(document.getElementById('btn-checkout')){
+ const b=document.getElementById('btn-checkout');b.textContent='CONTINUAR CON MI PEDIDO';
+ b.onclick=function(){if(!getCartBF().length)return;
+  if(typeof openHomeCheckout==='function' && !document.getElementById('main-store')){window.closeCartDrawer?.();openHomeCheckout();}
+  else if(typeof goToCheckout==='function')goToCheckout();
+  else if(typeof openHomeCheckout==='function'){window.closeCartDrawer?.();openHomeCheckout();}
+  window.renderCheckoutSummary();
+ };
+}
+const body=document.getElementById('cart-body');
+if(body)body.addEventListener('click',e=>{const b=e.target.closest('button[data-bf-delta],button[data-bf-remove]');if(!b)return;
+ e.stopImmediatePropagation();const id=b.getAttribute('data-bf-id')||b.getAttribute('data-bf-remove');const items=getCartBF();const i=items.find(x=>String(x.id)===String(id));if(!i)return;
+ if(b.hasAttribute('data-bf-remove'))items.splice(items.indexOf(i),1);
+ else {i.qty+=Number(b.getAttribute('data-bf-delta'));if(i.qty<=0)items.splice(items.indexOf(i),1);}
+ localStorage.setItem(KEY_BF,JSON.stringify({items,lastActivity:Date.now()}));
+ if(typeof bfCartRefresh==='function')bfCartRefresh();else if(typeof updateCartCounter==='function')updateCartCounter();window.renderDrawer();
+},true);
+window.addEventListener('pageshow',()=>{window.renderDrawer();window.renderCheckoutSummary();});
+window.addEventListener('storage',e=>{if(e.key===KEY_BF){window.renderDrawer();window.renderCheckoutSummary();}});
+window.renderDrawer();
+})();
+</script>
 </body>
 </html>
