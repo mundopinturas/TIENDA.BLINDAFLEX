@@ -1529,7 +1529,7 @@ header .logo img {
             tiers.forEach(t => {
                 const pd = getSinglePriceData(t.qty);
                 const isActive = selectedQty === t.qty ? 'active' : '';
-                const saveTag = t.discount > 0 ? `<div class="badge-discount">${t.discount * 100}% OFF</div>` : '';
+                const saveTag = (t.qty === 2 || t.qty === 3) ? `<div class="badge-discount">${pd.discount}% OFF</div>` : '';
                 const unitFinal = pd.final / t.qty; 
                 
                 const briefInfo = "Kit premium incluido";
