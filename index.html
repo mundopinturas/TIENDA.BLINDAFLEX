@@ -1482,11 +1482,6 @@ window.submitWhatsApp=function(e){
  rows.push('*TOTAL PRODUCTOS: '+formatBF(p.total)+'*','Envío según zona de entrega.','Pago al recibir en zonas habilitadas.');
  window.open('https://wa.me/5493516318301?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
 };
-const foot=document.querySelector('#cart-drawer .cart-footer');
-if(foot&&!foot.querySelector('[data-bf-continue]')){
- const b=document.createElement('button');b.type='button';b.textContent='SEGUIR COMPRANDO';b.setAttribute('data-bf-continue','');b.className='btn-primary';b.style.cssText='width:100%;padding:12px;background:#fff;color:#071a24;border:1px solid #00afc6;margin:8px 0;border-radius:5px;cursor:pointer;';
- b.onclick=()=>window.closeCartDrawer?.();foot.insertBefore(b,foot.querySelector('#btn-checkout'));
-}
 if(document.getElementById('btn-checkout')){
  const b=document.getElementById('btn-checkout');b.textContent='CONTINUAR CON MI PEDIDO';
  b.onclick=function(){if(!getCartBF().length)return;
