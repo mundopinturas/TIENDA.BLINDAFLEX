@@ -113,11 +113,12 @@
            HEADER
            ========================================================= */
         header { background: var(--c-azul-grad); color: var(--c-blanco); position: sticky; top: 0; z-index: 100; height: 64px; box-shadow: var(--shadow-md); border-bottom: 2px solid var(--c-turquesa-dark); }
-        .header-content { display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        .menu-btn { background: none; border: none; fill: var(--c-blanco); padding: 8px; cursor: pointer; }
-        .logo { display: flex; align-items: center; height: 100%; padding: 12px 0; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; height: 100%; min-width: 0; }
+        .menu-btn { background: none; border: none; fill: var(--c-blanco); padding: 8px; cursor: pointer; flex: 0 0 40px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; }
+        .menu-btn svg { width: 26px; height: 26px; display: block; flex: none; fill: #FFFFFF; }
+        .logo { display: flex; align-items: center; justify-content: center; height: 100%; padding: 12px 0; min-width: 0; flex: 0 1 auto; }
         .logo img { max-height: 100%; width: auto; object-fit: contain; }
-        .cart-btn { position: relative; background: none; border: none; fill: var(--c-blanco); padding: 8px; cursor: pointer; transition: transform 0.2s;}
+        .cart-btn { position: relative; background: none; border: none; fill: var(--c-blanco); padding: 8px; cursor: pointer; transition: transform 0.2s; flex: 0 0 44px; }
         .cart-btn:hover { transform: scale(1.05); }
         .cart-count { position: absolute; top: 2px; right: 2px; background-color: var(--c-naranja); color: var(--c-blanco); font-size: 11px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
 
@@ -433,6 +434,7 @@
         
         @media(min-width:992px){.footer-grid{grid-template-columns:1fr 1fr 1fr;}}
     </style>
+<!-- VERSION: REFLECTIVO-2026-10-29-R2 · MENÚ MÓVIL / REGALOS / CALCULADORA / PNG / CARRUSELES -->
 </head>
 <body>
 
@@ -952,7 +954,7 @@
 
             let indicators = [];
             if (trackId === 'ic-track') indicators = document.querySelectorAll('#ic-indicators .ic-dot');
-            if (trackId === 'gift-carousel') indicators = document.querySelectorAll('#kit-dots .ic-dot');
+            if (trackId === 'kit-carousel') indicators = document.querySelectorAll('#kit-dots .ic-dot');
 
             function updateDots() {
                 const activeIdx = currentIndex % total;
@@ -1008,7 +1010,7 @@
                     startAuto();
                 }
             }
-            if (trackId === 'gift-carousel') {
+            if (trackId === 'kit-carousel') {
                 window.moveKitCarousel = function(dir) {
                     clearInterval(timer);
                     if (dir > 0) goToNext();
@@ -1027,7 +1029,7 @@
         }
 
         initInfiniteCarousel('ic-track', 2500);
-        initInfiniteCarousel('gift-carousel', 4000);
+        initInfiniteCarousel('kit-carousel', 4000);
 
 
         // --- 4. CALCULADORA DE CONSUMO (1kg/m2) ---
@@ -1185,7 +1187,7 @@
 
         // --- 6. CARRITO GLOBAL UNIFICADO (Techos, Barrera, Reflectivo) ---
         const formatARS = num => "$" + Math.round(Number(num)||0).toLocaleString('es-AR');
-        const isRoof = item => item.type === 'techo' || (!item.type && /Blindaje para Techos/i.test(item.product || ''));
+        const isRoof = item => item.type === 'techo' || (!item.type && /^Blindaje para Techos\b/i.test(item.product || ''));
         const isReflectivo = item => item.type === 'reflectivo' || /Blindaje Reflectivo/i.test(item.product || '');
         const isEligibleKit = item => isRoof(item) || isReflectivo(item);
         const cleanText = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
