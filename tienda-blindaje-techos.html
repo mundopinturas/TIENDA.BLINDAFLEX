@@ -33,7 +33,6 @@
         "url": "https://tienda.blindaflex.com/tienda-blindaje-techos.html",
         "priceCurrency": "ARS",
         "price": "148000",
-        "priceValidUntil": "2025-12-31",
         "itemCondition": "https://schema.org/NewCondition",
         "availability": "https://schema.org/InStock",
         "seller": { "@type": "Organization", "name": "Blindaflex" }
@@ -641,7 +640,59 @@ header .logo img {
 .bf-help-buy a{display:inline-block;color:#008FA3;text-decoration:underline;text-underline-offset:2px;font-weight:800;margin-top:5px;font-size:14px;}
 .bf-help-buy a:focus-visible{outline:2px solid #008FA3;outline-offset:3px;}
 
+  #mayoristas { scroll-margin-top: 95px; }
+
+/* Navegación y pie de página unificados con Blindaje Reflectivo */
+.mobile-menu-overlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(7,26,36,.8);z-index:1000;opacity:0;visibility:hidden;transition:opacity .3s;backdrop-filter:blur(2px) }
+.mobile-menu-overlay.active { opacity:1;visibility:visible }
+.mobile-menu { position:fixed;top:0;left:-100%;width:82%;max-width:330px;height:100%;background:var(--c-azul);z-index:1001;transition:left .3s ease;display:flex;flex-direction:column;overflow-y:auto }
+.mobile-menu.active { left:0 }
+.mm-header {display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.mm-header img {height:32px}
+.mm-close {background:none;border:none;color:var(--c-blanco);font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px}
+.mm-nav {padding:20px;display:flex;flex-direction:column;gap:4px;flex-grow:1}
+.mm-link {display:block;padding:12px 0;color:var(--c-blanco);font-size:15px;font-weight:700;border-bottom:1px solid rgba(255,255,255,.05);text-transform:uppercase;letter-spacing:.5px}
+.mm-link.active {color:var(--c-turquesa)}
+.mm-products-label {display:block;color:#fff;font-size:14px;font-weight:800;letter-spacing:.5px;padding:16px 0 8px}
+.mm-products-list {display:flex;flex-direction:column;gap:0;padding:0 0 12px 12px;border-bottom:1px solid rgba(255,255,255,.12)}
+.mm-products-list a {display:block;color:rgba(255,255,255,.75);font-size:14px;font-weight:600;padding:9px 0;line-height:1.25}
+.mm-products-list a[aria-current="page"] {color:var(--c-turquesa);font-weight:800}
+.mm-footer {padding:20px;background:rgba(0,0,0,.2);margin-top:auto}
+.mm-trust-box {background:rgba(0,175,198,.1);border:1px solid rgba(0,175,198,.3);border-radius:8px;padding:16px}
+.mm-trust-box h4 {color:#fff;font-size:13px;margin-bottom:6px}
+.mm-trust-box p {color:#b0c0c7;font-size:12px;line-height:1.45}
+.desktop-nav {display:none;height:100%;align-items:center;gap:32px}
+.desktop-nav a {font-size:13px;font-weight:700;transition:color .2s;text-transform:uppercase;position:relative;height:100%;display:flex;align-items:center;letter-spacing:.5px}
+.desktop-nav a:hover,.desktop-nav a.active {color:var(--c-turquesa)}
+.has-dropdown {position:relative}
+.has-dropdown>a {gap:4px}
+.has-dropdown>a svg {width:16px;height:16px;fill:currentColor;transition:transform .2s}
+.has-dropdown:hover>a svg {transform:rotate(180deg)}
+.dropdown-menu {position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);background:var(--c-blanco);border-radius:8px;box-shadow:0 8px 24px rgba(7,26,36,.08);opacity:0;visibility:hidden;transition:all .2s;min-width:240px;border:1px solid var(--c-gris-border);padding:8px 0}
+.has-dropdown:hover .dropdown-menu {opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown-menu a {display:block;padding:12px 20px;color:var(--c-azul);font-size:13px;font-weight:600;text-transform:none;text-align:left;height:auto;letter-spacing:normal}
+.dropdown-menu a:hover {background:var(--c-gris-bg);color:var(--c-turquesa-dark)}
+@media(min-width:992px){.desktop-nav{display:flex;flex-grow:1}}
+/* Pie de página: estructura y estilo de Blindaje Reflectivo */
+footer {background:var(--c-azul);color:var(--c-blanco)}
+.footer-logo img {max-height:70px;width:auto;margin-bottom:20px}
+.footer-desc {font-size:13px;color:#8ba2ac;margin-bottom:0;max-width:320px;line-height:1.5}
+.footer-grid {display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:40px;align-items:start}
+.footer-nav {display:flex;flex-direction:column;gap:14px}
+.footer-nav-title {display:block;font-size:13px;font-weight:800;color:var(--c-blanco);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.footer-nav a {color:rgba(255,255,255,.7);font-size:14px;font-weight:500;transition:color .2s}
+.footer-nav a:hover {color:var(--c-turquesa)}
+.footer-contact {border-top:1px solid rgba(255,255,255,.1);padding-top:24px}
+.footer-contact h5 {font-size:12px;color:#8ba2ac;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.footer-wsp {font-size:20px;font-weight:900;color:var(--c-blanco);display:flex;align-items:center;gap:10px}
+.footer-wsp svg {width:24px!important;height:24px!important;fill:#25D366}
+.footer-bottom {text-align:center;font-size:12px;color:#64748b;margin-top:32px;border-top:1px solid rgba(255,255,255,.05);padding-top:24px}
+@media(min-width:992px){.footer-grid{grid-template-columns:1fr 1fr 1fr}}
+
 </style>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/blindaflex-favicon-32.png">
+    <link rel="apple-touch-icon" href="/blindaflex-favicon-180.png">
 </head>
 <body>
 
@@ -651,7 +702,7 @@ header .logo img {
     <!-- ================== HEADER ================== -->
     <header>
         <div class="container header-content">
-            <button class="menu-btn" aria-label="Menú">
+            <button class="menu-btn" onclick="toggleMobileMenu()" aria-label="Menú">
                 <svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
             </button>
             
@@ -660,10 +711,22 @@ header .logo img {
             </a>
 
             <nav class="desktop-nav">
-                <a href="#">Inicio</a>
-                <a href="#">Productos</a>
-                <a href="https://blindaflex.com">Tecnología Blindaflex</a>
-                <a href="#">Contacto</a>
+                <a href="index.html">Inicio</a>
+                <div class="has-dropdown">
+                    <a href="#" class="active" aria-haspopup="true" aria-expanded="false">
+                        Productos
+                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                        <a class="active" href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+                        <a href="tienda-bindaje-reflectivo.html" class="active" style="color: var(--c-turquesa);">Blindaje Reflectivo</a>
+                        <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                        <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
+                    </div>
+                </div>
+                <a href="#confianza">Envíos y pagos</a>
+                <a href="#footer">Contacto</a>
             </nav>
 
             <button class="cart-btn" onclick="openCartDrawer()" aria-label="Ver carrito">
@@ -672,6 +735,34 @@ header .logo img {
             </button>
         </div>
     </header>
+<div class="mobile-menu-overlay" id="mobile-overlay" onclick="toggleMobileMenu()"></div>
+    <nav class="mobile-menu" id="mobile-menu">
+        <div class="mm-header">
+            <img src="assets/images/logo.png" alt="Blindaflex">
+            <button class="mm-close" onclick="toggleMobileMenu()" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <div class="mm-nav">
+            <a href="index.html" class="mm-link">Inicio</a>
+            
+            <div class="mm-products-label">PRODUCTOS</div>
+            <div class="mm-products-list">
+                <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                <a href="tienda-blindaje-techos.html" aria-current="page">Blindaje para Techos</a>
+                <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
+            </div>
+            <a href="#confianza" class="mm-link" onclick="toggleMobileMenu()">Envíos y formas de pago</a>
+            <a href="index.html#mayoristas" class="mm-link" onclick="toggleMobileMenu()">Ventas mayoristas</a>
+            <a href="#footer" class="mm-link" onclick="toggleMobileMenu()">Contacto</a>
+        </div>
+        <div class="mm-footer">
+            <div class="mm-trust-box">
+                <h4>COMPRÁ CON TRANQUILIDAD</h4>
+                <p>Envío gratis y pago al recibir en zonas habilitadas de Córdoba.</p>
+            </div>
+        </div>
+    </nav>
 
     <!-- ================== VISTA PRINCIPAL (TIENDA) ================== -->
     <main id="main-store">
@@ -759,7 +850,7 @@ header .logo img {
                                 </div>
                                 <div class="carousel-slide">
                                     <div class="carousel-img-wrapper">
-                                        <img src="assets/images/techo-carrusel-2.png" alt="Rodillo de 22 cm con dos fundas del kit premium">
+                                        <img src="assets/images/techo-carrusel-2.png" alt="Rodillo premium del kit premium">
                                     </div>
                                 </div>
                                 <div class="carousel-slide">
@@ -788,7 +879,7 @@ header .logo img {
                                 <div class="gl-info">
                                     <div class="gl-kicker">EN TODAS LAS COMPRAS</div>
                                     <h4>1 KIT PREMIUM DE REGALO</h4>
-                                    <p>Incluye sellador de grietas y fisuras 1,2 kg, rodillo de 22 cm con 2 fundas y pincel profesional.</p>
+                                    <p>Incluye sellador de grietas y fisuras 1,2 kg, Rodillo premium y pincel profesional.</p>
                                 </div>
                             </div>
                             <div class="gift-level secondary">
@@ -835,7 +926,7 @@ header .logo img {
                         <h2 class="buy-title-h2">COMPRÁ MÁS, AHORRÁ MÁS</h2>
                         <p class="buy-subtitle">Elegí cuántos baldes necesitás. Cuantos más comprás, menor es el precio por unidad.</p>
                         
-                        <div class="buy-note">Todas las opciones incluyen 1 kit premium de regalo, entregado una sola vez por pedido.</div>
+                        <div class="buy-note">Todas las opciones incluyen 1 kit premium de regalo por familia de producto elegible.</div>
                         
                         <div class="color-selector">
                             <input type="radio" name="color" id="color-blanco" value="Blanco" class="color-input" checked onchange="updateSelectionUI()">
@@ -864,7 +955,7 @@ header .logo img {
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="white"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                             AGREGAR AL CARRITO
                         </button>
-<div class="bf-help-buy" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><div class="bf-help-text">¿Necesitás asesoramiento con tu compra?<div><a href="https://wa.me/5493516318301?text=Hola%2C%20estoy%20viendo%20Blindaje%20para%20Techos%20en%20la%20tienda%20Blindaflex%20y%20quisiera%20hacer%20una%20consulta%20sobre%20mi%20pedido." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre Blindaje para Techos">Escribinos por WhatsApp ↗</a></div></div></div>
+<div class="bf-help-buy" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><div class="bf-help-text">¿Necesitás asesoramiento con tu compra?<div><a href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20viendo%20Blindaje%20para%20Techos%20en%20la%20tienda%20Blindaflex%20y%20quisiera%20hacer%20una%20consulta%20sobre%20mi%20pedido." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre Blindaje para Techos">Escribinos por WhatsApp ↗</a></div></div></div>
 
                     </section>
 
@@ -939,7 +1030,7 @@ header .logo img {
                         </div>
                         <div style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-bottom: 16px; font-weight: 500;">La cobertura y el costo de entrega se confirman según tu dirección.</div>
 
-                        <a href="https://wa.me/5493516318301?text=Hola,%20quisiera%20consultar%20la%20zona%20de%20cobertura%20para%20envíos." target="_blank" class="btn-outline">
+                        <a href="https://wa.me/5493512661626?text=Hola,%20quisiera%20consultar%20la%20zona%20de%20cobertura%20para%20envíos." target="_blank" class="btn-outline">
                             <svg viewBox="0 0 24 24" width="18" height="18" style="fill:var(--c-turquesa-dark);"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
                             CONSULTÁ TU ZONA POR WHATSAPP
                         </a>
@@ -1173,7 +1264,7 @@ header .logo img {
 
     <!-- ================== CARRITO (DRAWER LATERAL) ================== -->
     <!-- Consulta directa con Blindaflex -->
-    <a class="whatsapp-float" href="https://wa.me/5493516318301?text=Hola%2C%20estoy%20viendo%20Blindaje%20para%20Techos%20y%20quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp" title="Consultar por WhatsApp">
+    <a class="whatsapp-float" href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20viendo%20Blindaje%20para%20Techos%20y%20quisiera%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp" title="Consultar por WhatsApp">
         <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3.2A12.7 12.7 0 0 0 5.1 22.4L3.3 29l6.8-1.8A12.8 12.8 0 1 0 16 3.2zm0 23.3c-2 0-4-.5-5.6-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.5zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
     </a>
 
@@ -1256,40 +1347,41 @@ header .logo img {
 
     <!-- ================== FOOTER ================== -->
     <footer id="footer">
-<div class="container footer-grid">
-<div>
-<a class="footer-logo" href="index.html" style="display:inline-block; margin-bottom: 12px;">
-<img alt="BLINDAFLEX" src="assets/images/logo.png"/>
-</a>
-<p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
-</div>
-<div class="footer-nav">
-<span class="footer-nav-title">Nuestros Productos</span>
-<a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
-<a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-<a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
-<a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
-<a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
-</div>
-<div>
-<div class="footer-nav" style="margin-bottom: 24px;">
-<span class="footer-nav-title">Tienda</span>
-<a href="index.html#confianza">Envíos y formas de pago</a>
-<a href="index.html#mayoristas">Ventas mayoristas</a>
-<a href="https://blindaflex.com">Sitio institucional</a>
-</div>
-<div class="footer-contact">
-<h5>VENTAS Y ASESORAMIENTO</h5>
-<a aria-label="Contacto por WhatsApp" class="footer-wsp" href="https://wa.me/5493516318301">
-<svg viewbox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"></path></svg>
-                        +54 9 351 631 8301
+        <div class="container footer-grid">
+            <div>
+                <a class="footer-logo" href="index.html" style="display:inline-block; margin-bottom: 12px;">
+                    <img alt="BLINDAFLEX" src="assets/images/logo.png"/>
+                </a>
+                <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
+            </div>
+            <div class="footer-nav">
+                <span class="footer-nav-title">Nuestros Productos</span>
+                <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+                <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
+            </div>
+            <div>
+                <div class="footer-nav" style="margin-bottom: 24px;">
+                    <span class="footer-nav-title">Tienda</span>
+                    <a href="index.html#confianza">Envíos y formas de pago</a>
+                    <a href="index.html#mayoristas">Ventas mayoristas</a>
+                    <a href="https://blindaflex.com">Sitio institucional</a>
+                </div>
+                <div class="footer-contact">
+                    <h5>VENTAS Y ASESORAMIENTO</h5>
+                    <a aria-label="Contacto por WhatsApp" class="footer-wsp" href="https://wa.me/5493512661626">
+                        <svg viewbox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"></path></svg>
+                        +54 351 2661626
                     </a>
-</div>
-</div>
-</div>
-<div class="container footer-bottom">
+                </div>
+            </div>
+        </div>
+        <div class="container footer-bottom">
             © 2026 BLINDAFLEX. Todos los derechos reservados.
         </div>
+    <div style="text-align:center;font-size:12px;padding:12px;color:#94a3b8" aria-label="Ubicación Blindaflex">⌖ Córdoba, Argentina</div>
 </footer>
 
     <!-- ================== CARRUSEL HTML5 BLINDAFLEX ================== -->
@@ -1519,8 +1611,8 @@ header .logo img {
         ];
 
         // Descripción del único kit que acompaña cada pedido, independientemente de la cantidad de baldes.
-        const KIT_COMPONENTES_BREVE = 'Sellador 1,2 kg + rodillo 22 cm con 2 fundas + pincel';
-        const KIT_COMPONENTES_RESUMEN = 'Sellador de grietas y fisuras Blindaflex de 1,2 kg, rodillo de 22 cm con mango y 2 fundas, y pincel profesional.';
+        const KIT_COMPONENTES_BREVE = 'Sellador 1,2 kg + rodillo premium + pincel';
+        const KIT_COMPONENTES_RESUMEN = 'Sellador de grietas y fisuras Blindaflex de 1,2 kg, Rodillo premium, y pincel profesional.';
 
         function renderQtySelector() {
             const container = document.getElementById('qty-container');
@@ -1733,7 +1825,7 @@ header .logo img {
                 <div class="cart-gift-details">
                     <div class="cart-gift-heading">REGALOS INCLUIDOS:</div>
                     <div class="cart-gift-title">1 KIT PREMIUM DE REGALO</div>
-                    <div class="cart-gift-components">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo de 22 cm con 2 fundas · Pincel profesional</div>
+                    <div class="cart-gift-components">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo premium · Pincel profesional</div>
                     <div class="cart-gift-extra">Se entrega una sola vez por pedido.</div>
                 </div>` : "";
             
@@ -1789,7 +1881,7 @@ header .logo img {
             });
             
             if(globalPricing.kitEligible) summaryHtml += `<div style="font-size:12px; color:var(--c-turquesa); margin-bottom:12px; font-weight:700;">🎁 REGALOS INCLUIDOS:<br>${globalPricing.gifts}</div>`;
-            if(globalPricing.kitEligible) summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.8); margin-top:-6px; margin-bottom:12px; line-height:1.45;">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo de 22 cm con 2 fundas · Pincel profesional.<br>Se entrega una sola vez por pedido.</div>`;
+            if(globalPricing.kitEligible) summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.8); margin-top:-6px; margin-bottom:12px; line-height:1.45;">Sellador de grietas y fisuras Blindaflex 1,2 kg · Rodillo premium · Pincel profesional.<br>Se entrega una sola vez por pedido.</div>`;
             
             summaryHtml += `<div style="display:flex; justify-content:space-between; margin-top:16px; border-top: 1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px; font-weight:900;"><span>TOTAL:</span> <span>${formatARS(grandTotal)}</span></div>`;
             summaryHtml += `<div style="font-size:12px; color:rgba(255,255,255,0.6); margin-top:12px; text-align:center;">Envío a confirmar según zona. Pago al recibir.</div>`;
@@ -1850,13 +1942,13 @@ header .logo img {
             msg += `*RESUMEN*%0A`;
             if(globalPricing.kitEligible) msg += `🎁 Regalos: ${globalPricing.gifts}%0A`;
             if(globalPricing.kitEligible) msg += `   - Sellador de grietas y fisuras Blindaflex 1,2 kg%0A`;
-            if(globalPricing.kitEligible) msg += `   - Rodillo de 22 cm con 2 fundas%0A`;
+            if(globalPricing.kitEligible) msg += `   - Rodillo premium%0A`;
             if(globalPricing.kitEligible) msg += `   - Pincel profesional%0A`;
             msg += `💰 *TOTAL A PAGAR: ${formatARS(grandTotal)}*%0A`;
             if(totalAhorro > 0) msg += `🎉 Ahorraste: ${formatARS(totalAhorro)}%0A`;
             msg += `🚚 Envío: A confirmar según zona%0A💳 Pago: Al recibir los productos%0A`;
 
-            window.open(`https://wa.me/5493516318301?text=${msg}`, '_blank');
+            window.open(`https://wa.me/5493512661626?text=${msg}`, '_blank');
         }
 
         // ---- UTILIDADES Y SECCIONES (BARRA, CARRUSEL, COMPARADOR) ----
@@ -2211,7 +2303,7 @@ function renderSharedCart(){
  total.textContent=money(cartTotal());
  if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
  let html='';let qty=roofQty();
- if(qty||reflQty()){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div class="bf-gift-emphasis">✓ 1 KIT PREMIUM DE REGALO</div><div>Rodillo 22 cm con 2 fundas · Sellador de grietas y fisuras 1,2 kg · Pincel profesional</div><small>Un único kit por pedido.</small></div>'}
+ if(qty||reflQty()){html+='<div class="bf-cart-gift"><strong>🎁 BENEFICIOS DE TU COMPRA</strong><div class="bf-gift-emphasis">✓ 1 KIT PREMIUM DE REGALO</div><div>Rodillo premium · Sellador de grietas y fisuras 1,2 kg · Pincel profesional</div><small>Un kit por cada familia de producto elegible.</small></div>'}
  cart.forEach(i=>{
   let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
   html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
@@ -2231,7 +2323,7 @@ window.updateCartCounter=update;
 window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
 window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
 window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();if(typeof renderCheckoutSummary==='function')renderCheckoutSummary()};
-window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty()||reflQty())html+='<p style="margin-top:12px">🎁 1 kit premium incluido por pedido</p>';if(discount())html+='<p>Techos: '+discount()*100+'% de descuento · Ahorrás '+money(roofQty()*148000*discount())+'</p>';if(reflDiscount())html+='<p>Reflectivo: '+reflDiscount()*100+'% de descuento · Ahorrás '+money(reflQty()*170120*reflDiscount())+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
+window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');if(roofQty()||reflQty())html+='<p style="margin-top:12px">🎁 1 kit premium por cada familia de producto elegible</p>';if(discount())html+='<p>Techos: '+discount()*100+'% de descuento · Ahorrás '+money(roofQty()*148000*discount())+'</p>';if(reflDiscount())html+='<p>Reflectivo: '+reflDiscount()*100+'% de descuento · Ahorrás '+money(reflQty()*170120*reflDiscount())+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
 const footer=document.querySelector('#cart-drawer .cart-footer');
 if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',closeCartDrawer);let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
 document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty')))});
@@ -2252,7 +2344,7 @@ cart=reload();update();
 (function(){
 'use strict';
 const KEY_BF='blindaflex_cart_data';
-const KIT_BF='Rodillo de 22 cm con 2 fundas, sellador elastomérico Blindaflex para grietas y fisuras de 1,2 kg y pincel profesional.';
+const KIT_BF='Rodillo premium, sellador elastomérico Blindaflex para grietas y fisuras de 1,2 kg y pincel profesional.';
 const formatBF=v=>'$'+Math.round(v).toLocaleString('es-AR');
 const escBF=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const familyBF=i=> i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'')?'reflectivo':i.type==='techo'||/Blindaje para Techos/i.test(i.product||'')?'techos':'otro';
@@ -2314,7 +2406,7 @@ window.submitWhatsApp=function(e){
  if(p.kitCount){rows.push(`🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO`);if(p.qtyT)rows.push('1 kit por Blindaje para Techos');if(p.qtyR)rows.push('1 kit por Blindaje Reflectivo');rows.push('Contenido de cada kit: '+KIT_BF);}
  if(p.saved)rows.push('AHORRO TOTAL: '+formatBF(p.saved));
  rows.push('*TOTAL PRODUCTOS: '+formatBF(p.total)+'*','Envío según zona de entrega.','Pago al recibir en zonas habilitadas.');
- window.open('https://wa.me/5493516318301?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
+ window.open('https://wa.me/5493512661626?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
 };
 if(document.getElementById('btn-checkout')){
  const b=document.getElementById('btn-checkout');b.textContent='CONTINUAR CON MI PEDIDO';
@@ -2336,7 +2428,23 @@ if(body)body.addEventListener('click',e=>{const b=e.target.closest('button[data-
 window.addEventListener('pageshow',()=>{window.renderDrawer();window.renderCheckoutSummary();});
 window.addEventListener('storage',e=>{if(e.key===KEY_BF){window.renderDrawer();window.renderCheckoutSummary();}});
 window.renderDrawer();
+const bfCounter=document.getElementById('cart-counter');if(bfCounter){try{bfCounter.textContent=getCartBF().reduce((n,i)=>n+Number(i.qty||0),0);}catch(e){}}
 })();
+</script>
+
+<script id="bf-tab-attention">
+(()=>{const original=document.title;let timer=null,index=0;const messages=['👋 ¡Volvé a Blindaflex!','💧 Tu protección te espera'];function reset(){if(timer){clearInterval(timer);timer=null;}document.title=original;}document.addEventListener('visibilitychange',()=>{reset();if(document.hidden){document.title=messages[0];index=1;timer=setInterval(()=>{if(document.hidden){document.title=messages[index%messages.length];index++;}else reset();},3000);}});window.addEventListener('pagehide',reset);})();
+</script>
+<script id="bf-menu-reflectivo-navigation">
+function toggleMobileMenu(){
+ const menu=document.getElementById('mobile-menu');
+ const overlay=document.getElementById('mobile-overlay');
+ if(!menu||!overlay)return;
+ const open=!menu.classList.contains('active');
+ menu.classList.toggle('active',open);
+ overlay.classList.toggle('active',open);
+ document.body.style.overflow=open?'hidden':'';
+}
 </script>
 </body>
 </html>

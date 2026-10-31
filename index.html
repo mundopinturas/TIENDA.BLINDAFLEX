@@ -38,12 +38,12 @@
           "@id": "https://blindaflex.com/#organization",
           "name": "Blindaflex",
           "url": "https://blindaflex.com/",
-          "logo": "assets/images/logo.png",
+          "logo": "https://tienda.blindaflex.com/assets/images/logo.png",
           "slogan": "No prometemos, lo demostramos.",
           "description": "Marca argentina fabricante de pinturas impermeabilizantes y recubrimientos protectores de superficies, orientada a productos de alta performance.",
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+54-9-351-631-8301",
+            "telephone": "+54 351 2661626",
             "contactType": "customer service",
             "areaServed": "AR",
             "availableLanguage": "Spanish"
@@ -461,7 +461,59 @@
         .bf-wfield input:focus,.bf-wfield select:focus { outline:2px solid var(--c-turquesa); outline-offset:1px; }
         .bf-wholesale-send { width:100%; background:var(--c-azul); color:#fff; border:0; border-bottom:2px solid var(--c-turquesa); border-radius:8px; padding:14px 12px; margin-top:4px; font-size:14px; font-weight:850; cursor:pointer; }
         .bf-wholesale-help { font-size:11px !important; color:#64748b; text-align:center; margin:8px 0 0 !important; }
-    </style>
+      #mayoristas { scroll-margin-top: 95px; }
+
+/* Navegación y pie de página unificados con Blindaje Reflectivo */
+.mobile-menu-overlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(7,26,36,.8);z-index:1000;opacity:0;visibility:hidden;transition:opacity .3s;backdrop-filter:blur(2px) }
+.mobile-menu-overlay.active { opacity:1;visibility:visible }
+.mobile-menu { position:fixed;top:0;left:-100%;width:82%;max-width:330px;height:100%;background:var(--c-azul);z-index:1001;transition:left .3s ease;display:flex;flex-direction:column;overflow-y:auto }
+.mobile-menu.active { left:0 }
+.mm-header {display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.mm-header img {height:32px}
+.mm-close {background:none;border:none;color:var(--c-blanco);font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px}
+.mm-nav {padding:20px;display:flex;flex-direction:column;gap:4px;flex-grow:1}
+.mm-link {display:block;padding:12px 0;color:var(--c-blanco);font-size:15px;font-weight:700;border-bottom:1px solid rgba(255,255,255,.05);text-transform:uppercase;letter-spacing:.5px}
+.mm-link.active {color:var(--c-turquesa)}
+.mm-products-label {display:block;color:#fff;font-size:14px;font-weight:800;letter-spacing:.5px;padding:16px 0 8px}
+.mm-products-list {display:flex;flex-direction:column;gap:0;padding:0 0 12px 12px;border-bottom:1px solid rgba(255,255,255,.12)}
+.mm-products-list a {display:block;color:rgba(255,255,255,.75);font-size:14px;font-weight:600;padding:9px 0;line-height:1.25}
+.mm-products-list a[aria-current="page"] {color:var(--c-turquesa);font-weight:800}
+.mm-footer {padding:20px;background:rgba(0,0,0,.2);margin-top:auto}
+.mm-trust-box {background:rgba(0,175,198,.1);border:1px solid rgba(0,175,198,.3);border-radius:8px;padding:16px}
+.mm-trust-box h4 {color:#fff;font-size:13px;margin-bottom:6px}
+.mm-trust-box p {color:#b0c0c7;font-size:12px;line-height:1.45}
+.desktop-nav {display:none;height:100%;align-items:center;gap:32px}
+.desktop-nav a {font-size:13px;font-weight:700;transition:color .2s;text-transform:uppercase;position:relative;height:100%;display:flex;align-items:center;letter-spacing:.5px}
+.desktop-nav a:hover,.desktop-nav a.active {color:var(--c-turquesa)}
+.has-dropdown {position:relative}
+.has-dropdown>a {gap:4px}
+.has-dropdown>a svg {width:16px;height:16px;fill:currentColor;transition:transform .2s}
+.has-dropdown:hover>a svg {transform:rotate(180deg)}
+.dropdown-menu {position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);background:var(--c-blanco);border-radius:8px;box-shadow:0 8px 24px rgba(7,26,36,.08);opacity:0;visibility:hidden;transition:all .2s;min-width:240px;border:1px solid var(--c-gris-border);padding:8px 0}
+.has-dropdown:hover .dropdown-menu {opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown-menu a {display:block;padding:12px 20px;color:var(--c-azul);font-size:13px;font-weight:600;text-transform:none;text-align:left;height:auto;letter-spacing:normal}
+.dropdown-menu a:hover {background:var(--c-gris-bg);color:var(--c-turquesa-dark)}
+@media(min-width:992px){.desktop-nav{display:flex;flex-grow:1}}
+/* Pie de página: estructura y estilo de Blindaje Reflectivo */
+footer {background:var(--c-azul);color:var(--c-blanco)}
+.footer-logo img {max-height:70px;width:auto;margin-bottom:20px}
+.footer-desc {font-size:13px;color:#8ba2ac;margin-bottom:0;max-width:320px;line-height:1.5}
+.footer-grid {display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:40px;align-items:start}
+.footer-nav {display:flex;flex-direction:column;gap:14px}
+.footer-nav-title {display:block;font-size:13px;font-weight:800;color:var(--c-blanco);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.footer-nav a {color:rgba(255,255,255,.7);font-size:14px;font-weight:500;transition:color .2s}
+.footer-nav a:hover {color:var(--c-turquesa)}
+.footer-contact {border-top:1px solid rgba(255,255,255,.1);padding-top:24px}
+.footer-contact h5 {font-size:12px;color:#8ba2ac;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.footer-wsp {font-size:20px;font-weight:900;color:var(--c-blanco);display:flex;align-items:center;gap:10px}
+.footer-wsp svg {width:24px!important;height:24px!important;fill:#25D366}
+.footer-bottom {text-align:center;font-size:12px;color:#64748b;margin-top:32px;border-top:1px solid rgba(255,255,255,.05);padding-top:24px}
+@media(min-width:992px){.footer-grid{grid-template-columns:1fr 1fr 1fr}}
+
+</style>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/blindaflex-favicon-32.png">
+    <link rel="apple-touch-icon" href="/blindaflex-favicon-180.png">
 </head>
 <body>
 
@@ -490,19 +542,19 @@
             <nav class="desktop-nav">
                 <a href="index.html" class="active">Inicio</a>
                 <div class="has-dropdown">
-                    <a href="#catalogo" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="active" aria-haspopup="true" aria-expanded="false">
                         Productos
                         <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
                     </a>
                     <div class="dropdown-menu">
                         <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
                         <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                        <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                        <a href="tienda-bindaje-reflectivo.html" class="active" style="color: var(--c-turquesa);">Blindaje Reflectivo</a>
                         <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                         <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
                     </div>
                 </div>
-                <a href="#confianza">Envíos y pagos</a>
+                <a href="index.html#confianza">Envíos y pagos</a>
                 <a href="#footer">Contacto</a>
             </nav>
 
@@ -523,21 +575,16 @@
         <div class="mm-nav">
             <a href="index.html" class="mm-link active">Inicio</a>
             
-            <div class="mm-dropdown">
-                <div class="mm-dropdown-title" onclick="toggleMobileDropdown(this)">
-                    Productos
-                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                </div>
-                <div class="mm-dropdown-content">
-                    <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
-                    <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                    <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
-                    <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
-                    <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
-                </div>
+            <div class="mm-products-label">PRODUCTOS</div>
+            <div class="mm-products-list">
+                <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+                <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
-            
-            <a href="#confianza" class="mm-link" onclick="toggleMobileMenu()">Envíos y formas de pago</a>
+            <a href="index.html#confianza" class="mm-link" onclick="toggleMobileMenu()">Envíos y formas de pago</a>
+            <a href="index.html#mayoristas" class="mm-link" onclick="toggleMobileMenu()">Ventas mayoristas</a>
             <a href="#footer" class="mm-link" onclick="toggleMobileMenu()">Contacto</a>
         </div>
         <div class="mm-footer">
@@ -690,7 +737,7 @@
         <section class="bf-wholesale" aria-labelledby="bf-wholesale-title">
           <div class="bf-wholesale-inner">
             <div>
-              <h2 id="bf-wholesale-title">VENTAS MAYORISTAS</h2>
+              <h2 id="mayoristas">VENTAS MAYORISTAS</h2>
               <p>Para pinturerías, ferreterías, distribuidores y profesionales. Consultanos por compras mayoristas.</p>
             </div>
             <button type="button" class="bf-wholesale-cta" id="bf-wholesale-open" aria-haspopup="dialog">CONTACTANOS</button>
@@ -755,10 +802,7 @@
                 <p class="section-subtitle">Mirá cómo actúa nuestra barrera protectora repeliendo el agua instantáneamente.</p>
                 
                 <!-- Espacio preparado para el video de demostración independiente -->
-                <div class="demo-video-placeholder">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    <span>Video de demostración (Espacio preparado)</span>
-                </div>
+                <div class="demo-video-placeholder" style="padding:0;overflow:hidden;"><video controls playsinline preload="metadata" poster="assets/images/logo.png" style="width:100%;height:auto;aspect-ratio:16/9;background:#071A24;" aria-label="Demostración de Blindaje para Techos"><source src="assets/videos/index-blindaje-para-techos.mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video></div>
             </section>
         </div>
 
@@ -871,12 +915,11 @@
     <footer id="footer">
         <div class="container footer-grid">
             <div>
-                <a href="index.html" class="footer-logo" style="display:inline-block; margin-bottom: 12px;">
-                    <img src="assets/images/logo.png" alt="BLINDAFLEX">
+                <a class="footer-logo" href="index.html" style="display:inline-block; margin-bottom: 12px;">
+                    <img alt="BLINDAFLEX" src="assets/images/logo.png"/>
                 </a>
                 <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
             </div>
-            
             <div class="footer-nav">
                 <span class="footer-nav-title">Nuestros Productos</span>
                 <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
@@ -885,27 +928,27 @@
                 <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                 <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
-
             <div>
                 <div class="footer-nav" style="margin-bottom: 24px;">
                     <span class="footer-nav-title">Tienda</span>
-                    <a href="#confianza">Envíos y formas de pago</a>
+                    <a href="index.html#confianza">Envíos y formas de pago</a>
+                    <a href="index.html#mayoristas">Ventas mayoristas</a>
                     <a href="https://blindaflex.com">Sitio institucional</a>
                 </div>
-                
                 <div class="footer-contact">
                     <h5>VENTAS Y ASESORAMIENTO</h5>
-                    <a href="https://wa.me/5493516318301" class="footer-wsp" aria-label="Contacto por WhatsApp">
-                        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg>
-                        +54 9 351 631 8301
+                    <a aria-label="Contacto por WhatsApp" class="footer-wsp" href="https://wa.me/5493512661626">
+                        <svg viewbox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"></path></svg>
+                        +54 351 2661626
                     </a>
                 </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            &copy; 2026 BLINDAFLEX. Todos los derechos reservados.
+            © 2026 BLINDAFLEX. Todos los derechos reservados.
         </div>
-    </footer>
+    <div style="text-align:center;font-size:12px;padding:12px;color:#94a3b8" aria-label="Ubicación Blindaflex">⌖ Córdoba, Argentina</div>
+</footer>
 
     <!-- ================== CARRITO LATERAL (COMPARTIDO GLOBALMENTE) ================== -->
     <div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
@@ -1097,9 +1140,9 @@
             // Compatibilidad: Descuentos de Techo
             let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
             let techosDisc = 0;
-            if(techosCount === 2) techosDisc = 0.15;
-            if(techosCount === 3) techosDisc = 0.20;
-            if(techosCount >= 4) techosDisc = 0.25;
+            if(techosCount === 2) techosDisc = 0.12;
+            if(techosCount === 3) techosDisc = 0.17;
+            if(techosCount >= 4) techosDisc = 0.22;
             let techoUnitPrice = 148000 * (1 - techosDisc);
 
             if(techosCount > 0) {
@@ -1195,9 +1238,9 @@
             
             let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
             let techosDisc = 0;
-            if(techosCount === 2) techosDisc = 0.15;
-            if(techosCount === 3) techosDisc = 0.20;
-            if(techosCount >= 4) techosDisc = 0.25;
+            if(techosCount === 2) techosDisc = 0.12;
+            if(techosCount === 3) techosDisc = 0.17;
+            if(techosCount >= 4) techosDisc = 0.22;
             let techoUnitPrice = 148000 * (1 - techosDisc);
 
             cart.forEach(i => {
@@ -1214,7 +1257,7 @@
             }
 
             m += `*TOTAL PRODUCTOS: ${formatARS(tot)}*%0A%0AEnvío a coordinar según zona.%0APago al recibir.`;
-            window.open(`https://wa.me/5493516318301?text=${m}`, '_blank');
+            window.open(`https://wa.me/5493512661626?text=${m}`, '_blank');
         }
 
         // Init
@@ -1252,7 +1295,7 @@ const escapeHTML=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<'
 const isRoof=i=>i.type==='techo'||(!i.type&&/Blindaje para Techos/i.test(i.product||''));
 const isReflectivo=i=>i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'');
 const isBarrera=i=>i.type==='barrera'||/Barrera Impermeable/i.test(i.product||'');
-const KIT='Rodillo de 22 cm con 2 fundas, sellador elastomérico de grietas y fisuras Blindaflex de 1,2 kg y pincel profesional.';
+const KIT='Rodillo premium, sellador elastomérico de grietas y fisuras Blindaflex de 1,2 kg y pincel profesional.';
 const countBy=fn=>cart.filter(fn).reduce((a,i)=>a+Number(i.qty||0),0);
 const pct=q=>q>=4?.22:q===3?.17:q===2?.12:0;
 const getRates=()=>({roof:pct(countBy(isRoof)),reflect:pct(countBy(isReflectivo))});
@@ -1275,7 +1318,7 @@ function promoText(){
  if(rates.reflect)h+='<div class="bf-discount-note"><strong>Blindaje Reflectivo: '+Math.round(rates.reflect*100)+'% de descuento</strong> · Ahorrás '+money(savings(isReflectivo))+'</div>';
  return h;
 }
-function giftText(){return isGiftEligible()?'<div class="bf-cart-gift"><strong>🎁 DE REGALO: 1 KIT PREMIUM</strong><div>'+KIT+'</div><div class="bf-gift-emphasis">Un solo kit por pedido, aunque combines productos elegibles.</div></div>':''}
+function giftText(){return isGiftEligible()?'<div class="bf-cart-gift"><strong>🎁 DE REGALO: 1 KIT PREMIUM</strong><div>'+KIT+'</div><div class="bf-gift-emphasis">Un kit por familia de producto elegible.</div></div>':''}
 function renderSharedCart(){
  const body=document.getElementById('cart-body'),total=document.getElementById('drawer-total');
  if(!body||!total)return;
@@ -1301,7 +1344,7 @@ window.updateCartCounter=update;
 window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
 window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
 window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();renderCheckoutSummary()};
-window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');let saved=savings(isRoof)+savings(isReflectivo);if(isGiftEligible())html+='<p style="margin-top:12px">🎁 1 kit premium de regalo: '+KIT+'</p>';html+=promoText();if(saved)html+='<p>AHORRO TOTAL: '+money(saved)+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
+window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');let saved=savings(isRoof)+savings(isReflectivo);if(isGiftEligible())html+='<p style="margin-top:12px">🎁 Kit premium por cada familia elegible: '+KIT+'</p>';html+=promoText();if(saved)html+='<p>AHORRO TOTAL: '+money(saved)+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
 const footer=document.querySelector('#cart-drawer .cart-footer');
 if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',()=>window.closeCartDrawer());let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
 if(document.getElementById('btn-checkout'))document.getElementById('btn-checkout').onclick=function(){
@@ -1326,11 +1369,11 @@ window.submitWhatsApp=function(e){
  const rates=getRates();
  if(rates.roof)lines.push('Techos: '+Math.round(rates.roof*100)+'% de descuento · Ahorrás '+money(savings(isRoof)));
  if(rates.reflect)lines.push('Reflectivo: '+Math.round(rates.reflect*100)+'% de descuento · Ahorrás '+money(savings(isReflectivo)));
- if(isGiftEligible())lines.push('🎁 REGALO: 1 kit premium ('+KIT+') · Único por pedido');
+ if(isGiftEligible())lines.push('🎁 REGALO: kit premium por cada familia elegible ('+KIT+')');
  const saved=savings(isRoof)+savings(isReflectivo);
  if(saved)lines.push('AHORRO TOTAL: '+money(saved));
  lines.push('*TOTAL PRODUCTOS: '+money(cartTotal())+'*','Envío a coordinar según zona.','Pago al recibir en zonas habilitadas.');
- window.open('https://wa.me/5493516318301?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
+ window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
 };
 // Navegación común: las páginas de producto no tenían un menú móvil funcional.
 if(!document.getElementById('mobile-menu')){
@@ -1408,7 +1451,7 @@ cart=reload();update();
       'Volumen estimado: '+val('volumen'),
       'Productos de interés: '+(val('productos')||'A definir')
     ].join('\n');
-    const url='https://wa.me/5493516318301?text='+encodeURIComponent(msg);
+    const url='https://wa.me/5493512661626?text='+encodeURIComponent(msg);
     window.open(url,'_blank','noopener,noreferrer');
   });
 })();
@@ -1418,7 +1461,7 @@ cart=reload();update();
 (function(){
 'use strict';
 const KEY_BF='blindaflex_cart_data';
-const KIT_BF='Rodillo de 22 cm con 2 fundas, sellador elastomérico Blindaflex para grietas y fisuras de 1,2 kg y pincel profesional.';
+const KIT_BF='Rodillo premium, sellador elastomérico Blindaflex para grietas y fisuras de 1,2 kg y pincel profesional.';
 const formatBF=v=>'$'+Math.round(v).toLocaleString('es-AR');
 const escBF=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const familyBF=i=> i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'')?'reflectivo':i.type==='techo'||/Blindaje para Techos/i.test(i.product||'')?'techos':'otro';
@@ -1480,7 +1523,7 @@ window.submitWhatsApp=function(e){
  if(p.kitCount){rows.push(`🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO`);if(p.qtyT)rows.push('1 kit por Blindaje para Techos');if(p.qtyR)rows.push('1 kit por Blindaje Reflectivo');rows.push('Contenido de cada kit: '+KIT_BF);}
  if(p.saved)rows.push('AHORRO TOTAL: '+formatBF(p.saved));
  rows.push('*TOTAL PRODUCTOS: '+formatBF(p.total)+'*','Envío según zona de entrega.','Pago al recibir en zonas habilitadas.');
- window.open('https://wa.me/5493516318301?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
+ window.open('https://wa.me/5493512661626?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
 };
 if(document.getElementById('btn-checkout')){
  const b=document.getElementById('btn-checkout');b.textContent='CONTINUAR CON MI PEDIDO';
@@ -1502,7 +1545,12 @@ if(body)body.addEventListener('click',e=>{const b=e.target.closest('button[data-
 window.addEventListener('pageshow',()=>{window.renderDrawer();window.renderCheckoutSummary();});
 window.addEventListener('storage',e=>{if(e.key===KEY_BF){window.renderDrawer();window.renderCheckoutSummary();}});
 window.renderDrawer();
+const bfCounter=document.getElementById('cart-counter');if(bfCounter){try{bfCounter.textContent=getCartBF().reduce((n,i)=>n+Number(i.qty||0),0);}catch(e){}}
 })();
+</script>
+
+<script id="bf-tab-attention">
+(()=>{const original=document.title;let timer=null,index=0;const messages=['👋 ¡Volvé a Blindaflex!','💧 Tu protección te espera'];function reset(){if(timer){clearInterval(timer);timer=null;}document.title=original;}document.addEventListener('visibilitychange',()=>{reset();if(document.hidden){document.title=messages[0];index=1;timer=setInterval(()=>{if(document.hidden){document.title=messages[index%messages.length];index++;}else reset();},3000);}});window.addEventListener('pagehide',reset);})();
 </script>
 </body>
 </html>
