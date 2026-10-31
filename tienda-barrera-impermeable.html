@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
     <!-- SEO TÉCNICO Y METADATOS -->
-    <title>Barrera Impermeable | Pintura para Frentes y Fachadas | Blindaflex</title>
-    <meta name="description" content="Barrera Impermeable de Blindaflex: pintura impermeabilizante premium hidrorrepelente para frentes y muros exteriores. 100% acrílica y de alta elasticidad.">
+    <title>Pintura Exterior Impermeabilizante | Blindaflex</title>
+    <meta name="description" content="Pintura exterior 100% acrílica, hidrorrepelente con efecto perla y alta elasticidad. Impermeabiliza, cubre microfisuras y ofrece colores duraderos.">
     <link rel="canonical" href="https://tienda.blindaflex.com/tienda-barrera-impermeable.html">
     <meta name="robots" content="index, follow">
     
-    <meta property="og:title" content="Barrera Impermeable | Pintura para Frentes y Fachadas | Blindaflex">
-    <meta property="og:description" content="Pintura impermeabilizante premium hidrorrepelente para frentes y muros exteriores. 100% acrílica y de alta elasticidad. Conocé nuestros colores.">
+    <meta property="og:title" content="Barrera Impermeable | Pintura impermeabilizante para exteriores | Blindaflex">
+    <meta property="og:description" content="Pintura exterior 100% acrílica con efecto perla, película ultraelástica, cobertura de microfisuras y colores duraderos. Ideal para frentes y muros.">
     <meta property="og:type" content="product">
     <meta property="og:url" content="https://tienda.blindaflex.com/tienda-barrera-impermeable.html">
     <meta property="og:image" content="https://blindaflex.com/img/barrera-impermeable-og.jpg">
@@ -34,8 +34,8 @@
           "@type": "Product",
           "name": "Barrera Impermeable",
           "image": "https://tienda.blindaflex.com/assets/images/bi/balde.png",
-          "description": "Pintura impermeabilizante premium para frentes, fachadas y muros exteriores. Tecnología hidrorrepelente, alta elasticidad y resina 100% acrílica.",
-          "category": "Pintura Impermeabilizante Exterior",
+          "description": "Barrera Impermeable es una pintura impermeabilizante para exteriores de resina 100% acrílica, con efecto perla hidrorrepelente, película ultraelástica que cubre microfisuras, resistencia UV y colores duraderos.",
+          "category": "Pintura impermeabilizante para exteriores",
           "brand": { "@id": "https://blindaflex.com/#organization" },
           "manufacturer": { "@id": "https://blindaflex.com/#organization" },
           "offers": {
@@ -398,8 +398,14 @@
            ========================================================= */
         .floating-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--c-azul); box-shadow: 0 -4px 16px rgba(0,0,0,0.15); border-top: 2px solid var(--c-turquesa); z-index: 90; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
         .floating-bar.visible { transform: translateY(0); }
+        .floating-bar:not(.visible) { transform: translateY(0); }
+        .floating-bar.bf-hidden-at-prices { transform: translateY(110%) !important; }
         .fb-text { font-size: 13px; font-weight: 800; color: var(--c-blanco); text-transform: uppercase; line-height: 1.2;}
         .fb-btn { background: var(--c-naranja); color: var(--c-blanco); border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 800; text-transform: uppercase; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 12px rgba(246, 90, 3, 0.3);}
+        /* Barra inferior de compra: mismo esquema visual que Blindaje Atérmico. */
+        .floating-bar { min-height: 72px; gap: 12px; }
+        .fb-btn { background: var(--c-naranja); font-size: 15px; padding: 14px 20px; border-radius: 12px; }
+        .fb-text { font-size: 16px; }
 
         /* BOTÓN WHATSAPP CORREGIDO: z-index superior, medidas !important para evitar herencias */
         .whatsapp-float {
@@ -644,7 +650,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 </head>
 <body>
 
-    <h1 class="sr-only">Barrera Impermeable — Pintura para Frentes y Fachadas Blindaflex</h1>
+    
 
     <!-- HEADER -->
     <header>
@@ -661,7 +667,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                     <div class="dropdown-menu">
                         <a class="active" href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
                         <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                        <a href="tienda-bindaje-reflectivo.html" class="active" style="color: var(--c-turquesa);">Blindaje Reflectivo</a>
+                        <a href="tienda-blindaje-atermico.html" class="active" style="color: var(--c-turquesa);">Blindaje Reflectivo</a>
                         <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                         <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
                     </div>
@@ -688,7 +694,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             <div class="mm-products-list">
                 <a href="tienda-barrera-impermeable.html" aria-current="page">Barrera Impermeable</a>
                 <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                <a href="tienda-blindaje-atermico.html">Blindaje Reflectivo</a>
                 <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                 <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
@@ -731,17 +737,17 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             <!-- BLOQUE 2: PRODUCTO Y BENEFICIOS -->
             <section class="section-gap hero-product">
                 <div class="hero-img-box">
-                    <img src="assets/images/bi/balde.png" alt="Balde de Barrera Impermeable Blindaflex" loading="lazy">
+                    <img src="assets/images/bi/balde.png" alt="Barrera Impermeable Blindaflex, pintura impermeabilizante 100% acrílica para exteriores" loading="lazy">
                 </div>
                 <div class="hero-text">
-                    <h2 class="section-title" style="font-size: 28px;">BARRERA IMPERMEABLE</h2>
-                    <p class="section-subtitle" style="margin-bottom: 16px;">Una pintura para proteger y renovar frentes y muros exteriores con tecnología avanzada.</p>
+                    <h1 class="section-title" style="font-size: 28px;">BARRERA IMPERMEABLE <span style="display:block;font-size:0.65em;line-height:1.35;margin-top:8px;">Pintura impermeabilizante para exteriores</span></h1>
+                    <p class="section-subtitle" style="margin-bottom: 16px;">Barrera Impermeable es una pintura exterior formulada con resina 100% acrílica para proteger frentes y muros. Su película ultraelástica cubre microfisuras y su tecnología hidrorrepelente produce un efecto perla que repele el agua de lluvia. Ofrece resistencia a los rayos UV y colores duraderos.</p>
                     
                     <div class="benefits-compact">
-                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg><span>HIDRORREPELENCIA</span></div>
-                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v2c0 1.66 1.34 3 3 3h14c1.66 0 3-1.34 3-3v-2c0-1.66-1.34-3-3-3zm1 5c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v2zM6 11h2v2H6zm4 0h4v2h-4z"/></svg><span>ALTA ELASTICIDAD</span></div>
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/><path d="M7.83 14c.37 0 .68.26.74.62.19 1.18.9 2.15 1.98 2.68.32.16.46.54.3.86-.16.32-.54.46-.86.3-1.47-.72-2.44-2.03-2.7-3.63-.08-.41.19-.79.54-.83z"/></svg><span>HIDRORREPELENCIA<br>EFECTO PERLA</span></div>
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v2c0 1.66 1.34 3 3 3h14c1.66 0 3-1.34 3-3v-2c0-1.66-1.34-3-3-3zm1 5c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h14c.55 0 1 .45 1 1v2zM6 11h2v2H6zm4 0h4v2h-4z"/></svg><span>PELÍCULA ULTRAELÁSTICA<br>CUBRE MICROFISURAS</span></div>
                         <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72l5 2.73 5-2.73v3.72z"/></svg><span>RESINA 100% ACRÍLICA</span></div>
-                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3zM11 1h2v4h-2zm0 18h2v4h-2zm8.17-10.76l1.42-1.42 2.83 2.83-1.42 1.42zm-15.56 12.02l1.42-1.42 2.83 2.83-1.42 1.42zM23 11h-4v2h4zM5 11H1v2h4zm13.34 8.24l1.42 1.42-2.83 2.83-1.42-1.42zM7.76 4.93L6.34 3.51 3.51 6.34l1.42 1.42z"/></svg><span>MÁXIMA DURACIÓN<br>DE COLORES</span></div>
+                        <div class="bc-card"><svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3zM11 1h2v4h-2zm0 18h2v4h-2zm8.17-10.76l1.42-1.42 2.83 2.83-1.42 1.42zm-15.56 12.02l1.42-1.42 2.83 2.83-1.42 1.42zM23 11h-4v2h4zM5 11H1v2h4zm13.34 8.24l1.42 1.42-2.83 2.83-1.42-1.42zM7.76 4.93L6.34 3.51 3.51 6.34l1.42 1.42z"/></svg><span>RESISTENCIA UV<br>COLORES DURADEROS</span></div>
                     </div>
                 </div>
             </section>
@@ -771,7 +777,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 
             <!-- BLOQUE 4: COLORES, COMBINADOR Y GALERÍA -->
             <section class="section-gap card color-section">
-                <h2 class="section-title">COLORES E INSPIRACIÓN</h2>
+                <h2 class="section-title">COLORES PARA FRENTES Y PAREDES EXTERIORES</h2>
                 <p class="section-subtitle">Conocé nuestra paleta de terminación semimate y visualizá tus ideas.</p>
                 
                 <!-- A. Muestrario (Colores Reales) -->
@@ -799,24 +805,24 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 <!-- C. Galería Inspiracional (18 Imágenes, Aspect Ratio 3:2) -->
                 <div class="gallery-wrapper">
                     <div class="gallery-track" id="gallery-track">
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 1" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(1)}" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración fachada 1" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 2" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(2)}" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración fachada 2" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 3" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(3)}" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración fachada 3" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 4" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(4)}" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración fachada 4" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 5" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(5)}" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración fachada 5" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 6" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(6)}" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración fachada 6" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 7" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(7)}" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración fachada 7" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 8" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(8)}" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración fachada 8" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 9" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(9)}" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración fachada 9" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 10" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(10)}" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración fachada 10" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 11" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(11)}" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración fachada 11" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 12" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(12)}" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración fachada 12" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 13" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(13)}" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración fachada 13" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 14" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(14)}" onclick="openLightbox(14)"><img src="assets/images/bi/carrusel-14.png" alt="Inspiración fachada 14" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 15" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(15)}" onclick="openLightbox(15)"><img src="assets/images/bi/carrusel-15.png" alt="Inspiración fachada 15" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 16" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(16)}" onclick="openLightbox(16)"><img src="assets/images/bi/carrusel-16.png" alt="Inspiración fachada 16" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 17" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(17)}" onclick="openLightbox(17)"><img src="assets/images/bi/carrusel-17.png" alt="Inspiración fachada 17" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
-                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 18" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(18)}" onclick="openLightbox(18)"><img src="assets/images/bi/carrusel-18.png" alt="Inspiración fachada 18" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 1" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(1)}" onclick="openLightbox(1)"><img src="assets/images/bi/carrusel-1.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 1" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 2" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(2)}" onclick="openLightbox(2)"><img src="assets/images/bi/carrusel-2.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 2" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 3" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(3)}" onclick="openLightbox(3)"><img src="assets/images/bi/carrusel-3.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 3" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 4" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(4)}" onclick="openLightbox(4)"><img src="assets/images/bi/carrusel-4.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 4" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 5" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(5)}" onclick="openLightbox(5)"><img src="assets/images/bi/carrusel-5.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 5" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 6" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(6)}" onclick="openLightbox(6)"><img src="assets/images/bi/carrusel-6.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 6" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 7" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(7)}" onclick="openLightbox(7)"><img src="assets/images/bi/carrusel-7.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 7" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 8" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(8)}" onclick="openLightbox(8)"><img src="assets/images/bi/carrusel-8.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 8" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 9" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(9)}" onclick="openLightbox(9)"><img src="assets/images/bi/carrusel-9.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 9" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 10" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(10)}" onclick="openLightbox(10)"><img src="assets/images/bi/carrusel-10.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 10" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 11" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(11)}" onclick="openLightbox(11)"><img src="assets/images/bi/carrusel-11.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 11" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 12" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(12)}" onclick="openLightbox(12)"><img src="assets/images/bi/carrusel-12.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 12" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 13" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(13)}" onclick="openLightbox(13)"><img src="assets/images/bi/carrusel-13.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 13" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 14" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(14)}" onclick="openLightbox(14)"><img src="assets/images/bi/carrusel-14.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 14" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 15" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(15)}" onclick="openLightbox(15)"><img src="assets/images/bi/carrusel-15.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 15" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 16" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(16)}" onclick="openLightbox(16)"><img src="assets/images/bi/carrusel-16.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 16" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 17" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(17)}" onclick="openLightbox(17)"><img src="assets/images/bi/carrusel-17.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 17" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
+                        <div class="gallery-item" role="button" tabindex="0" aria-label="Ampliar imagen 18" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openLightbox(18)}" onclick="openLightbox(18)"><img src="assets/images/bi/carrusel-18.png" alt="Inspiración de colores para frentes y fachadas exteriores Blindaflex, imagen 18" loading="lazy"><span class="gallery-zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg> Ampliar</span></div>
                     </div>
                 </div>
                 <p class="gallery-disclaimer" style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500; padding: 0 12px; line-height: 1.45;">Imágenes ilustrativas. Los colores pueden presentar variaciones respecto del resultado real debido a la iluminación, la configuración de cada pantalla y las características de la superficie de aplicación. Para elegir el color definitivo, recomendamos verificar una muestra física.</p>
@@ -825,7 +831,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             <div class="grid-desktop">
                 <!-- BLOQUE 5: CALCULADORA DE CONSUMO -->
                 <section class="section-gap card calc-section">
-                    <h2 class="section-title" style="color:var(--c-turquesa);">CALCULÁ TU CONSUMO</h2>
+                    <h2 class="section-title" style="color:var(--c-turquesa);">¿CUÁNTA PINTURA EXTERIOR NECESITO?</h2>
                     <p class="section-subtitle" style="color:var(--c-gris-claro);">Ingresá los m² a pintar (rendimiento estimado hasta 3 m²/kg).</p>
                     
                     <div class="calc-input-group">
@@ -1053,7 +1059,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             <!-- BLOQUE 10: FAQ -->
             <section class="section-gap card">
                 <svg class="section-icon-main svg-thin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
+                <h2 class="section-title">PREGUNTAS FRECUENTES SOBRE PINTURA IMPERMEABILIZANTE PARA EXTERIORES</h2>
                 <div class="faq-container">
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFaq(this)">¿Para qué superficies sirve Barrera Impermeable?</button>
@@ -1092,8 +1098,8 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 
             <!-- BLOQUE 11: CIERRE COMERCIAL -->
             <section class="section-gap closing-box">
-                <h2 class="section-title">PROTEGÉ Y RENOVÁ TUS MUROS</h2>
-                <p class="section-subtitle">Evitá filtraciones y dale una nueva vida a tu fachada con la tecnología de Blindaflex.</p>
+                <h2 class="section-title">PROTEGÉ TUS FRENTES Y MUROS EXTERIORES</h2>
+                <p class="section-subtitle">Protegé y renová tu fachada con Barrera Impermeable: pintura impermeabilizante 100% acrílica, hidrorrepelente y ultraelástica, con efecto perla y colores duraderos.</p>
                 <ul class="closing-list">
                     <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> Protección comprobada contra humedad exterior.</li>
                     <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> Terminación semimate en 6 colores de tendencia.</li>
@@ -1194,7 +1200,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 <span class="footer-nav-title">Nuestros Productos</span>
                 <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
                 <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                <a href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a>
+                <a href="tienda-blindaje-atermico.html">Blindaje Reflectivo</a>
                 <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                 <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
@@ -1865,6 +1871,12 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
         }
         window.addEventListener('scroll', updateFloatingBarVisibility, {passive:true});
         window.addEventListener('pageshow', updateFloatingBarVisibility);
+        window.addEventListener('resize', updateFloatingBarVisibility, {passive:true});
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateFloatingBarVisibility, {once:true});
+        } else {
+            updateFloatingBarVisibility();
+        }
 
         function scrollToCompra() { document.getElementById('configurador').scrollIntoView({behavior:'smooth'}); }
         
@@ -2125,7 +2137,7 @@ window.submitWhatsApp=function(e){
 };
 // Navegación común: las páginas de producto no tenían un menú móvil funcional.
 if(!document.getElementById('mobile-menu')){
- let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-bindaje-reflectivo.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a><a class="bf-menu-link" href="index.html#mayoristas">Ventas mayoristas</a></nav>';
+ let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-blindaje-atermico.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a><a class="bf-menu-link" href="index.html#mayoristas">Ventas mayoristas</a></nav>';
  document.body.appendChild(nav);const close=()=>nav.classList.remove('bf-open');nav.querySelector('.bf-backdrop').addEventListener('click',close);nav.querySelector('.bf-close').addEventListener('click',close);
  document.querySelector('header .menu-btn')?.addEventListener('click',()=>{closeCartDrawer();nav.classList.add('bf-open')});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeCartDrawer()}});
@@ -2239,6 +2251,32 @@ function toggleMobileMenu(){
  overlay.classList.toggle('active',open);
  document.body.style.overflow=open?'hidden':'';
 }
+</script>
+
+<script>
+/* ÚNICO AGREGADO: control independiente de la barra fija Barrera Impermeable. */
+(function () {
+  function actualizarBarraPrecios() {
+    var barra = document.getElementById('floating-bar');
+    var precios = document.getElementById('configurador');
+    if (!barra) return;
+    var checkout = document.getElementById('checkout-view');
+    var checkoutVisible = checkout && getComputedStyle(checkout).display !== 'none';
+    var preciosVisible = false;
+    if (precios && getComputedStyle(precios).display !== 'none') {
+      var r = precios.getBoundingClientRect();
+      preciosVisible = r.top < innerHeight && r.bottom > 0;
+    }
+    barra.classList.toggle('bf-hidden-at-prices', !!(checkoutVisible || preciosVisible));
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', actualizarBarraPrecios);
+  } else actualizarBarraPrecios();
+  window.addEventListener('scroll', actualizarBarraPrecios, {passive:true});
+  window.addEventListener('resize', actualizarBarraPrecios, {passive:true});
+  window.addEventListener('pageshow', actualizarBarraPrecios);
+  document.addEventListener('click', function () { requestAnimationFrame(actualizarBarraPrecios); });
+})();
 </script>
 </body>
 </html>
