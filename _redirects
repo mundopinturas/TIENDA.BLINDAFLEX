@@ -1,0 +1,24 @@
+# Blindaflex — migracion de URLs antiguas de Tiendanube
+# Colocar este archivo en la raiz del directorio que Cloudflare Pages publica.
+# 301: sustitucion permanente con destino equivalente.
+# 302: destino temporal hasta publicar la landing correspondiente.
+
+/productos/ / 301
+/techos/ /tienda-blindaje-techos.html 301
+/frentes-y-muros/ /tienda-barrera-impermeable.html 301
+/productos/barrera-impermeable-5k/ /tienda-barrera-impermeable.html 301
+/productos/barrera-impermeable-25kg/ /tienda-barrera-impermeable.html 301
+/productos/blindaje-para-techos-x-20kg/ /tienda-blindaje-techos.html 301
+/productos/blindaje-para-techos-x-20kg-copia-14d2g/ /tienda-blindaje-techos.html 301
+
+# Sin landing comercial publicada todavia: redireccion temporal al inicio.
+/productos/blindaje-transparente-10kg/ / 302
+/productos/blindaje-transparente-4kg/ / 302
+/productos/blindaje-transarente-20kg/ / 302
+/productos/blindaje-transparente-20kg/ / 302
+/productos/barrera-antihongo/ / 302
+/ambientes-humedos/ / 302
+/terminacion-a-la-vista/ / 302
+
+# URL historica de contacto; no conservar parametros de cancelacion en el destino.
+/contacto/ / 302
