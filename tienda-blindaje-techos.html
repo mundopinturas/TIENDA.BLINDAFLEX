@@ -695,7 +695,26 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 .footer-bottom {text-align:center;font-size:12px;color:#64748b;margin-top:32px;border-top:1px solid rgba(255,255,255,.05);padding-top:24px}
 @media(min-width:992px){.footer-grid{grid-template-columns:1fr 1fr 1fr}}
 
-</style>
+
+        /* PRUEBA HERO: conservar la proporción visual alta del bloque publicado (~0,73:1),
+           ampliándolo al ancho total sin recortar ni deformar los videos. */
+        #bf-vcarousel.video-wrapper {
+            width: 100vw;
+            max-width: none;
+            height: auto;
+            min-height: 0;
+            max-height: none;
+            aspect-ratio: 0.73 / 1;
+            margin-left: calc(50% - 50vw);
+            flex: none;
+            border-radius: 0;
+        }
+        @media (min-width: 768px) {
+            .hero-section:has(> #bf-vcarousel) { flex-direction: column; }
+            .hero-section > .hero-text-block { width: 100%; }
+        }
+
+    </style>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/blindaflex-favicon-32.png">
     <link rel="apple-touch-icon" href="/blindaflex-favicon-180.png">
@@ -788,8 +807,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                         </div>
                         <button type="button" class="bf-vtap" id="bf-vtap" aria-label="Pausar o reanudar video"><span class="bf-pause-indicator" aria-hidden="true">▶</span></button>
                     </div>
-                    <button type="button" class="bf-vbtn bf-prev" id="bf-prev" aria-label="Ver video anterior">&#8249;</button>
-                    <button type="button" class="bf-vbtn bf-next" id="bf-next" aria-label="Ver video siguiente">&#8250;</button>
+
                     <div class="bf-dots" aria-hidden="true"><span class="bf-dot bf-selected"></span><span class="bf-dot"></span><span class="bf-dot"></span></div>
                     <button type="button" class="bf-sound" id="bf-sound" aria-label="Activar sonido">🔇 ACTIVAR SONIDO</button>
                 </div>
@@ -1491,8 +1509,6 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             });
         });
         arrange(active);
-        document.getElementById('bf-prev').addEventListener('click', () => switchVideo(-1));
-        document.getElementById('bf-next').addEventListener('click', () => switchVideo(1));
         soundButton.addEventListener('click', async () => {
             desiredSound = activeVideo().muted;
             activeVideo().muted = !desiredSound;
