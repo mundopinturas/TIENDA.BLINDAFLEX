@@ -140,7 +140,7 @@
         /* =========================================================
            BLOQUE 1: CARRUSEL DE IMÁGENES GRANDES (HERO 3:4)
            ========================================================= */
-        .img-carousel-wrapper { position: relative; width: 100%; max-width: 450px; margin: 16px auto var(--gap-mob) auto; border-radius: var(--radius-lg); overflow: hidden; background: #E5E9EC; box-shadow: var(--shadow-tech); border: 1px solid var(--c-gris-border); aspect-ratio: 3/4;}
+        .img-carousel-wrapper { position: relative; width: 100vw; max-width: none; margin: 16px 0 var(--gap-mob) calc(50% - 50vw); border-radius: 0; overflow: hidden; background: #E5E9EC; box-shadow: var(--shadow-tech); border: 1px solid var(--c-gris-border); aspect-ratio: 3/4;}
         .ic-track { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
         .ic-track::-webkit-scrollbar { display: none; }
         .ic-slide { min-width: 100%; height: 100%; scroll-snap-align: center; position: relative; }
@@ -551,10 +551,7 @@
                     <div class="ic-slide"><img decoding="async" src="assets/images/reflectivo-carrusel-2.png" alt="Blindaje Atérmico: membrana blanca hidrorrepelente que protege el techo frente a la lluvia"></div>
                     <div class="ic-slide"><img decoding="async" src="assets/images/reflectivo-carrusel-3.png" alt="Protección integral Blindaje Atérmico: reflexión solar, impermeabilización y elasticidad"></div>
                 </div>
-                
-                <button class="ic-nav ic-prev" onclick="manualImageChange(-1)" aria-label="Imagen anterior"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
-                <button class="ic-nav ic-next" onclick="manualImageChange(1)" aria-label="Siguiente imagen"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
-                
+
                 <div class="ic-indicators" id="ic-indicators">
                     <div class="ic-dot active"></div>
                     <div class="ic-dot"></div>
