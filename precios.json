@@ -1,0 +1,58 @@
+{
+  "version": "2026-11-08",
+  "configuracion": {
+    "impuestos_iva": 0.21
+  },
+  "productos": {
+    "techos_20": {
+      "nombre": "Blindaje para Techos",
+      "presentacion": "20 kg",
+      "precio_base": 167000
+    },
+    "atermico_20": {
+      "nombre": "Blindaje Atérmico",
+      "presentacion": "20 kg",
+      "precio_base": 203980
+    },
+    "barrera_12": {
+      "nombre": "Barrera Impermeable",
+      "presentacion": "12 kg",
+      "precio_base": 130106
+    },
+    "barrera_5": {
+      "nombre": "Barrera Impermeable",
+      "presentacion": "5 kg",
+      "precio_base": 54794
+    }
+  },
+  "modalidades": {
+    "cuotas_15": {
+      "id": "cuotas_15",
+      "nombre": "15 cuotas",
+      "cuotas": 15,
+      "descuento": 0,
+      "etiqueta": "DESTACADO"
+    },
+    "cuotas_9": {
+      "id": "cuotas_9",
+      "nombre": "9 cuotas",
+      "cuotas": 9,
+      "descuento": 0.08,
+      "etiqueta": "8% OFF"
+    },
+    "cuotas_3": {
+      "id": "cuotas_3",
+      "nombre": "3 cuotas",
+      "cuotas": 3,
+      "descuento": 0.14,
+      "etiqueta": "14% OFF"
+    },
+    "contado": {
+      "id": "contado",
+      "nombre": "Contado",
+      "cuotas": 1,
+      "descuento": 0.2,
+      "etiqueta": "20% OFF"
+    }
+  }
+}
