@@ -41,21 +41,21 @@
           "offers": {
             "@type": "AggregateOffer",
             "priceCurrency": "ARS",
-            "lowPrice": "48900",
-            "highPrice": "112200",
+            "lowPrice": "54794",
+            "highPrice": "130106",
             "offerCount": "2",
             "offers": [
               {
                 "@type": "Offer",
                 "name": "Barrera Impermeable 5 kg",
-                "price": "48900",
+                "price": "54794",
                 "priceCurrency": "ARS",
                 "availability": "https://schema.org/InStock"
               },
               {
                 "@type": "Offer",
                 "name": "Barrera Impermeable 12 kg",
-                "price": "112200",
+                "price": "130106",
                 "priceCurrency": "ARS",
                 "availability": "https://schema.org/InStock"
               }
@@ -596,7 +596,7 @@
 
   #mayoristas { scroll-margin-top: 95px; }
 
-/* Navegación y pie de página unificados con Blindaje Reflectivo */
+/* Navegación y pie de página unificados con Blindaje Atérmico */
 .mobile-menu-overlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(7,26,36,.8);z-index:1000;opacity:0;visibility:hidden;transition:opacity .3s;backdrop-filter:blur(2px) }
 .mobile-menu-overlay.active { opacity:1;visibility:visible }
 .mobile-menu { position:fixed;top:0;left:-100%;width:82%;max-width:330px;height:100%;background:var(--c-azul);z-index:1001;transition:left .3s ease;display:flex;flex-direction:column;overflow-y:auto }
@@ -627,7 +627,7 @@
 .dropdown-menu a {display:block;padding:12px 20px;color:var(--c-azul);font-size:13px;font-weight:600;text-transform:none;text-align:left;height:auto;letter-spacing:normal}
 .dropdown-menu a:hover {background:var(--c-gris-bg);color:var(--c-turquesa-dark)}
 @media(min-width:992px){.desktop-nav{display:flex;flex-grow:1}}
-/* Pie de página: estructura y estilo de Blindaje Reflectivo */
+/* Pie de página: estructura y estilo de Blindaje Atérmico */
 footer {background:var(--c-azul);color:var(--c-blanco)}
 .footer-logo img {max-height:70px;width:auto;margin-bottom:20px}
 .footer-desc {font-size:13px;color:#8ba2ac;margin-bottom:0;max-width:320px;line-height:1.5}
@@ -656,6 +656,24 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             flex: none;
             border-radius: 0;
         }
+
+/* Financiación Barrera Impermeable: sin estilos globales de SVG */
+.bf-financing-banner{max-width:900px;margin:0 auto 22px;text-align:center}
+.bf-financing-banner img{display:block;width:100%;height:auto;border-radius:12px}
+.bf-financing-banner p{padding:18px;background:#e0f7fa;border-radius:12px;color:#071a24;font-size:16px;line-height:1.5}
+.bf-plan-intro{font-size:13px;color:#64748b;margin:-4px 0 13px;line-height:1.5}
+.bf-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.bf-plan-option{display:flex;flex-direction:column;gap:5px;align-items:flex-start;text-align:left;min-width:0;border:2px solid #e2e8f0;border-radius:12px;padding:13px 11px;background:#f8fafb;color:#071a24;cursor:pointer}
+.bf-plan-option[aria-pressed="true"]{background:#e0f7fa;border-color:#00afc6}
+.bf-plan-option strong{font-size:14px;line-height:1.3}
+.bf-plan-option .bf-plan-installment{font-size:15px;font-weight:900;line-height:1.3;color:#008fa3}
+.bf-plan-option small{font-size:11px;color:#64748b;line-height:1.3}
+.bf-plan-option .bf-plan-badge{font-size:10px;color:#fff;background:#071a24;border-radius:4px;padding:3px 6px;font-weight:800}
+.bf-plan-foot{font-size:12px;color:#64748b;line-height:1.5;margin-top:12px}
+.bf-order-plan{padding:12px 14px;background:#e0f7fa;border-radius:9px;color:#071a24;margin:0 0 12px;font-size:13px;line-height:1.5}
+.bf-order-plan strong{font-weight:900}
+@media(max-width:350px){.bf-plan-grid{grid-template-columns:1fr}}
+
 </style>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/blindaflex-favicon-32.png">
@@ -680,7 +698,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                     <div class="dropdown-menu">
                         <a class="active" href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
                         <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                        <a href="tienda-blindaje-atermico.html" class="active" style="color: var(--c-turquesa);">Blindaje Reflectivo</a>
+                        <a href="tienda-blindaje-atermico.html" class="active" style="color: var(--c-turquesa);">Blindaje Atérmico</a>
                         <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                         <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
                     </div>
@@ -707,7 +725,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             <div class="mm-products-list">
                 <a href="tienda-barrera-impermeable.html" aria-current="page">Barrera Impermeable</a>
                 <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                <a href="tienda-blindaje-atermico.html">Blindaje Reflectivo</a>
+                <a href="tienda-blindaje-atermico.html">Blindaje Atérmico</a>
                 <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                 <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
@@ -868,6 +886,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 </section>
 
                 <!-- BLOQUE 6: ARMÁ TU PEDIDO (REDISEÑO MULTIVARIANTE) -->
+                <section class="bf-financing-banner" aria-label="Financiación Blindaflex"><img src="assets/images/financiacion-barrera-impermeable.png" alt="Barrera Impermeable: hasta 20 cuotas sin interés con Cordobesa y hasta 15 cuotas sin interés con tarjetas habilitadas" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><p hidden>Hasta <strong>20 cuotas sin interés con Cordobesa</strong> y hasta <strong>15 cuotas sin interés con tarjetas habilitadas</strong>.</p></section>
                 <section id="configurador" class="config-box">
                     <h2 class="config-title">Armá tu pedido</h2>
                     <p class="config-subtitle">Elegí los baldes que necesitás. Podés combinar presentaciones y colores.</p>
@@ -879,13 +898,13 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                             <div class="c-step">
                                 <h3 class="c-step-title">PASO 01 — ELEGÍ LA PRESENTACIÓN</h3>
                                 <div class="c-pres-grid">
-                                    <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12, 112200)">
+                                    <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12, 130106)">
                                         <span class="c-pres-kg">12 kg</span>
-                                        <span class="c-pres-price">$112.200</span>
+                                        <span class="c-pres-price">$130.106</span>
                                     </div>
-                                    <div class="c-pres-card" id="c-pres-5" onclick="setPres(5, 48900)">
+                                    <div class="c-pres-card" id="c-pres-5" onclick="setPres(5, 54794)">
                                         <span class="c-pres-kg">5 kg</span>
-                                        <span class="c-pres-price">$48.900</span>
+                                        <span class="c-pres-price">$54.794</span>
                                     </div>
                                 </div>
                             </div>
@@ -921,6 +940,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                                 </div>
                             </div>
 
+                            <div class="bf-plan-section c-step" id="bf-plan-section"><h3 class="c-step-title">ELEGÍ CÓMO PAGAR</h3><p class="bf-plan-intro">Un solo plan para todo tu pedido. Podés combinar presentaciones y colores.</p><div class="bf-plan-grid" id="bf-plan-grid"></div><p class="bf-plan-foot">Las cuotas se abonan con tarjeta al recibir tu pedido, en zonas habilitadas. Los descuentos se aplican sobre el precio de 15 cuotas.</p></div>
                             <!-- PASO 3 -->
                             <div class="c-step">
                                 <h3 class="c-step-title">PASO 03 — CANTIDAD</h3>
@@ -933,7 +953,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                             
                             <!-- Botón Sumar Variante -->
                             <button class="btn-sumar" onclick="addVariantToOrder()">
-                                + Sumar al pedido · <span id="btn-sumar-price">$112.200</span>
+                                + Sumar al pedido · <span id="btn-sumar-price">$130.106</span>
                             </button>
 <div class="bf-help-buy" role="note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><div class="bf-help-text">¿Necesitás asesoramiento con tu compra?<div><a href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20viendo%20Barrera%20Impermeable%20en%20la%20tienda%20Blindaflex%20y%20quisiera%20hacer%20una%20consulta%20sobre%20mi%20pedido." target="_blank" rel="noopener noreferrer" aria-label="Consultar por WhatsApp sobre Barrera Impermeable">Escribinos por WhatsApp ↗</a></div></div></div>
 
@@ -952,7 +972,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                                     <span class="c-sum-totals-val" id="local-order-total">$0</span>
                                 </div>
                             </div>
-                            <div class="c-envio-note">El envío se calcula según la zona de entrega.</div>
+                            <div class="c-envio-note">Envío gratis en Córdoba Capital y zonas cercanas habilitadas. Consultanos por otras localidades.</div>
                             
                             <button class="btn-primary btn-action" onclick="proceedToCheckout()" style="border:none;">
                                 Continuar con mi pedido →
@@ -1211,7 +1231,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 <span class="footer-nav-title">Nuestros Productos</span>
                 <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
                 <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
-                <a href="tienda-blindaje-atermico.html">Blindaje Reflectivo</a>
+                <a href="tienda-blindaje-atermico.html">Blindaje Atérmico</a>
                 <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
                 <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
             </div>
@@ -1563,7 +1583,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 const n5 = Math.max(0, Math.ceil((needed - n12 * 12 - 1e-9) / 5));
                 const kg = n12 * 12 + n5 * 5;
                 if (kg + 1e-9 < needed) continue;
-                const option = { n12, n5, kg, count: n12 + n5, price: n12 * 112200 + n5 * 48900 };
+                const option = { n12, n5, kg, count: n12 + n5, price: n12 * bfUnitPrice(12) + n5 * bfUnitPrice(5) };
                 if (!best || option.kg < best.kg ||
                     (option.kg === best.kg && option.count < best.count) ||
                     (option.kg === best.kg && option.count === best.count && option.price < best.price)) best = option;
@@ -1614,7 +1634,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
         }
 
         // --- NUEVA LÓGICA DE CONFIGURADOR MULTIVARIANTE (PRE-CARRITO) ---
-        const APP_PRICES = { 12: 112200, 5: 48900 };
+        const APP_PRICES = { 12: 130106, 5: 54794 };
         let cfgPres = 12;
         let cfgColor = 'Blanco';
         let cfgColorHex = '#F4F3F0';
@@ -1646,7 +1666,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
         }
 
         function updateBtnSumar() {
-            const total = APP_PRICES[cfgPres] * cfgQty;
+            const total = bfUnitPrice(cfgPres) * cfgQty;
             document.getElementById('btn-sumar-price').innerText = formatARS(total);
         }
 
@@ -1692,7 +1712,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             let grandTotal = 0;
             
             localOrder.forEach(item => {
-                const sub = item.qty * item.unitPrice;
+                const sub = item.qty * bfUnitPrice(item.pres);
                 grandTotal += sub;
                 html += `
                     <div class="c-sum-item">
@@ -1701,7 +1721,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                             <span class="c-sum-title">${item.color} · ${item.pres} kg</span>
                         </div>
                         <div class="c-sum-price-row">
-                            <span>${item.qty} × ${formatARS(item.unitPrice)}</span>
+                            <span>${item.qty} × ${formatARS(bfUnitPrice(item.pres))}</span>
                             <span class="c-sum-sub">${formatARS(sub)}</span>
                         </div>
                         <button class="c-sum-remove" onclick="removeLocalItem('${item.id}')" aria-label="Quitar">
@@ -2031,7 +2051,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
         }
 
         window.onload = () => {
-            updateCartCounter();
+            if(window.bfRefreshCart)window.bfRefreshCart();
             updateFloatingBarVisibility();
         };
     </script>
@@ -2056,196 +2076,8 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 #bf-mobile-nav .bf-close{display:block;margin-left:auto;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
 #bf-mobile-nav .bf-menu-link{display:block;padding:16px 0;border-bottom:1px solid #ffffff22;font-weight:750;text-decoration:none;color:#fff;font-size:15px}
 </style>
-<script id="bf-unified-cart-script">
-(function(){
-'use strict';
-const KEY='blindaflex_cart_data';
-const escapeHTML=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const isRoof=i=>i.type==='techo'||(!i.type&&/Blindaje para Techos/i.test(i.product||''));
-const isReflectivo=i=>i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'');
-const isBarrera=i=>i.type==='barrera'||/Barrera Impermeable/i.test(i.product||'');
-const KIT='Rodillo premium, sellador elastomérico de grietas y fisuras Blindaflex de 1,2 kg y pincel profesional.';
-const countBy=fn=>cart.filter(fn).reduce((a,i)=>a+Number(i.qty||0),0);
-const pct=q=>q>=4?.22:q===3?.17:q===2?.12:0;
-const getRates=()=>({roof:pct(countBy(isRoof)),reflect:pct(countBy(isReflectivo))});
-const isGiftEligible=()=>cart.some(i=>isRoof(i)||isReflectivo(i));
-const base=i=>isRoof(i)?148000:isReflectivo(i)?170120:Number(i.price||0);
-const subtotal=i=>Number(i.qty||0)*base(i)*(isRoof(i)?(1-getRates().roof):isReflectivo(i)?(1-getRates().reflect):1);
-const cartTotal=()=>cart.reduce((a,i)=>a+subtotal(i),0);
-const savings=fn=>cart.filter(fn).reduce((a,i)=>a+Number(i.qty||0)*base(i)-subtotal(i),0);
-const money=n=>'$'+Math.round(n).toLocaleString('es-AR');
-const reload=()=>{try{let o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items.filter(i=>i&&Number(i.qty)>0).map(i=>({...i,qty:Math.floor(Number(i.qty))})):[]}catch(e){return []}};
-const update=()=>{
- const n=cart.reduce((a,i)=>a+Number(i.qty||0),0);
- const counter=document.getElementById('cart-counter');if(counter)counter.textContent=n;
- const checkout=document.getElementById('btn-checkout');if(checkout)checkout.disabled=n===0;
- window.renderDrawer();
-};
-function promoText(){
- const rates=getRates();let h='';
- if(rates.roof)h+='<div class="bf-discount-note"><strong>Blindaje para Techos: '+Math.round(rates.roof*100)+'% de descuento</strong> · Ahorrás '+money(savings(isRoof))+'</div>';
- if(rates.reflect)h+='<div class="bf-discount-note"><strong>Blindaje Reflectivo: '+Math.round(rates.reflect*100)+'% de descuento</strong> · Ahorrás '+money(savings(isReflectivo))+'</div>';
- return h;
-}
-function giftText(){return isGiftEligible()?'<div class="bf-cart-gift"><strong>🎁 DE REGALO: 1 KIT PREMIUM</strong><div>'+KIT+'</div><div class="bf-gift-emphasis">Un solo kit por pedido, aunque combines productos elegibles.</div></div>':''}
-function renderSharedCart(){
- const body=document.getElementById('cart-body'),total=document.getElementById('drawer-total');
- if(!body||!total)return;
- total.textContent=money(cartTotal());
- if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
- let html=giftText()+promoText();
- cart.forEach(i=>{
-  let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
-  html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
- });
- const saved=savings(isRoof)+savings(isReflectivo);
- if(saved>0)html+='<div class="bf-cart-savings"><span>AHORRO TOTAL</span><strong>'+money(saved)+'</strong></div>';
- html+='<p class="bf-cart-note">El costo de envío se determina según la zona de entrega.</p>';
- body.innerHTML=html;
-}
-function persist(){localStorage.setItem(KEY,JSON.stringify({items:cart,lastActivity:Date.now()}));update();if(document.getElementById('checkout-view')?.style.display==='block')renderCheckoutSummary()}
-window.bfCartRefresh=()=>{cart=reload();update()};
-window.bfCartQty=(id,delta)=>{let item=cart.find(i=>String(i.id)===String(id));if(!item)return;item.qty=Number(item.qty||0)+delta;if(item.qty<=0)cart=cart.filter(i=>i!==item);persist()};
-window.bfCartRemove=id=>{cart=cart.filter(i=>String(i.id)!==String(id));persist()};
-window.renderDrawer=renderSharedCart;
-window.saveCart=persist;
-window.updateCartCounter=update;
-window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
-window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
-window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();renderCheckoutSummary()};
-window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');let saved=savings(isRoof)+savings(isReflectivo);if(isGiftEligible())html+='<p style="margin-top:12px">🎁 Kit premium por cada familia elegible: '+KIT+'</p>';html+=promoText();if(saved)html+='<p>AHORRO TOTAL: '+money(saved)+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
-const footer=document.querySelector('#cart-drawer .cart-footer');
-if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',()=>window.closeCartDrawer());let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
-if(document.getElementById('btn-checkout'))document.getElementById('btn-checkout').onclick=function(){
- if(!cart.length)return;
- if(document.getElementById('checkout-view')){
-  if(document.getElementById('main-store'))window.goToCheckout();
-  else if(typeof openHomeCheckout==='function'){window.closeCartDrawer();openHomeCheckout();}
- }
-};
-document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty'))) });
-window.addEventListener('pageshow',()=>{cart=reload();update()});
-window.addEventListener('storage',e=>{if(e.key===KEY){cart=reload();update()}});
-// Confirmación de pedido: usa los mismos cálculos y datos que el carrito lateral.
-window.submitWhatsApp=function(e){
- e.preventDefault();cart=reload();if(!cart.length)return;
- const val=id=>document.getElementById(id)?.value?.trim()||'';
- const lines=['*NUEVO PEDIDO BLINDAFLEX*','','*CLIENTE*','Nombre: '+val('f-nombre'),'Teléfono: '+val('f-tel'),'Localidad/Barrio: '+val('f-loc'),'Dirección: '+val('f-calle')+' '+val('f-num')];
- if(val('f-cp'))lines.push('CP: '+val('f-cp'));
- if(val('f-ref'))lines.push('Referencia: '+val('f-ref'));
- lines.push('','*DETALLE DEL PEDIDO*');
- cart.forEach(i=>lines.push(Number(i.qty||0)+' x '+String(i.product||'Producto')+' · '+String(i.color||''),'Presentación: '+String(i.presentation||(isReflectivo(i)?'20':'')||'No especificada')+' kg','Subtotal: '+money(subtotal(i)),''));
- const rates=getRates();
- if(rates.roof)lines.push('Techos: '+Math.round(rates.roof*100)+'% de descuento · Ahorrás '+money(savings(isRoof)));
- if(rates.reflect)lines.push('Reflectivo: '+Math.round(rates.reflect*100)+'% de descuento · Ahorrás '+money(savings(isReflectivo)));
- if(isGiftEligible())lines.push('🎁 REGALO: kit premium por cada familia elegible ('+KIT+')');
- const saved=savings(isRoof)+savings(isReflectivo);
- if(saved)lines.push('AHORRO TOTAL: '+money(saved));
- lines.push('*TOTAL PRODUCTOS: '+money(cartTotal())+'*','Envío a coordinar según zona.','Pago al recibir en zonas habilitadas.');
- window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
-};
-// Navegación común: las páginas de producto no tenían un menú móvil funcional.
-if(!document.getElementById('mobile-menu')){
- let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-blindaje-atermico.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a><a class="bf-menu-link" href="index.html#mayoristas">Ventas mayoristas</a></nav>';
- document.body.appendChild(nav);const close=()=>nav.classList.remove('bf-open');nav.querySelector('.bf-backdrop').addEventListener('click',close);nav.querySelector('.bf-close').addEventListener('click',close);
- document.querySelector('header .menu-btn')?.addEventListener('click',()=>{closeCartDrawer();nav.classList.add('bf-open')});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeCartDrawer()}});
-}
-cart=reload();update();
-})();
-</script>
-<script id="bf-cart-4-pages-2026-10-30">
-/* Carrito compartido: único kit por familia de producto elegible, no por pedido. */
-(function(){
-'use strict';
-const KEY_BF='blindaflex_cart_data';
-const KIT_BF='Rodillo premium, sellador elastomérico Blindaflex para grietas y fisuras de 1,2 kg y pincel profesional.';
-const formatBF=v=>'$'+Math.round(v).toLocaleString('es-AR');
-const escBF=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const familyBF=i=> i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'')?'reflectivo':i.type==='techo'||/Blindaje para Techos/i.test(i.product||'')?'techos':'otro';
-const getCartBF=()=>{try {const data=JSON.parse(localStorage.getItem(KEY_BF)||'{}');return Array.isArray(data.items)?data.items.filter(i=>i&&Number(i.qty)>0).map(i=>({...i,qty:Math.max(1,Math.floor(Number(i.qty)))})):[];}catch(e){return []}};
-const promotionBF=items=>{
- const qt=f=>items.filter(i=>familyBF(i)===f).reduce((n,i)=>n+Number(i.qty||0),0);
- const qtyT=qt('techos'),qtyR=qt('reflectivo');
- const percent=q=>q>=4?22:q===3?17:q===2?12:0;
- const pT=percent(qtyT),pR=percent(qtyR);
- const oldPrice=i=>familyBF(i)==='techos'?148000:familyBF(i)==='reflectivo'?170120:Number(i.price??i.unitPrice??0);
- const baseLine=i=>Number(i.qty||0)*oldPrice(i);
- const totalLine=i=>Math.round(baseLine(i)*(1-(familyBF(i)==='techos'?pT:familyBF(i)==='reflectivo'?pR:0)/100));
- const lines=items.map(i=>({...i,family:familyBF(i),base:baseLine(i),subtotal:totalLine(i)}));
- const savedFor=f=>lines.filter(i=>i.family===f).reduce((n,i)=>n+i.base-i.subtotal,0);
- return {lines,qtyT,qtyR,pT,pR,kitCount:Number(qtyT>0)+Number(qtyR>0),savedT:savedFor('techos'),savedR:savedFor('reflectivo'),total:lines.reduce((n,i)=>n+i.subtotal,0),saved:lines.reduce((n,i)=>n+i.base-i.subtotal,0)};
-};
-const kitBF=p=>{
- if(!p.kitCount)return '';
- const entries=[];
- if(p.qtyT)entries.push('1 kit por Blindaje para Techos');
- if(p.qtyR)entries.push('1 kit por Blindaje Reflectivo');
- return `<div class="bf-unified-gifts" style="background:#e4f6f8;color:#071a24;padding:13px;border-radius:9px;margin-bottom:13px;border:1px solid #00afc6;"><strong>🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO</strong><div style="font-size:12px;margin:6px 0;">${entries.map(escBF).join(' · ')}</div><div style="font-size:12px;line-height:1.5;">${KIT_BF}</div><div style="font-size:11px;margin-top:7px;">Se entrega 1 kit por familia de producto elegible, sin importar cuántos baldes comprás de cada una.</div></div>`;
-};
-const ratesBF=p=>{
- let h='';
- if(p.pT)h+=`<div style="font-size:12px;margin:7px 0;"><strong>Techos: ${p.pT}% de descuento</strong> · Te ahorrás ${formatBF(p.savedT)}</div>`;
- if(p.pR)h+=`<div style="font-size:12px;margin:7px 0;"><strong>Reflectivo: ${p.pR}% de descuento</strong> · Te ahorrás ${formatBF(p.savedR)}</div>`;
- return h;
-};
-window.renderDrawer=function(){
- const el=document.getElementById('cart-body'),total=document.getElementById('drawer-total'),btn=document.getElementById('btn-checkout');if(!el)return;
- const items=getCartBF(),p=promotionBF(items);if(total)total.textContent=formatBF(p.total);if(btn)btn.disabled=!items.length;
- if(!items.length){el.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>';return;}
- let h=kitBF(p)+ratesBF(p);
- for(const i of p.lines){
- const id=escBF(i.id), qty=Number(i.qty||0);
- h+=`<div class="cart-item" style="padding:12px 0;border-bottom:1px solid #ddd;"><div style="display:flex;justify-content:space-between;gap:10px;"><strong>${escBF(i.product)}</strong><button type="button" data-bf-remove="${id}" style="border:0;background:none;color:#b34134;cursor:pointer;">Quitar</button></div><div style="font-size:12px;margin:5px 0;">${i.presentation?'Presentación: '+escBF(i.presentation)+' kg · ':''}Color: ${escBF(i.color||'Sin especificar')}</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:9px;"><div style="display:flex;align-items:center;gap:12px;"><button type="button" data-bf-delta="-1" data-bf-id="${id}" aria-label="Restar unidad" style="padding:5px 9px;">−</button><strong>${qty}</strong><button type="button" data-bf-delta="1" data-bf-id="${id}" aria-label="Sumar unidad" style="padding:5px 9px;">+</button></div><strong>${formatBF(i.subtotal)}</strong></div></div>`;
- }
- if(p.saved)h+=`<div style="padding:12px 0;font-weight:800;color:#00899b;">AHORRO TOTAL: ${formatBF(p.saved)}</div>`;
- el.innerHTML=h;
-};
-window.renderCheckoutSummary=function(){
- const el=document.getElementById('checkout-summary');if(!el)return;
- const p=promotionBF(getCartBF());let h=p.lines.map(i=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #8884;"><span>${Number(i.qty)} × ${escBF(i.product)} (${escBF(i.color||'')})</span><strong>${formatBF(i.subtotal)}</strong></div>`).join('');
- h+=kitBF(p)+ratesBF(p);
- if(p.saved)h+=`<p><strong>AHORRO TOTAL: ${formatBF(p.saved)}</strong></p>`;
- h+=`<div style="display:flex;justify-content:space-between;margin:14px 0;font-size:18px;font-weight:900;"><span>TOTAL</span><span>${formatBF(p.total)}</span></div>`;
- el.innerHTML=h;
-};
-window.submitWhatsApp=function(e){
- if(e)e.preventDefault();const p=promotionBF(getCartBF());if(!p.lines.length)return;
- const val=id=>(document.getElementById(id)?.value||'').trim();
- const rows=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+val('f-nombre'),'Teléfono: '+val('f-tel'),'Localidad/Barrio: '+val('f-loc'),'Dirección: '+val('f-calle')+' '+val('f-num')];
- if(val('f-cp'))rows.push('Código postal: '+val('f-cp'));if(val('f-ref'))rows.push('Referencia: '+val('f-ref'));
- rows.push('','*DETALLE DEL PEDIDO*');
- for(const i of p.lines)rows.push(`${Number(i.qty)} × ${i.product} · ${i.color||'Sin especificar'}${i.presentation?' · '+i.presentation+' kg':''}`,'Subtotal: '+formatBF(i.subtotal),'');
- if(p.pT)rows.push('Blindaje para Techos: '+p.pT+'% OFF · Ahorro: '+formatBF(p.savedT));
- if(p.pR)rows.push('Blindaje Reflectivo: '+p.pR+'% OFF · Ahorro: '+formatBF(p.savedR));
- if(p.kitCount){rows.push(`🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO`);if(p.qtyT)rows.push('1 kit por Blindaje para Techos');if(p.qtyR)rows.push('1 kit por Blindaje Reflectivo');rows.push('Contenido de cada kit: '+KIT_BF);}
- if(p.saved)rows.push('AHORRO TOTAL: '+formatBF(p.saved));
- rows.push('*TOTAL PRODUCTOS: '+formatBF(p.total)+'*','Envío según zona de entrega.','Pago al recibir en zonas habilitadas.');
- window.open('https://wa.me/5493512661626?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
-};
-if(document.getElementById('btn-checkout')){
- const b=document.getElementById('btn-checkout');b.textContent='CONTINUAR CON MI PEDIDO';
- b.onclick=function(){if(!getCartBF().length)return;
-  if(typeof openHomeCheckout==='function' && !document.getElementById('main-store')){window.closeCartDrawer?.();openHomeCheckout();}
-  else if(typeof goToCheckout==='function')goToCheckout();
-  else if(typeof openHomeCheckout==='function'){window.closeCartDrawer?.();openHomeCheckout();}
-  window.renderCheckoutSummary();
- };
-}
-const body=document.getElementById('cart-body');
-if(body)body.addEventListener('click',e=>{const b=e.target.closest('button[data-bf-delta],button[data-bf-remove]');if(!b)return;
- e.stopImmediatePropagation();const id=b.getAttribute('data-bf-id')||b.getAttribute('data-bf-remove');const items=getCartBF();const i=items.find(x=>String(x.id)===String(id));if(!i)return;
- if(b.hasAttribute('data-bf-remove'))items.splice(items.indexOf(i),1);
- else {i.qty+=Number(b.getAttribute('data-bf-delta'));if(i.qty<=0)items.splice(items.indexOf(i),1);}
- localStorage.setItem(KEY_BF,JSON.stringify({items,lastActivity:Date.now()}));
- if(typeof bfCartRefresh==='function')bfCartRefresh();else if(typeof updateCartCounter==='function')updateCartCounter();window.renderDrawer();
-},true);
-window.addEventListener('pageshow',()=>{window.renderDrawer();window.renderCheckoutSummary();});
-window.addEventListener('storage',e=>{if(e.key===KEY_BF){window.renderDrawer();window.renderCheckoutSummary();}});
-window.renderDrawer();
-const bfCounter=document.getElementById('cart-counter');if(bfCounter){try{bfCounter.textContent=getCartBF().reduce((n,i)=>n+Number(i.qty||0),0);}catch(e){}}
-})();
-</script>
+
+
 
 <script id="bf-tab-attention">
 (()=>{const original=document.title;let timer=null,index=0;const messages=['👋 ¡Volvé a Blindaflex!','💧 Tu protección te espera'];function reset(){if(timer){clearInterval(timer);timer=null;}document.title=original;}document.addEventListener('visibilitychange',()=>{reset();if(document.hidden){document.title=messages[0];index=1;timer=setInterval(()=>{if(document.hidden){document.title=messages[index%messages.length];index++;}else reset();},3000);}});window.addEventListener('pagehide',reset);})();
@@ -2285,6 +2117,47 @@ function toggleMobileMenu(){
   window.addEventListener('resize', actualizarBarraPrecios, {passive:true});
   window.addEventListener('pageshow', actualizarBarraPrecios);
   document.addEventListener('click', function () { requestAnimationFrame(actualizarBarraPrecios); });
+})();
+</script>
+<script id="bf-barrera-cuotas-unificadas-20261109">
+(function(){
+'use strict';
+const KEY='blindaflex_cart_data', PAY='blindaflex_payment_preference';
+const fallback={productos:{techos_20:{nombre:'Blindaje para Techos',precio_base:168000,precio_cordobesa_20:168000},atermico_20:{nombre:'Blindaje Atérmico',precio_base:203980,precio_cordobesa_20:203980},barrera_12:{nombre:'Barrera Impermeable',precio_base:130106,precio_cordobesa_20:130106},barrera_5:{nombre:'Barrera Impermeable',precio_base:54794,precio_cordobesa_20:54794}},modalidades:{cordobesa_20:{nombre:'20 cuotas · Cordobesa',cuotas:20,descuento:0},cuotas_15:{nombre:'15 cuotas',cuotas:15,descuento:0},cuotas_9:{nombre:'9 cuotas',cuotas:9,descuento:.08},cuotas_3:{nombre:'3 cuotas',cuotas:3,descuento:.14},contado:{nombre:'Contado',cuotas:1,descuento:.20}}};
+let db=null;
+const methods=['cordobesa_20','cuotas_15','cuotas_9','cuotas_3','contado'];
+let method=methods.includes(localStorage.getItem(PAY))?localStorage.getItem(PAY):'cuotas_15';
+const fmt=n=>'$'+Number(n).toLocaleString('es-AR',{minimumFractionDigits:0,maximumFractionDigits:2});
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const items=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items.filter(i=>i&&Number(i.qty)>0):[]}catch(e){return []}};
+const save=arr=>{localStorage.setItem(KEY,JSON.stringify({items:arr,lastActivity:Date.now()}));renderCart();};
+function productId(i){if(i.id==='techos_20'||i.id==='atermico_20'||i.id==='barrera_12'||i.id==='barrera_5')return i.id;if(i.type==='barrera'||/Barrera Impermeable/i.test(i.product||''))return 'barrera_'+Number(i.presentation||(/12\s*kg/.test(i.product||'')?12:5));if(i.type==='reflectivo'||/Atérmico|Reflectivo/i.test(i.product||''))return 'atermico_20';if(i.type==='techo'||/Blindaje para Techos/i.test(i.product||''))return 'techos_20';return null;}
+function base(i){const id=productId(i);return Number(db?.productos?.[id]?.precio_base||i.price||i.unitPrice||0)}
+function unit(i){const id=productId(i),p=db?.productos?.[id],m=db?.modalidades?.[method];if(!p||!m)return Math.round(base(i)*(1-Number(m?.descuento||0)));return method==='cordobesa_20'?Number(p.precio_cordobesa_20||p.precio_base):Math.round(p.precio_base*(1-m.descuento));}
+function total(arr){return arr.reduce((a,i)=>a+Number(i.qty)*unit(i),0)}
+function label(i){const id=productId(i);return (db?.productos?.[id]?.nombre||i.product||'Producto')+(id?.startsWith('barrera_')?' · '+(i.presentation||id.split('_')[1])+' kg':'')+(i.color?' · '+i.color:'')}
+function currentPlan(){return db.modalidades[method]}
+function planHTML(sum){const p=currentPlan();return '<div class="bf-order-plan"><strong>Forma de pago: '+esc(p.nombre)+'</strong>'+(p.cuotas>1?'<div>'+p.cuotas+' cuotas de '+fmt(sum/p.cuotas)+'</div>':'')+'<div>Aplicada a todos los productos del pedido</div></div>'}
+function renderPlans(){const el=document.getElementById('bf-plan-grid');if(!el)return;el.innerHTML=methods.map(id=>{const p=db.modalidades[id];if(!p)return '';const amount=id==='cordobesa_20'?Number(db.productos['barrera_'+cfgPres]?.precio_cordobesa_20||0):Math.round(APP_PRICES[cfgPres]*(1-p.descuento));return '<button type="button" class="bf-plan-option" aria-pressed="'+(id===method)+'" data-plan="'+id+'"><strong>'+esc(p.nombre)+'</strong><span class="bf-plan-installment">'+fmt(amount/p.cuotas)+(p.cuotas>1?' por cuota':'')+'</span><small>Precio final '+fmt(amount)+'</small>'+(p.descuento?'<span class="bf-plan-badge">'+Math.round(p.descuento*100)+'% OFF</span>':'')+'</button>'}).join('');}
+window.bfUnitPrice=function(kg){const p=db?.productos?.['barrera_'+kg];if(!p)return APP_PRICES[kg];return method==='cordobesa_20'?Number(p.precio_cordobesa_20||p.precio_base):Math.round(p.precio_base*(1-db.modalidades[method].descuento));};
+function updateSelection(){renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
+window.bfSetPlan=function(id){if(!db.modalidades[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
+document.getElementById('bf-plan-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b)bfSetPlan(b.dataset.plan)});
+const originalSetPres=window.setPres;window.setPres=function(kg,price){originalSetPres(kg,price);updateSelection()};
+window.proceedToCheckout=function(){const arr=items();for(const i of localOrder){const id='barrera_'+i.pres;const existing=arr.find(x=>productId(x)===id&&x.color===i.color);if(existing){existing.qty=Number(existing.qty)+Number(i.qty)}else{arr.push({id,product:'Barrera Impermeable',type:'barrera',presentation:i.pres,color:i.color,qty:Number(i.qty),price:APP_PRICES[i.pres]})}}if(localOrder.length){localOrder=[];renderLocalOrder();save(arr)}if(!db){alert('Los precios no están disponibles. Recargá la página.');return}if(!arr.length){alert('Primero sumá un producto al pedido.');return}openCartDrawer()};
+window.openCartDrawer=function(){renderCart();document.getElementById('cart-overlay').classList.add('open');document.getElementById('cart-drawer').classList.add('open');document.body.style.overflow='hidden'};
+window.closeCartDrawer=function(){document.getElementById('cart-overlay').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open');document.body.style.overflow=''};
+window.bfRefreshCart=renderCart;
+function renderCart(){const arr=items(),sum=total(arr),el=document.getElementById('cart-body');document.getElementById('cart-counter').textContent=arr.reduce((a,i)=>a+Number(i.qty),0);document.getElementById('btn-checkout').disabled=!arr.length;document.getElementById('drawer-total').textContent=fmt(sum);if(!arr.length){el.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>';return}el.innerHTML=planHTML(sum)+arr.map((i,n)=>'<div class="cart-item"><button class="remove-item" type="button" data-remove="'+n+'" aria-label="Quitar">×</button><div class="cart-item-title">'+esc(label(i))+'</div><div class="cart-item-meta">'+fmt(unit(i))+' por balde</div><div class="cart-item-controls"><div class="qty-controls"><button class="qty-btn-sm" data-delta="-1" data-index="'+n+'">−</button><strong>'+Number(i.qty)+'</strong><button class="qty-btn-sm" data-delta="1" data-index="'+n+'">+</button></div><strong class="item-price">'+fmt(unit(i)*Number(i.qty))+'</strong></div></div>').join('')};
+document.getElementById('cart-body')?.addEventListener('click',e=>{const btn=e.target.closest('[data-remove],[data-delta]');if(!btn)return;e.stopImmediatePropagation();const arr=items(),idx=Number(btn.dataset.remove??btn.dataset.index);if(!arr[idx])return;if(btn.hasAttribute('data-remove'))arr.splice(idx,1);else{arr[idx].qty=Number(arr[idx].qty)+Number(btn.dataset.delta);if(arr[idx].qty<1)arr.splice(idx,1)}save(arr)},true);
+window.goToCheckout=function(){if(!items().length)return;closeCartDrawer();document.getElementById('main-store').style.display='none';document.getElementById('checkout-view').style.display='block';document.querySelector('header').style.display='none';document.getElementById('floating-bar').style.display='none';document.querySelector('.whatsapp-float').style.display='none';document.getElementById('footer').style.display='none';document.body.style.overflow='';window.scrollTo(0,0);renderCheckoutSummary()};
+window.closeCheckout=function(){document.getElementById('main-store').style.display='block';document.getElementById('checkout-view').style.display='none';document.querySelector('header').style.display='';document.getElementById('floating-bar').style.display='';document.querySelector('.whatsapp-float').style.display='';document.getElementById('footer').style.display='';window.scrollTo(0,0)};
+window.renderCheckoutSummary=function(){const arr=items(),sum=total(arr);document.getElementById('checkout-summary').innerHTML=planHTML(sum)+arr.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty)+' × '+esc(label(i))+'</span><strong>'+fmt(Number(i.qty)*unit(i))+'</strong></div>').join('')+'<div style="display:flex;justify-content:space-between;gap:12px;padding:16px 0;font-weight:900;font-size:20px"><span>TOTAL</span><span>'+fmt(sum)+'</span></div><p style="font-size:12px">Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.</p>'};
+window.submitWhatsApp=function(e){e.preventDefault();const arr=items(),sum=total(arr),p=currentPlan();if(!arr.length)return;const v=id=>document.getElementById(id)?.value?.trim()||'';const lines=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+v('f-nombre'),'Teléfono: '+v('f-tel'),'Localidad/Barrio: '+v('f-loc'),'Dirección: '+v('f-calle')+' '+v('f-num')];if(v('f-cp'))lines.push('Código postal: '+v('f-cp'));if(v('f-ref'))lines.push('Referencia: '+v('f-ref'));lines.push('','*DETALLE DEL PEDIDO*');for(const i of arr)lines.push(Number(i.qty)+' × '+label(i)+' · '+fmt(unit(i))+' c/u · Subtotal '+fmt(Number(i.qty)*unit(i)));lines.push('','*FORMA DE PAGO: '+p.nombre+'*',p.cuotas>1?p.cuotas+' cuotas de '+fmt(sum/p.cuotas):'Pago al contado','*TOTAL: '+fmt(sum)+'*','Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.','Pago al recibir en zonas habilitadas.');window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener')};
+// No habilitar compras con precios de respaldo si el archivo de precios no se carga.
+async function init(){const b=document.querySelector('.btn-sumar');if(b)b.disabled=true;const c=document.querySelector('#configurador .config-subtitle');if(c)c.textContent='Cargando precios y opciones de financiación…';try{const r=await fetch('precios.json',{cache:'no-store'});if(!r.ok)throw Error('precios.json no disponible');db=await r.json();for(const id of ['barrera_12','barrera_5']){if(!Number.isFinite(db.productos?.[id]?.precio_base)||!Number.isFinite(db.productos?.[id]?.precio_cordobesa_20))throw Error('Falta precio para '+id);APP_PRICES[Number(id.split('_')[1])]=db.productos[id].precio_base}for(const id of methods){if(!db.modalidades?.[id])throw Error('Falta modalidad '+id)}if(b)b.disabled=false;if(c)c.textContent='Elegí presentación, color, forma de pago y cantidad. Podés combinar productos.';updateSelection()}catch(err){console.error('Blindaflex Barrera:',err);if(c)c.textContent='No se pudieron cargar los precios. Revisá que precios.json esté publicado junto al HTML.';document.getElementById('bf-plan-grid').textContent='Precios temporalmente no disponibles.';document.getElementById('btn-checkout').disabled=true}}
+window.addEventListener('storage',e=>{if(e.key===KEY)renderCart();if(e.key===PAY&&methods.includes(e.newValue)){method=e.newValue;updateSelection()}});
+init();
 })();
 </script>
 </body>

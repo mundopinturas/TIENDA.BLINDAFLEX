@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-09-integracion-atermico",
+  "version": "2026-11-09-integracion-barrera",
   "configuracion": {
     "impuestos_iva": 0.21
   },
@@ -19,12 +19,14 @@
     "barrera_12": {
       "nombre": "Barrera Impermeable",
       "presentacion": "12 kg",
-      "precio_base": 130106
+      "precio_base": 130106,
+      "precio_cordobesa_20": 130106
     },
     "barrera_5": {
       "nombre": "Barrera Impermeable",
       "presentacion": "5 kg",
-      "precio_base": 54794
+      "precio_base": 54794,
+      "precio_cordobesa_20": 54794
     }
   },
   "modalidades": {
