@@ -1212,6 +1212,9 @@
         // Reset all videos to a clean state avoiding Autoplay DOMExceptions
         videos.forEach((video, index) => {
             video.muted = true;
+            video.defaultMuted = true;
+            video.setAttribute('muted', '');
+            video.preload = index === 0 ? 'auto' : 'metadata';
             video.controls = false;
             video.playsInline = true;
             video.setAttribute('playsinline', '');
@@ -1256,16 +1259,9 @@
         }
 
         function pauseAll() {
-            videos.forEach(v => {
-                if (!v.paused) {
-                    const playPromise = v.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => v.pause()).catch(() => {});
-                    } else {
-                        v.pause();
-                    }
-                }
-            });
+            // No iniciar una reproducción nueva al intentar pausar: eso
+            // provocaba una carrera con playCurrent() en algunos navegadores.
+            videos.forEach(v => v.pause());
             updatePause();
         }
 
