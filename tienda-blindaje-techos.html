@@ -951,6 +951,7 @@
         function renderCart() {
             if(!db) return; 
             const items = getCart();
+            updateCartIcon(items); // Sincroniza botón al cargar un carrito guardado.
             const body = document.getElementById('cart-body');
             const totalEl = document.getElementById('drawer-total');
             
