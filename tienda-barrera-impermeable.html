@@ -662,17 +662,22 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 .bf-financing-banner img{display:block;width:100%;height:auto;border-radius:12px}
 .bf-financing-banner p{padding:18px;background:#e0f7fa;border-radius:12px;color:#071a24;font-size:16px;line-height:1.5}
 .bf-plan-intro{font-size:13px;color:#64748b;margin:-4px 0 13px;line-height:1.5}
-.bf-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.bf-plan-option{display:flex;flex-direction:column;gap:5px;align-items:flex-start;text-align:left;min-width:0;border:2px solid #e2e8f0;border-radius:12px;padding:13px 11px;background:#f8fafb;color:#071a24;cursor:pointer}
-.bf-plan-option[aria-pressed="true"]{background:#e0f7fa;border-color:#00afc6}
-.bf-plan-option strong{font-size:14px;line-height:1.3}
-.bf-plan-option .bf-plan-installment{font-size:15px;font-weight:900;line-height:1.3;color:#008fa3}
-.bf-plan-option small{font-size:11px;color:#64748b;line-height:1.3}
-.bf-plan-option .bf-plan-badge{font-size:10px;color:#fff;background:#071a24;border-radius:4px;padding:3px 6px;font-weight:800}
+.bf-plan-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.bf-plan-option{display:block;width:100%;min-width:0;text-align:left;border:2px solid #e2e8f0;border-radius:16px;padding:22px 22px 20px;background:#fff;color:#071a24;cursor:pointer;box-shadow:0 2px 4px rgba(7,26,36,.025);transition:border-color .15s,background .15s}
+.bf-plan-option[aria-pressed="true"]{background:#e0f7fa;border-color:#00afc6;box-shadow:0 0 0 1px #00afc6}
+.bf-plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:16px;border-bottom:1px dashed #dbe5eb;margin-bottom:16px}
+.bf-plan-option .bf-plan-title{font-size:17px;line-height:1.22;font-weight:900;text-transform:uppercase;flex:1;min-width:0}
+.bf-plan-option .bf-plan-installment{display:block;font-size:29px;font-weight:900;line-height:1.18;color:#071a24;letter-spacing:-.5px}
+.bf-plan-option[aria-pressed="true"] .bf-plan-installment{color:#008fa3}
+.bf-plan-per{font-size:14px;font-weight:800;color:#64748b;letter-spacing:0}
+.bf-plan-option .bf-plan-total{display:block;font-size:14px;font-weight:700;color:#64748b;margin-top:3px}
+.bf-plan-option .bf-plan-badge{display:inline-block;flex-shrink:0;font-size:11px;color:#fff;background:#f65a03;border-radius:5px;padding:5px 9px;font-weight:900;text-transform:uppercase;text-align:center;line-height:1.2}
+.bf-plan-option .bf-plan-badge.cordobesa{background:#071a24}
+@media(max-width:380px){.bf-plan-option{padding:18px 15px}.bf-plan-option .bf-plan-installment{font-size:25px}.bf-plan-option .bf-plan-title{font-size:15px}.bf-plan-option .bf-plan-badge{font-size:10px;padding:5px 6px}}
 .bf-plan-foot{font-size:12px;color:#64748b;line-height:1.5;margin-top:12px}
 .bf-order-plan{padding:12px 14px;background:#e0f7fa;border-radius:9px;color:#071a24;margin:0 0 12px;font-size:13px;line-height:1.5}
 .bf-order-plan strong{font-weight:900}
-@media(max-width:350px){.bf-plan-grid{grid-template-columns:1fr}}
+
 
 
         /* Carrito: mismas dos acciones que Techos y Atérmico */
@@ -2139,8 +2144,17 @@ function total(arr){return arr.reduce((a,i)=>a+Number(i.qty)*unit(i),0)}
 function label(i){const id=productId(i);return (db?.productos?.[id]?.nombre||i.product||'Producto')+(id?.startsWith('barrera_')?' · '+(i.presentation||id.split('_')[1])+' kg':'')+(i.color?' · '+i.color:'')}
 function currentPlan(){return db.modalidades[method]}
 function planHTML(sum){const p=currentPlan();return '<div class="bf-order-plan"><strong>Forma de pago: '+esc(p.nombre)+'</strong>'+(p.cuotas>1?'<div>'+p.cuotas+' cuotas de '+fmt(sum/p.cuotas)+'</div>':'')+'<div>Aplicada a todos los productos del pedido</div></div>'}
-function renderPlans(){const el=document.getElementById('bf-plan-grid');if(!el)return;el.innerHTML=methods.map(id=>{const p=db.modalidades[id];if(!p)return '';const amount=id==='cordobesa_20'?Number(db.productos['barrera_'+cfgPres]?.precio_cordobesa_20||0):Math.round(APP_PRICES[cfgPres]*(1-p.descuento));return '<button type="button" class="bf-plan-option" aria-pressed="'+(id===method)+'" data-plan="'+id+'"><strong>'+esc(p.nombre)+'</strong><span class="bf-plan-installment">'+fmt(amount/p.cuotas)+(p.cuotas>1?' por cuota':'')+'</span><small>Precio final '+fmt(amount)+'</small>'+(p.descuento?'<span class="bf-plan-badge">'+Math.round(p.descuento*100)+'% OFF</span>':'')+'</button>'}).join('');}
-window.bfUnitPrice=function(kg){const p=db?.productos?.['barrera_'+kg];if(!p)return APP_PRICES[kg];return method==='cordobesa_20'?Number(p.precio_cordobesa_20||p.precio_base):Math.round(p.precio_base*(1-db.modalidades[method].descuento));};
+function renderPlans(){
+ const el=document.getElementById('bf-plan-grid');if(!el)return;
+ el.innerHTML=methods.map(id=>{
+  const p=db.modalidades[id];if(!p)return '';
+  const amount=id==='cordobesa_20'?Number(db.productos['barrera_'+cfgPres]?.precio_cordobesa_20||0):Math.round(APP_PRICES[cfgPres]*(1-p.descuento));
+  const cuotas=Number(p.cuotas)||1;
+  const title=id==='cordobesa_20'?'20 CUOTAS - TARJETA CORDOBESA':id==='contado'?'CONTADO':cuotas+' CUOTAS';
+  const badge=id==='cordobesa_20'?'<span class="bf-plan-badge cordobesa">EXCLUSIVO TARJETA CORDOBESA</span>':id==='cuotas_15'?'<span class="bf-plan-badge">DESTACADO</span>':p.descuento?'<span class="bf-plan-badge">'+Math.round(p.descuento*100)+'% OFF</span>':'';
+  return '<button type="button" class="bf-plan-option" aria-pressed="'+(id===method)+'" data-plan="'+id+'"><span class="bf-plan-head"><span class="bf-plan-title">'+title+'</span>'+badge+'</span><span class="bf-plan-installment">'+fmt(amount/cuotas)+(cuotas>1?'<span class="bf-plan-per"> por cuota</span>':'')+'</span><span class="bf-plan-total">Precio total: '+fmt(amount)+'</span></button>';
+ }).join('');
+}
 function updateSelection(){renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
 window.bfSetPlan=function(id){if(!db.modalidades[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
 document.getElementById('bf-plan-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b)bfSetPlan(b.dataset.plan)});
