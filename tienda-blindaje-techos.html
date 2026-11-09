@@ -1120,6 +1120,7 @@ function initBlindaflexVideos() {
         let suppressNextClick = false;
         let changeTimeout;
         let failed = false;
+        let playbackRequest = 0;
         const notice = document.createElement('div');
         notice.id = 'bf-video-error';
         notice.style.cssText = 'display:none;position:absolute;z-index:8;left:5%;right:5%;top:38%;padding:16px;background:rgba(7,26,36,.95);border:1px solid #00afc6;border-radius:12px;color:white;text-align:center;font:600 13px/1.5 Inter,system-ui,sans-serif;';
@@ -1171,7 +1172,9 @@ function initBlindaflexVideos() {
             if (!visible || document.hidden || explicitlyPaused) { updatePause(); return; }
             const v = activeVideo();
             if (v.error) { reportError(v); return; }
+            const request = ++playbackRequest;
             v.muted = !desiredSound;
+            if (v.networkState === HTMLMediaElement.NETWORK_EMPTY) v.load();
             try {
                 await v.play();
             } catch(e) {
@@ -1179,6 +1182,7 @@ function initBlindaflexVideos() {
                 v.muted = true;
                 try { await v.play(); } catch (_) { if(v.error) reportError(v); /* Espera al toque del usuario. */ }
             }
+            if (request !== playbackRequest) return;
             updateSound(); updatePause();
         }
         function switchVideo(direction) {
@@ -1189,6 +1193,7 @@ function initBlindaflexVideos() {
             const to = (from + direction + 3) % 3;
             const outgoing = slides[from];
             const incoming = slides[to];
+            playbackRequest++;
             videos[from].pause();
             // Las flechas también reinician el video seleccionado, con o sin sonido.
             videos[to].pause();
@@ -1209,14 +1214,21 @@ function initBlindaflexVideos() {
             outgoing.style.transform = `translateX(${direction > 0 ? -100 : 100}%)`;
             dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===active));
             root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${active + 1} de 3`);
-            playCurrent();
+            // Esperar al primer fotograma del siguiente video evita intentar
+            // reproducir un archivo que todavía no tiene datos disponibles.
+            if (videos[to].readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) playCurrent();
+            else {
+                videos[to].preload = 'auto';
+                if (videos[to].networkState === HTMLMediaElement.NETWORK_EMPTY) videos[to].load();
+                // El evento loadeddata de cada video inicia la reproducción.
+            }
             changeTimeout = setTimeout(() => { arrange(active); changing = false; },motion + 45);
         }
         videos.forEach((video,index) => {
             video.muted = true;
             video.controls = false;
             video.playsInline = true;
-            video.addEventListener('loadeddata', () => { if(index === active) clearError(); });
+            video.addEventListener('loadeddata', () => { if(index === active) { clearError(); if(visible && !explicitlyPaused) playCurrent(); } });
             video.addEventListener('ended', () => {
                 if (index === active && visible && !explicitlyPaused) switchVideo(1);
             });
@@ -1228,6 +1240,9 @@ function initBlindaflexVideos() {
             });
         });
         arrange(active);
+        videos[0].preload = 'auto';
+        videos[1].preload = 'metadata';
+        videos[2].preload = 'metadata';
         setTimeout(() => {
             if (videos[active].readyState === 0 && videos[active].networkState === HTMLMediaElement.NETWORK_NO_SOURCE) reportError(videos[active]);
         }, 3500);
@@ -1263,9 +1278,10 @@ function initBlindaflexVideos() {
         // Pausa al salir del área visible y continúa desde el mismo segundo al regresar.
         if ('IntersectionObserver' in window) {
             const observer=new IntersectionObserver(entries => {
-                visible = entries[0].intersectionRatio >= 0.45;
+                // En videos altos, 45% del elemento puede superar la altura visible del celular.
+                visible = entries[0].isIntersecting && entries[0].intersectionRatio > 0.02;
                 if (visible) playCurrent(); else pauseAll();
-            },{threshold:[0,0.25,0.45,0.6,1]});
+            },{threshold:[0,0.02,0.1,0.25,0.45,1]});
             observer.observe(root);
         } else { visible=true; playCurrent(); }
         document.addEventListener('blindaflex:checkout-open',pauseAll);
