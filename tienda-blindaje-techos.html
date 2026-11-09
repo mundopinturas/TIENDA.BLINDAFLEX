@@ -182,11 +182,11 @@
         .plan-card:hover { border-color: #cbd5e1; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.05); }
         .plan-card.active { border-color: var(--c-turquesa); background: var(--c-turquesa-light); box-shadow: 0 4px 20px rgba(0,175,198,0.15); transform: translateY(-2px); }
         
-        .plan-header { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-        .plan-name { font-size: 16px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; line-height: 1.2; }
-        .plan-badge { background: var(--c-naranja); color: #fff; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+        .plan-header { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; width:100%; flex-wrap:wrap; }
+        .plan-name { flex:1; min-width:0; font-size: 16px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; line-height: 1.2; }
+        .plan-badge { flex-shrink:0; white-space:nowrap; margin-left:auto; background: var(--c-naranja); color: #fff; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
         .plan-badge.exclusive { background: var(--c-azul); }
-        .plan-card.active .plan-badge { background: var(--c-turquesa-dark); }
+        .plan-card.active .plan-badge { flex-shrink:0; white-space:nowrap; margin-left:auto; background: var(--c-turquesa-dark); }
         .plan-card.active .plan-badge.exclusive { background: var(--c-azul); }
         
         .plan-price-box { display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed var(--c-gris-border); padding-top: 12px; margin-top: 4px; }
@@ -199,7 +199,7 @@
 
         @media (min-width: 640px) {
             .plan-card { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
-            .plan-header { align-items: flex-start; margin-bottom: 0; }
+            .plan-header { align-items: center; margin-bottom: 0; flex:1; min-width:0; }
             .plan-name { font-size: 17px; }
             .plan-price-box { align-items: flex-end; text-align: right; border-top: none; padding-top: 0; margin-top: 0; }
         }
@@ -385,7 +385,7 @@
             .hero-section > .hero-text-block {width:100%;}
         }
         /* La vista de datos de entrega debe poder abrirse por encima de la tienda */
-        #checkout-view.is-open {display:block !important; position:relative; z-index:101; background:var(--c-gris-bg);}
+        #checkout-view.is-open {display:block !important; position:fixed; inset:0; z-index:1100; overflow-y:auto; overscroll-behavior:contain; background:var(--c-gris-bg); padding-top:24px; padding-bottom:36px;}
     </style>
 </head>
 <body>
@@ -439,7 +439,7 @@
             <section class="section-gap hero-section">
                 <div class="video-wrapper" id="bf-vcarousel" role="region" aria-label="Videos demostrativos">
                     <div class="bf-vstage">
-                        <div class="bf-vslide is-current" data-video="0"><video id="bf-video-0" src="assets/videos/blindaje-techos-1-hidrorrepelencia.mp4" muted autoplay playsinline preload="metadata"></video></div>
+                        <div class="bf-vslide is-current" data-video="0"><video id="bf-video-0" src="assets/videos/blindaje-techos-1-hidrorrepelencia.mp4" muted autoplay playsinline preload="auto" webkit-playsinline></video></div>
                         <div class="bf-vslide" data-video="1"><video id="bf-video-1" src="assets/videos/blindaje-techos-2-elasticidad.mp4" muted playsinline></video></div>
                         <div class="bf-vslide" data-video="2"><video id="bf-video-2" src="assets/videos/blindaje-techos-3-blindaje-integral.mp4" muted playsinline></video></div>
                         <button type="button" class="bf-vtap" id="bf-vtap"><span class="bf-pause-indicator">▶</span></button>
@@ -1061,20 +1061,18 @@
         function goToCheckout() {
             if(getCart().length === 0) return;
             closeCart();
-            document.getElementById('main-store').style.display = 'none';
             document.dispatchEvent(new Event('blindaflex:checkout-open'));
             document.getElementById('checkout-view').style.display = 'block';
             document.getElementById('checkout-view').classList.add('is-open');
-            document.body.style.overflow = '';
-            window.scrollTo(0,0);
+            document.body.style.overflow = 'hidden';
+            document.getElementById('checkout-view').scrollTop = 0;
             renderCheckoutSummary();
         }
         function closeCheckout() {
-            document.getElementById('main-store').style.display = 'block';
             document.dispatchEvent(new Event('blindaflex:checkout-close'));
             document.getElementById('checkout-view').style.display = 'none';
             document.getElementById('checkout-view').classList.remove('is-open');
-            window.scrollTo(0,0);
+            document.body.style.overflow = '';
         }
 
         // Comparador Visual (Antes/Después)
@@ -1120,6 +1118,28 @@ function initBlindaflexVideos() {
         let pointerStart = null;
         let suppressNextClick = false;
         let changeTimeout;
+        let failed = false;
+        const notice = document.createElement('div');
+        notice.id = 'bf-video-error';
+        notice.style.cssText = 'display:none;position:absolute;z-index:8;left:5%;right:5%;top:38%;padding:16px;background:rgba(7,26,36,.95);border:1px solid #00afc6;border-radius:12px;color:white;text-align:center;font:600 13px/1.5 Inter,system-ui,sans-serif;';
+        root.appendChild(notice);
+        function reportError(v) {
+            failed = true;
+            const source = v.currentSrc || v.src;
+            notice.replaceChildren();
+            const title = document.createElement('div');
+            title.textContent = 'No se pudo cargar el video desde el servidor.';
+            const link = document.createElement('a');
+            link.href = source;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.textContent = 'Comprobar archivo MP4';
+            link.style.cssText = 'display:block;color:#67e8f9;text-decoration:underline;margin-top:8px';
+            notice.append(title,link);
+            notice.style.display = 'block';
+            console.error('Blindaflex video error',v.error?.code,source);
+        }
+        function clearError() { failed=false; notice.style.display='none'; }
 
         const activeVideo = () => videos[active];
         const offscreenPosition = (index, center) => {
@@ -1149,13 +1169,14 @@ function initBlindaflexVideos() {
         async function playCurrent() {
             if (!visible || document.hidden || explicitlyPaused) { updatePause(); return; }
             const v = activeVideo();
+            if (v.error) { reportError(v); return; }
             v.muted = !desiredSound;
             try {
                 await v.play();
             } catch(e) {
                 // El navegador puede bloquear audio en el cambio de video.
                 v.muted = true;
-                try { await v.play(); } catch (_) { /* Espera al toque del usuario. */ }
+                try { await v.play(); } catch (_) { if(v.error) reportError(v); /* Espera al toque del usuario. */ }
             }
             updateSound(); updatePause();
         }
@@ -1172,6 +1193,7 @@ function initBlindaflexVideos() {
             videos[to].pause();
             try { videos[to].currentTime = 0; } catch (_) {}
             active = to;
+            clearError();
             explicitlyPaused = false;
             incoming.style.transition = 'none';
             incoming.style.transform = `translateX(${direction > 0 ? 100 : -100}%)`;
@@ -1192,17 +1214,22 @@ function initBlindaflexVideos() {
         videos.forEach((video,index) => {
             video.muted = true;
             video.controls = false;
+            video.playsInline = true;
+            video.addEventListener('loadeddata', () => { if(index === active) clearError(); });
             video.addEventListener('ended', () => {
                 if (index === active && visible && !explicitlyPaused) switchVideo(1);
             });
             video.addEventListener('error', () => {
                 if (index === active) {
-                    console.warn('Blindaflex: no se encontró el archivo del video', video.currentSrc);
+                    reportError(video);
                     tap.classList.add('bf-paused');
                 }
             });
         });
         arrange(active);
+        setTimeout(() => {
+            if (videos[active].readyState === 0 && videos[active].networkState === HTMLMediaElement.NETWORK_NO_SOURCE) reportError(videos[active]);
+        }, 3500);
         soundButton.addEventListener('click', async () => {
             desiredSound = activeVideo().muted;
             activeVideo().muted = !desiredSound;
