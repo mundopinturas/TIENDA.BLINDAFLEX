@@ -339,7 +339,7 @@
             .hero-header h1 { font-size: 27px; }
             .hero-header h1 span { font-size: 17px; }
             
-            .video-wrapper { flex: none; width: 100vw; max-width: none; height: auto; min-height: 0; aspect-ratio: 0.73/1; margin-left: calc(50% - 50vw); border-radius: 0;}
+            .video-wrapper { flex: none; width: 100%; max-width: 100%; height: min(65vh, 550px); min-height: 400px; aspect-ratio: auto; margin-left: 0; border-radius: var(--radius-lg);}
             .hero-section:has(> #bf-vcarousel) { flex-direction: column; }
             .hero-section > .hero-text-block { width: 100%; }
             
@@ -1087,6 +1087,8 @@
         let active = 0;
         let pausedByUser = false;
         let soundEnabled = false;
+        let inViewport = true;
+        let transitioning = false;
         let indicatorTimeout;
 
         function showIndicator(symbol) {
@@ -1095,26 +1097,60 @@
             clearTimeout(indicatorTimeout);
             indicatorTimeout = setTimeout(() => indicator.classList.remove('is-visible'), 650);
         }
-        function activate(index, autoplay = true) {
-            active = (index + slides.length) % slides.length;
-            slides.forEach((slide, i) => {
-                const selected = i === active;
-                slide.classList.toggle('is-current', selected);
-                slide.style.transform = selected ? 'translateX(0)' : 'translateX(100%)';
-                slide.setAttribute('aria-hidden', String(!selected));
-                if (!selected) videos[i].pause();
-                if (dots[i]) dots[i].classList.toggle('bf-selected', selected);
-            });
+        function playCurrent() {
+            if (pausedByUser || document.hidden || !inViewport || transitioning) return;
             const video = videos[active];
             video.muted = !soundEnabled;
-            if (autoplay && !pausedByUser) {
-                const promise = video.play();
-                if (promise && typeof promise.catch === 'function') promise.catch(() => showIndicator('▶'));
-            }
+            const promise = video.play();
+            if (promise && typeof promise.catch === 'function') promise.catch(() => {});
         }
+        function advance() {
+            if (transitioning || pausedByUser || document.hidden || !inViewport) return;
+            transitioning = true;
+            const previous = active;
+            const next = (active + 1) % slides.length;
+            const outgoing = slides[previous];
+            const incoming = slides[next];
+            videos[previous].pause();
+            videos[next].pause();
+            videos[next].currentTime = 0;
+            incoming.style.transition = 'none';
+            incoming.style.transform = 'translateX(100%)';
+            incoming.style.zIndex = '2';
+            outgoing.style.transition = 'none';
+            outgoing.style.transform = 'translateX(0)';
+            outgoing.style.zIndex = '1';
+            // Force layout before starting the two coordinated slide animations.
+            void incoming.offsetWidth;
+            const transition = 'transform 480ms ease-in-out';
+            incoming.style.transition = transition;
+            outgoing.style.transition = transition;
+            incoming.style.transform = 'translateX(0)';
+            outgoing.style.transform = 'translateX(-100%)';
+            active = next;
+            dots.forEach((dot, i) => dot.classList.toggle('bf-selected', i === active));
+            const finish = () => {
+                incoming.removeEventListener('transitionend', onEnd);
+                slides.forEach((slide, i) => {
+                    slide.style.transition = 'none';
+                    slide.style.transform = i === active ? 'translateX(0)' : 'translateX(100%)';
+                    slide.style.zIndex = i === active ? '1' : '0';
+                    slide.classList.toggle('is-current', i === active);
+                    slide.setAttribute('aria-hidden', String(i !== active));
+                });
+                transitioning = false;
+                playCurrent();
+            };
+            const onEnd = (event) => {
+                if (event.target === incoming && event.propertyName === 'transform') finish();
+            };
+            incoming.addEventListener('transitionend', onEnd);
+            setTimeout(() => { if (transitioning && active === next) finish(); }, 650);
+        }
+        slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== active)));
         videos.forEach((video, i) => {
             video.addEventListener('ended', () => {
-                if (i === active && !pausedByUser) activate(active + 1);
+                if (i === active) advance();
             });
             video.addEventListener('error', () => {
                 if (i === active) {
@@ -1124,11 +1160,11 @@
             });
         });
         tap.addEventListener('click', () => {
+            if (transitioning) return;
             const video = videos[active];
-            if (video.paused) {
+            if (pausedByUser || video.paused) {
                 pausedByUser = false;
-                const promise = video.play();
-                if (promise && typeof promise.catch === 'function') promise.catch(() => showIndicator('▶'));
+                playCurrent();
                 showIndicator('❚❚');
             } else {
                 pausedByUser = true;
@@ -1141,14 +1177,19 @@
             videos.forEach(v => { v.muted = !soundEnabled; });
             sound.textContent = soundEnabled ? '🔊 SILENCIAR' : '🔇 ACTIVAR SONIDO';
         });
-        activate(0);
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(entries => {
+                inViewport = entries[0].isIntersecting;
+                if (!inViewport) videos.forEach(video => video.pause());
+                else playCurrent();
+            }, { threshold: 0.15 });
+            observer.observe(wrapper);
+        }
         document.addEventListener('visibilitychange', () => {
-            if (document.hidden) videos[active].pause();
-            else if (!pausedByUser) {
-                const promise = videos[active].play();
-                if (promise && typeof promise.catch === 'function') promise.catch(() => {});
-            }
+            if (document.hidden) videos.forEach(video => video.pause());
+            else playCurrent();
         });
+        playCurrent();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
