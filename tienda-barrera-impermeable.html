@@ -674,6 +674,9 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 .bf-order-plan strong{font-weight:900}
 @media(max-width:350px){.bf-plan-grid{grid-template-columns:1fr}}
 
+
+        /* Carrito: mismas dos acciones que Techos y Atérmico */
+        .bf-cart-keep-shopping { display:block; width:100%; text-align:center; background:transparent; border:0; color:var(--c-texto-light); font-size:13px; font-weight:800; padding:12px 0; margin-top:8px; cursor:pointer; }
 </style>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/blindaflex-favicon-32.png">
@@ -857,8 +860,8 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 <p class="gallery-disclaimer" style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500; padding: 0 12px; line-height: 1.45;">Imágenes ilustrativas. Los colores pueden presentar variaciones respecto del resultado real debido a la iluminación, la configuración de cada pantalla y las características de la superficie de aplicación. Para elegir el color definitivo, recomendamos verificar una muestra física.</p>
             </section>
 
-            <div class="grid-desktop">
-                <!-- BLOQUE 5: CALCULADORA DE CONSUMO -->
+            <!-- Financiación seguida inmediatamente por la calculadora -->
+                <section class="bf-financing-banner" aria-label="Financiación Blindaflex"><img src="assets/images/financiacion-barrera-impermeable.png" alt="Barrera Impermeable: hasta 20 cuotas sin interés con Cordobesa y hasta 15 cuotas sin interés con tarjetas habilitadas" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><p hidden>Hasta <strong>20 cuotas sin interés con Cordobesa</strong> y hasta <strong>15 cuotas sin interés con tarjetas habilitadas</strong>.</p></section>
                 <section class="section-gap card calc-section">
                     <h2 class="section-title" style="color:var(--c-turquesa);">¿CUÁNTA PINTURA EXTERIOR NECESITO?</h2>
                     <p class="section-subtitle" style="color:var(--c-gris-claro);">Ingresá los m² a pintar (rendimiento estimado hasta 3 m²/kg).</p>
@@ -885,8 +888,6 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                     </div>
                 </section>
 
-                <!-- BLOQUE 6: ARMÁ TU PEDIDO (REDISEÑO MULTIVARIANTE) -->
-                <section class="bf-financing-banner" aria-label="Financiación Blindaflex"><img src="assets/images/financiacion-barrera-impermeable.png" alt="Barrera Impermeable: hasta 20 cuotas sin interés con Cordobesa y hasta 15 cuotas sin interés con tarjetas habilitadas" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><p hidden>Hasta <strong>20 cuotas sin interés con Cordobesa</strong> y hasta <strong>15 cuotas sin interés con tarjetas habilitadas</strong>.</p></section>
                 <section id="configurador" class="config-box">
                     <h2 class="config-title">Armá tu pedido</h2>
                     <p class="config-subtitle">Elegí los baldes que necesitás. Podés combinar presentaciones y colores.</p>
@@ -980,7 +981,6 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                         </div>
                     </div>
                 </section>
-            </div>
 
             <!-- BLOQUES INFORMATIVOS -->
             <div class="grid-desktop">
@@ -1168,6 +1168,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             </div>
             <!-- Botón Checkout global actual, no alterar -->
             <button class="btn-primary" onclick="goToCheckout()" id="btn-checkout" disabled>CONTINUAR CON MI PEDIDO</button>
+            <button type="button" class="bf-cart-keep-shopping" onclick="closeCartDrawer()">SEGUIR COMPRANDO</button>
         </div>
     </aside>
 
