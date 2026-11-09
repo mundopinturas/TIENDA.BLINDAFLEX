@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-08",
+  "version": "2026-11-09",
   "configuracion": {
     "impuestos_iva": 0.21
   },
@@ -7,7 +7,7 @@
     "techos_20": {
       "nombre": "Blindaje para Techos",
       "presentacion": "20 kg",
-      "precio_base": 167000
+      "precio_base": 168000
     },
     "atermico_20": {
       "nombre": "Blindaje Atérmico",
@@ -28,11 +28,11 @@
   "modalidades": {
     "cordobesa_20": {
       "id": "cordobesa_20",
-      "nombre": "20 cuotas sin interés",
+      "nombre": "20 cuotas - Tarjeta Cordobesa",
       "cuotas": 20,
+      "precio_base": 168000,
       "descuento": 0,
-      "etiqueta": "EXCLUSIVO TARJETA CORDOBESA",
-      "precio_base": null
+      "etiqueta": "EXCLUSIVO TARJETA CORDOBESA"
     },
     "cuotas_15": {
       "id": "cuotas_15",

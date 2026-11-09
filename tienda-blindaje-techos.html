@@ -31,7 +31,7 @@
         "@type": "Offer",
         "url": "https://tienda.blindaflex.com/tienda-blindaje-techos.html",
         "priceCurrency": "ARS",
-        "price": "167000",
+        "price": "168000",
         "itemCondition": "https://schema.org/NewCondition",
         "availability": "https://schema.org/InStock",
         "seller": { "@type": "Organization", "name": "Blindaflex" }
@@ -102,9 +102,10 @@
         .video-wrapper { position: relative; width: 100%; height: 65vh; min-height: 400px; max-height: 550px; border-radius: var(--radius-lg); overflow: hidden; background-color: #000; border: 2px solid var(--c-azul); }
         .video-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; }
         .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; }
-        .bf-vslide.is-current { transform: translateX(0); z-index: 1; }
+        .bf-vslide.is-current { transform: translateX(0); z-index: 2; }
         .bf-pause-indicator { display:inline-flex; align-items:center; justify-content:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; background:rgba(7,26,36,.68); border-radius:50%; width:58px; height:58px; font-size:23px; opacity:0; transition:opacity .2s; pointer-events:none; }
         .bf-pause-indicator.is-visible {opacity:1;}
+        .bf-vtap.bf-paused .bf-pause-indicator {opacity:1;}
         .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
         .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
         .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
@@ -339,7 +340,7 @@
             .hero-header h1 { font-size: 27px; }
             .hero-header h1 span { font-size: 17px; }
             
-            .video-wrapper { flex: none; width: 100%; max-width: 100%; height: min(65vh, 550px); min-height: 400px; aspect-ratio: auto; margin-left: 0; border-radius: var(--radius-lg);}
+            .video-wrapper { flex: none; width: 100vw; max-width: none; height: auto; min-height: 0; aspect-ratio: 0.73/1; margin-left: calc(50% - 50vw); border-radius: 0;}
             .hero-section:has(> #bf-vcarousel) { flex-direction: column; }
             .hero-section > .hero-text-block { width: 100%; }
             
@@ -369,6 +370,22 @@
         .mm-products-label {display:block;color:#fff;font-size:14px;font-weight:800;padding:16px 0 8px}
         .mm-products-list {display:flex;flex-direction:column;gap:0;padding:0 0 12px 12px;border-bottom:1px solid rgba(255,255,255,.12)}
         .mm-products-list a {display:block;color:rgba(255,255,255,.75);font-size:14px;font-weight:600;padding:9px 0;}
+
+        /* CARRUSEL ORIGINAL: ancho total y proporción alta aprobada */
+        #bf-vcarousel.video-wrapper {
+            width:100vw; max-width:none; height:auto; min-height:0; max-height:none;
+            aspect-ratio:0.73 / 1; margin-left:calc(50% - 50vw);
+            flex:none; border-radius:0;
+        }
+        #bf-vcarousel .bf-vstage { background:#101820; }
+        #bf-vcarousel .bf-vslide { transition:none; }
+        #bf-vcarousel .bf-vslide video {object-fit:contain;}
+        @media (min-width:768px) {
+            .hero-section:has(> #bf-vcarousel) {flex-direction:column;}
+            .hero-section > .hero-text-block {width:100%;}
+        }
+        /* La vista de datos de entrega debe poder abrirse por encima de la tienda */
+        #checkout-view.is-open {display:block !important; position:relative; z-index:101; background:var(--c-gris-bg);}
     </style>
 </head>
 <body>
@@ -688,6 +705,10 @@
                             <div class="form-group"><label>Calle *</label><input type="text" id="f-calle" class="form-control" required></div>
                             <div class="form-group"><label>Número *</label><input type="text" id="f-num" class="form-control" required></div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="f-cp">Código postal</label><input type="text" id="f-cp" class="form-control" inputmode="numeric" autocomplete="postal-code"></div>
+                            <div class="form-group"><label for="f-ref">Referencias de entrega</label><input type="text" id="f-ref" class="form-control" placeholder="Piso, depto., indicaciones"></div>
+                        </div>
                         <button type="submit" class="btn-whatsapp mt-2"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"/></svg> ENVIAR PEDIDO POR WHATSAPP</button>
                     </form>
                 </div>
@@ -785,7 +806,7 @@
                 if(!available) {
                     compHtml += `<div class="plan-card unavailable" aria-disabled="true">
                         <div class="plan-header"><div class="plan-name">${planTitle}</div>${badge}</div>
-                        <div class="plan-price-box"><div class="plan-note">Precio pendiente de configuración</div>
+                        <div class="plan-price-box"><div class="plan-note">Precio aún no definido</div>
                         <div class="plan-total">Consultá el importe para esta modalidad.</div></div></div>`;
                     return;
                 }
@@ -906,7 +927,7 @@
         function getCartTotals(items) {
             let grandTotal = 0; let totalSaved = 0;
             let currentMethod = localStorage.getItem(PAYMENT_KEY) || 'cuotas_15';
-            if(!isPlanConfigured(currentMethod)) currentMethod = 'cuotas_15';
+            if(!isPlanConfigured(currentMethod)) currentMethod = state.paymentMethod;
             const m = db.modalidades[currentMethod];
             
             items.forEach(i => {
@@ -915,9 +936,9 @@
                     pData = getPrices(i.id, currentMethod, i.qty);
                 } else {
                     // Compatibilidad con items agregados desde landing vieja
-                    const fallbackBase = (i.type === 'techo' || /Techos/.test(i.product)) ? 167000 : (i.price || 0);
+                    const fallbackBase = (i.type === 'techo' || /Techos/.test(i.product)) ? 168000 : (i.price || 0);
                     const baseTot = fallbackBase * i.qty;
-                    const finTot = baseTot * (1 - m.descuento);
+                    const finTot = currentMethod === 'cordobesa_20' ? m.precio_base * i.qty : Math.round(baseTot * (1 - m.descuento));
                     pData = { finalTotal: finTot, savings: baseTot - finTot };
                 }
                 i._calcTotal = pData.finalTotal;
@@ -989,7 +1010,7 @@
                 h += `<div style="font-size:13px;">Plan: ${totals.m.cuotas} cuotas de ${fmtMoney(totals.grandTotal / totals.m.cuotas)}</div>`;
             }
             if(totals.totalSaved > 0) {
-                h += `<div style="font-size:13px; color:var(--c-naranja);">Descuento: ${fmtPercent(totals.m.descuento*100)}% (-${fmtMoney(totals.totalSaved)})</div>`;
+                h += `<div style="font-size:13px; color:var(--c-naranja);">Descuento: ${fmtPercent((totals.m.descuento || 0)*100)}% (-${fmtMoney(totals.totalSaved)})</div>`;
             }
 
             h += `<div style="display:flex;justify-content:space-between;margin-top:16px; border-top:1px solid rgba(255,255,255,0.2); padding-top:12px; font-size:18px;font-weight:900;">
@@ -1012,7 +1033,9 @@
                 '*DATOS DEL CLIENTE*',
                 '👤 Nombre: ' + val('f-nombre'),
                 '📱 Teléfono: ' + val('f-tel'),
-                '📍 Dirección: ' + val('f-calle') + ' ' + val('f-num') + ', ' + val('f-loc')
+                '📍 Dirección: ' + val('f-calle') + ' ' + val('f-num') + ', ' + val('f-loc'),
+                '📮 Código postal: ' + (val('f-cp') || 'No informado'),
+                '📝 Referencias: ' + (val('f-ref') || 'Sin referencias')
             ];
             
             rows.push('', '*DETALLE DEL PEDIDO*');
@@ -1025,7 +1048,7 @@
                 rows.push(`📆 Plan: ${totals.m.cuotas} cuotas de ${fmtMoney(totals.grandTotal / totals.m.cuotas)}`);
             }
             if(totals.totalSaved > 0) {
-                rows.push(`🎉 Descuento aplicado: ${fmtPercent(totals.m.descuento*100)}% (Ahorro de ${fmtMoney(totals.totalSaved)})`);
+                rows.push(`🎉 Descuento aplicado: ${fmtPercent((totals.m.descuento || 0)*100)}% (Ahorro de ${fmtMoney(totals.totalSaved)})`);
             }
             
             rows.push('', `💰 *TOTAL A PAGAR: ${fmtMoney(totals.grandTotal)}*`, '', '🚚 Envío: A coordinar según zona de entrega.', '🤝 Pago: El importe se abona al recibir los productos.');
@@ -1039,13 +1062,18 @@
             if(getCart().length === 0) return;
             closeCart();
             document.getElementById('main-store').style.display = 'none';
+            document.dispatchEvent(new Event('blindaflex:checkout-open'));
             document.getElementById('checkout-view').style.display = 'block';
+            document.getElementById('checkout-view').classList.add('is-open');
+            document.body.style.overflow = '';
             window.scrollTo(0,0);
             renderCheckoutSummary();
         }
         function closeCheckout() {
             document.getElementById('main-store').style.display = 'block';
+            document.dispatchEvent(new Event('blindaflex:checkout-close'));
             document.getElementById('checkout-view').style.display = 'none';
+            document.getElementById('checkout-view').classList.remove('is-open');
             window.scrollTo(0,0);
         }
 
@@ -1075,121 +1103,148 @@
         return { init, setPayment, changeQty, calculateSurface, updateUI, addToCart, openCart, closeCart, cartItemDelta, cartItemRemove, goToCheckout, closeCheckout, submitWhatsApp, initComparer };
     })();
 
-    function initBlindaflexVideos() {
-        const wrapper = document.getElementById('bf-vcarousel');
-        if (!wrapper) return;
-        const slides = Array.from(wrapper.querySelectorAll('.bf-vslide'));
+function initBlindaflexVideos() {
+        'use strict';
+        const root = document.getElementById('bf-vcarousel');
+        if (!root) return;
+        const slides = [...root.querySelectorAll('.bf-vslide')];
         const videos = slides.map(slide => slide.querySelector('video'));
-        const dots = Array.from(wrapper.querySelectorAll('.bf-dot'));
+        const dots = [...root.querySelectorAll('.bf-dot')];
         const tap = document.getElementById('bf-vtap');
-        const indicator = tap.querySelector('.bf-pause-indicator');
-        const sound = document.getElementById('bf-sound');
+        const soundButton = document.getElementById('bf-sound');
         let active = 0;
-        let pausedByUser = false;
-        let soundEnabled = false;
-        let inViewport = true;
-        let transitioning = false;
-        let indicatorTimeout;
+        let desiredSound = false;
+        let explicitlyPaused = false;
+        let visible = false;
+        let changing = false;
+        let pointerStart = null;
+        let suppressNextClick = false;
+        let changeTimeout;
 
-        function showIndicator(symbol) {
-            indicator.textContent = symbol;
-            indicator.classList.add('is-visible');
-            clearTimeout(indicatorTimeout);
-            indicatorTimeout = setTimeout(() => indicator.classList.remove('is-visible'), 650);
+        const activeVideo = () => videos[active];
+        const offscreenPosition = (index, center) => {
+            if (index === center) return 0;
+            return index === (center + 1) % 3 ? 100 : -100;
+        };
+        function arrange(center) {
+            slides.forEach((slide, index) => {
+                slide.style.transition = 'none';
+                slide.style.transform = `translateX(${offscreenPosition(index, center)}%)`;
+                slide.style.zIndex = index === center ? '2' : '1';
+            });
+            dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===center));
+            root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${center + 1} de 3`);
         }
-        function playCurrent() {
-            if (pausedByUser || document.hidden || !inViewport || transitioning) return;
-            const video = videos[active];
-            video.muted = !soundEnabled;
-            const promise = video.play();
-            if (promise && typeof promise.catch === 'function') promise.catch(() => {});
+        function updateSound() {
+            const hasSound = !activeVideo().muted;
+            soundButton.textContent = hasSound ? '🔊 SILENCIAR' : '🔇 ACTIVAR SONIDO';
+            soundButton.setAttribute('aria-label',hasSound?'Silenciar video':'Activar sonido del video');
         }
-        function advance() {
-            if (transitioning || pausedByUser || document.hidden || !inViewport) return;
-            transitioning = true;
-            const previous = active;
-            const next = (active + 1) % slides.length;
-            const outgoing = slides[previous];
-            const incoming = slides[next];
-            videos[previous].pause();
-            videos[next].pause();
-            videos[next].currentTime = 0;
+        function updatePause() {
+            const paused = explicitlyPaused || (visible && activeVideo().paused);
+            tap.classList.toggle('bf-paused',paused);
+            tap.setAttribute('aria-label',paused?'Reanudar video':'Pausar video');
+        }
+        function pauseAll() { videos.forEach(v => { if (!v.paused) v.pause(); }); updatePause(); }
+        async function playCurrent() {
+            if (!visible || document.hidden || explicitlyPaused) { updatePause(); return; }
+            const v = activeVideo();
+            v.muted = !desiredSound;
+            try {
+                await v.play();
+            } catch(e) {
+                // El navegador puede bloquear audio en el cambio de video.
+                v.muted = true;
+                try { await v.play(); } catch (_) { /* Espera al toque del usuario. */ }
+            }
+            updateSound(); updatePause();
+        }
+        function switchVideo(direction) {
+            if (changing) return;
+            changing = true;
+            clearTimeout(changeTimeout);
+            const from = active;
+            const to = (from + direction + 3) % 3;
+            const outgoing = slides[from];
+            const incoming = slides[to];
+            videos[from].pause();
+            // Las flechas también reinician el video seleccionado, con o sin sonido.
+            videos[to].pause();
+            try { videos[to].currentTime = 0; } catch (_) {}
+            active = to;
+            explicitlyPaused = false;
             incoming.style.transition = 'none';
-            incoming.style.transform = 'translateX(100%)';
-            incoming.style.zIndex = '2';
-            outgoing.style.transition = 'none';
-            outgoing.style.transform = 'translateX(0)';
-            outgoing.style.zIndex = '1';
-            // Force layout before starting the two coordinated slide animations.
+            incoming.style.transform = `translateX(${direction > 0 ? 100 : -100}%)`;
+            incoming.style.zIndex = '3';
+            outgoing.style.zIndex = '2';
+            // El tercer video avanza al primero desde la derecha, sin retroceso visual.
             void incoming.offsetWidth;
-            const transition = 'transform 480ms ease-in-out';
-            incoming.style.transition = transition;
-            outgoing.style.transition = transition;
-            incoming.style.transform = 'translateX(0)';
-            outgoing.style.transform = 'translateX(-100%)';
-            active = next;
-            dots.forEach((dot, i) => dot.classList.toggle('bf-selected', i === active));
-            const finish = () => {
-                incoming.removeEventListener('transitionend', onEnd);
-                slides.forEach((slide, i) => {
-                    slide.style.transition = 'none';
-                    slide.style.transform = i === active ? 'translateX(0)' : 'translateX(100%)';
-                    slide.style.zIndex = i === active ? '1' : '0';
-                    slide.classList.toggle('is-current', i === active);
-                    slide.setAttribute('aria-hidden', String(i !== active));
-                });
-                transitioning = false;
-                playCurrent();
-            };
-            const onEnd = (event) => {
-                if (event.target === incoming && event.propertyName === 'transform') finish();
-            };
-            incoming.addEventListener('transitionend', onEnd);
-            setTimeout(() => { if (transitioning && active === next) finish(); }, 650);
+            const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 480;
+            incoming.style.transition = `transform ${motion}ms ease-in-out`;
+            outgoing.style.transition = `transform ${motion}ms ease-in-out`;
+            incoming.style.transform = 'translateX(0%)';
+            outgoing.style.transform = `translateX(${direction > 0 ? -100 : 100}%)`;
+            dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===active));
+            root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${active + 1} de 3`);
+            playCurrent();
+            changeTimeout = setTimeout(() => { arrange(active); changing = false; },motion + 45);
         }
-        slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== active)));
-        videos.forEach((video, i) => {
+        videos.forEach((video,index) => {
+            video.muted = true;
+            video.controls = false;
             video.addEventListener('ended', () => {
-                if (i === active) advance();
+                if (index === active && visible && !explicitlyPaused) switchVideo(1);
             });
             video.addEventListener('error', () => {
-                if (i === active) {
-                    console.error('No se pudo cargar el video:', video.currentSrc || video.src);
-                    showIndicator('!');
+                if (index === active) {
+                    console.warn('Blindaflex: no se encontró el archivo del video', video.currentSrc);
+                    tap.classList.add('bf-paused');
                 }
             });
         });
+        arrange(active);
+        soundButton.addEventListener('click', async () => {
+            desiredSound = activeVideo().muted;
+            activeVideo().muted = !desiredSound;
+            // Una pulsación explícita desbloquea el audio cuando el navegador lo admite.
+            if (activeVideo().paused && visible) { explicitlyPaused = false; await playCurrent(); }
+            updateSound(); updatePause();
+        });
         tap.addEventListener('click', () => {
-            if (transitioning) return;
-            const video = videos[active];
-            if (pausedByUser || video.paused) {
-                pausedByUser = false;
-                playCurrent();
-                showIndicator('❚❚');
-            } else {
-                pausedByUser = true;
-                video.pause();
-                showIndicator('▶');
+            if(suppressNextClick) { suppressNextClick = false; return; }
+            const v = activeVideo();
+            if (v.paused) { explicitlyPaused = false; playCurrent(); }
+            else { explicitlyPaused = true; pauseAll(); }
+            updatePause();
+        });
+        tap.addEventListener('pointerdown',e => { pointerStart={x:e.clientX,y:e.clientY}; });
+        tap.addEventListener('pointerup',e => {
+            if (!pointerStart) return;
+            const dx = e.clientX-pointerStart.x;
+            const dy = e.clientY-pointerStart.y;
+            pointerStart = null;
+            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)*1.25) {
+                suppressNextClick = true;
+                switchVideo(dx < 0 ? 1 : -1);
+                // El swipe puede terminar sin generar un evento click.
+                setTimeout(() => { suppressNextClick = false; },200);
             }
         });
-        sound.addEventListener('click', () => {
-            soundEnabled = !soundEnabled;
-            videos.forEach(v => { v.muted = !soundEnabled; });
-            sound.textContent = soundEnabled ? '🔊 SILENCIAR' : '🔇 ACTIVAR SONIDO';
-        });
+        tap.addEventListener('pointercancel',() => { pointerStart = null; });
+
+        // Pausa al salir del área visible y continúa desde el mismo segundo al regresar.
         if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(entries => {
-                inViewport = entries[0].isIntersecting;
-                if (!inViewport) videos.forEach(video => video.pause());
-                else playCurrent();
-            }, { threshold: 0.15 });
-            observer.observe(wrapper);
-        }
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) videos.forEach(video => video.pause());
-            else playCurrent();
+            const observer=new IntersectionObserver(entries => {
+                visible = entries[0].intersectionRatio >= 0.45;
+                if (visible) playCurrent(); else pauseAll();
+            },{threshold:[0,0.25,0.45,0.6,1]});
+            observer.observe(root);
+        } else { visible=true; playCurrent(); }
+        document.addEventListener('blindaflex:checkout-open',pauseAll);
+        document.addEventListener('blindaflex:checkout-close',() => { if(visible) playCurrent(); });
+        document.addEventListener('visibilitychange',() => {
+            if(document.hidden) pauseAll(); else if(visible) playCurrent();
         });
-        playCurrent();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
