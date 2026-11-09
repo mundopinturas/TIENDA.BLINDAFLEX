@@ -98,7 +98,7 @@
         .cart-count { position: absolute; top: 2px; right: 2px; background-color: var(--c-naranja); color: var(--c-blanco); font-size: 11px; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
         .desktop-nav { display: none; }
 
-        .hero-section { margin-top: 16px; margin-bottom: 56px; display: flex; flex-direction: column; }
+        .hero-section { margin-top: 16px; margin-bottom: 40px; display: flex; flex-direction: column; }
         .video-wrapper { position: relative; width: 100%; height: 65vh; min-height: 400px; max-height: 550px; border-radius: var(--radius-lg); overflow: hidden; background-color: #000; border: 2px solid var(--c-azul); }
         .video-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; }
         .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; }
@@ -119,16 +119,16 @@
         .hero-product-photo img { width: 100%; height: auto; max-height: 245px; object-fit: contain; margin: 0 auto; }
         .hero-product-photo figcaption { font-size: 12px; color: var(--c-texto-light); font-weight: 600; margin-top: 4px; }
 
-        /* BENEFICIOS (Íconos corregidos) */
+        /* BENEFICIOS CON ÍCONOS CORREGIDOS (SVG INLINE A MEDIDA) */
         .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-        .benefit-card { background: var(--c-blanco); padding: 12px 8px; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; box-shadow: var(--shadow-soft); border: 1px solid var(--c-gris-border); border-bottom: 3px solid var(--c-turquesa); }
-        .benefit-card svg { width: 32px; height: 32px; fill: none; stroke: var(--c-azul); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-        .benefit-card span { font-size: 12px; font-weight: 800; color: var(--c-azul); line-height: 1.2; }
+        .benefit-card { background: var(--c-blanco); padding: 16px 8px; border-radius: var(--radius-md); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; box-shadow: var(--shadow-soft); border: 1px solid var(--c-gris-border); border-bottom: 3px solid var(--c-turquesa); }
+        .benefit-card svg { width: 34px; height: 34px; fill: none; stroke: var(--c-azul); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .benefit-card span { font-size: 12px; font-weight: 800; color: var(--c-azul); line-height: 1.2; text-transform: uppercase; }
 
         /* =========================================================
-           COMPARADOR
+           COMPARADOR ANTES / DESPUÉS
            ========================================================= */
-        .comparer-section { padding: 0; background: transparent; border: none; box-shadow: none; margin-top: 56px; margin-bottom: 56px; }
+        .comparer-section { padding: 0; background: transparent; border: none; box-shadow: none; margin-bottom: 40px; }
         .comparer-header { text-align: center; margin-bottom: 16px; padding: 0 16px; }
         .comparer-h2 { font-size: 22px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; margin-bottom: 8px;}
         .comparer-subtitle { font-size: 14px; font-weight: 500; color: var(--c-texto-light); }
@@ -143,41 +143,52 @@
         .comparer-handle svg { width: 22px; height: 22px; fill: var(--c-blanco); }
 
         /* =========================================================
-           NUEVO MÓDULO COMERCIAL Y FINANCIACIÓN
+           NUEVO MÓDULO COMERCIAL Y FINANCIACIÓN PREMIUM
            ========================================================= */
-        .buy-wrapper { position: relative; margin-top: 32px; }
+        .buy-wrapper { position: relative; margin: 0 auto; max-width: 900px;}
         
-        /* Loader */
+        /* Loader Centralizado */
         .pricing-loader { position: absolute; inset: 0; background: rgba(255,255,255,0.95); z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: var(--radius-lg); backdrop-filter: blur(4px); }
         .pricing-loader.hidden { display: none; }
         .spinner { border: 4px solid var(--c-gris-border); border-top: 4px solid var(--c-turquesa); border-radius: 50%; width: 44px; height: 44px; animation: spin 1s linear infinite; margin-bottom: 16px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* Imagen Promocional Protagonista */
-        .promo-image-wrapper { width: 100%; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 24px; box-shadow: var(--shadow-md); background-color: var(--c-gris-claro); min-height: 150px; position: relative; }
+        .promo-image-wrapper { width: 100%; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 32px; box-shadow: var(--shadow-md); background-color: var(--c-gris-claro); min-height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
         .promo-image-wrapper img { width: 100%; height: auto; display: block; object-fit: contain; }
+        .promo-image-wrapper.loading::after { content: 'Cargando promoción...'; position: absolute; font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
 
         /* Comparador Interactivo de Planes */
-        .comparator-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-        .plan-card { background: #fff; border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 18px 20px; cursor: pointer; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px; transition: all 0.2s ease; position: relative; overflow: hidden; }
-        .plan-card:hover { border-color: #cbd5e1; }
-        .plan-card.active { border-color: var(--c-turquesa); background: var(--c-turquesa-light); box-shadow: 0 4px 16px rgba(0,175,198,0.12); }
+        .comparator-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
         
-        .plan-info { display: flex; flex-direction: column; gap: 4px; }
-        .plan-badge { align-self: flex-start; background: var(--c-naranja); color: #fff; font-size: 11px; font-weight: 900; padding: 4px 8px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;}
-        .plan-card.active .plan-badge { background: var(--c-turquesa-dark); }
+        .plan-card { background: #fff; border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 24px; cursor: pointer; display: flex; flex-direction: column; gap: 12px; transition: all 0.2s ease; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .plan-card:hover { border-color: #cbd5e1; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.05); }
+        .plan-card.active { border-color: var(--c-turquesa); background: var(--c-turquesa-light); box-shadow: 0 4px 20px rgba(0,175,198,0.15); transform: translateY(-2px); }
+        
+        .plan-header { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+        .plan-name { font-size: 16px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; line-height: 1.2; }
+        .plan-badge { background: var(--c-naranja); color: #fff; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
         .plan-badge.exclusive { background: var(--c-azul); }
+        .plan-card.active .plan-badge { background: var(--c-turquesa-dark); }
+        .plan-card.active .plan-badge.exclusive { background: var(--c-azul); }
         
-        .plan-title { font-size: 16px; font-weight: 900; color: var(--c-azul); line-height: 1.1; }
-        .plan-desc { font-size: 13px; font-weight: 600; color: var(--c-texto-light); }
+        .plan-price-box { display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed var(--c-gris-border); padding-top: 12px; margin-top: 4px; }
+        .plan-card.active .plan-price-box { border-top-color: rgba(0,175,198,0.3); }
         
-        .plan-price-box { text-align: right; display: flex; flex-direction: column; justify-content: center;}
-        .plan-cuota { font-size: 22px; font-weight: 900; color: var(--c-azul); line-height: 1; margin-bottom: 4px; }
-        .plan-card.active .plan-cuota { color: var(--c-turquesa-dark); }
-        .plan-total { font-size: 13px; font-weight: 700; color: var(--c-texto-light); }
+        .plan-installment { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1; display: flex; align-items: baseline; gap: 6px;}
+        .plan-installment small { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
+        .plan-card.active .plan-installment { color: var(--c-turquesa-dark); }
+        .plan-total { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
 
-        /* Configuración de Producto */
-        .buy-config-section { background: var(--c-blanco); border-radius: var(--radius-lg); padding: var(--pad-box); box-shadow: var(--shadow-soft); border: 1px solid var(--c-gris-border); }
+        @media (min-width: 640px) {
+            .plan-card { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
+            .plan-header { align-items: flex-start; margin-bottom: 0; }
+            .plan-name { font-size: 17px; }
+            .plan-price-box { align-items: flex-end; text-align: right; border-top: none; padding-top: 0; margin-top: 0; }
+        }
+
+        /* Configuración de Producto (Armá tu pedido) */
+        .buy-config-section { background: var(--c-blanco); border-radius: var(--radius-lg); padding: var(--pad-box); box-shadow: var(--shadow-soft); border: 1px solid var(--c-gris-border); margin-bottom: 24px;}
         .buy-title-h2 { font-size: 22px; font-weight: 900; color: var(--c-azul); text-align: center; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.5px;}
         
         .config-block { margin-bottom: 24px; }
@@ -205,7 +216,7 @@
         .qty-spinner input { width: 56px; text-align: center; border: none; border-left: 1px solid var(--c-gris-border); border-right: 1px solid var(--c-gris-border); font-size: 18px; font-weight: 900; color: var(--c-azul); height: 44px; pointer-events: none; background: #fff; }
 
         /* Resumen Dinámico */
-        .dynamic-summary-box { background: var(--c-azul-grad); border-radius: var(--radius-md); padding: 24px; margin-top: 12px; margin-bottom: 24px; box-shadow: var(--shadow-md); color: #fff; }
+        .dynamic-summary-box { background: var(--c-azul-grad); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-md); color: #fff; }
         .ds-title { font-size: 13px; font-weight: 800; color: #8ba2ac; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
         .ds-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; font-size: 14px; font-weight: 500; }
         .ds-row strong { font-weight: 800; text-align: right; }
@@ -323,7 +334,6 @@
             
             .steps-grid { flex-direction: row; }
             .step-card { flex: 1; flex-direction: column; text-align: center; align-items: center;}
-            .review-card { min-width: calc(33.333% - 16px); }
             .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
         }
         
@@ -417,22 +427,29 @@
                         <figcaption>Presentación de 20 kg · Disponible en blanco y gris</figcaption>
                     </figure>
 
-                    <!-- Beneficios con Íconos SVG Corregidos -->
+                    <!-- Beneficios con Íconos SVG Corregidos a medida -->
                     <div class="benefits-grid">
                         <div class="benefit-card">
-                            <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
                             <span>HIDRORREPELENTE</span>
                         </div>
                         <div class="benefit-card">
-                            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12h3c2-4 6-4 8 0h5" />
+                                <path d="M7 8l-4 4 4 4" />
+                                <path d="M17 8l4 4-4 4" />
+                            </svg>
                             <span>GRAN ELASTICIDAD</span>
                         </div>
                         <div class="benefit-card">
-                            <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-                            <span>CUBRE FISURAS</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 8h18" stroke-width="2.5" />
+                                <path d="M11 8l-2 4l3 3l-1 5" />
+                            </svg>
+                            <span>CUBRE MICROFISURAS</span>
                         </div>
                         <div class="benefit-card">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                             <span>RESISTENCIA UV</span>
                         </div>
                     </div>
@@ -441,9 +458,9 @@
 
             <div class="grid-desktop">
                 
-                <!-- COLUMNA IZQUIERDA: COMPARADOR -->
+                <!-- COLUMNA IZQUIERDA: COMPARADOR VISUAL -->
                 <div>
-                    <section class="section-gap comparer-section">
+                    <section class="comparer-section">
                         <div class="comparer-header">
                             <h2 class="comparer-h2">MIRÁ LA DIFERENCIA</h2>
                             <p class="comparer-subtitle">Compará el aspecto antes y después de aplicar Blindaflex.</p>
@@ -471,8 +488,8 @@
                         </div>
 
                         <!-- 1. IMAGEN PROMOCIONAL PROTAGONISTA -->
-                        <div class="promo-image-wrapper">
-                            <img src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png" alt="Hasta 20 cuotas con Cordobesa y 15 cuotas sin interés con todas las tarjetas" onerror="this.style.display='none'; this.parentElement.style.minHeight='auto';">
+                        <div class="promo-image-wrapper loading">
+                            <img src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png" alt="Hasta 20 cuotas con Tarjeta Cordobesa. Hasta 15 cuotas sin interés con tarjetas adheridas." onload="this.parentElement.classList.remove('loading')">
                         </div>
 
                         <!-- 2. COMPARADOR DE PLANES INTERACTIVO -->
@@ -552,11 +569,11 @@
                         <div class="steps-grid">
                             <div class="step-card">
                                 <div class="step-num">01</div>
-                                <div class="step-info"><h4>ELEGÍ</h4><p>Configurá la cantidad, el color y la modalidad de pago en la web.</p></div>
+                                <div class="step-info"><h4>ELEGÍ</h4><p>Configurá la modalidad de pago, el color y la cantidad en la web.</p></div>
                             </div>
                             <div class="step-card">
                                 <div class="step-num">02</div>
-                                <div class="step-info"><h4>ENVIÁ TU PEDIDO</h4><p>Completá tus datos de envío en el carrito y mandalos por WhatsApp. Sin dejar tarjetas online.</p></div>
+                                <div class="step-info"><h4>ENVIÁ TU PEDIDO</h4><p>Pasá por el carrito y enviá tus datos por WhatsApp. Sin tarjetas online.</p></div>
                             </div>
                             <div class="step-card">
                                 <div class="step-num">03</div>
@@ -674,14 +691,14 @@
             productId: 'techos_20',
             qty: 1,
             color: 'Blanco',
-            paymentMethod: 'cuotas_15' // Default reference
+            paymentMethod: 'cuotas_15' // Valor inicial referencial
         };
         
         const CART_KEY = 'blindaflex_cart_data';
         const PAYMENT_KEY = 'blindaflex_payment_preference';
 
+        // Formateo de pesos argentinos. Si es un entero muestra $167.000, si tiene decimales muestra $11.133,33
         const fmtMoney = n => {
-            // Formateo de pesos argentinos (si es exacto no lleva decimales, si los tiene, usa coma)
             return "$" + n.toLocaleString('es-AR', { minimumFractionDigits: (n % 1 === 0 ? 0 : 2), maximumFractionDigits: 2 });
         };
 
@@ -708,7 +725,6 @@
             }
         }
 
-        // --- CÁLCULO CORE ---
         function getPrices(productId, methodId, qty) {
             const p = db.productos[productId];
             const m = db.modalidades[methodId];
@@ -722,14 +738,12 @@
             return { baseTotal, finalTotal, installmentValue, installments: m.cuotas, discountPercent: m.descuento * 100, savings, methodName: m.nombre, productName: p.nombre };
         }
 
-        // --- RENDERIZADO UI ---
         function updateUI() {
             if(!db) return;
             
-            // Sync states from DOM
             state.color = document.querySelector('input[name="color"]:checked').value;
             
-            // 1. Renderizar el Comparador (Orden específico)
+            // 1. Renderizar el Comparador (Plan de cuotas)
             const order = ['cordobesa_20', 'cuotas_15', 'cuotas_9', 'cuotas_3', 'transferencia'];
             const compContainer = document.getElementById('payment-comparator');
             let compHtml = '';
@@ -737,30 +751,61 @@
             order.forEach(id => {
                 if(!db.modalidades[id]) return;
                 const m = db.modalidades[id];
-                const pData = getPrices(state.productId, id, state.qty);
-                const isActive = state.paymentMethod === id ? 'active' : '';
                 
+                // Si es cordobesa y no tiene cuotas, significa que no se configuró correctamente en el backend. 
+                // Se muestra deshabilitado si falta configuración.
+                let isConfigured = true;
+                if(id === 'cordobesa_20' && (!m.cuotas || m.cuotas === 0)) isConfigured = false;
+
+                const isActive = state.paymentMethod === id ? 'active' : '';
                 let badgeClass = 'plan-badge';
                 if(id === 'cordobesa_20') badgeClass += ' exclusive';
 
+                if (!isConfigured) {
+                    compHtml += `
+                        <div class="plan-card" style="opacity: 0.6; cursor: not-allowed;">
+                            <div class="plan-header">
+                                <div class="plan-name">${m.nombre}</div>
+                                ${m.etiqueta ? `<div class="${badgeClass}">${m.etiqueta}</div>` : ''}
+                            </div>
+                            <div class="plan-price-box">
+                                <div class="plan-installment" style="font-size: 16px;">Precio a confirmar</div>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const pData = getPrices(state.productId, id, state.qty);
+                let priceHtml = '';
+                
+                if(m.cuotas > 1) {
+                    priceHtml = `
+                        <div class="plan-installment">${fmtMoney(pData.installmentValue)} <small>por cuota</small></div>
+                        <div class="plan-total">Precio total: ${fmtMoney(pData.finalTotal)}</div>
+                    `;
+                } else {
+                    priceHtml = `
+                        <div class="plan-installment">${fmtMoney(pData.finalTotal)}</div>
+                        <div class="plan-total">Precio final abonando al recibir</div>
+                    `;
+                }
+
                 compHtml += `
                     <div class="plan-card ${isActive}" onclick="appPricing.setPayment('${id}')">
-                        <div class="plan-info">
-                            ${m.etiqueta ? `<span class="${badgeClass}">${m.etiqueta}</span>` : ''}
-                            <span class="plan-title">${m.nombre}</span>
+                        <div class="plan-header">
+                            <div class="plan-name">${m.nombre}</div>
+                            ${m.etiqueta ? `<div class="${badgeClass}">${m.etiqueta}</div>` : ''}
                         </div>
                         <div class="plan-price-box">
-                            ${m.cuotas > 1 
-                                ? `<span class="plan-cuota">${m.cuotas}x ${fmtMoney(pData.installmentValue)}</span><span class="plan-total">Precio total: ${fmtMoney(pData.finalTotal)}</span>` 
-                                : `<span class="plan-cuota">${fmtMoney(pData.finalTotal)}</span><span class="plan-total">Precio final abonando al recibir</span>`
-                            }
+                            ${priceHtml}
                         </div>
                     </div>
                 `;
             });
             compContainer.innerHTML = compHtml;
 
-            // 2. Renderizar Resumen Dinámico
+            // 2. Renderizar Resumen Dinámico azul
             const pData = getPrices(state.productId, state.paymentMethod, state.qty);
             const m = db.modalidades[state.paymentMethod];
             const summaryBox = document.getElementById('dynamic-summary');
@@ -816,7 +861,7 @@
             }
         }
 
-        // --- CARRITO Y CHECKOUT ---
+        // --- CARRITO COMPARTIDO ---
         function getCart() {
             try { return JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []; } 
             catch(e) { return []; }
@@ -871,7 +916,7 @@
                 if(db.productos[i.id]) {
                     pData = getPrices(i.id, currentMethod, i.qty);
                 } else {
-                    // Fallback para items agregados desde landings no actualizadas aún
+                    // Compatibilidad con items agregados desde landing vieja
                     const fallbackBase = (i.type === 'techo' || /Techos/.test(i.product)) ? 167000 : (i.price || 0);
                     const baseTot = fallbackBase * i.qty;
                     const finTot = baseTot * (1 - m.descuento);
