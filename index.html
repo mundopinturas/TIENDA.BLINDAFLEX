@@ -527,6 +527,27 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
         @media (min-width: 768px) { .whatsapp-float { bottom: 24px; right: 24px; } }
     
 
+
+/* Banners de financiación: proporción original y adaptación móvil. */
+.bf-finance-banner{width:100%;display:block;height:auto;object-fit:contain;}
+.bf-finance-banner--top{margin:0 auto;background:#071A24;}
+.bf-finance-banner--middle{margin:0 auto 30px;}
+.bf-finance-banner-wrap{width:100%;overflow:hidden;}
+.bf-finance-banner-middle-wrap{margin:0 auto 28px;max-width:1180px;padding:0 20px;}
+@media(max-width:767px){.bf-finance-banner-middle-wrap{padding:0 12px;margin-bottom:12px}}
+/* Carrito actual: una modalidad de pago para el pedido completo. */
+.bf-cart-line{padding:14px 0;border-bottom:1px solid #e2e8f0;}
+.bf-cart-line-head{display:flex;justify-content:space-between;align-items:start;gap:8px;}
+.bf-cart-line-title{font-weight:850;color:#071A24;font-size:14px;}
+.bf-cart-line-meta{font-size:12px;color:#64748b;margin-top:5px;}
+.bf-cart-line-controls{display:flex;justify-content:space-between;align-items:center;margin-top:11px;gap:12px;}
+.bf-cart-line-controls button{background:#fff;border:1px solid #d9e2e9;border-radius:6px;padding:6px 12px;font-weight:850;color:#071A24;cursor:pointer;}
+.bf-cart-plan{background:#e0f7fa;border:1px solid #91dce5;border-radius:10px;padding:14px;margin-bottom:12px;color:#071A24;}
+.bf-cart-plan strong{display:block;margin-bottom:4px;}
+.bf-cart-note{font-size:12px;color:#64748b;margin:10px 0;}
+#bf-keep-shopping{display:block;width:100%;margin-bottom:10px;padding:14px;background:#fff;color:#071A24;border:2px solid #00afc6;border-radius:8px;font-weight:850;cursor:pointer;}
+#checkout-summary{background:#fff;border-radius:10px;padding:12px;}
+
 </style>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/blindaflex-favicon-32.png">
@@ -613,6 +634,9 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
     </nav>
 
     <main>
+        <!-- Banner principal: financiación -->
+        <div class="bf-finance-banner-wrap"><img class="bf-finance-banner bf-finance-banner--top" src="index-cuotas-1.jpeg" alt="Hasta 20 cuotas con Tarjeta Cordobesa y hasta 15 cuotas sin interés con tarjetas y medios de pago" decoding="async" fetchpriority="high"></div>
+
         <!-- 3. PORTADA PRINCIPAL -->
         <section class="hero-section">
             <div class="container hero-grid">
@@ -658,6 +682,9 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 </div>
             </section>
         </div>
+
+        <!-- Banner de financiación antes de Nuestras Soluciones -->
+        <div class="bf-finance-banner-middle-wrap"><img class="bf-finance-banner bf-finance-banner--middle" src="index-cuotas-2.jpeg" alt="Llevá tu impermeabilizante en cuotas: hasta 20 con Tarjeta Cordobesa y hasta 15 sin interés" loading="lazy" decoding="async"></div>
 
         <!-- 5. CATÁLOGO DE PRODUCTOS -->
         <section id="catalogo" class="container catalog-section" aria-label="Catálogo de pinturas impermeabilizantes y recubrimientos Blindaflex">
@@ -985,6 +1012,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                 <span>Total a pagar:</span>
                 <span id="drawer-total">$0</span>
             </div>
+            <button type="button" id="bf-keep-shopping" onclick="closeCartDrawer()">SEGUIR COMPRANDO</button>
             <!-- El Checkout directo es modal en la Home para no desviar de la página -->
             <button class="btn-primary btn-action" style="width: 100%; border:none; padding:18px; font-size:15px;" onclick="openHomeCheckout()" id="btn-checkout" disabled>CONTINUAR CON MI PEDIDO</button>
         </div>
@@ -1096,317 +1124,10 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             });
         }
 
-        // -----------------------------------------------------
-        // 3. LÓGICA DEL CARRITO (Motor Compartido)
-        // -----------------------------------------------------
-        const CART_EXPIRATION_MS = 30 * 60 * 1000; // 30 mins
-        
-        function loadCart() {
-            const data = localStorage.getItem('blindaflex_cart_data');
-            if(data) {
-                try {
-                    const parsed = JSON.parse(data);
-                    // Carrito persistente entre visitas; no vence a los 30 minutos.
-                    return parsed.items || [];
-                } catch(e) { return []; }
-            }
-            return [];
-        }
-
-        let cart = loadCart();
-
-        function saveCart() {
-            localStorage.setItem('blindaflex_cart_data', JSON.stringify({ items: cart, lastActivity: Date.now() }));
-            updateCartCounter();
-            renderDrawer();
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(i => i.id !== id);
-            saveCart();
-        }
-
-        function changeCartQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if(item && item.qty + delta > 0) {
-                item.qty += delta;
-                saveCart();
-            }
-        }
-
-        function emptyCartConfirm() {
-            if(confirm("¿Querés eliminar todos los productos de tu carrito?")) {
-                cart = [];
-                saveCart();
-                closeHomeCheckout(); // Si estaba en modal de checkout, lo cierra
-            }
-        }
-
-        const formatARS = (num) => "$" + Math.round(num).toLocaleString('es-AR');
-
-        function renderDrawer() {
-            const body = document.getElementById('cart-body');
-            const totalEl = document.getElementById('drawer-total');
-            const btnCheck = document.getElementById('btn-checkout');
-            
-            if(cart.length === 0) {
-                body.innerHTML = '<div class="cart-empty-message">Tu carrito está vacío.</div>';
-                totalEl.innerText = '$0';
-                btnCheck.disabled = true;
-                return;
-            }
-            
-            let html = '';
-            let grandTotal = 0;
-            
-            // Compatibilidad: Descuentos de Techo
-            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
-            let techosDisc = 0;
-            if(techosCount === 2) techosDisc = 0.12;
-            if(techosCount === 3) techosDisc = 0.17;
-            if(techosCount >= 4) techosDisc = 0.22;
-            let techoUnitPrice = 148000 * (1 - techosDisc);
-
-            if(techosCount > 0) {
-                let gifts = "1 Kit Premium";
-                html += `<div style="font-size:12px; color:var(--c-turquesa-dark); margin-bottom:12px; font-weight:700; background:var(--c-turquesa-light); padding:8px; border-radius:4px; text-align:center;">REGALOS (TECHOS):<br>${gifts.toUpperCase()}</div>`;
-            }
-            
-            cart.forEach(item => {
-                let lineTotal = 0;
-                let displayTitle = item.product;
-                
-                // Si es barrera, respeta su unitPrice guardado. Si es techo, aplica descuento por volumen.
-                if(item.type === 'barrera') {
-                    lineTotal = item.price * item.qty;
-                } else {
-                    lineTotal = techoUnitPrice * item.qty;
-                }
-                grandTotal += lineTotal;
-                
-                html += `
-                    <div class="cart-item">
-                        <button class="remove-item" onclick="removeFromCart('${item.id}')" aria-label="Quitar">
-                            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                        </button>
-                        <div class="cart-item-title">${displayTitle}</div>
-                        <div class="cart-item-meta">Color: ${item.color}</div>
-                        <div class="cart-item-controls">
-                            <div class="qty-controls">
-                                <button class="qty-btn-sm" onclick="changeCartQty('${item.id}', -1)">-</button>
-                                <span style="font-weight:900; font-size:14px; width:24px; text-align:center;">${item.qty}</span>
-                                <button class="qty-btn-sm" onclick="changeCartQty('${item.id}', 1)">+</button>
-                            </div>
-                            <div class="item-price">${formatARS(lineTotal)}</div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += `<button class="empty-cart-btn" onclick="emptyCartConfirm()">VACIAR CARRITO</button>`;
-            
-            body.innerHTML = html;
-            totalEl.innerText = formatARS(grandTotal);
-            btnCheck.disabled = false;
-        }
-
-        function updateCartCounter() {
-            document.getElementById('cart-counter').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
-        }
-
-        function openCartDrawer() {
-            document.getElementById('cart-overlay').classList.add('open');
-            document.getElementById('cart-drawer').classList.add('open');
-            document.body.style.overflow = 'hidden';
-            saveCart(); // Refresca timestamp al abrir
-        }
-
-        function closeCartDrawer() {
-            document.getElementById('cart-overlay').classList.remove('open');
-            document.getElementById('cart-drawer').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        // -----------------------------------------------------
-        // 4. CHECKOUT DESDE LA HOME (Vía WhatsApp)
-        // -----------------------------------------------------
-        function openHomeCheckout() {
-            closeCartDrawer();
-            document.getElementById('checkout-view').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Evita scrollear la home detrás del modal
-        }
-
-        function closeHomeCheckout() {
-            document.getElementById('checkout-view').style.display = 'none';
-            document.body.style.overflow = '';
-        }
-
-        function submitWhatsApp(e) {
-            e.preventDefault();
-            const n = document.getElementById('f-nombre').value;
-            const t = document.getElementById('f-tel').value;
-            const l = document.getElementById('f-loc').value;
-            const c = document.getElementById('f-calle').value;
-            const num = document.getElementById('f-num').value;
-            const cp = document.getElementById('f-cp').value;
-            const ref = document.getElementById('f-ref').value;
-            
-            let m = `*NUEVO PEDIDO BLINDAFLEX*%0A%0A*CLIENTE*%0A👤 ${n}%0A📱 ${t}%0A📍 ${c} ${num}, ${l}%0A`;
-            if(cp) m += `📮 CP: ${cp}%0A`;
-            if(ref) m += `📝 Ref: ${ref}%0A`;
-            
-            m += `%0A*DETALLE DEL PEDIDO*%0A`;
-            let tot = 0;
-            
-            let techosCount = cart.filter(i => i.type === 'techo' || !i.type).reduce((s, i) => s + i.qty, 0);
-            let techosDisc = 0;
-            if(techosCount === 2) techosDisc = 0.12;
-            if(techosCount === 3) techosDisc = 0.17;
-            if(techosCount >= 4) techosDisc = 0.22;
-            let techoUnitPrice = 148000 * (1 - techosDisc);
-
-            cart.forEach(i => {
-                let sub = 0;
-                if(i.type === 'barrera') { sub = i.price * i.qty; } 
-                else { sub = techoUnitPrice * i.qty; }
-                tot += sub;
-                m += `🔸 ${i.qty}x ${i.product}%0AColor: ${i.color}%0ASubtotal: ${formatARS(sub)}%0A%0A`;
-            });
-            
-            if(techosCount > 0) {
-                let gifts = "1 Kit Premium";
-                m += `🎁 *Beneficios Techos:* ${gifts}${techosDisc > 0 ? ' + ' + (techosDisc*100) + '% de descuento' : ''}%0A%0A`;
-            }
-
-            m += `*TOTAL PRODUCTOS: ${formatARS(tot)}*%0A%0AEnvío a coordinar según zona.%0APago al recibir.`;
-            window.open(`https://wa.me/5493512661626?text=${m}`, '_blank');
-        }
-
-        // Init
-        window.onload = () => {
-            updateCartCounter();
-            renderDrawer();
-        };
+        // El carrito se gestiona en un único módulo al final de la página.
     </script>
-<style id="bf-unified-cart-css">
-#bf-keep-shopping{width:100%;display:block;margin-bottom:11px;padding:13px 12px;border:1.5px solid #00AFC6;border-radius:9px;background:#fff;color:#071A24;font-size:14px;font-weight:800;cursor:pointer;text-align:center}
-#bf-keep-shopping:focus-visible,.bf-menu-link:focus-visible{outline:3px solid #00AFC6;outline-offset:2px}
-.bf-cart-row{padding:15px 0;border-bottom:1px solid #e2e8f0;color:#071A24}
-.bf-cart-row strong{display:block;font-size:14px;margin-bottom:5px}
-.bf-cart-detail{font-size:12px;color:#64748b;line-height:1.5}
-.bf-cart-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
-.bf-cart-controls button{border:1px solid #cbd5e1;background:#fff;border-radius:7px;padding:6px 12px;color:#071A24;font-weight:800;cursor:pointer}
-.bf-cart-gift{padding:15px 16px;border-radius:11px;background:linear-gradient(110deg,#E0F7FA,#F2F6F7);border:1px solid #82D4DE;border-left:4px solid #00AFC6;color:#071A24;font-size:14px;line-height:1.6;margin:0 0 15px;box-shadow:0 3px 12px rgba(7,26,36,.05)}
-.bf-cart-gift strong{display:block;font-size:15px;font-weight:900;letter-spacing:.15px;color:#071A24;margin-bottom:4px}
-.bf-cart-gift .bf-gift-emphasis{font-size:15px;font-weight:850;color:#007F91;margin-top:5px}
-.bf-cart-savings{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 4px;padding:12px 13px;background:#F0FAF8;border:1px solid #B6E5D7;border-radius:9px;color:#08745F;font-size:14px;font-weight:800}
-.bf-cart-savings strong{font-size:17px;white-space:nowrap}
-.bf-cart-note{font-size:12px;color:#64748b;margin-top:10px}
-#bf-mobile-nav{position:fixed;inset:0;z-index:5000;display:none}
-#bf-mobile-nav.bf-open{display:block}
-#bf-mobile-nav .bf-backdrop{position:absolute;inset:0;background:rgba(7,26,36,.7)}
-#bf-mobile-nav .bf-panel{position:absolute;top:0;bottom:0;left:0;width:min(85vw,330px);background:#071A24;color:#fff;padding:24px;overflow-y:auto;box-shadow:4px 0 30px #0004}
-#bf-mobile-nav .bf-close{display:block;margin-left:auto;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
-#bf-mobile-nav .bf-menu-link{display:block;padding:16px 0;border-bottom:1px solid #ffffff22;font-weight:750;text-decoration:none;color:#fff;font-size:15px}
-</style>
-<script id="bf-unified-cart-script">
-(function(){
-'use strict';
-const KEY='blindaflex_cart_data';
-const escapeHTML=v=>String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const isRoof=i=>i.type==='techo'||(!i.type&&/Blindaje para Techos/i.test(i.product||''));
-const isReflectivo=i=>i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'');
-const isBarrera=i=>i.type==='barrera'||/Barrera Impermeable/i.test(i.product||'');
-const KIT='Rodillo premium, sellador elastomérico de grietas y fisuras Blindaflex de 1,2 kg y pincel profesional.';
-const countBy=fn=>cart.filter(fn).reduce((a,i)=>a+Number(i.qty||0),0);
-const pct=q=>q>=4?.22:q===3?.17:q===2?.12:0;
-const getRates=()=>({roof:pct(countBy(isRoof)),reflect:pct(countBy(isReflectivo))});
-const isGiftEligible=()=>cart.some(i=>isRoof(i)||isReflectivo(i));
-const base=i=>isRoof(i)?148000:isReflectivo(i)?170120:Number(i.price||0);
-const subtotal=i=>Number(i.qty||0)*base(i)*(isRoof(i)?(1-getRates().roof):isReflectivo(i)?(1-getRates().reflect):1);
-const cartTotal=()=>cart.reduce((a,i)=>a+subtotal(i),0);
-const savings=fn=>cart.filter(fn).reduce((a,i)=>a+Number(i.qty||0)*base(i)-subtotal(i),0);
-const money=n=>'$'+Math.round(n).toLocaleString('es-AR');
-const reload=()=>{try{let o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items.filter(i=>i&&Number(i.qty)>0).map(i=>({...i,qty:Math.floor(Number(i.qty))})):[]}catch(e){return []}};
-const update=()=>{
- const n=cart.reduce((a,i)=>a+Number(i.qty||0),0);
- const counter=document.getElementById('cart-counter');if(counter)counter.textContent=n;
- const checkout=document.getElementById('btn-checkout');if(checkout)checkout.disabled=n===0;
- window.renderDrawer();
-};
-function promoText(){
- const rates=getRates();let h='';
- if(rates.roof)h+='<div class="bf-discount-note"><strong>Blindaje para Techos: '+Math.round(rates.roof*100)+'% de descuento</strong> · Ahorrás '+money(savings(isRoof))+'</div>';
- if(rates.reflect)h+='<div class="bf-discount-note"><strong>Blindaje Reflectivo: '+Math.round(rates.reflect*100)+'% de descuento</strong> · Ahorrás '+money(savings(isReflectivo))+'</div>';
- return h;
-}
-function giftText(){return isGiftEligible()?'<div class="bf-cart-gift"><strong>🎁 DE REGALO: 1 KIT PREMIUM</strong><div>'+KIT+'</div><div class="bf-gift-emphasis">Un kit por familia de producto elegible.</div></div>':''}
-function renderSharedCart(){
- const body=document.getElementById('cart-body'),total=document.getElementById('drawer-total');
- if(!body||!total)return;
- total.textContent=money(cartTotal());
- if(!cart.length){body.innerHTML='<p style="padding:20px;text-align:center">Tu carrito está vacío. Podés elegir productos desde el menú.</p>';return}
- let html=giftText()+promoText();
- cart.forEach(i=>{
-  let q=Number(i.qty||0),title=escapeHTML(i.product||'Producto'),id=escapeHTML(i.id),col=escapeHTML(i.color||'Sin especificar');
-  html+='<div class="bf-cart-row"><strong>'+title+'</strong><div class="bf-cart-detail">Color: '+col+(i.presentation?' · Presentación: '+escapeHTML(i.presentation)+' kg':'')+'</div><div class="bf-cart-controls"><div><button type="button" data-bf-qty="-1" data-bf-id="'+id+'" aria-label="Restar">−</button> <b>'+q+'</b> <button type="button" data-bf-qty="1" data-bf-id="'+id+'" aria-label="Sumar">+</button></div><strong>'+money(subtotal(i))+'</strong><button type="button" data-bf-remove="'+id+'" aria-label="Quitar producto">Quitar</button></div></div>';
- });
- const saved=savings(isRoof)+savings(isReflectivo);
- if(saved>0)html+='<div class="bf-cart-savings"><span>AHORRO TOTAL</span><strong>'+money(saved)+'</strong></div>';
- html+='<p class="bf-cart-note">El costo de envío se determina según la zona de entrega.</p>';
- body.innerHTML=html;
-}
-function persist(){localStorage.setItem(KEY,JSON.stringify({items:cart,lastActivity:Date.now()}));update();if(document.getElementById('checkout-view')?.style.display==='block')renderCheckoutSummary()}
-window.bfCartRefresh=()=>{cart=reload();update()};
-window.bfCartQty=(id,delta)=>{let item=cart.find(i=>String(i.id)===String(id));if(!item)return;item.qty=Number(item.qty||0)+delta;if(item.qty<=0)cart=cart.filter(i=>i!==item);persist()};
-window.bfCartRemove=id=>{cart=cart.filter(i=>String(i.id)!==String(id));persist()};
-window.renderDrawer=renderSharedCart;
-window.saveCart=persist;
-window.updateCartCounter=update;
-window.openCartDrawer=function(){cart=reload();update();document.getElementById('cart-overlay')?.classList.add('open');document.getElementById('cart-drawer')?.classList.add('open');document.body.style.overflow='hidden';if(typeof isCartOpen!=='undefined')isCartOpen=true};
-window.closeCartDrawer=function(){document.getElementById('cart-overlay')?.classList.remove('open');document.getElementById('cart-drawer')?.classList.remove('open');document.body.style.overflow='';if(typeof isCartOpen!=='undefined')isCartOpen=false};
-window.goToCheckout=function(){if(!cart.length)return;closeCartDrawer();let main=document.getElementById('main-store');if(main)main.style.display='none';let view=document.getElementById('checkout-view');if(view)view.style.display='block';window.scrollTo(0,0);if(typeof isCheckoutOpen!=='undefined')isCheckoutOpen=true;if(typeof updateFloatingBarVisibility==='function')updateFloatingBarVisibility();renderCheckoutSummary()};
-window.renderCheckoutSummary=function(){let el=document.getElementById('checkout-summary');if(!el)return;let html=cart.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty||0)+' × '+escapeHTML(i.product)+' · '+escapeHTML(i.color||'')+'</span><b>'+money(subtotal(i))+'</b></div>').join('');let saved=savings(isRoof)+savings(isReflectivo);if(isGiftEligible())html+='<p style="margin-top:12px">🎁 Kit premium por cada familia elegible: '+KIT+'</p>';html+=promoText();if(saved)html+='<p>AHORRO TOTAL: '+money(saved)+'</p>';el.innerHTML=html+'<div style="display:flex;justify-content:space-between;margin-top:16px;font-weight:900"><span>TOTAL</span><span>'+money(cartTotal())+'</span></div>'};
-const footer=document.querySelector('#cart-drawer .cart-footer');
-if(footer&&!document.getElementById('bf-keep-shopping')){let b=document.createElement('button');b.type='button';b.id='bf-keep-shopping';b.textContent='SEGUIR COMPRANDO';b.addEventListener('click',()=>window.closeCartDrawer());let checkout=footer.querySelector('#btn-checkout');footer.insertBefore(b,checkout||null)}
-if(document.getElementById('btn-checkout'))document.getElementById('btn-checkout').onclick=function(){
- if(!cart.length)return;
- if(document.getElementById('checkout-view')){
-  if(document.getElementById('main-store'))window.goToCheckout();
-  else if(typeof openHomeCheckout==='function'){window.closeCartDrawer();openHomeCheckout();}
- }
-};
-document.getElementById('cart-body')?.addEventListener('click',e=>{let btn=e.target.closest('button');if(!btn)return;if(btn.hasAttribute('data-bf-remove'))bfCartRemove(btn.getAttribute('data-bf-remove'));if(btn.hasAttribute('data-bf-qty'))bfCartQty(btn.getAttribute('data-bf-id'),Number(btn.getAttribute('data-bf-qty'))) });
-window.addEventListener('pageshow',()=>{cart=reload();update()});
-window.addEventListener('storage',e=>{if(e.key===KEY){cart=reload();update()}});
-// Confirmación de pedido: usa los mismos cálculos y datos que el carrito lateral.
-window.submitWhatsApp=function(e){
- e.preventDefault();cart=reload();if(!cart.length)return;
- const val=id=>document.getElementById(id)?.value?.trim()||'';
- const lines=['*NUEVO PEDIDO BLINDAFLEX*','','*CLIENTE*','Nombre: '+val('f-nombre'),'Teléfono: '+val('f-tel'),'Localidad/Barrio: '+val('f-loc'),'Dirección: '+val('f-calle')+' '+val('f-num')];
- if(val('f-cp'))lines.push('CP: '+val('f-cp'));
- if(val('f-ref'))lines.push('Referencia: '+val('f-ref'));
- lines.push('','*DETALLE DEL PEDIDO*');
- cart.forEach(i=>lines.push(Number(i.qty||0)+' x '+String(i.product||'Producto')+' · '+String(i.color||''),'Presentación: '+String(i.presentation||(isReflectivo(i)?'20':'')||'No especificada')+' kg','Subtotal: '+money(subtotal(i)),''));
- const rates=getRates();
- if(rates.roof)lines.push('Techos: '+Math.round(rates.roof*100)+'% de descuento · Ahorrás '+money(savings(isRoof)));
- if(rates.reflect)lines.push('Reflectivo: '+Math.round(rates.reflect*100)+'% de descuento · Ahorrás '+money(savings(isReflectivo)));
- if(isGiftEligible())lines.push('🎁 REGALO: kit premium por cada familia elegible ('+KIT+')');
- const saved=savings(isRoof)+savings(isReflectivo);
- if(saved)lines.push('AHORRO TOTAL: '+money(saved));
- lines.push('*TOTAL PRODUCTOS: '+money(cartTotal())+'*','Envío a coordinar según zona.','Pago al recibir en zonas habilitadas.');
- window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
-};
-// Navegación común: las páginas de producto no tenían un menú móvil funcional.
-if(!document.getElementById('mobile-menu')){
- let nav=document.createElement('div');nav.id='bf-mobile-nav';nav.innerHTML='<div class="bf-backdrop"></div><nav class="bf-panel" aria-label="Productos Blindaflex"><button type="button" class="bf-close" aria-label="Cerrar menú">×</button><a class="bf-menu-link" href="index.html">Inicio</a><a class="bf-menu-link" href="tienda-blindaje-techos.html">Blindaje para Techos</a><a class="bf-menu-link" href="tienda-barrera-impermeable.html">Barrera Impermeable</a><a class="bf-menu-link" href="tienda-blindaje-atermico.html">Blindaje Reflectivo</a><a class="bf-menu-link" href="tienda-bindaje-transparente.html">Blindaje Transparente</a><a class="bf-menu-link" href="tienda-barrera-antihongo.html">Barrera Antihongo</a></nav>';
- document.body.appendChild(nav);const close=()=>nav.classList.remove('bf-open');nav.querySelector('.bf-backdrop').addEventListener('click',close);nav.querySelector('.bf-close').addEventListener('click',close);
- document.querySelector('header .menu-btn')?.addEventListener('click',()=>{closeCartDrawer();nav.classList.add('bf-open')});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();closeCartDrawer()}});
-}
-cart=reload();update();
-})();
-</script>
+
+
 
 <script id="bf-index-local-video-wholesale">
 (()=>{
@@ -1497,101 +1218,36 @@ cart=reload();update();
   });
 })();
 </script>
-<script id="bf-cart-4-pages-2026-10-30">
-/* Carrito compartido: único kit por familia de producto elegible, no por pedido. */
-(function(){
-'use strict';
-const KEY_BF='blindaflex_cart_data';
-const KIT_BF='Rodillo premium, sellador elastomérico Blindaflex para grietas y fisuras de 1,2 kg y pincel profesional.';
-const formatBF=v=>'$'+Math.round(v).toLocaleString('es-AR');
-const escBF=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const familyBF=i=> i.type==='reflectivo'||/Blindaje Reflectivo/i.test(i.product||'')?'reflectivo':i.type==='techo'||/Blindaje para Techos/i.test(i.product||'')?'techos':'otro';
-const getCartBF=()=>{try {const data=JSON.parse(localStorage.getItem(KEY_BF)||'{}');return Array.isArray(data.items)?data.items.filter(i=>i&&Number(i.qty)>0).map(i=>({...i,qty:Math.max(1,Math.floor(Number(i.qty)))})):[];}catch(e){return []}};
-const promotionBF=items=>{
- const qt=f=>items.filter(i=>familyBF(i)===f).reduce((n,i)=>n+Number(i.qty||0),0);
- const qtyT=qt('techos'),qtyR=qt('reflectivo');
- const percent=q=>q>=4?22:q===3?17:q===2?12:0;
- const pT=percent(qtyT),pR=percent(qtyR);
- const oldPrice=i=>familyBF(i)==='techos'?148000:familyBF(i)==='reflectivo'?170120:Number(i.price??i.unitPrice??0);
- const baseLine=i=>Number(i.qty||0)*oldPrice(i);
- const totalLine=i=>Math.round(baseLine(i)*(1-(familyBF(i)==='techos'?pT:familyBF(i)==='reflectivo'?pR:0)/100));
- const lines=items.map(i=>({...i,family:familyBF(i),base:baseLine(i),subtotal:totalLine(i)}));
- const savedFor=f=>lines.filter(i=>i.family===f).reduce((n,i)=>n+i.base-i.subtotal,0);
- return {lines,qtyT,qtyR,pT,pR,kitCount:Number(qtyT>0)+Number(qtyR>0),savedT:savedFor('techos'),savedR:savedFor('reflectivo'),total:lines.reduce((n,i)=>n+i.subtotal,0),saved:lines.reduce((n,i)=>n+i.base-i.subtotal,0)};
-};
-const kitBF=p=>{
- if(!p.kitCount)return '';
- const entries=[];
- if(p.qtyT)entries.push('1 kit por Blindaje para Techos');
- if(p.qtyR)entries.push('1 kit por Blindaje Reflectivo');
- return `<div class="bf-unified-gifts" style="background:#e4f6f8;color:#071a24;padding:13px;border-radius:9px;margin-bottom:13px;border:1px solid #00afc6;"><strong>🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO</strong><div style="font-size:12px;margin:6px 0;">${entries.map(escBF).join(' · ')}</div><div style="font-size:12px;line-height:1.5;">${KIT_BF}</div><div style="font-size:11px;margin-top:7px;">Se entrega 1 kit por familia de producto elegible, sin importar cuántos baldes comprás de cada una.</div></div>`;
-};
-const ratesBF=p=>{
- let h='';
- if(p.pT)h+=`<div style="font-size:12px;margin:7px 0;"><strong>Techos: ${p.pT}% de descuento</strong> · Te ahorrás ${formatBF(p.savedT)}</div>`;
- if(p.pR)h+=`<div style="font-size:12px;margin:7px 0;"><strong>Reflectivo: ${p.pR}% de descuento</strong> · Te ahorrás ${formatBF(p.savedR)}</div>`;
- return h;
-};
-window.renderDrawer=function(){
- const el=document.getElementById('cart-body'),total=document.getElementById('drawer-total'),btn=document.getElementById('btn-checkout');if(!el)return;
- const items=getCartBF(),p=promotionBF(items);if(total)total.textContent=formatBF(p.total);if(btn)btn.disabled=!items.length;
- if(!items.length){el.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>';return;}
- let h=kitBF(p)+ratesBF(p);
- for(const i of p.lines){
- const id=escBF(i.id), qty=Number(i.qty||0);
- h+=`<div class="cart-item" style="padding:12px 0;border-bottom:1px solid #ddd;"><div style="display:flex;justify-content:space-between;gap:10px;"><strong>${escBF(i.product)}</strong><button type="button" data-bf-remove="${id}" style="border:0;background:none;color:#b34134;cursor:pointer;">Quitar</button></div><div style="font-size:12px;margin:5px 0;">${i.presentation?'Presentación: '+escBF(i.presentation)+' kg · ':''}Color: ${escBF(i.color||'Sin especificar')}</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:9px;"><div style="display:flex;align-items:center;gap:12px;"><button type="button" data-bf-delta="-1" data-bf-id="${id}" aria-label="Restar unidad" style="padding:5px 9px;">−</button><strong>${qty}</strong><button type="button" data-bf-delta="1" data-bf-id="${id}" aria-label="Sumar unidad" style="padding:5px 9px;">+</button></div><strong>${formatBF(i.subtotal)}</strong></div></div>`;
- }
- if(p.saved)h+=`<div style="padding:12px 0;font-weight:800;color:#00899b;">AHORRO TOTAL: ${formatBF(p.saved)}</div>`;
- el.innerHTML=h;
-};
-window.renderCheckoutSummary=function(){
- const el=document.getElementById('checkout-summary');if(!el)return;
- const p=promotionBF(getCartBF());let h=p.lines.map(i=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #8884;"><span>${Number(i.qty)} × ${escBF(i.product)} (${escBF(i.color||'')})</span><strong>${formatBF(i.subtotal)}</strong></div>`).join('');
- h+=kitBF(p)+ratesBF(p);
- if(p.saved)h+=`<p><strong>AHORRO TOTAL: ${formatBF(p.saved)}</strong></p>`;
- h+=`<div style="display:flex;justify-content:space-between;margin:14px 0;font-size:18px;font-weight:900;"><span>TOTAL</span><span>${formatBF(p.total)}</span></div>`;
- el.innerHTML=h;
-};
-window.submitWhatsApp=function(e){
- if(e)e.preventDefault();const p=promotionBF(getCartBF());if(!p.lines.length)return;
- const val=id=>(document.getElementById(id)?.value||'').trim();
- const rows=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+val('f-nombre'),'Teléfono: '+val('f-tel'),'Localidad/Barrio: '+val('f-loc'),'Dirección: '+val('f-calle')+' '+val('f-num')];
- if(val('f-cp'))rows.push('Código postal: '+val('f-cp'));if(val('f-ref'))rows.push('Referencia: '+val('f-ref'));
- rows.push('','*DETALLE DEL PEDIDO*');
- for(const i of p.lines)rows.push(`${Number(i.qty)} × ${i.product} · ${i.color||'Sin especificar'}${i.presentation?' · '+i.presentation+' kg':''}`,'Subtotal: '+formatBF(i.subtotal),'');
- if(p.pT)rows.push('Blindaje para Techos: '+p.pT+'% OFF · Ahorro: '+formatBF(p.savedT));
- if(p.pR)rows.push('Blindaje Reflectivo: '+p.pR+'% OFF · Ahorro: '+formatBF(p.savedR));
- if(p.kitCount){rows.push(`🎁 ${p.kitCount} KIT${p.kitCount===1?'':'S'} PREMIUM DE REGALO`);if(p.qtyT)rows.push('1 kit por Blindaje para Techos');if(p.qtyR)rows.push('1 kit por Blindaje Reflectivo');rows.push('Contenido de cada kit: '+KIT_BF);}
- if(p.saved)rows.push('AHORRO TOTAL: '+formatBF(p.saved));
- rows.push('*TOTAL PRODUCTOS: '+formatBF(p.total)+'*','Envío según zona de entrega.','Pago al recibir en zonas habilitadas.');
- window.open('https://wa.me/5493512661626?text='+encodeURIComponent(rows.join('\n')),'_blank','noopener');
-};
-if(document.getElementById('btn-checkout')){
- const b=document.getElementById('btn-checkout');b.textContent='CONTINUAR CON MI PEDIDO';
- b.onclick=function(){if(!getCartBF().length)return;
-  if(typeof openHomeCheckout==='function' && !document.getElementById('main-store')){window.closeCartDrawer?.();openHomeCheckout();}
-  else if(typeof goToCheckout==='function')goToCheckout();
-  else if(typeof openHomeCheckout==='function'){window.closeCartDrawer?.();openHomeCheckout();}
-  window.renderCheckoutSummary();
- };
-}
-const body=document.getElementById('cart-body');
-if(body)body.addEventListener('click',e=>{const b=e.target.closest('button[data-bf-delta],button[data-bf-remove]');if(!b)return;
- e.stopImmediatePropagation();const id=b.getAttribute('data-bf-id')||b.getAttribute('data-bf-remove');const items=getCartBF();const i=items.find(x=>String(x.id)===String(id));if(!i)return;
- if(b.hasAttribute('data-bf-remove'))items.splice(items.indexOf(i),1);
- else {i.qty+=Number(b.getAttribute('data-bf-delta'));if(i.qty<=0)items.splice(items.indexOf(i),1);}
- localStorage.setItem(KEY_BF,JSON.stringify({items,lastActivity:Date.now()}));
- if(typeof bfCartRefresh==='function')bfCartRefresh();else if(typeof updateCartCounter==='function')updateCartCounter();window.renderDrawer();
-},true);
-window.addEventListener('pageshow',()=>{window.renderDrawer();window.renderCheckoutSummary();});
-window.addEventListener('storage',e=>{if(e.key===KEY_BF){window.renderDrawer();window.renderCheckoutSummary();}});
-window.renderDrawer();
-const bfCounter=document.getElementById('cart-counter');if(bfCounter){try{bfCounter.textContent=getCartBF().reduce((n,i)=>n+Number(i.qty||0),0);}catch(e){}}
-})();
-</script>
+
 
 <script id="bf-tab-attention">
 (()=>{const original=document.title;let timer=null,index=0;const messages=['👋 ¡Volvé a Blindaflex!','💧 Tu protección te espera'];function reset(){if(timer){clearInterval(timer);timer=null;}document.title=original;}document.addEventListener('visibilitychange',()=>{reset();if(document.hidden){document.title=messages[0];index=1;timer=setInterval(()=>{if(document.hidden){document.title=messages[index%messages.length];index++;}else reset();},3000);}});window.addEventListener('pagehide',reset);})();
+</script>
+<script id="bf-cart-current-plans">
+(function(){
+'use strict';
+const KEY='blindaflex_cart_data', PAYMENT_KEY='blindaflex_payment_preference';
+const PRODUCTS={techos_20:{nombre:'Blindaje para Techos',presentacion:'20 kg',precio_base:167000},atermico_20:{nombre:'Blindaje Atérmico',presentacion:'20 kg',precio_base:203980},barrera_12:{nombre:'Barrera Impermeable',presentacion:'12 kg',precio_base:130106},barrera_5:{nombre:'Barrera Impermeable',presentacion:'5 kg',precio_base:54794}};
+const PLANS={cordobesa_20:{nombre:'20 cuotas - Tarjeta Cordobesa',cuotas:20,descuento:0},cuotas_15:{nombre:'15 cuotas',cuotas:15,descuento:0},cuotas_9:{nombre:'9 cuotas',cuotas:9,descuento:.08},cuotas_3:{nombre:'3 cuotas',cuotas:3,descuento:.14},contado:{nombre:'Contado',cuotas:1,descuento:.20},transferencia:{nombre:'Contado',cuotas:1,descuento:.20}};
+const fmt=n=>'$'+Number(n).toLocaleString('es-AR',{maximumFractionDigits:2,minimumFractionDigits:Number.isInteger(n)?0:2});
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let db={productos:PRODUCTS,modalidades:PLANS};
+fetch('precios.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No disponible');return r.json()}).then(j=>{if(j.productos)db.productos={...PRODUCTS,...j.productos};if(j.modalidades)db.modalidades={...PLANS,...j.modalidades};render()}).catch(()=>render());
+function getItems(){try{const obj=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(obj.items)?obj.items.filter(i=>i&&Number(i.qty)>0):[]}catch(e){return []}}
+function save(items){localStorage.setItem(KEY,JSON.stringify({items,lastActivity:Date.now()}));render()}
+function getPlan(){const key=localStorage.getItem(PAYMENT_KEY)||'cuotas_15';return {key:db.modalidades[key]?key:'cuotas_15',...db.modalidades[db.modalidades[key]?key:'cuotas_15']}}
+function identify(i){if(db.productos[i.id])return i.id;const name=String(i.product||'');if(/barrera impermeable/i.test(name))return /(?:^|\D)5\s*kg/i.test(String(i.presentation||i.presentacion||name))?'barrera_5':'barrera_12';if(/at[eé]rmico|reflectivo/i.test(name))return 'atermico_20';if(/techos/i.test(name))return 'techos_20';return null}
+function lines(){const plan=getPlan(),items=getItems();let total=0,baseTotal=0;const rows=items.map((i,index)=>{const pid=identify(i),product=pid?db.productos[pid]:null;const qty=Math.max(1,Math.floor(Number(i.qty)||1));const base=Number(product?.precio_base||i.price||i.unitPrice||0);const amount=pid==='techos_20'&&plan.key==='cordobesa_20'?168000*qty:Math.round(base*qty*(1-Number(plan.descuento||0)));const subtotal=amount;total+=subtotal;baseTotal+=base*qty;return {i,index,qty,pid,product,subtotal,base};});return {rows,total,baseTotal,plan}}
+function render(){const {rows,total,baseTotal,plan}=lines();const count=rows.reduce((a,r)=>a+r.qty,0);const counter=document.getElementById('cart-counter');if(counter)counter.textContent=count;const button=document.getElementById('btn-checkout');if(button)button.disabled=!count;const amount=document.getElementById('drawer-total');if(amount)amount.textContent=fmt(total);const body=document.getElementById('cart-body');if(body){if(!rows.length){body.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>'}else{let html='<div class="bf-cart-plan"><strong>FORMA DE PAGO: '+esc(plan.nombre)+'</strong>'+(plan.cuotas>1?fmt(total/plan.cuotas)+' por cuota<br>':'')+'Precio total: '+fmt(total)+'</div>';rows.forEach(({i,index,qty,product,subtotal})=>{html+='<div class="bf-cart-line"><div class="bf-cart-line-head"><div class="bf-cart-line-title">'+esc(product?.nombre||i.product||'Producto')+'</div><button type="button" data-remove="'+index+'" aria-label="Quitar producto" style="border:0;background:#fee2e2;color:#a42323;border-radius:6px;padding:5px 9px;cursor:pointer">Quitar</button></div><div class="bf-cart-line-meta">'+(product?.presentacion?'Presentación: '+esc(product.presentacion)+' · ':i.presentation?'Presentación: '+esc(i.presentation)+' · ':'')+'Color: '+esc(i.color||'Blanco')+'</div><div class="bf-cart-line-controls"><div><button type="button" data-qty="-1" data-index="'+index+'">−</button> <strong>'+qty+'</strong> <button type="button" data-qty="1" data-index="'+index+'">+</button></div><strong>'+fmt(subtotal)+'</strong></div></div>'});if(baseTotal>total)html+='<div class="bf-cart-note">Descuento aplicado: '+fmt(baseTotal-total)+'</div>';body.innerHTML=html;}}renderSummary()}
+function renderSummary(){const el=document.getElementById('checkout-summary');if(!el)return;const {rows,total,baseTotal,plan}=lines();el.innerHTML=rows.map(({i,product,qty,subtotal})=>'<div style="padding:10px 0;border-bottom:1px solid #e2e8f0"><strong>'+qty+' × '+esc(product?.nombre||i.product||'Producto')+'</strong><div style="font-size:12px;color:#64748b">'+esc(product?.presentacion||i.presentation||'')+' · '+esc(i.color||'Blanco')+'</div><div style="text-align:right;font-weight:800">'+fmt(subtotal)+'</div></div>').join('')+'<p style="margin:15px 0 5px"><strong>Modalidad: '+esc(plan.nombre)+'</strong></p>'+(plan.cuotas>1?'<p>'+plan.cuotas+' cuotas de '+fmt(total/plan.cuotas)+'</p>':'')+(baseTotal>total?'<p>Descuento: '+fmt(baseTotal-total)+'</p>':'')+'<p style="font-size:20px;font-weight:900;margin-top:14px">TOTAL: '+fmt(total)+'</p>'}
+window.openCartDrawer=function(){render();document.getElementById('cart-overlay').classList.add('open');document.getElementById('cart-drawer').classList.add('open');document.body.style.overflow='hidden'};
+window.closeCartDrawer=function(){document.getElementById('cart-overlay').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open');document.body.style.overflow=''};
+window.openHomeCheckout=function(){if(!getItems().length)return;closeCartDrawer();renderSummary();document.getElementById('checkout-view').style.display='block';document.body.style.overflow='hidden';document.getElementById('checkout-view').scrollTop=0};
+window.closeHomeCheckout=function(){document.getElementById('checkout-view').style.display='none';document.body.style.overflow=''};
+window.submitWhatsApp=function(e){if(e)e.preventDefault();const {rows,total,baseTotal,plan}=lines();if(!rows.length)return;const v=id=>document.getElementById(id)?.value?.trim()||'';const msg=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre y apellido: '+v('f-nombre'),'Teléfono: '+v('f-tel'),'Localidad/Barrio: '+v('f-loc'),'Dirección: '+v('f-calle')+' '+v('f-num'),'Código postal: '+v('f-cp'),'Referencia: '+v('f-ref'),'','*DETALLE DEL PEDIDO*'];rows.forEach(({i,qty,product,subtotal})=>msg.push(qty+' × '+(product?.nombre||i.product||'Producto')+' · '+(product?.presentacion||i.presentation||'')+' · '+(i.color||'Blanco'),'Subtotal: '+fmt(subtotal),''));msg.push('*FORMA DE PAGO: '+plan.nombre+'*');if(plan.cuotas>1)msg.push(plan.cuotas+' cuotas de '+fmt(total/plan.cuotas));if(baseTotal>total)msg.push('Descuento: '+fmt(baseTotal-total));msg.push('*TOTAL FINAL: '+fmt(total)+'*','Envío a coordinar según zona.','Pago al recibir en zonas habilitadas.');window.open('https://wa.me/5493512661626?text='+encodeURIComponent(msg.join('\n')),'_blank','noopener')};
+document.getElementById('cart-body')?.addEventListener('click',e=>{const btn=e.target.closest('button[data-remove],button[data-qty]');if(!btn)return;const items=getItems(),idx=Number(btn.dataset.remove??btn.dataset.index);if(!Number.isInteger(idx)||!items[idx])return;if(btn.hasAttribute('data-remove'))items.splice(idx,1);else{items[idx].qty=Number(items[idx].qty)+Number(btn.dataset.qty);if(items[idx].qty<=0)items.splice(idx,1)}save(items)});
+window.addEventListener('pageshow',render);window.addEventListener('storage',e=>{if(e.key===KEY||e.key===PAYMENT_KEY)render()});render();
+})();
 </script>
 </body>
 </html>
