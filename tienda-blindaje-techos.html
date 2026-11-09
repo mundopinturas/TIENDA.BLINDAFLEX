@@ -102,6 +102,9 @@
         .video-wrapper { position: relative; width: 100%; height: 65vh; min-height: 400px; max-height: 550px; border-radius: var(--radius-lg); overflow: hidden; background-color: #000; border: 2px solid var(--c-azul); }
         .video-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; }
         .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; }
+        .bf-vslide.is-current { transform: translateX(0); z-index: 1; }
+        .bf-pause-indicator { display:inline-flex; align-items:center; justify-content:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; background:rgba(7,26,36,.68); border-radius:50%; width:58px; height:58px; font-size:23px; opacity:0; transition:opacity .2s; pointer-events:none; }
+        .bf-pause-indicator.is-visible {opacity:1;}
         .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
         .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
         .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
@@ -419,7 +422,7 @@
             <section class="section-gap hero-section">
                 <div class="video-wrapper" id="bf-vcarousel" role="region" aria-label="Videos demostrativos">
                     <div class="bf-vstage">
-                        <div class="bf-vslide" data-video="0"><video id="bf-video-0" src="assets/videos/blindaje-techos-1-hidrorrepelencia.mp4" muted autoplay playsinline loop></video></div>
+                        <div class="bf-vslide is-current" data-video="0"><video id="bf-video-0" src="assets/videos/blindaje-techos-1-hidrorrepelencia.mp4" muted autoplay playsinline preload="metadata"></video></div>
                         <div class="bf-vslide" data-video="1"><video id="bf-video-1" src="assets/videos/blindaje-techos-2-elasticidad.mp4" muted playsinline></video></div>
                         <div class="bf-vslide" data-video="2"><video id="bf-video-2" src="assets/videos/blindaje-techos-3-blindaje-integral.mp4" muted playsinline></video></div>
                         <button type="button" class="bf-vtap" id="bf-vtap"><span class="bf-pause-indicator">▶</span></button>
@@ -1072,7 +1075,84 @@
         return { init, setPayment, changeQty, calculateSurface, updateUI, addToCart, openCart, closeCart, cartItemDelta, cartItemRemove, goToCheckout, closeCheckout, submitWhatsApp, initComparer };
     })();
 
+    function initBlindaflexVideos() {
+        const wrapper = document.getElementById('bf-vcarousel');
+        if (!wrapper) return;
+        const slides = Array.from(wrapper.querySelectorAll('.bf-vslide'));
+        const videos = slides.map(slide => slide.querySelector('video'));
+        const dots = Array.from(wrapper.querySelectorAll('.bf-dot'));
+        const tap = document.getElementById('bf-vtap');
+        const indicator = tap.querySelector('.bf-pause-indicator');
+        const sound = document.getElementById('bf-sound');
+        let active = 0;
+        let pausedByUser = false;
+        let soundEnabled = false;
+        let indicatorTimeout;
+
+        function showIndicator(symbol) {
+            indicator.textContent = symbol;
+            indicator.classList.add('is-visible');
+            clearTimeout(indicatorTimeout);
+            indicatorTimeout = setTimeout(() => indicator.classList.remove('is-visible'), 650);
+        }
+        function activate(index, autoplay = true) {
+            active = (index + slides.length) % slides.length;
+            slides.forEach((slide, i) => {
+                const selected = i === active;
+                slide.classList.toggle('is-current', selected);
+                slide.style.transform = selected ? 'translateX(0)' : 'translateX(100%)';
+                slide.setAttribute('aria-hidden', String(!selected));
+                if (!selected) videos[i].pause();
+                if (dots[i]) dots[i].classList.toggle('bf-selected', selected);
+            });
+            const video = videos[active];
+            video.muted = !soundEnabled;
+            if (autoplay && !pausedByUser) {
+                const promise = video.play();
+                if (promise && typeof promise.catch === 'function') promise.catch(() => showIndicator('▶'));
+            }
+        }
+        videos.forEach((video, i) => {
+            video.addEventListener('ended', () => {
+                if (i === active && !pausedByUser) activate(active + 1);
+            });
+            video.addEventListener('error', () => {
+                if (i === active) {
+                    console.error('No se pudo cargar el video:', video.currentSrc || video.src);
+                    showIndicator('!');
+                }
+            });
+        });
+        tap.addEventListener('click', () => {
+            const video = videos[active];
+            if (video.paused) {
+                pausedByUser = false;
+                const promise = video.play();
+                if (promise && typeof promise.catch === 'function') promise.catch(() => showIndicator('▶'));
+                showIndicator('❚❚');
+            } else {
+                pausedByUser = true;
+                video.pause();
+                showIndicator('▶');
+            }
+        });
+        sound.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            videos.forEach(v => { v.muted = !soundEnabled; });
+            sound.textContent = soundEnabled ? '🔊 SILENCIAR' : '🔇 ACTIVAR SONIDO';
+        });
+        activate(0);
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) videos[active].pause();
+            else if (!pausedByUser) {
+                const promise = videos[active].play();
+                if (promise && typeof promise.catch === 'function') promise.catch(() => {});
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+        initBlindaflexVideos();
         appPricing.init();
         appPricing.initComparer();
         
