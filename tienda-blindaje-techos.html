@@ -100,18 +100,23 @@
 
         .hero-section { margin-top: 16px; margin-bottom: 40px; display: flex; flex-direction: column; }
         .video-wrapper { position: relative; width: 100%; height: 65vh; min-height: 400px; max-height: 550px; border-radius: var(--radius-lg); overflow: hidden; background-color: #000; border: 2px solid var(--c-azul); }
-        .video-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; }
+        /* ===== BLINDAFLEX · CARRUSEL DE 3 VIDEOS ===== */
+        .video-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; background: #101820; }
         .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; }
-        .bf-vslide.is-current { transform: translateX(0); z-index: 2; }
-        .bf-pause-indicator { display:inline-flex; align-items:center; justify-content:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:white; background:rgba(7,26,36,.68); border-radius:50%; width:58px; height:58px; font-size:23px; opacity:0; transition:opacity .2s; pointer-events:none; }
-        .bf-pause-indicator.is-visible {opacity:1;}
-        .bf-vtap.bf-paused .bf-pause-indicator {opacity:1;}
         .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
-        .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+        .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
+        .bf-vtap:focus-visible, .bf-vbtn:focus-visible, .bf-sound:focus-visible { outline: 3px solid #00afc6; outline-offset: -3px; }
+        .bf-vtap .bf-pause-indicator { display: none; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(3,17,29,.64); color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 26px; margin: auto; }
+        .bf-vtap.bf-paused { display: flex; align-items: center; justify-content: center; }
+        .bf-vtap.bf-paused .bf-pause-indicator { display: flex; }
+        .bf-vbtn { position: absolute; z-index: 6; top: 50%; transform: translateY(-50%); border: 1px solid rgba(255,255,255,.56); background: rgba(4,18,33,.43); color: #fff; border-radius: 50%; width: 40px; height: 40px; display: grid; place-items: center; font-size: 32px; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; backdrop-filter: blur(3px); }
+        .bf-prev { left: 10px; } .bf-next { right: 10px; }
         .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
         .bf-dots { position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; pointer-events: none; }
         .bf-dot { display: block; width: 6px; height: 6px; background: rgba(255,255,255,.57); border-radius: 50%; transition: background .2s, width .2s; }
         .bf-dot.bf-selected { width: 17px; background: #00afc6; border-radius: 8px; }
+        @media (max-width: 390px) { .bf-vbtn { width: 36px; height: 36px; font-size: 28px; } .bf-sound { font-size: 10px; } }
+        @media (prefers-reduced-motion: reduce) { .bf-vslide { transition-duration: .01ms !important; } }
 
         .hero-header { text-align: center; margin-top: 24px; margin-bottom: 20px; }
         .hero-header .hero-claim { font-size: 24px; font-weight: 900; color: var(--c-azul); line-height: 1.15; margin-bottom: 14px; text-transform: uppercase; }
@@ -386,6 +391,17 @@
         }
         /* La vista de datos de entrega debe poder abrirse por encima de la tienda */
         #checkout-view.is-open {display:block !important; position:fixed; inset:0; z-index:1100; overflow-y:auto; overscroll-behavior:contain; background:var(--c-gris-bg); padding-top:24px; padding-bottom:36px;}
+
+        /* Reproductor de referencia: solo tamaño y comportamiento visual del carrusel */
+        #bf-vcarousel.video-wrapper {
+            position:relative; width:100%; max-width:600px; height:auto; min-height:0;
+            max-height:none; aspect-ratio:3 / 4; margin:16px auto var(--gap-mob,88px);
+            border-radius:var(--radius-lg); overflow:hidden; background:#101820;
+            border:2px solid var(--c-azul); box-shadow:var(--shadow-tech);
+            flex:none;
+        }
+        #bf-vcarousel .bf-vstage {position:relative;width:100%;height:100%;overflow:hidden;}
+        #bf-vcarousel .bf-vslide video {width:100%;height:100%;object-fit:contain;}
     </style>
 </head>
 <body>
@@ -444,6 +460,8 @@
                         <div class="bf-vslide" data-video="2"><video id="bf-video-2" src="assets/videos/blindaje-techos-3-blindaje-integral.mp4" muted playsinline></video></div>
                         <button type="button" class="bf-vtap" id="bf-vtap"><span class="bf-pause-indicator">▶</span></button>
                     </div>
+
+
                     <div class="bf-dots"><span class="bf-dot bf-selected"></span><span class="bf-dot"></span><span class="bf-dot"></span></div>
                     <button type="button" class="bf-sound" id="bf-sound">🔇 ACTIVAR SONIDO</button>
                 </div>
@@ -1102,7 +1120,8 @@
         return { init, setPayment, changeQty, calculateSurface, updateUI, addToCart, openCart, closeCart, cartItemDelta, cartItemRemove, goToCheckout, closeCheckout, submitWhatsApp, initComparer };
     })();
 
-function initBlindaflexVideos() {
+/* Carrusel de video: implementación aislada de la referencia Barrera. */
+    (function () {
         'use strict';
         const root = document.getElementById('bf-vcarousel');
         if (!root) return;
@@ -1119,29 +1138,6 @@ function initBlindaflexVideos() {
         let pointerStart = null;
         let suppressNextClick = false;
         let changeTimeout;
-        let failed = false;
-        let playbackRequest = 0;
-        const notice = document.createElement('div');
-        notice.id = 'bf-video-error';
-        notice.style.cssText = 'display:none;position:absolute;z-index:8;left:5%;right:5%;top:38%;padding:16px;background:rgba(7,26,36,.95);border:1px solid #00afc6;border-radius:12px;color:white;text-align:center;font:600 13px/1.5 Inter,system-ui,sans-serif;';
-        root.appendChild(notice);
-        function reportError(v) {
-            failed = true;
-            const source = v.currentSrc || v.src;
-            notice.replaceChildren();
-            const title = document.createElement('div');
-            title.textContent = 'No se pudo cargar el video desde el servidor.';
-            const link = document.createElement('a');
-            link.href = source;
-            link.target = '_blank';
-            link.rel = 'noopener';
-            link.textContent = 'Comprobar archivo MP4';
-            link.style.cssText = 'display:block;color:#67e8f9;text-decoration:underline;margin-top:8px';
-            notice.append(title,link);
-            notice.style.display = 'block';
-            console.error('Blindaflex video error',v.error?.code,source);
-        }
-        function clearError() { failed=false; notice.style.display='none'; }
 
         const activeVideo = () => videos[active];
         const offscreenPosition = (index, center) => {
@@ -1171,18 +1167,14 @@ function initBlindaflexVideos() {
         async function playCurrent() {
             if (!visible || document.hidden || explicitlyPaused) { updatePause(); return; }
             const v = activeVideo();
-            if (v.error) { reportError(v); return; }
-            const request = ++playbackRequest;
             v.muted = !desiredSound;
-            if (v.networkState === HTMLMediaElement.NETWORK_EMPTY) v.load();
             try {
                 await v.play();
             } catch(e) {
                 // El navegador puede bloquear audio en el cambio de video.
                 v.muted = true;
-                try { await v.play(); } catch (_) { if(v.error) reportError(v); /* Espera al toque del usuario. */ }
+                try { await v.play(); } catch (_) { /* Espera al toque del usuario. */ }
             }
-            if (request !== playbackRequest) return;
             updateSound(); updatePause();
         }
         function switchVideo(direction) {
@@ -1193,13 +1185,11 @@ function initBlindaflexVideos() {
             const to = (from + direction + 3) % 3;
             const outgoing = slides[from];
             const incoming = slides[to];
-            playbackRequest++;
             videos[from].pause();
             // Las flechas también reinician el video seleccionado, con o sin sonido.
             videos[to].pause();
             try { videos[to].currentTime = 0; } catch (_) {}
             active = to;
-            clearError();
             explicitlyPaused = false;
             incoming.style.transition = 'none';
             incoming.style.transform = `translateX(${direction > 0 ? 100 : -100}%)`;
@@ -1214,38 +1204,23 @@ function initBlindaflexVideos() {
             outgoing.style.transform = `translateX(${direction > 0 ? -100 : 100}%)`;
             dots.forEach((dot,index) => dot.classList.toggle('bf-selected',index===active));
             root.setAttribute('aria-label', `Videos demostrativos Blindaflex. Video ${active + 1} de 3`);
-            // Esperar al primer fotograma del siguiente video evita intentar
-            // reproducir un archivo que todavía no tiene datos disponibles.
-            if (videos[to].readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) playCurrent();
-            else {
-                videos[to].preload = 'auto';
-                if (videos[to].networkState === HTMLMediaElement.NETWORK_EMPTY) videos[to].load();
-                // El evento loadeddata de cada video inicia la reproducción.
-            }
+            playCurrent();
             changeTimeout = setTimeout(() => { arrange(active); changing = false; },motion + 45);
         }
         videos.forEach((video,index) => {
             video.muted = true;
             video.controls = false;
-            video.playsInline = true;
-            video.addEventListener('loadeddata', () => { if(index === active) { clearError(); if(visible && !explicitlyPaused) playCurrent(); } });
             video.addEventListener('ended', () => {
                 if (index === active && visible && !explicitlyPaused) switchVideo(1);
             });
             video.addEventListener('error', () => {
                 if (index === active) {
-                    reportError(video);
+                    console.warn('Blindaflex: no se encontró el archivo del video', video.currentSrc);
                     tap.classList.add('bf-paused');
                 }
             });
         });
         arrange(active);
-        videos[0].preload = 'auto';
-        videos[1].preload = 'metadata';
-        videos[2].preload = 'metadata';
-        setTimeout(() => {
-            if (videos[active].readyState === 0 && videos[active].networkState === HTMLMediaElement.NETWORK_NO_SOURCE) reportError(videos[active]);
-        }, 3500);
         soundButton.addEventListener('click', async () => {
             desiredSound = activeVideo().muted;
             activeVideo().muted = !desiredSound;
@@ -1278,21 +1253,17 @@ function initBlindaflexVideos() {
         // Pausa al salir del área visible y continúa desde el mismo segundo al regresar.
         if ('IntersectionObserver' in window) {
             const observer=new IntersectionObserver(entries => {
-                // En videos altos, 45% del elemento puede superar la altura visible del celular.
-                visible = entries[0].isIntersecting && entries[0].intersectionRatio > 0.02;
+                visible = entries[0].intersectionRatio >= 0.45;
                 if (visible) playCurrent(); else pauseAll();
-            },{threshold:[0,0.02,0.1,0.25,0.45,1]});
+            },{threshold:[0,0.25,0.45,0.6,1]});
             observer.observe(root);
         } else { visible=true; playCurrent(); }
-        document.addEventListener('blindaflex:checkout-open',pauseAll);
-        document.addEventListener('blindaflex:checkout-close',() => { if(visible) playCurrent(); });
         document.addEventListener('visibilitychange',() => {
             if(document.hidden) pauseAll(); else if(visible) playCurrent();
         });
-    }
+    })();
 
-    document.addEventListener('DOMContentLoaded', () => {
-        initBlindaflexVideos();
+        document.addEventListener('DOMContentLoaded', () => {
         appPricing.init();
         appPricing.initComparer();
         
