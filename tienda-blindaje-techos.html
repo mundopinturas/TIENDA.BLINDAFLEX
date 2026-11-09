@@ -100,24 +100,36 @@
 
         .hero-section { margin-top: 16px; margin-bottom: 40px; display: flex; flex-direction: column; }
         
-        /* ===== BLINDAFLEX · CARRUSEL DE 3 VIDEOS ===== */
-        .video-wrapper { position: relative; width: 100%; height: 65vh; min-height: 400px; max-height: 550px; border-radius: var(--radius-lg); overflow: hidden; background-color: #000; border: 2px solid var(--c-azul); }
-        .video-wrapper .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; background: #101820; }
-        .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; }
-        .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
-        .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
-        .bf-vtap:focus-visible, .bf-vbtn:focus-visible, .bf-sound:focus-visible { outline: 3px solid #00afc6; outline-offset: -3px; }
-        .bf-vtap .bf-pause-indicator { display: none; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(3,17,29,.64); color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 26px; margin: auto; }
-        .bf-vtap.bf-paused { display: flex; align-items: center; justify-content: center; }
-        .bf-vtap.bf-paused .bf-pause-indicator { display: flex; }
-        .bf-vbtn { position: absolute; z-index: 6; top: 50%; transform: translateY(-50%); border: 1px solid rgba(255,255,255,.56); background: rgba(4,18,33,.43); color: #fff; border-radius: 50%; width: 40px; height: 40px; display: grid; place-items: center; font-size: 32px; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; backdrop-filter: blur(3px); }
-        .bf-prev { left: 10px; } .bf-next { right: 10px; }
-        .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
-        .bf-dots { position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; pointer-events: none; }
-        .bf-dot { display: block; width: 6px; height: 6px; background: rgba(255,255,255,.57); border-radius: 50%; transition: background .2s, width .2s; }
-        .bf-dot.bf-selected { width: 17px; background: #00afc6; border-radius: 8px; }
-        @media (max-width: 390px) { .bf-vbtn { width: 36px; height: 36px; font-size: 28px; } .bf-sound { font-size: 10px; } }
-        @media (prefers-reduced-motion: reduce) { .bf-vslide { transition-duration: .01ms !important; } }
+        /* ===== BLINDAFLEX · CARRUSEL DE 3 VIDEOS (CORREGIDO) ===== */
+        #bf-vcarousel.video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            margin: 16px auto var(--gap-mob, 40px);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background-color: #101820;
+            border: 2px solid var(--c-azul);
+            box-shadow: var(--shadow-tech);
+            flex: none;
+            display: block;
+        }
+        #bf-vcarousel .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; background: #101820; }
+        #bf-vcarousel .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; transition: none;}
+        #bf-vcarousel .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
+        #bf-vcarousel .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
+        #bf-vcarousel .bf-vtap:focus-visible, #bf-vcarousel .bf-sound:focus-visible { outline: 3px solid #00afc6; outline-offset: -3px; }
+        #bf-vcarousel .bf-pause-indicator { display: none; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(3,17,29,.64); color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 26px; margin: auto; }
+        #bf-vcarousel .bf-vtap.bf-paused { display: flex; align-items: center; justify-content: center; }
+        #bf-vcarousel .bf-vtap.bf-paused .bf-pause-indicator { display: flex; }
+        #bf-vcarousel .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
+        #bf-vcarousel .bf-dots { position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; pointer-events: none; }
+        #bf-vcarousel .bf-dot { display: block; width: 6px; height: 6px; background: rgba(255,255,255,.57); border-radius: 50%; transition: background .2s, width .2s; }
+        #bf-vcarousel .bf-dot.bf-selected { width: 17px; background: #00afc6; border-radius: 8px; }
+        @media (max-width: 390px) { #bf-vcarousel .bf-sound { font-size: 10px; } }
+        @media (prefers-reduced-motion: reduce) { #bf-vcarousel .bf-vslide { transition-duration: .01ms !important; } }
 
         .hero-header { text-align: center; margin-top: 24px; margin-bottom: 20px; }
         .hero-header .hero-claim { font-size: 24px; font-weight: 900; color: var(--c-azul); line-height: 1.15; margin-bottom: 14px; text-transform: uppercase; }
@@ -172,37 +184,33 @@
         /* Presentación comercial de financiación */
         .payment-heading {font-size:23px; font-weight:900; text-align:center; color:var(--c-azul); margin:0 0 8px;}
         .payment-intro {text-align:center; font-size:14px; color:var(--c-texto-light); margin:0 0 22px;}
-        .plan-card {width:100%; text-align:left;}
-        .plan-card:focus-visible {outline:3px solid var(--c-turquesa); outline-offset:3px;}
-        .plan-card.unavailable {cursor:default; opacity:1; background:#f8fafb; border-style:dashed;}
-        .plan-card.unavailable:hover {transform:none; box-shadow:none;}
-        .plan-note {font-size:12px; font-weight:650; color:var(--c-texto-light); margin-top:4px;}
-        .plan-installment {overflow-wrap:anywhere;}
-        .ds-row {gap:12px;}
-        .ds-row strong {min-width:0; overflow-wrap:anywhere;}
-        .ds-total-box {gap:12px; flex-wrap:wrap;}
         
         /* Comparador Interactivo de Planes */
         .comparator-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
         
-        .plan-card { background: #fff; border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 24px; cursor: pointer; display: flex; flex-direction: column; gap: 12px; transition: all 0.2s ease; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .plan-card { width: 100%; text-align: left; background: #fff; border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 24px; cursor: pointer; display: flex; flex-direction: column; gap: 12px; transition: all 0.2s ease; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
         .plan-card:hover { border-color: #cbd5e1; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.05); }
+        .plan-card:focus-visible { outline: 3px solid var(--c-turquesa); outline-offset: 3px; }
         .plan-card.active { border-color: var(--c-turquesa); background: var(--c-turquesa-light); box-shadow: 0 4px 20px rgba(0,175,198,0.15); transform: translateY(-2px); }
+        
+        .plan-card.unavailable { cursor: default; opacity: 1; background: #f8fafb; border-style: dashed; }
+        .plan-card.unavailable:hover { transform: none; box-shadow: none; border-color: var(--c-gris-border); }
         
         .plan-header { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; width:100%; flex-wrap:wrap; }
         .plan-name { flex:1; min-width:0; font-size: 16px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; line-height: 1.2; }
         .plan-badge { flex-shrink:0; white-space:nowrap; margin-left:auto; background: var(--c-naranja); color: #fff; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
         .plan-badge.exclusive { background: var(--c-azul); }
-        .plan-card.active .plan-badge { flex-shrink:0; white-space:nowrap; margin-left:auto; background: var(--c-turquesa-dark); }
+        .plan-card.active .plan-badge { background: var(--c-turquesa-dark); }
         .plan-card.active .plan-badge.exclusive { background: var(--c-azul); }
         
         .plan-price-box { display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed var(--c-gris-border); padding-top: 12px; margin-top: 4px; }
         .plan-card.active .plan-price-box { border-top-color: rgba(0,175,198,0.3); }
         
-        .plan-installment { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1; display: flex; align-items: baseline; gap: 6px;}
+        .plan-installment { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1; display: flex; align-items: baseline; gap: 6px; overflow-wrap: anywhere;}
         .plan-installment small { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
         .plan-card.active .plan-installment { color: var(--c-turquesa-dark); }
         .plan-total { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
+        .plan-note { font-size: 12px; font-weight: 650; color: var(--c-texto-light); margin-top: 4px; }
 
         @media (min-width: 640px) {
             .plan-card { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
@@ -242,12 +250,12 @@
         /* Resumen Dinámico */
         .dynamic-summary-box { background: var(--c-azul-grad); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-md); color: #fff; }
         .ds-title { font-size: 13px; font-weight: 800; color: #8ba2ac; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
-        .ds-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; font-size: 14px; font-weight: 500; }
-        .ds-row strong { font-weight: 800; text-align: right; }
+        .ds-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 14px; font-weight: 500; }
+        .ds-row strong { font-weight: 800; text-align: right; min-width: 0; overflow-wrap: anywhere;}
         .ds-row.ds-highlight { color: var(--c-turquesa); font-weight: 700; }
         .ds-row.ds-savings { color: var(--c-naranja); font-weight: 700; }
         
-        .ds-total-box { border-top: 1px dashed rgba(255,255,255,0.2); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .ds-total-box { border-top: 1px dashed rgba(255,255,255,0.2); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;}
         .ds-total-lbl { font-size: 14px; font-weight: 800; color: #b0c0c7; }
         .ds-total-val { font-size: 28px; font-weight: 900; line-height: 1; color: #fff; }
 
@@ -411,6 +419,9 @@
             .hero-section:has(> #bf-vcarousel) {flex-direction: row; align-items: center;}
             .hero-section > .hero-text-block {width:100%;}
         }
+        
+        /* Solución checkout superpuesto (se muestra correctamente como vista principal) */
+        #checkout-view.is-open {display:block !important; position:relative; z-index:1100; overflow-y:auto; background:var(--c-gris-bg); padding-top:24px; padding-bottom:36px; min-height:100vh;}
     </style>
 </head>
 <body>
@@ -1112,7 +1123,7 @@
             window.open('https://wa.me/5493512661626?text=' + encodeURIComponent(rows.join('\n')), '_blank');
         }
 
-        // Nav Controllers
+        // Nav Controllers (Corregido para manejar correctamente Checkout sobre tienda)
         function openCart() { document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-drawer').classList.add('open'); document.body.style.overflow='hidden'; }
         function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); document.body.style.overflow=''; }
         
@@ -1120,7 +1131,7 @@
             if(getCart().length === 0) return;
             closeCart();
             
-            // Ocultar vistas comerciales para liberar scroll nativo
+            // Ocultar vistas comerciales para liberar scroll nativo a Checkout
             document.querySelector('header').style.display = 'none';
             document.getElementById('main-store').style.display = 'none';
             document.getElementById('footer').style.display = 'none';
@@ -1129,7 +1140,7 @@
             const floatBar = document.getElementById('floating-bar');
             if(floatBar) floatBar.style.display = 'none';
 
-            // Mostrar el checkout normal
+            // Mostrar el checkout como pagina principal
             document.getElementById('checkout-view').style.display = 'block';
             
             document.body.style.overflow = '';
@@ -1138,6 +1149,7 @@
         }
         
         function closeCheckout() {
+            // Restaurar toda la vista de la tienda
             document.querySelector('header').style.display = '';
             document.getElementById('main-store').style.display = '';
             document.getElementById('footer').style.display = '';
@@ -1285,153 +1297,4 @@
             changing = true;
             clearTimeout(changeTimeout);
             
-            const from = active;
-            const to = (from + direction + 3) % 3;
-            
-            const outgoing = slides[from];
-            const incoming = slides[to];
-            
-            // Pause current safely
-            if (!videos[from].paused) {
-                videos[from].pause();
-            }
-            
-            // Prepare incoming
-            try { videos[to].currentTime = 0; } catch (_) {}
-            
-            active = to;
-            explicitlyPaused = false;
-            
-            incoming.style.transition = 'none';
-            incoming.style.transform = `translateX(${direction > 0 ? 100 : -100}%)`;
-            incoming.style.zIndex = '3';
-            outgoing.style.zIndex = '2';
-            
-            // Force reflow
-            void incoming.offsetWidth;
-            
-            const motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 400;
-            incoming.style.transition = `transform ${motion}ms ease-in-out`;
-            outgoing.style.transition = `transform ${motion}ms ease-in-out`;
-            
-            incoming.style.transform = 'translateX(0%)';
-            outgoing.style.transform = `translateX(${direction > 0 ? -100 : 100}%)`;
-            
-            dots.forEach((dot, index) => dot.classList.toggle('bf-selected', index === active));
-            
-            playCurrent();
-            
-            changeTimeout = setTimeout(() => { 
-                arrange(active); 
-                changing = false; 
-            }, motion + 50);
-        }
-
-        // Init positions
-        arrange(active);
-
-        // Sound Toggle
-        soundButton.addEventListener('click', async (e) => {
-            e.stopPropagation(); // Avoid triggering pause from tap
-            desiredSound = activeVideo().muted;
-            activeVideo().muted = !desiredSound;
-            
-            if (activeVideo().paused && visible && !explicitlyPaused) {
-                await playCurrent();
-            }
-            updateSound();
-        });
-
-        // Pause/Play Toggle
-        tap.addEventListener('click', (e) => {
-            if (suppressNextClick) { 
-                suppressNextClick = false; 
-                return; 
-            }
-            if (activeVideo().paused) {
-                explicitlyPaused = false;
-                playCurrent();
-            } else {
-                explicitlyPaused = true;
-                pauseAll();
-            }
-        });
-
-        // Swipe Controls
-        tap.addEventListener('pointerdown', e => {
-            pointerStart = { x: e.clientX, y: e.clientY };
-        });
-
-        tap.addEventListener('pointerup', e => {
-            if (!pointerStart) return;
-            const dx = e.clientX - pointerStart.x;
-            const dy = e.clientY - pointerStart.y;
-            pointerStart = null;
-            
-            // Horizontal swipe detected
-            if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-                suppressNextClick = true;
-                switchVideo(dx < 0 ? 1 : -1);
-                setTimeout(() => { suppressNextClick = false; }, 300);
-            }
-        });
-
-        tap.addEventListener('pointercancel', () => { 
-            pointerStart = null; 
-        });
-
-        // Visibility Observer
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver(entries => {
-                visible = entries[0].isIntersecting;
-                if (visible) {
-                    playCurrent();
-                } else {
-                    pauseAll();
-                }
-            }, { threshold: 0.3 });
-            observer.observe(root);
-        } else {
-            visible = true;
-            playCurrent();
-        }
-
-        // Handle tab visibility
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                pauseAll();
-            } else if (visible) {
-                playCurrent();
-            }
-        });
-    })();
-
-    document.addEventListener('DOMContentLoaded', () => {
-        appPricing.init();
-        appPricing.initComparer();
-        
-        try {
-            const items = JSON.parse(localStorage.getItem('blindaflex_cart_data')).items;
-            if(items) {
-                const count = items.reduce((sum, i) => sum + Number(i.qty), 0);
-                document.getElementById('cart-counter').textContent = count;
-            }
-        } catch(e) {}
-    });
-
-    function toggleMobileMenu(){
-        const menu=document.getElementById('mobile-menu'), overlay=document.getElementById('mobile-overlay');
-        const open=!menu.classList.contains('active');
-        menu.classList.toggle('active',open); overlay.classList.toggle('active',open);
-        document.body.style.overflow=open?'hidden':'';
-    }
-
-    function toggleFaq(btn) {
-        btn.classList.toggle('active');
-        const answer = btn.nextElementSibling;
-        if (btn.classList.contains('active')) answer.style.maxHeight = answer.scrollHeight + "px";
-        else answer.style.maxHeight = "0";
-    }
-    </script>
-</body>
-</html>
+            cons
