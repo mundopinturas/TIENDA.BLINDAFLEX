@@ -2147,10 +2147,11 @@ function toggleMobileMenu(){
 'use strict';
 const KEY='blindaflex_cart_data', PAY='blindaflex_payment_preference';
 const fallback={productos:{techos_20:{nombre:'Blindaje para Techos',precio_base:168000,precio_cordobesa_20:168000},atermico_20:{nombre:'Blindaje Atérmico',precio_base:203980,precio_cordobesa_20:203980},barrera_12:{nombre:'Barrera Impermeable',precio_base:130106,precio_cordobesa_20:130106},barrera_5:{nombre:'Barrera Impermeable',precio_base:54794,precio_cordobesa_20:54794}},modalidades:{cordobesa_20:{nombre:'20 cuotas · Cordobesa',cuotas:20,descuento:0},cuotas_15:{nombre:'15 cuotas',cuotas:15,descuento:0},cuotas_9:{nombre:'9 cuotas',cuotas:9,descuento:.08},cuotas_3:{nombre:'3 cuotas',cuotas:3,descuento:.14},contado:{nombre:'Contado',cuotas:1,descuento:.20}}};
-let db=null;
+let db=fallback;
 const methods=['cordobesa_20','cuotas_15','cuotas_9','cuotas_3','contado'];
 let method=methods.includes(localStorage.getItem(PAY))?localStorage.getItem(PAY):'cuotas_15';
 const fmt=n=>'$'+Number(n).toLocaleString('es-AR',{minimumFractionDigits:0,maximumFractionDigits:2});
+window.bfUnitPrice=function(kg){const id='barrera_'+kg;const p=db.productos[id],m=db.modalidades[method];return method==='cordobesa_20'?Number(p.precio_cordobesa_20):Math.round(Number(p.precio_base)*(1-Number(m.descuento||0)))};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const items=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items.filter(i=>i&&Number(i.qty)>0):[]}catch(e){return []}};
 const save=arr=>{localStorage.setItem(KEY,JSON.stringify({items:arr,lastActivity:Date.now()}));renderCart();};
@@ -2203,7 +2204,33 @@ window.closeCheckout=function(){document.getElementById('main-store').style.disp
 window.renderCheckoutSummary=function(){const arr=items(),sum=total(arr);document.getElementById('checkout-summary').innerHTML=planHTML(sum)+arr.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty)+' × '+esc(label(i))+'</span><strong>'+fmt(Number(i.qty)*unit(i))+'</strong></div>').join('')+'<div style="display:flex;justify-content:space-between;gap:12px;padding:16px 0;font-weight:900;font-size:20px"><span>TOTAL</span><span>'+fmt(sum)+'</span></div><p style="font-size:12px">Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.</p>'};
 window.submitWhatsApp=function(e){e.preventDefault();if(!db){alert('No se pudieron cargar los precios.');return}const arr=items(),sum=total(arr),p=currentPlan();if(!arr.length)return;const v=id=>document.getElementById(id)?.value?.trim()||'';const lines=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+v('f-nombre'),'Teléfono: '+v('f-tel'),'Localidad/Barrio: '+v('f-loc'),'Dirección: '+v('f-calle')+' '+v('f-num')];if(v('f-cp'))lines.push('Código postal: '+v('f-cp'));if(v('f-ref'))lines.push('Referencia: '+v('f-ref'));lines.push('','*DETALLE DEL PEDIDO*');for(const i of arr)lines.push(Number(i.qty)+' × '+label(i)+' · '+fmt(unit(i))+' c/u · Subtotal '+fmt(Number(i.qty)*unit(i)));lines.push('','*FORMA DE PAGO: '+p.nombre+'*',p.cuotas>1?p.cuotas+' cuotas de '+fmt(sum/p.cuotas):'Pago al contado','*TOTAL: '+fmt(sum)+'*','Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.','Pago al recibir en zonas habilitadas.');window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener')};
 // No habilitar compras con precios de respaldo si el archivo de precios no se carga.
-async function init(){const b=document.querySelector('.btn-sumar');if(b)b.disabled=true;const c=document.querySelector('#configurador .config-subtitle');if(c)c.textContent='Cargando precios y opciones de financiación…';try{const r=await fetch('precios.json',{cache:'no-store'});if(!r.ok)throw Error('precios.json no disponible');db=await r.json();for(const id of ['barrera_12','barrera_5']){if(!Number.isFinite(db.productos?.[id]?.precio_base)||!Number.isFinite(db.productos?.[id]?.precio_cordobesa_20))throw Error('Falta precio para '+id);APP_PRICES[Number(id.split('_')[1])]=db.productos[id].precio_base}for(const id of methods){if(!db.modalidades?.[id])throw Error('Falta modalidad '+id)}if(b)b.disabled=false;if(c)c.textContent='Elegí presentación, color, forma de pago y cantidad. Podés combinar productos.';updateSelection()}catch(err){console.error('Blindaflex Barrera:',err);if(c)c.textContent='No se pudieron cargar los precios. Revisá que precios.json esté publicado junto al HTML.';document.getElementById('bf-plan-grid').textContent='Precios temporalmente no disponibles.';document.getElementById('btn-checkout').disabled=true}}
+async function init(){
+ // Los precios de Barrera y sus cinco planes están definidos aquí para que la tienda
+ // funcione aun cuando el precios.json publicado sea una versión anterior.
+ const b=document.querySelector('.btn-sumar');
+ const c=document.querySelector('#configurador .config-subtitle');
+ try{
+  const r=await fetch('precios.json',{cache:'no-store'});
+  if(r.ok){
+   const remote=await r.json();
+   for(const id of ['barrera_12','barrera_5']){
+    const price=Number(remote.productos?.[id]?.precio_base);
+    if(Number.isFinite(price)&&price>0){
+     db.productos[id]={...db.productos[id],precio_base:price,
+      precio_cordobesa_20:Number(remote.productos[id].precio_cordobesa_20)||price};
+    }
+   }
+   // Solo usar el esquema externo si incluye todas las modalidades.
+   if(methods.every(id=>remote.modalidades?.[id]&&Number.isFinite(Number(remote.modalidades[id].descuento)))){
+    for(const id of methods)db.modalidades[id]={...db.modalidades[id],...remote.modalidades[id]};
+   }
+  }
+ }catch(err){console.warn('Barrera: se usan los precios integrados; archivo externo no disponible.',err)}
+ for(const id of ['barrera_12','barrera_5'])APP_PRICES[Number(id.split('_')[1])]=db.productos[id].precio_base;
+ if(b)b.disabled=false;
+ if(c)c.textContent='Elegí presentación, color, forma de pago y cantidad. Podés combinar productos.';
+ updateSelection();
+}
 window.addEventListener('storage',e=>{if(e.key===KEY)renderCart();if(e.key===PAY&&methods.includes(e.newValue)){method=e.newValue;updateSelection()}});
 init();
 })();
