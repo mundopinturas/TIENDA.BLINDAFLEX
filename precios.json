@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-09",
+  "version": "2026-11-09-integracion-atermico",
   "configuracion": {
     "impuestos_iva": 0.21
   },
@@ -7,12 +7,14 @@
     "techos_20": {
       "nombre": "Blindaje para Techos",
       "presentacion": "20 kg",
-      "precio_base": 168000
+      "precio_base": 168000,
+      "precio_cordobesa_20": 168000
     },
     "atermico_20": {
       "nombre": "Blindaje Atérmico",
       "presentacion": "20 kg",
-      "precio_base": 203980
+      "precio_base": 203980,
+      "precio_cordobesa_20": 203980
     },
     "barrera_12": {
       "nombre": "Barrera Impermeable",
