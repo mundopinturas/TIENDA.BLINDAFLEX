@@ -100,35 +100,35 @@
 
         .hero-section { margin-top: 16px; margin-bottom: 40px; display: flex; flex-direction: column; }
         
-        /* ===== BLINDAFLEX · CARRUSEL DE 3 VIDEOS (CORREGIDO) ===== */
+        /* ===== BLINDAFLEX · CARRUSEL DE 3 VIDEOS (ESTILOS SANEADOS) ===== */
         #bf-vcarousel.video-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            aspect-ratio: 3 / 4;
-            margin: 16px auto var(--gap-mob, 40px);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            background-color: #101820;
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            height: auto; 
+            aspect-ratio: 3 / 4; 
+            margin: 0 auto;
+            border-radius: var(--radius-lg); 
+            overflow: hidden; 
+            background-color: #101820; 
             border: 2px solid var(--c-azul);
             box-shadow: var(--shadow-tech);
-            flex: none;
-            display: block;
         }
         #bf-vcarousel .bf-vstage { position: relative; width: 100%; height: 100%; overflow: hidden; background: #101820; }
         #bf-vcarousel .bf-vslide { position: absolute; inset: 0; width: 100%; height: 100%; transform: translateX(100%); will-change: transform; transition: none;}
         #bf-vcarousel .bf-vslide video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101820; pointer-events: none; }
-        #bf-vcarousel .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
-        #bf-vcarousel .bf-vtap:focus-visible, #bf-vcarousel .bf-sound:focus-visible { outline: 3px solid #00afc6; outline-offset: -3px; }
-        #bf-vcarousel .bf-pause-indicator { display: none; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(3,17,29,.64); color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 26px; margin: auto; }
-        #bf-vcarousel .bf-vtap.bf-paused { display: flex; align-items: center; justify-content: center; }
-        #bf-vcarousel .bf-vtap.bf-paused .bf-pause-indicator { display: flex; }
-        #bf-vcarousel .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
-        #bf-vcarousel .bf-dots { position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; pointer-events: none; }
-        #bf-vcarousel .bf-dot { display: block; width: 6px; height: 6px; background: rgba(255,255,255,.57); border-radius: 50%; transition: background .2s, width .2s; }
-        #bf-vcarousel .bf-dot.bf-selected { width: 17px; background: #00afc6; border-radius: 8px; }
-        @media (max-width: 390px) { #bf-vcarousel .bf-sound { font-size: 10px; } }
+        .bf-vtap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; border: 0; background: transparent; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
+        .bf-vtap:focus-visible, .bf-vbtn:focus-visible, .bf-sound:focus-visible { outline: 3px solid #00afc6; outline-offset: -3px; }
+        .bf-vtap .bf-pause-indicator { display: none; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgba(3,17,29,.64); color: #fff; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; font-size: 26px; margin: auto; }
+        .bf-vtap.bf-paused { display: flex; align-items: center; justify-content: center; }
+        .bf-vtap.bf-paused .bf-pause-indicator { display: flex; }
+        .bf-vbtn { position: absolute; z-index: 6; top: 50%; transform: translateY(-50%); border: 1px solid rgba(255,255,255,.56); background: rgba(4,18,33,.43); color: #fff; border-radius: 50%; width: 40px; height: 40px; display: grid; place-items: center; font-size: 32px; line-height: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; backdrop-filter: blur(3px); }
+        .bf-prev { left: 10px; } .bf-next { right: 10px; }
+        .bf-sound { position: absolute; z-index: 7; bottom: 14px; right: 12px; background: rgba(4,18,33,.82); color: #fff; border: 1px solid #00afc6; font: 700 11px/1.2 Inter, sans-serif; letter-spacing: .03em; border-radius: 28px; padding: 11px 12px; min-height: 42px; cursor: pointer; backdrop-filter: blur(4px); }
+        .bf-dots { position: absolute; z-index: 6; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 8px; pointer-events: none; }
+        .bf-dot { display: block; width: 6px; height: 6px; background: rgba(255,255,255,.57); border-radius: 50%; transition: background .2s, width .2s; }
+        .bf-dot.bf-selected { width: 17px; background: #00afc6; border-radius: 8px; }
+        @media (max-width: 390px) { .bf-vbtn { width: 36px; height: 36px; font-size: 28px; } .bf-sound { font-size: 10px; } }
         @media (prefers-reduced-motion: reduce) { #bf-vcarousel .bf-vslide { transition-duration: .01ms !important; } }
 
         .hero-header { text-align: center; margin-top: 24px; margin-bottom: 20px; }
@@ -184,33 +184,37 @@
         /* Presentación comercial de financiación */
         .payment-heading {font-size:23px; font-weight:900; text-align:center; color:var(--c-azul); margin:0 0 8px;}
         .payment-intro {text-align:center; font-size:14px; color:var(--c-texto-light); margin:0 0 22px;}
+        .plan-card {width:100%; text-align:left;}
+        .plan-card:focus-visible {outline:3px solid var(--c-turquesa); outline-offset:3px;}
+        .plan-card.unavailable {cursor:default; opacity:1; background:#f8fafb; border-style:dashed;}
+        .plan-card.unavailable:hover {transform:none; box-shadow:none;}
+        .plan-note {font-size:12px; font-weight:650; color:var(--c-texto-light); margin-top:4px;}
+        .plan-installment {overflow-wrap:anywhere;}
+        .ds-row {gap:12px;}
+        .ds-row strong {min-width:0; overflow-wrap:anywhere;}
+        .ds-total-box {gap:12px; flex-wrap:wrap;}
         
         /* Comparador Interactivo de Planes */
         .comparator-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
         
-        .plan-card { width: 100%; text-align: left; background: #fff; border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 24px; cursor: pointer; display: flex; flex-direction: column; gap: 12px; transition: all 0.2s ease; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .plan-card { background: #fff; border: 2px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 20px 24px; cursor: pointer; display: flex; flex-direction: column; gap: 12px; transition: all 0.2s ease; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
         .plan-card:hover { border-color: #cbd5e1; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.05); }
-        .plan-card:focus-visible { outline: 3px solid var(--c-turquesa); outline-offset: 3px; }
         .plan-card.active { border-color: var(--c-turquesa); background: var(--c-turquesa-light); box-shadow: 0 4px 20px rgba(0,175,198,0.15); transform: translateY(-2px); }
-        
-        .plan-card.unavailable { cursor: default; opacity: 1; background: #f8fafb; border-style: dashed; }
-        .plan-card.unavailable:hover { transform: none; box-shadow: none; border-color: var(--c-gris-border); }
         
         .plan-header { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; width:100%; flex-wrap:wrap; }
         .plan-name { flex:1; min-width:0; font-size: 16px; font-weight: 900; color: var(--c-azul); text-transform: uppercase; line-height: 1.2; }
         .plan-badge { flex-shrink:0; white-space:nowrap; margin-left:auto; background: var(--c-naranja); color: #fff; font-size: 11px; font-weight: 900; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
         .plan-badge.exclusive { background: var(--c-azul); }
-        .plan-card.active .plan-badge { background: var(--c-turquesa-dark); }
+        .plan-card.active .plan-badge { flex-shrink:0; white-space:nowrap; margin-left:auto; background: var(--c-turquesa-dark); }
         .plan-card.active .plan-badge.exclusive { background: var(--c-azul); }
         
         .plan-price-box { display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed var(--c-gris-border); padding-top: 12px; margin-top: 4px; }
         .plan-card.active .plan-price-box { border-top-color: rgba(0,175,198,0.3); }
         
-        .plan-installment { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1; display: flex; align-items: baseline; gap: 6px; overflow-wrap: anywhere;}
+        .plan-installment { font-size: 26px; font-weight: 900; color: var(--c-azul); line-height: 1; display: flex; align-items: baseline; gap: 6px;}
         .plan-installment small { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
         .plan-card.active .plan-installment { color: var(--c-turquesa-dark); }
         .plan-total { font-size: 14px; font-weight: 700; color: var(--c-texto-light); }
-        .plan-note { font-size: 12px; font-weight: 650; color: var(--c-texto-light); margin-top: 4px; }
 
         @media (min-width: 640px) {
             .plan-card { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
@@ -250,12 +254,12 @@
         /* Resumen Dinámico */
         .dynamic-summary-box { background: var(--c-azul-grad); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-md); color: #fff; }
         .ds-title { font-size: 13px; font-weight: 800; color: #8ba2ac; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
-        .ds-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 14px; font-weight: 500; }
-        .ds-row strong { font-weight: 800; text-align: right; min-width: 0; overflow-wrap: anywhere;}
+        .ds-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; font-size: 14px; font-weight: 500; }
+        .ds-row strong { font-weight: 800; text-align: right; }
         .ds-row.ds-highlight { color: var(--c-turquesa); font-weight: 700; }
         .ds-row.ds-savings { color: var(--c-naranja); font-weight: 700; }
         
-        .ds-total-box { border-top: 1px dashed rgba(255,255,255,0.2); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;}
+        .ds-total-box { border-top: 1px dashed rgba(255,255,255,0.2); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; }
         .ds-total-lbl { font-size: 14px; font-weight: 800; color: #b0c0c7; }
         .ds-total-val { font-size: 28px; font-weight: 900; line-height: 1; color: #fff; }
 
@@ -419,9 +423,6 @@
             .hero-section:has(> #bf-vcarousel) {flex-direction: row; align-items: center;}
             .hero-section > .hero-text-block {width:100%;}
         }
-        
-        /* Solución checkout superpuesto (se muestra correctamente como vista principal) */
-        #checkout-view.is-open {display:block !important; position:relative; z-index:1100; overflow-y:auto; background:var(--c-gris-bg); padding-top:24px; padding-bottom:36px; min-height:100vh;}
     </style>
 </head>
 <body>
@@ -848,6 +849,7 @@
                         <div class="plan-total">Consultá el importe para esta modalidad.</div></div></div>`;
                     return;
                 }
+                
                 const pData = getPrices(state.productId, id, state.qty);
                 const priceHtml = m.cuotas > 1
                     ? `<div class="plan-installment">${fmtMoney(pData.installmentValue)} <small>por cuota</small></div>
@@ -1212,9 +1214,6 @@
         // Reset all videos to a clean state avoiding Autoplay DOMExceptions
         videos.forEach((video, index) => {
             video.muted = true;
-            video.defaultMuted = true;
-            video.setAttribute('muted', '');
-            video.preload = index === 0 ? 'auto' : 'metadata';
             video.controls = false;
             video.playsInline = true;
             video.setAttribute('playsinline', '');
@@ -1259,9 +1258,16 @@
         }
 
         function pauseAll() {
-            // No iniciar una reproducción nueva al intentar pausar: eso
-            // provocaba una carrera con playCurrent() en algunos navegadores.
-            videos.forEach(v => v.pause());
+            videos.forEach(v => {
+                if (!v.paused) {
+                    const playPromise = v.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => v.pause()).catch(() => {});
+                    } else {
+                        v.pause();
+                    }
+                }
+            });
             updatePause();
         }
 
