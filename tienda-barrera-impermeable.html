@@ -682,6 +682,23 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 
         /* Carrito: mismas dos acciones que Techos y Atérmico */
         .bf-cart-keep-shopping { display:block; width:100%; text-align:center; background:transparent; border:0; color:var(--c-texto-light); font-size:13px; font-weight:800; padding:12px 0; margin-top:8px; cursor:pointer; }
+
+/* Barrera: selector vertical idéntico al esquema visual de Techos */
+#bf-plan-section .bf-plan-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:16px!important;width:100%}
+#bf-plan-section .bf-plan-option{width:100%!important;min-width:0!important;display:block!important;padding:22px 24px!important;border:2px solid #e2e8f0;border-radius:16px;background:#fff;text-align:left;box-sizing:border-box}
+#bf-plan-section .bf-plan-option[aria-pressed="true"]{border-color:#00afc6;background:#e0f7fa}
+#bf-plan-section .bf-plan-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px dashed #dbe5eb;padding-bottom:16px;margin-bottom:16px}
+#bf-plan-section .bf-plan-installment{font-size:clamp(25px,7vw,34px);font-weight:900;line-height:1.2}
+#bf-plan-section .bf-plan-total{font-size:15px;margin-top:4px}
+#bf-plan-section .bf-plan-badge{font-size:11px;max-width:55%;white-space:normal}
+@media(max-width:390px){#bf-plan-section .bf-plan-option{padding:18px 16px!important}#bf-plan-section .bf-plan-head{flex-wrap:wrap}#bf-plan-section .bf-plan-badge{max-width:100%}}
+/* Carrito unificado: lectura clara de precio, cantidad y financiación */
+#cart-drawer .cart-footer{padding:16px 20px 22px}
+#cart-drawer .cart-item-meta{line-height:1.5}
+#cart-drawer .bf-order-plan{background:#e0f7fa;border:1px solid #a9e7ed;padding:14px;margin-bottom:14px}
+#cart-drawer #btn-checkout{font-size:15px;min-height:52px;background:#f65a03;border:0}
+#cart-drawer .bf-cart-keep-shopping{font-size:14px;min-height:44px;color:#071a24}
+#checkout-view .bf-order-plan{background:#e0f7fa;color:#071a24}
 </style>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="/blindaflex-favicon-32.png">
@@ -2142,7 +2159,7 @@ function base(i){const id=productId(i);return Number(db?.productos?.[id]?.precio
 function unit(i){const id=productId(i),p=db?.productos?.[id],m=db?.modalidades?.[method];if(!p||!m)return Math.round(base(i)*(1-Number(m?.descuento||0)));return method==='cordobesa_20'?Number(p.precio_cordobesa_20||p.precio_base):Math.round(p.precio_base*(1-m.descuento));}
 function total(arr){return arr.reduce((a,i)=>a+Number(i.qty)*unit(i),0)}
 function label(i){const id=productId(i);return (db?.productos?.[id]?.nombre||i.product||'Producto')+(id?.startsWith('barrera_')?' · '+(i.presentation||id.split('_')[1])+' kg':'')+(i.color?' · '+i.color:'')}
-function currentPlan(){return db.modalidades[method]}
+function currentPlan(){return db?.modalidades?.[method]||fallback.modalidades[method]}
 function planHTML(sum){const p=currentPlan();return '<div class="bf-order-plan"><strong>Forma de pago: '+esc(p.nombre)+'</strong>'+(p.cuotas>1?'<div>'+p.cuotas+' cuotas de '+fmt(sum/p.cuotas)+'</div>':'')+'<div>Aplicada a todos los productos del pedido</div></div>'}
 function renderPlans(){
  const el=document.getElementById('bf-plan-grid');if(!el)return;
@@ -2159,16 +2176,32 @@ function updateSelection(){renderPlans();document.querySelectorAll('.c-pres-card
 window.bfSetPlan=function(id){if(!db.modalidades[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
 document.getElementById('bf-plan-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b)bfSetPlan(b.dataset.plan)});
 const originalSetPres=window.setPres;window.setPres=function(kg,price){originalSetPres(kg,price);updateSelection()};
-window.proceedToCheckout=function(){const arr=items();for(const i of localOrder){const id='barrera_'+i.pres;const existing=arr.find(x=>productId(x)===id&&x.color===i.color);if(existing){existing.qty=Number(existing.qty)+Number(i.qty)}else{arr.push({id,product:'Barrera Impermeable',type:'barrera',presentation:i.pres,color:i.color,qty:Number(i.qty),price:APP_PRICES[i.pres]})}}if(localOrder.length){localOrder=[];renderLocalOrder();save(arr)}if(!db){alert('Los precios no están disponibles. Recargá la página.');return}if(!arr.length){alert('Primero sumá un producto al pedido.');return}openCartDrawer()};
+window.proceedToCheckout=function(){if(!db){alert('Los precios no están disponibles. Recargá la página.');return}const arr=items();for(const i of localOrder){const id='barrera_'+i.pres;const existing=arr.find(x=>productId(x)===id&&x.color===i.color);if(existing){existing.qty=Number(existing.qty)+Number(i.qty)}else{arr.push({id,product:'Barrera Impermeable',type:'barrera',presentation:i.pres,color:i.color,qty:Number(i.qty),price:APP_PRICES[i.pres]})}}if(localOrder.length){localOrder=[];renderLocalOrder();save(arr)}if(!arr.length){alert('Primero sumá un producto al pedido.');return}openCartDrawer()};
 window.openCartDrawer=function(){renderCart();document.getElementById('cart-overlay').classList.add('open');document.getElementById('cart-drawer').classList.add('open');document.body.style.overflow='hidden'};
 window.closeCartDrawer=function(){document.getElementById('cart-overlay').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open');document.body.style.overflow=''};
 window.bfRefreshCart=renderCart;
-function renderCart(){const arr=items(),sum=total(arr),el=document.getElementById('cart-body');document.getElementById('cart-counter').textContent=arr.reduce((a,i)=>a+Number(i.qty),0);document.getElementById('btn-checkout').disabled=!arr.length;document.getElementById('drawer-total').textContent=fmt(sum);if(!arr.length){el.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>';return}el.innerHTML=planHTML(sum)+arr.map((i,n)=>'<div class="cart-item"><button class="remove-item" type="button" data-remove="'+n+'" aria-label="Quitar">×</button><div class="cart-item-title">'+esc(label(i))+'</div><div class="cart-item-meta">'+fmt(unit(i))+' por balde</div><div class="cart-item-controls"><div class="qty-controls"><button class="qty-btn-sm" data-delta="-1" data-index="'+n+'">−</button><strong>'+Number(i.qty)+'</strong><button class="qty-btn-sm" data-delta="1" data-index="'+n+'">+</button></div><strong class="item-price">'+fmt(unit(i)*Number(i.qty))+'</strong></div></div>').join('')};
+function renderCart(){
+ const arr=items(),sum=total(arr),el=document.getElementById('cart-body');
+ if(!el)return;
+ const count=arr.reduce((a,i)=>a+Number(i.qty),0);
+ document.getElementById('cart-counter').textContent=count;
+ document.getElementById('btn-checkout').disabled=!arr.length||!db;
+ document.getElementById('drawer-total').textContent=fmt(sum);
+ if(!arr.length){el.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>';return}
+ const details=arr.map((i,n)=>{
+  const u=unit(i),q=Number(i.qty);
+  return '<div class="cart-item"><button class="remove-item" type="button" data-remove="'+n+'" aria-label="Quitar producto">×</button>'+
+  '<div class="cart-item-title">'+esc(label(i))+'</div>'+
+  '<div class="cart-item-meta">Precio unitario: '+fmt(u)+' · '+(currentPlan().cuotas>1?currentPlan().cuotas+' cuotas de '+fmt(u/currentPlan().cuotas):'Contado')+'</div>'+
+  '<div class="cart-item-controls"><div class="qty-controls"><button type="button" class="qty-btn-sm" data-delta="-1" data-index="'+n+'">−</button><strong>'+q+'</strong><button type="button" class="qty-btn-sm" data-delta="1" data-index="'+n+'">+</button></div><strong class="item-price">'+fmt(u*q)+'</strong></div></div>';
+ }).join('');
+ el.innerHTML=planHTML(sum)+details;
+}
 document.getElementById('cart-body')?.addEventListener('click',e=>{const btn=e.target.closest('[data-remove],[data-delta]');if(!btn)return;e.stopImmediatePropagation();const arr=items(),idx=Number(btn.dataset.remove??btn.dataset.index);if(!arr[idx])return;if(btn.hasAttribute('data-remove'))arr.splice(idx,1);else{arr[idx].qty=Number(arr[idx].qty)+Number(btn.dataset.delta);if(arr[idx].qty<1)arr.splice(idx,1)}save(arr)},true);
-window.goToCheckout=function(){if(!items().length)return;closeCartDrawer();document.getElementById('main-store').style.display='none';document.getElementById('checkout-view').style.display='block';document.querySelector('header').style.display='none';document.getElementById('floating-bar').style.display='none';document.querySelector('.whatsapp-float').style.display='none';document.getElementById('footer').style.display='none';document.body.style.overflow='';window.scrollTo(0,0);renderCheckoutSummary()};
+window.goToCheckout=function(){if(!db||!items().length)return;closeCartDrawer();document.getElementById('main-store').style.display='none';document.getElementById('checkout-view').style.display='block';document.querySelector('header').style.display='none';document.getElementById('floating-bar').style.display='none';document.querySelector('.whatsapp-float').style.display='none';document.getElementById('footer').style.display='none';document.body.style.overflow='';window.scrollTo(0,0);renderCheckoutSummary()};
 window.closeCheckout=function(){document.getElementById('main-store').style.display='block';document.getElementById('checkout-view').style.display='none';document.querySelector('header').style.display='';document.getElementById('floating-bar').style.display='';document.querySelector('.whatsapp-float').style.display='';document.getElementById('footer').style.display='';window.scrollTo(0,0)};
 window.renderCheckoutSummary=function(){const arr=items(),sum=total(arr);document.getElementById('checkout-summary').innerHTML=planHTML(sum)+arr.map(i=>'<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #ffffff33"><span>'+Number(i.qty)+' × '+esc(label(i))+'</span><strong>'+fmt(Number(i.qty)*unit(i))+'</strong></div>').join('')+'<div style="display:flex;justify-content:space-between;gap:12px;padding:16px 0;font-weight:900;font-size:20px"><span>TOTAL</span><span>'+fmt(sum)+'</span></div><p style="font-size:12px">Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.</p>'};
-window.submitWhatsApp=function(e){e.preventDefault();const arr=items(),sum=total(arr),p=currentPlan();if(!arr.length)return;const v=id=>document.getElementById(id)?.value?.trim()||'';const lines=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+v('f-nombre'),'Teléfono: '+v('f-tel'),'Localidad/Barrio: '+v('f-loc'),'Dirección: '+v('f-calle')+' '+v('f-num')];if(v('f-cp'))lines.push('Código postal: '+v('f-cp'));if(v('f-ref'))lines.push('Referencia: '+v('f-ref'));lines.push('','*DETALLE DEL PEDIDO*');for(const i of arr)lines.push(Number(i.qty)+' × '+label(i)+' · '+fmt(unit(i))+' c/u · Subtotal '+fmt(Number(i.qty)*unit(i)));lines.push('','*FORMA DE PAGO: '+p.nombre+'*',p.cuotas>1?p.cuotas+' cuotas de '+fmt(sum/p.cuotas):'Pago al contado','*TOTAL: '+fmt(sum)+'*','Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.','Pago al recibir en zonas habilitadas.');window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener')};
+window.submitWhatsApp=function(e){e.preventDefault();if(!db){alert('No se pudieron cargar los precios.');return}const arr=items(),sum=total(arr),p=currentPlan();if(!arr.length)return;const v=id=>document.getElementById(id)?.value?.trim()||'';const lines=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+v('f-nombre'),'Teléfono: '+v('f-tel'),'Localidad/Barrio: '+v('f-loc'),'Dirección: '+v('f-calle')+' '+v('f-num')];if(v('f-cp'))lines.push('Código postal: '+v('f-cp'));if(v('f-ref'))lines.push('Referencia: '+v('f-ref'));lines.push('','*DETALLE DEL PEDIDO*');for(const i of arr)lines.push(Number(i.qty)+' × '+label(i)+' · '+fmt(unit(i))+' c/u · Subtotal '+fmt(Number(i.qty)*unit(i)));lines.push('','*FORMA DE PAGO: '+p.nombre+'*',p.cuotas>1?p.cuotas+' cuotas de '+fmt(sum/p.cuotas):'Pago al contado','*TOTAL: '+fmt(sum)+'*','Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.','Pago al recibir en zonas habilitadas.');window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener')};
 // No habilitar compras con precios de respaldo si el archivo de precios no se carga.
 async function init(){const b=document.querySelector('.btn-sumar');if(b)b.disabled=true;const c=document.querySelector('#configurador .config-subtitle');if(c)c.textContent='Cargando precios y opciones de financiación…';try{const r=await fetch('precios.json',{cache:'no-store'});if(!r.ok)throw Error('precios.json no disponible');db=await r.json();for(const id of ['barrera_12','barrera_5']){if(!Number.isFinite(db.productos?.[id]?.precio_base)||!Number.isFinite(db.productos?.[id]?.precio_cordobesa_20))throw Error('Falta precio para '+id);APP_PRICES[Number(id.split('_')[1])]=db.productos[id].precio_base}for(const id of methods){if(!db.modalidades?.[id])throw Error('Falta modalidad '+id)}if(b)b.disabled=false;if(c)c.textContent='Elegí presentación, color, forma de pago y cantidad. Podés combinar productos.';updateSelection()}catch(err){console.error('Blindaflex Barrera:',err);if(c)c.textContent='No se pudieron cargar los precios. Revisá que precios.json esté publicado junto al HTML.';document.getElementById('bf-plan-grid').textContent='Precios temporalmente no disponibles.';document.getElementById('btn-checkout').disabled=true}}
 window.addEventListener('storage',e=>{if(e.key===KEY)renderCart();if(e.key===PAY&&methods.includes(e.newValue)){method=e.newValue;updateSelection()}});
