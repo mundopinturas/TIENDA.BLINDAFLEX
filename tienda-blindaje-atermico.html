@@ -648,7 +648,21 @@
 .tech-shipping-contact:hover{background:#eaf8fa}
 .tech-shipping-contact svg{width:20px;height:20px;fill:currentColor;flex:none}
 @media(min-width:768px){.tech-shipping-section{padding:38px 42px}.tech-shipping-options{grid-template-columns:1fr 1fr}}
-    </style>
+    
+
+/* Ajustes exclusivos de la calculadora de consumo: presentación móvil y escritorio */
+.tech-calculator{max-width:900px;margin:0 auto 32px;padding:24px 20px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 4px 12px rgba(7,26,36,.04);color:#34434a}
+.tech-calculator h2{font-size:clamp(19px,4.5vw,25px);line-height:1.22;font-weight:900;color:#071a24;margin:0 0 10px;text-align:center;overflow-wrap:normal}
+.tech-calculator>p:first-of-type{font-size:14px;line-height:1.5;color:#64748b;text-align:center;margin:0 0 22px}
+.tech-calc-input{background:#f2f6f7;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:14px}
+.tech-calc-input label{display:block;font-size:14px;font-weight:800;color:#071a24;margin-bottom:12px;line-height:1.35}
+.tech-calc-field{display:flex;align-items:center;gap:10px;max-width:220px}
+.tech-calc-field input{display:block;width:100%;min-width:0;max-width:170px;height:48px;padding:10px 12px;border:2px solid #00afc6;border-radius:8px;background:white;color:#071a24;font:800 18px Inter,system-ui,sans-serif;outline-offset:2px}
+.tech-calc-field span{font-size:16px;font-weight:800;color:#34434a;white-space:nowrap}
+.tech-calc-result{display:block;padding:15px 16px;background:#e0f7fa;border:1px solid #a6e4ec;border-radius:10px;color:#071a24;font-size:14px;line-height:1.5;font-weight:800;overflow-wrap:break-word;margin:0 0 12px}
+.tech-calculator .tech-calc-note{font-size:12px;line-height:1.55;color:#64748b;margin:0;text-align:left;font-weight:500}
+@media(min-width:768px){.tech-calculator{padding:32px}.tech-calc-input{padding:20px}.tech-calc-result{font-size:15px}}
+</style>
 <!-- VERSION: REFLECTIVO-2026-10-29-R2 · MENÚ MÓVIL / REGALOS / CALCULADORA / PNG / CARRUSELES -->
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/blindaflex-favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -836,7 +850,24 @@
 <div class="grid-desktop">
 <div>
 <!-- 9. CÓMO COMPRAR -->
-<section class="section-gap card">
+<section aria-labelledby="tech-shipping-title" class="tech-shipping-section">
+<svg aria-hidden="true" class="tech-shipping-icon" viewbox="0 0 24 24"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7zM7.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+<h2 id="tech-shipping-title">ENVÍOS Y ENTREGAS</h2>
+<p class="tech-shipping-lead">ENTREGA RÁPIDA EN CÓRDOBA</p>
+<p class="tech-shipping-desc">Entregas en el día o dentro de las 24 horas, según disponibilidad y programación (desde la confirmación).</p>
+<div class="tech-shipping-options">
+<div class="tech-shipping-option">
+<span aria-hidden="true" class="tech-shipping-option-icon"><svg viewbox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5z"></path></svg></span>
+<div><strong>ENVÍO GRATIS</strong><p>Córdoba Capital (anillo Circunvalación) y zonas cercanas habilitadas.</p></div>
+</div>
+<div class="tech-shipping-option extended">
+<span aria-hidden="true" class="tech-shipping-option-icon"><svg viewbox="0 0 24 24"><path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"></path><circle cx="12" cy="9" r="2"></circle></svg></span>
+<div><strong>ZONAS EXTENDIDAS</strong><p>$10.000 por pedido.</p><p>Costo fijo por compra completa, sin importar cantidad.</p></div>
+</div>
+</div>
+<p class="tech-shipping-note">La cobertura y el costo de entrega se confirman según tu dirección.</p>
+<a class="tech-shipping-contact" href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20viendo%20Blindaje%20At%C3%A9rmico%20y%20quiero%20consultar%20si%20realizan%20entregas%20en%20mi%20zona." rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 4h16v13H8l-4 3V4z"></path></svg>CONSULTÁ TU ZONA POR WHATSAPP</a>
+</section><section class="section-gap card">
 <h2 class="section-title">COMPRAR ES MUY FÁCIL</h2>
 <div style="display: flex; flex-direction: column; gap: 16px; position: relative;">
 <div style="background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: flex-start; gap: 16px; box-shadow: var(--shadow-soft);">
@@ -864,24 +895,7 @@
 <div style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500;">En zonas extendidas se solicita anticipadamente únicamente el costo del envío.</div>
 </section>
 <!-- 10. ENVÍOS Y PAGOS -->
-<section aria-labelledby="tech-shipping-title" class="tech-shipping-section">
-<svg aria-hidden="true" class="tech-shipping-icon" viewbox="0 0 24 24"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7zM7.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
-<h2 id="tech-shipping-title">ENVÍOS Y ENTREGAS</h2>
-<p class="tech-shipping-lead">ENTREGA RÁPIDA EN CÓRDOBA</p>
-<p class="tech-shipping-desc">Entregas en el día o dentro de las 24 horas, según disponibilidad y programación (desde la confirmación).</p>
-<div class="tech-shipping-options">
-<div class="tech-shipping-option">
-<span aria-hidden="true" class="tech-shipping-option-icon"><svg viewbox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5z"></path></svg></span>
-<div><strong>ENVÍO GRATIS</strong><p>Córdoba Capital (anillo Circunvalación) y zonas cercanas habilitadas.</p></div>
-</div>
-<div class="tech-shipping-option extended">
-<span aria-hidden="true" class="tech-shipping-option-icon"><svg viewbox="0 0 24 24"><path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"></path><circle cx="12" cy="9" r="2"></circle></svg></span>
-<div><strong>ZONAS EXTENDIDAS</strong><p>$10.000 por pedido.</p><p>Costo fijo por compra completa, sin importar cantidad.</p></div>
-</div>
-</div>
-<p class="tech-shipping-note">La cobertura y el costo de entrega se confirman según tu dirección.</p>
-<a class="tech-shipping-contact" href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20viendo%20Blindaje%20At%C3%A9rmico%20y%20quiero%20consultar%20si%20realizan%20entregas%20en%20mi%20zona." rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 4h16v13H8l-4 3V4z"></path></svg>CONSULTÁ TU ZONA POR WHATSAPP</a>
-</section>
+
 </div>
 <div>
 <!-- MEDIOS DE PAGO -->
