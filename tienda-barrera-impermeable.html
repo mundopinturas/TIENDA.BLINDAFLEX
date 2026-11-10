@@ -2166,11 +2166,11 @@ function toggleMobileMenu(){
 'use strict';
 const KEY='blindaflex_cart_data', PAY='blindaflex_payment_preference';
 const fallback={productos:{techos_20:{nombre:'Blindaje para Techos',precio_base:168000,precio_cordobesa_20:168000},atermico_20:{nombre:'Blindaje Atérmico',precio_base:203980,precio_cordobesa_20:203980},barrera_12:{nombre:'Barrera Impermeable',precio_base:130106,precio_cordobesa_20:130106},barrera_5:{nombre:'Barrera Impermeable',precio_base:54794,precio_cordobesa_20:54794}},modalidades:{cordobesa_20:{nombre:'20 cuotas · Cordobesa',cuotas:20,descuento:0},cuotas_15:{nombre:'15 cuotas',cuotas:15,descuento:0},cuotas_9:{nombre:'9 cuotas',cuotas:9,descuento:.08},cuotas_6:{nombre:'6 cuotas',cuotas:6,descuento:.11},cuotas_3:{nombre:'3 cuotas',cuotas:3,descuento:.14},contado:{nombre:'Contado',cuotas:1,descuento:.20}}};
-let db=fallback;
+let db=null;
 const methods=['cordobesa_20','cuotas_15','cuotas_9','cuotas_6','cuotas_3','contado'];
 let method=methods.includes(localStorage.getItem(PAY))?localStorage.getItem(PAY):'cuotas_15';
 const fmt=n=>'$'+Number(n).toLocaleString('es-AR',{minimumFractionDigits:0,maximumFractionDigits:2});
-window.bfUnitPrice=function(kg){const id='barrera_'+kg;const p=db.productos[id],m=db.modalidades[method];return method==='cordobesa_20'?Number(p.precio_cordobesa_20):Math.round(Number(p.precio_base)*(1-Number(m.descuento||0)))};
+window.bfUnitPrice=function(kg){const id='barrera_'+kg;const p=db?.productos?.[id],m=db?.modalidades?.[method];if(!p||!m)return 0;return method==='cordobesa_20'?Number(p.precio_cordobesa_20):Math.round(Number(p.precio_base)*(1-Number(m.descuento||0)))};
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const items=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(o.items)?o.items.filter(i=>i&&Number(i.qty)>0):[]}catch(e){return []}};
 const save=arr=>{localStorage.setItem(KEY,JSON.stringify({items:arr,lastActivity:Date.now()}));renderCart();};
@@ -2192,8 +2192,8 @@ function renderPlans(){
   return '<button type="button" class="bf-plan-option" aria-pressed="'+(id===method)+'" data-plan="'+id+'"><span class="bf-plan-head"><span class="bf-plan-title">'+title+'</span>'+badge+'</span><span class="bf-plan-installment">'+fmt(amount/cuotas)+(cuotas>1?'<span class="bf-plan-per"> por cuota</span>':'')+'</span><span class="bf-plan-total">Precio total: '+fmt(amount)+'</span></button>';
  }).join('');
 }
-function updateSelection(){renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin impuestos nacionales: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
-window.bfSetPlan=function(id){if(!db.modalidades[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
+function updateSelection(){if(!db)return;renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin impuestos nacionales: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
+window.bfSetPlan=function(id){if(!db?.modalidades?.[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
 document.getElementById('bf-plan-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b)bfSetPlan(b.dataset.plan)});
 const originalSetPres=window.setPres;window.setPres=function(kg,price){originalSetPres(kg,price);updateSelection()};
 window.proceedToCheckout=function(){if(!db){alert('Los precios no están disponibles. Recargá la página.');return}const arr=items();for(const i of localOrder){const id='barrera_'+i.pres;const existing=arr.find(x=>productId(x)===id&&x.color===i.color);if(existing){existing.qty=Number(existing.qty)+Number(i.qty)}else{arr.push({id,product:'Barrera Impermeable',type:'barrera',presentation:i.pres,color:i.color,qty:Number(i.qty),price:APP_PRICES[i.pres]})}}if(localOrder.length){localOrder=[];renderLocalOrder();save(arr)}if(!arr.length){alert('Primero sumá un producto al pedido.');return}openCartDrawer()};
@@ -2224,33 +2224,31 @@ window.renderCheckoutSummary=function(){const arr=items(),sum=total(arr);documen
 window.submitWhatsApp=function(e){e.preventDefault();if(!db){alert('No se pudieron cargar los precios.');return}const arr=items(),sum=total(arr),p=currentPlan();if(!arr.length)return;const v=id=>document.getElementById(id)?.value?.trim()||'';const lines=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre: '+v('f-nombre'),'Teléfono: '+v('f-tel'),'Localidad/Barrio: '+v('f-loc'),'Dirección: '+v('f-calle')+' '+v('f-num')];if(v('f-cp'))lines.push('Código postal: '+v('f-cp'));if(v('f-ref'))lines.push('Referencia: '+v('f-ref'));lines.push('','*DETALLE DEL PEDIDO*');for(const i of arr)lines.push(Number(i.qty)+' × '+label(i)+' · '+fmt(unit(i))+' c/u · Subtotal '+fmt(Number(i.qty)*unit(i)));lines.push('','*FORMA DE PAGO: '+p.nombre+'*',p.cuotas>1?p.cuotas+' cuotas de '+fmt(sum/p.cuotas):'Pago al contado','*TOTAL: '+fmt(sum)+'*','Envío gratis en Córdoba y zonas cercanas habilitadas. Otras zonas a coordinar.','Pago al recibir en zonas habilitadas.');window.open('https://wa.me/5493512661626?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener')};
 // No habilitar compras con precios de respaldo si el archivo de precios no se carga.
 async function init(){
- // Los precios de Barrera y sus cinco planes están definidos aquí para que la tienda
- // funcione aun cuando el precios.json publicado sea una versión anterior.
  const b=document.querySelector('.btn-sumar');
  const c=document.querySelector('#configurador .config-subtitle');
+ if(b)b.disabled=true;
  try{
   const r=await fetch('precios.json',{cache:'no-store'});
-  if(r.ok){
-   const remote=await r.json();
-   for(const id of ['barrera_12','barrera_5']){
-    const price=Number(remote.productos?.[id]?.precio_base);
-    if(Number.isFinite(price)&&price>0){
-     db.productos[id]={...db.productos[id],precio_base:price,
-      precio_cordobesa_20:Number(remote.productos[id].precio_cordobesa_20)||price};
-    }
-   }
-   // Solo usar el esquema externo si incluye todas las modalidades.
-   if(methods.every(id=>remote.modalidades?.[id]&&Number.isFinite(Number(remote.modalidades[id].descuento)))){
-    for(const id of methods)db.modalidades[id]={...db.modalidades[id],...remote.modalidades[id]};
-   }
-  }
- }catch(err){console.warn('Barrera: se usan los precios integrados; archivo externo no disponible.',err)}
- for(const id of ['barrera_12','barrera_5'])APP_PRICES[Number(id.split('_')[1])]=db.productos[id].precio_base;
- if(b)b.disabled=false;
- if(c)c.textContent='Elegí presentación, color, forma de pago y cantidad. Podés combinar productos.';
- updateSelection();
-}
-window.addEventListener('storage',e=>{if(e.key===KEY)renderCart();if(e.key===PAY&&methods.includes(e.newValue)){method=e.newValue;updateSelection()}});
+  if(!r.ok)throw new Error('No se pudo cargar precios.json');
+  const remote=await r.json();
+  const required=['cordobesa_20','cuotas_15','cuotas_9','cuotas_6','cuotas_3','contado'];
+  if(!['barrera_12','barrera_5'].every(id=>Number(remote.productos?.[id]?.precio_base)>0 && Number(remote.productos?.[id]?.precio_cordobesa_20)>0)
+   || !required.every(id=>Number.isInteger(remote.modalidades?.[id]?.cuotas) && Number.isFinite(remote.modalidades?.[id]?.descuento)))
+    throw new Error('Datos incompletos en precios.json');
+  db=remote;
+  for(const id of ['barrera_12','barrera_5'])APP_PRICES[Number(id.split('_')[1])]=db.productos[id].precio_base;
+  if(b)b.disabled=false;
+  if(c)c.textContent='Elegí presentación, color, forma de pago y cantidad. Podés combinar productos.';
+  updateSelection();
+ }catch(err){
+  console.error('Barrera: precios no disponibles.',err);
+  if(c)c.textContent='Los precios no están disponibles. Publicá el archivo precios.json y recargá la página.';
+  document.getElementById('bf-plan-grid').textContent='Precios temporalmente no disponibles.';
+  document.querySelectorAll('.c-pres-price').forEach(el=>el.textContent='Consultar precio');
+  document.querySelectorAll('.c-pres-net').forEach(el=>el.textContent='');
+  document.getElementById('btn-checkout').disabled=true;
+ }
+}window.addEventListener('storage',e=>{if(e.key===KEY)renderCart();if(e.key===PAY&&methods.includes(e.newValue)){method=e.newValue;updateSelection()}});
 init();
 })();
 </script>
