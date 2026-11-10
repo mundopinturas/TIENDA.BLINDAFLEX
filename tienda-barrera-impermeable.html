@@ -941,7 +941,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                         <div class="res-total"><span>Costo Estimado:</span> <span id="res-price">$0</span></div>
                         <div class="calc-note">Combinación con el menor excedente posible, sin calcular menos pintura que la necesaria.</div>
                         
-                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="applyYieldToOrder()">ELEGIR COLOR Y SUMAR BALDES AL PEDIDO</button>
+                        <button class="btn-primary" style="margin-top: 16px; font-size: 14px; padding: 12px; background:var(--c-azul);" onclick="applyYieldToOrder()">ARMÁ TU PEDIDO</button>
                     </div>
                 </section>
 
@@ -1635,43 +1635,9 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             box.classList.add('active');
         }
 
+        // La calculadora es informativa: solo navega al configurador, sin modificar la compra.
         function applyYieldToOrder() {
-            if (!yieldRecommendation) return;
-            // El usuario elige primero el color en el configurador. No sumamos
-            // automáticamente para evitar cargar pintura en un color incorrecto.
-            const target = document.getElementById('configurador');
-            target.scrollIntoView({behavior:'smooth', block:'start'});
-            let prompt = document.getElementById('yield-apply-prompt');
-            if (!prompt) {
-                prompt = document.createElement('div');
-                prompt.id = 'yield-apply-prompt';
-                prompt.style.cssText = 'background:#e0f7fa;border:1px solid #00AFC6;border-radius:10px;padding:16px;margin:0 0 20px;color:#071A24;font-size:14px;line-height:1.5';
-                target.querySelector('.config-grid').before(prompt);
-            }
-            prompt.innerHTML = '<strong>Tu cálculo está listo.</strong> Elegí el color y tocá «Agregar combinación al carrito». Los baldes calculados se agregarán con ese color.';
-            let btn = document.getElementById('yield-apply-btn');
-            if (!btn) {
-                btn = document.createElement('button');
-                btn.id = 'yield-apply-btn';
-                btn.type = 'button';
-                btn.className = 'btn-primary';
-                btn.style.cssText = 'margin-top:12px;font-size:13px';
-                btn.textContent = 'AGREGAR COMBINACIÓN AL CARRITO';
-                btn.onclick = function () {
-                    if (!yieldRecommendation) return;
-                    [[12, yieldRecommendation.n12], [5, yieldRecommendation.n5]].forEach(([pres, qty]) => {
-                        if (!qty) return;
-                        const existing = localOrder.find(i => i.pres === pres && i.color === cfgColor);
-                        if (existing) existing.qty += qty;
-                        else localOrder.push({id:Date.now().toString()+Math.random().toString(36).slice(2,7),pres,color:cfgColor,hex:cfgColorHex,qty,unitPrice:APP_PRICES[pres]});
-                    });
-                    for (const item of localOrder) addToCartData(item.pres,item.color,item.qty);
-                    localOrder=[];
-                    saveCart();
-                    openCartDrawer();
-                };
-                prompt.appendChild(btn);
-            } else prompt.appendChild(btn);
+            document.getElementById('configurador').scrollIntoView({behavior:'smooth', block:'start'});
         }
 
         // --- NUEVA LÓGICA DE CONFIGURADOR MULTIVARIANTE (PRE-CARRITO) ---
