@@ -696,6 +696,13 @@
 .bf-pa-quick a{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:48px;padding:10px 18px;border:2px solid #F65A03;border-radius:12px;background:#071A24;color:#FFFFFF;font:800 15px/1.35 Inter,system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;box-shadow:0 5px 0 rgba(246,90,3,.18),0 8px 16px rgba(7,26,36,.12);transition:background .2s ease,box-shadow .2s ease}
 .bf-pa-quick a:hover,.bf-pa-quick a:focus-visible{background:#123747;color:#FFFFFF;outline-offset:3px;box-shadow:0 5px 0 rgba(246,90,3,.25),0 8px 18px rgba(7,26,36,.18)}
 @media(max-width:480px){.bf-pa-quick{margin:28px auto 24px}.bf-pa-quick a{font-size:15px;padding:11px 14px}}
+
+/* Imagen de financiación Atérmico: estilos limitados al nuevo bloque */
+.bf-pa-atermico-promo{margin:0 auto 32px;width:100%;max-width:900px}
+.bf-pa-atermico-promo .bf-pa-quick{margin:0 auto 30px}
+.bf-pa-atermico-financiacion{width:100%;overflow:hidden;border-radius:16px;box-shadow:0 8px 24px rgba(7,26,36,.10)}
+.bf-pa-atermico-financiacion img{display:block;width:100%;height:auto}
+@media(max-width:480px){.bf-pa-atermico-promo{margin-bottom:32px}.bf-pa-atermico-promo .bf-pa-quick{margin-bottom:28px}.bf-pa-atermico-financiacion{border-radius:14px}}
 </style>
 <!-- VERSION: REFLECTIVO-2026-10-29-R2 · MENÚ MÓVIL / REGALOS / CALCULADORA / PNG / CARRUSELES -->
 <link href="/favicon.ico" rel="icon" sizes="any"/>
@@ -796,7 +803,6 @@
 </div>
 <div class="container">
 <!-- 4. PRESENTACIÓN DEL PRODUCTO -->
-<div class="bf-pa-quick"><a aria-label="Conocer el programa de Pintores Asociados Blindaflex" href="#pintores-asociados">Pintores asociados · Conocé el programa ↓</a></div>
 <section class="section-gap hero-product">
 <div class="hero-img-box">
 <img alt="Balde de Blindaje Atérmico Blindaflex" loading="lazy" src="assets/images/balde-blindaje-reflectivo.png"/>
@@ -819,6 +825,13 @@
 </section>
 
 <!-- 6. SELECTOR DE COMPRA (REFLECTIVO) -->
+<!-- Pintores Asociados y promoción de cuotas: después de beneficios, antes de calculadora -->
+<div class="bf-pa-atermico-promo">
+<div class="bf-pa-quick"><a aria-label="Conocer el programa de Pintores Asociados Blindaflex" href="#pintores-asociados">Pintores asociados · Conocé el programa ↓</a></div>
+<div class="bf-pa-atermico-financiacion">
+<img src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png" alt="Hasta 20 cuotas con Tarjeta Cordobesa y hasta 15 cuotas sin interés con tarjetas y medios de pago." loading="lazy" decoding="async"/>
+</div>
+</div>
 <section aria-labelledby="tech-calc-title" class="tech-calculator section-gap">
 <h2 id="tech-calc-title">¿CUÁNTA MEMBRANA NECESITÁS?</h2>
 <p>Ingresá los m² de tu techo y calculá cuántos baldes de 20 kg podrías necesitar.</p>
