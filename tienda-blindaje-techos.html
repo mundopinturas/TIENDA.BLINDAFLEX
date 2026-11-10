@@ -440,8 +440,12 @@
 .tech-calc-result-label{font-size:12px;color:#64748b;letter-spacing:.04em}
 .tech-calc-result strong{font-size:27px}.tech-calc-buckets{color:#f65a03;font-size:21px;font-weight:900}
 .tech-calculator .tech-calc-note{margin-top:15px;font-size:12px;color:#c5d4da;text-align:left}
+.tech-help-whatsapp{display:flex;align-items:center;gap:14px;margin-top:14px;padding:18px;background:#eaf8fa;border:1px solid #9edce5;border-left:4px solid #00afc6;border-radius:12px;color:#071a24}
+.tech-help-whatsapp svg{width:32px;height:32px;flex:none;fill:none;stroke:#008fa3;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tech-help-whatsapp strong{display:block;font-size:14px;line-height:1.35;margin-bottom:5px}
+.tech-help-whatsapp a{display:inline-block;color:#008fa3;font-size:15px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
 .tech-product-info{display:flex;align-items:center;gap:14px;border:2px solid #00afc6;background:#f2f6f7;border-radius:14px;padding:12px;margin:0 0 25px}
-.tech-product-info img{width:86px;height:94px;object-fit:contain;flex:none}
+.tech-product-info img{width:118px;height:126px;object-fit:contain;flex:none}
 .tech-product-name{font-size:15px;font-weight:800;color:#071a24}.tech-product-price{font-size:25px;font-weight:900;color:#f65a03;margin:4px 0}
 .tech-product-tax{font-size:11px;color:#71818b;font-weight:400;line-height:1.4}
 .tech-step-label{font-size:14px;font-weight:900;color:#071a24;border-bottom:2px solid #e2e8f0;padding-bottom:11px;margin:24px 0 14px}
@@ -465,9 +469,31 @@
 .tech-sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:110;background:#071a24;color:#fff;border-top:3px solid #00afc6;padding:10px max(16px,calc((100vw - 1200px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 -4px 15px #071a2420;transition:transform .2s}
 .tech-sticky-bar strong{font-size:13px}.tech-sticky-bar a{background:#f65a03;border-radius:10px;padding:12px 18px;font-size:13px;font-weight:900;white-space:nowrap}
 .tech-sticky-bar.is-hidden{transform:translateY(110%);pointer-events:none}
+@media(max-width:767px){body:has(.tech-sticky-bar:not(.is-hidden)) .whatsapp-float{bottom:92px}}
 @media(min-width:768px){.tech-buy-layout .plan-card{display:block}.tech-buy-layout .plan-price-box{border-top:0}.tech-buy-layout .plan-header{margin:0}.tech-sticky-bar{display:none}}
-@media(max-width:380px){.tech-plan-number{font-size:25px}.tech-plan-words{font-size:11px}.tech-plan-words span{font-size:10px}.tech-buy-layout .plan-badge{font-size:9px}.tech-product-info img{width:70px}}
+@media(max-width:380px){.tech-plan-number{font-size:25px}.tech-plan-words{font-size:11px}.tech-plan-words span{font-size:10px}.tech-buy-layout .plan-badge{font-size:9px}.tech-product-info img{width:96px;height:106px}}
 
+
+/* Sección informativa de envíos: independiente del configurador y del carrito */
+.tech-shipping-section{max-width:900px;margin:36px auto 40px;padding:28px 22px;background:#fff;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 4px 12px rgba(7,26,36,.04);text-align:center}
+.tech-shipping-icon{width:36px;height:36px;margin:0 auto 12px;fill:none;stroke:#00afc6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tech-shipping-section h2{font-size:25px;font-weight:900;color:#071a24;margin:0 0 14px}
+.tech-shipping-lead{font-size:18px;font-weight:850;color:#008fa3;margin-bottom:8px}
+.tech-shipping-desc{font-size:15px;color:#34434a;line-height:1.55;margin:0 auto 24px;max-width:650px}
+.tech-shipping-options{display:grid;gap:14px;text-align:left}
+.tech-shipping-option{display:flex;gap:15px;align-items:flex-start;padding:18px;border-radius:12px;background:#eaf8fa;border:1px solid #00afc6;border-left:5px solid #00afc6}
+.tech-shipping-option.extended{background:#f8fafb;border-color:#e2e8f0;border-left-color:#f65a03}
+.tech-shipping-option-icon{width:40px;height:40px;flex:none;display:grid;place-items:center;background:#00afc6;color:#fff;border-radius:9px}
+.tech-shipping-option.extended .tech-shipping-option-icon{background:#e0f7fa;color:#071a24}
+.tech-shipping-option-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tech-shipping-option strong{display:block;font-size:17px;font-weight:900;color:#071a24;margin-bottom:4px}
+.tech-shipping-option p{font-size:14px;color:#64748b;line-height:1.5;margin:0}
+.tech-shipping-option p+p{margin-top:3px;font-size:13px}
+.tech-shipping-note{font-size:14px;color:#64748b;line-height:1.5;margin:22px 0 16px}
+.tech-shipping-contact{display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:12px 14px;border:2px solid #00afc6;border-radius:9px;color:#008fa3;font-weight:850;font-size:14px;text-decoration:none;text-align:center}
+.tech-shipping-contact:hover{background:#eaf8fa}
+.tech-shipping-contact svg{width:20px;height:20px;fill:currentColor;flex:none}
+@media(min-width:768px){.tech-shipping-section{padding:38px 42px}.tech-shipping-options{grid-template-columns:1fr 1fr}}
     </style>
 </head>
 <body>
@@ -600,8 +626,8 @@
                 <h2 id="tech-calc-title">¿CUÁNTA MEMBRANA NECESITÁS?</h2>
                 <p>Ingresá los m² de tu techo y calculá cuántos baldes de 20 kg podrías necesitar.</p>
                 <div class="tech-calc-input"><label for="calc-area">Superficie a impermeabilizar</label><div class="tech-calc-field"><input id="calc-area" type="number" min="1" step="1" inputmode="decimal" placeholder="Ej.: 40" oninput="appPricing.calculateSurface()"><span>m²</span></div></div>
-                <div id="calc-result" class="tech-calc-result" aria-live="polite">Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m².</div>
-                <p class="tech-calc-note">Estimación informativa para impermeabilización completa, con un mínimo de 1 kg/m². El consumo real depende del estado de la superficie, las manos aplicadas y si se trata de mantenimiento o de una membrana existente. No modifica tu pedido.</p>
+                <div id="calc-result" class="tech-calc-result" aria-live="polite">Estimación orientativa: consumo mínimo de 1 kg/m².</div>
+                <p class="tech-calc-note">El consumo real depende del estado de la superficie.</p>
             </section>
             <!-- Configurador de compra -->
             <div class="tech-buy-layout">                    <div class="buy-wrapper" id="compra">
@@ -664,9 +690,34 @@
                                     <svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
                                     <p>ENVÍO GRATIS EN CÓRDOBA<span>Dentro de Circunvalación y zonas de cobertura.</span></p>
                                 </div>
+                                <div class="tech-help-whatsapp">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-3.6-.8L3 21l1.8-4.9A8.5 8.5 0 1 1 20 11.5Z"/></svg>
+                                    <div><strong>¿Necesitás asesoramiento con tu compra?</strong><a href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20en%20la%20p%C3%A1gina%20de%20Blindaje%20para%20Techos%20y%20necesito%20ayuda%20con%20mi%20pedido." target="_blank" rel="noopener noreferrer">Escribinos por WhatsApp ↗</a></div>
+                                </div>
                             </div>
                         </section>
                     </div></div>
+
+
+            <!-- ENVÍOS Y ENTREGAS: información independiente de la compra -->
+            <section class="tech-shipping-section" aria-labelledby="tech-shipping-title">
+                <svg class="tech-shipping-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7zM7.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                <h2 id="tech-shipping-title">ENVÍOS Y ENTREGAS</h2>
+                <p class="tech-shipping-lead">ENTREGA RÁPIDA EN CÓRDOBA</p>
+                <p class="tech-shipping-desc">Entregas en el día o dentro de las 24 horas, según disponibilidad y programación (desde la confirmación).</p>
+                <div class="tech-shipping-options">
+                    <div class="tech-shipping-option">
+                        <span class="tech-shipping-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5z"/></svg></span>
+                        <div><strong>ENVÍO GRATIS</strong><p>Córdoba Capital (anillo Circunvalación) y zonas cercanas habilitadas.</p></div>
+                    </div>
+                    <div class="tech-shipping-option extended">
+                        <span class="tech-shipping-option-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg></span>
+                        <div><strong>ZONAS EXTENDIDAS</strong><p>$10.000 por pedido.</p><p>Costo fijo por compra completa, sin importar cantidad.</p></div>
+                    </div>
+                </div>
+                <p class="tech-shipping-note">La cobertura y el costo de entrega se confirman según tu dirección.</p>
+                <a class="tech-shipping-contact" href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20viendo%20Blindaje%20para%20Techos%20y%20quiero%20consultar%20si%20realizan%20entregas%20en%20mi%20zona." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v13H8l-4 3V4z"/></svg>CONSULTÁ TU ZONA POR WHATSAPP</a>
+            </section>
 
             <!-- CÓMO COMPRAR Y FAQ -->
             <div class="grid-desktop" style="margin-top:40px;">
@@ -951,7 +1002,7 @@
             const value = Number(document.getElementById('calc-area').value);
             const res = document.getElementById('calc-result');
             if (!Number.isFinite(value) || value <= 0) {
-                res.textContent = 'Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m².';
+                res.textContent = 'Estimación orientativa: consumo mínimo de 1 kg/m².';
                 return;
             }
             const kilos = Math.ceil(value);
