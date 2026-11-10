@@ -524,6 +524,13 @@
 .bf-pa-quick a{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:48px;padding:10px 18px;border:2px solid #F65A03;border-radius:12px;background:#071A24;color:#FFFFFF;font:800 15px/1.35 Inter,system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;box-shadow:0 5px 0 rgba(246,90,3,.18),0 8px 16px rgba(7,26,36,.12);transition:background .2s ease,box-shadow .2s ease}
 .bf-pa-quick a:hover,.bf-pa-quick a:focus-visible{background:#123747;color:#FFFFFF;outline-offset:3px;box-shadow:0 5px 0 rgba(246,90,3,.25),0 8px 18px rgba(7,26,36,.18)}
 @media(max-width:480px){.bf-pa-quick{margin:28px auto 24px}.bf-pa-quick a{font-size:15px;padding:11px 14px}}
+
+/* Precio de referencia y descuento: solo ficha del balde en Armá tu pedido */
+.tech-product-info > div{min-width:0;flex:1}
+.tech-price-before-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin-top:9px}
+.tech-price-before{font-size:16px;font-weight:750;color:#34434a;text-decoration:line-through;text-decoration-thickness:1.5px;white-space:nowrap}
+.tech-price-off{display:inline-block;background:#00afc6;color:#071a24;border-radius:5px;padding:4px 7px;font-size:11px;font-weight:900;line-height:1.1;white-space:nowrap}
+@media(max-width:390px){.tech-price-before{font-size:14px}.tech-price-before-row{gap:5px 7px}.tech-price-off{font-size:10px;padding:4px 6px}}
 </style>
 </head>
 <body>
@@ -661,7 +668,7 @@
 <!-- 3. CONFIGURACIÓN DEL PEDIDO (Color y Cantidad) -->
 <section class="buy-config-section">
 <h2 class="buy-title-h2">ARMÁ TU PEDIDO</h2>
-<div class="tech-product-info"><img alt="Blindaje para Techos 20 kg" loading="lazy" src="assets/images/balde-blindaje-techo.png"/><div><div class="tech-product-name">Blindaje para Techos<br/>20 kg</div><div class="tech-product-price" id="tech-base-price">$168.000</div><div class="tech-product-tax" id="tech-tax-price">Sin impuestos nacionales: $138.843</div></div></div>
+<div class="tech-product-info"><img alt="Blindaje para Techos 20 kg" loading="lazy" src="assets/images/balde-blindaje-techo.png"/><div><div class="tech-product-name">Blindaje para Techos<br/>20 kg</div><div class="tech-price-before-row"><del class="tech-price-before" id="tech-price-before">$224.000</del><span class="tech-price-off">25% OFF</span></div><div class="tech-product-price" id="tech-base-price">$168.000</div><div class="tech-product-tax" id="tech-tax-price">Sin impuestos nacionales: $138.843</div></div></div>
 <div class="tech-step-label">PASO 01 — ELEGÍ EL COLOR</div>
 <!-- Color -->
 <div class="config-block">
@@ -925,6 +932,7 @@
             
             const basePrice = db.productos[state.productId].precio_base;
             document.getElementById('tech-base-price').textContent = fmtMoney(basePrice);
+            document.getElementById('tech-price-before').textContent = new Intl.NumberFormat('es-AR', {style:'currency',currency:'ARS',minimumFractionDigits:0,maximumFractionDigits:2}).format(Math.round((basePrice / 0.75) * 100) / 100).replace(/\s/g, '');
             document.getElementById('tech-tax-price').textContent = 'Sin impuestos nacionales: ' + fmtMoney(Math.round(basePrice / 1.21));
             // 1. Renderizar el Comparador (Plan de cuotas)
             const order = ['cordobesa_20', 'cuotas_15', 'cuotas_9', 'cuotas_6', 'cuotas_3', 'transferencia'];
