@@ -662,6 +662,40 @@
 .tech-calc-result{display:block;padding:15px 16px;background:#e0f7fa;border:1px solid #a6e4ec;border-radius:10px;color:#071a24;font-size:14px;line-height:1.5;font-weight:800;overflow-wrap:break-word;margin:0 0 12px}
 .tech-calculator .tech-calc-note{font-size:12px;line-height:1.55;color:#64748b;margin:0;text-align:left;font-weight:500}
 @media(min-width:768px){.tech-calculator{padding:32px}.tech-calc-input{padding:20px}.tech-calc-result{font-size:15px}}
+
+/* Programa Pintores Asociados: estilos aislados, sin alterar el resto de la tienda */
+.bf-pa-anchor{scroll-margin-top:88px}
+.bf-pa-quick{display:flex;justify-content:center;margin:12px auto 24px;text-align:center}
+.bf-pa-quick a{display:inline-flex;align-items:center;gap:7px;max-width:100%;padding:9px 13px;border:1px solid #d6e4e8;border-radius:999px;background:#f2f6f7;color:#34434a;font:600 12px/1.4 Inter,system-ui,sans-serif;text-decoration:none}
+.bf-pa-quick a:hover,.bf-pa-quick a:focus-visible{border-color:#00afc6;color:#071a24}
+.bf-pa-card{max-width:1150px;margin:24px auto 40px;padding:20px 22px;border:1px solid #dbe5e9;border-radius:16px;background:#f2f6f7;display:flex;align-items:center;justify-content:space-between;gap:20px;box-sizing:border-box}
+.bf-pa-card h2{margin:0 0 7px;color:#071a24;font:800 20px/1.25 Inter,system-ui,sans-serif;text-transform:none;letter-spacing:normal}
+.bf-pa-card p{margin:0;color:#34434a;font:500 14px/1.55 Inter,system-ui,sans-serif;max-width:630px}
+.bf-pa-cta{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;text-align:center;padding:13px 18px;border-radius:9px;background:#008fa3;color:white!important;font:800 12px/1.3 Inter,system-ui,sans-serif;text-decoration:none!important;white-space:normal}
+.bf-pa-cta:hover,.bf-pa-cta:focus-visible{background:#007d8e}
+.bf-pa-index{background:#071a24;border-color:#071a24;padding:32px 34px;margin-bottom:54px}
+.bf-pa-index h2{color:white;font-size:25px}.bf-pa-index p{color:#e2edf0}.bf-pa-index .bf-pa-cta{background:#00afc6;color:#071a24!important}
+@media(max-width:650px){.bf-pa-card{margin:20px 0 34px;padding:18px 16px;display:block}.bf-pa-card h2{font-size:19px}.bf-pa-card p{font-size:13px}.bf-pa-cta{width:100%;margin-top:15px}.bf-pa-index{padding:24px 20px}.bf-pa-index h2{font-size:22px}.bf-pa-quick{margin:10px auto 22px}}
+
+
+/* Pintores Asociados: visibilidad reforzada sin alterar componentes de compra */
+.bf-pa-quick{display:flex;justify-content:center;margin:34px auto 42px;text-align:center;padding:0 8px}
+.bf-pa-quick a{display:inline-flex;justify-content:center;align-items:center;gap:9px;width:auto;max-width:100%;padding:16px 22px;border:2px solid #071a24;border-radius:12px;background:#00afc6;color:#071a24;font:900 15px/1.35 Inter,system-ui,sans-serif;text-decoration:none;box-shadow:0 7px 0 rgba(7,26,36,.15),0 12px 25px rgba(0,175,198,.22);transition:transform .15s,background .15s}
+.bf-pa-quick a:hover,.bf-pa-quick a:focus-visible{background:#38d5e7;color:#071a24;transform:translateY(-2px)}
+.bf-pa-card{background:#e0f7fa;border:2px solid #00afc6;border-left:7px solid #f65a03;box-shadow:0 10px 26px rgba(7,26,36,.10);margin-top:30px;margin-bottom:42px}
+.bf-pa-card h2{color:#071a24;font-weight:900}
+.bf-pa-card .bf-pa-cta{background:#f65a03;color:#fff!important;box-shadow:0 5px 14px rgba(246,90,3,.22);font-weight:900;font-size:13px}
+.bf-pa-card .bf-pa-cta:hover,.bf-pa-card .bf-pa-cta:focus-visible{background:#d64d02}
+.bf-pa-index{background:#071a24;border:2px solid #00afc6;border-left:7px solid #f65a03}
+.bf-pa-index h2{color:#fff}.bf-pa-index p{color:#e2edf0}
+.bf-pa-index .bf-pa-cta{background:#00afc6;color:#071a24!important}
+@media(max-width:650px){.bf-pa-quick{margin:30px auto 38px;padding:0 6px}.bf-pa-quick a{width:100%;padding:15px 12px;font-size:14px}.bf-pa-card{margin-top:26px;margin-bottom:38px}.bf-pa-card .bf-pa-cta{font-size:13px}}
+
+/* Pintores asociados: acceso visible, separado de la promoción principal */
+.bf-pa-quick{display:flex;justify-content:center;margin:30px auto 26px;text-align:center}
+.bf-pa-quick a{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:48px;padding:10px 18px;border:2px solid #F65A03;border-radius:12px;background:#071A24;color:#FFFFFF;font:800 15px/1.35 Inter,system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;box-shadow:0 5px 0 rgba(246,90,3,.18),0 8px 16px rgba(7,26,36,.12);transition:background .2s ease,box-shadow .2s ease}
+.bf-pa-quick a:hover,.bf-pa-quick a:focus-visible{background:#123747;color:#FFFFFF;outline-offset:3px;box-shadow:0 5px 0 rgba(246,90,3,.25),0 8px 18px rgba(7,26,36,.18)}
+@media(max-width:480px){.bf-pa-quick{margin:28px auto 24px}.bf-pa-quick a{font-size:15px;padding:11px 14px}}
 </style>
 <!-- VERSION: REFLECTIVO-2026-10-29-R2 · MENÚ MÓVIL / REGALOS / CALCULADORA / PNG / CARRUSELES -->
 <link href="/favicon.ico" rel="icon" sizes="any"/>
@@ -762,6 +796,7 @@
 </div>
 <div class="container">
 <!-- 4. PRESENTACIÓN DEL PRODUCTO -->
+<div class="bf-pa-quick"><a aria-label="Conocer el programa de Pintores Asociados Blindaflex" href="#pintores-asociados">Pintores asociados · Conocé el programa ↓</a></div>
 <section class="section-gap hero-product">
 <div class="hero-img-box">
 <img alt="Balde de Blindaje Atérmico Blindaflex" loading="lazy" src="assets/images/balde-blindaje-reflectivo.png"/>
@@ -782,6 +817,7 @@
 </div>
 </div>
 </section>
+
 <!-- 6. SELECTOR DE COMPRA (REFLECTIVO) -->
 <section aria-labelledby="tech-calc-title" class="tech-calculator section-gap">
 <h2 id="tech-calc-title">¿CUÁNTA MEMBRANA NECESITÁS?</h2>
@@ -895,12 +931,11 @@
 <div style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500;">En zonas extendidas se solicita anticipadamente únicamente el costo del envío.</div>
 </section>
 <!-- 10. ENVÍOS Y PAGOS -->
-
 </div>
 <div>
 <!-- MEDIOS DE PAGO -->
 <!-- 11. FAQ -->
-<section class="section-gap card">
+<section aria-labelledby="bf-pa-title" class="bf-pa-card bf-pa-anchor" id="pintores-asociados" style="width:100%;max-width:none;"><div><h2 id="bf-pa-title">¿Sos pintor o aplicador?</h2><p>Recomendá nuestros impermeabilizantes, ganá comisiones por tus ventas y ofrecé beneficios especiales a tus clientes.</p></div><a class="bf-pa-cta" href="https://wa.me/5493512661626?text=Hola%2C%20soy%20pintor/aplicador%20y%20me%20interesa%20formar%20parte%20del%20Programa%20de%20Pintores%20Asociados%20Blindaflex.%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20funciona%20y%20cu%C3%A1les%20son%20los%20beneficios.%20%C2%A1Gracias%21" rel="noopener noreferrer" target="_blank">QUIERO SER PINTOR ASOCIADO</a></section><section class="section-gap card">
 <div style="text-align: center; margin-bottom:16px;">
 <svg class="section-icon-main svg-thin" style="width: 36px; height: 36px; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block;" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
 <h2 style="font-size: 20px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;">PREGUNTAS FRECUENTES</h2>
@@ -919,6 +954,7 @@
 </section>
 </div>
 </div>
+
 <!-- 12. CIERRE COMERCIAL -->
 <section class="section-gap" style="text-align: center;">
 <h2 class="section-title">BLINDAJE ATÉRMICO</h2>
