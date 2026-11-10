@@ -568,7 +568,87 @@
 .tb-item strong{font-size:13px;font-weight:850;line-height:1.35}
 .tb-item div span{font-size:12px;color:#64748b;line-height:1.45}
 @media(min-width:640px){.trust-badges-inline{grid-template-columns:1fr 1fr}}
-</style>
+
+/* Compra unificada: estilos de Blindaje para Techos */
+/* Resumen Dinámico */
+        .dynamic-summary-box { background: var(--c-azul-grad); border-radius: var(--radius-md); padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-md); color: #fff; }
+        .ds-title { font-size: 13px; font-weight: 800; color: #8ba2ac; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
+        .ds-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; font-size: 14px; font-weight: 500; }
+        .ds-row strong { font-weight: 800; text-align: right; }
+        .ds-row.ds-highlight { color: var(--c-turquesa); font-weight: 700; }
+        .ds-row.ds-savings { color: var(--c-naranja); font-weight: 700; }
+        
+        .ds-total-box { border-top: 1px dashed rgba(255,255,255,0.2); margin-top: 16px; padding-top: 16px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .ds-total-lbl { font-size: 14px; font-weight: 800; color: #b0c0c7; }
+        .ds-total-val { font-size: 28px; font-weight: 900; line-height: 1; color: #fff; }
+
+        .btn-primary { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; background: linear-gradient(180deg, var(--c-naranja) 0%, var(--c-naranja-dark) 100%); color: var(--c-blanco); font-weight: 900; font-size: 16px; padding: 18px; border-radius: var(--radius-sm); border: none; cursor: pointer; box-shadow: var(--shadow-glow); transition: transform 0.2s ease, box-shadow 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-primary:active { transform: translateY(2px); box-shadow: 0 4px 12px rgba(246, 90, 3, 0.15); }
+        .btn-primary:disabled { background: #cbd5e1; box-shadow: none; cursor: not-allowed; transform: none; color: #94a3b8; }
+
+        /* Trust Badges Integrados */
+        .trust-badges-inline { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+        .tb-item { display: flex; align-items: center; gap: 16px; background: var(--c-gris-claro); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--c-gris-border); }
+        .tb-item svg { width: 28px; height: 28px; fill: var(--c-turquesa-dark); flex-shrink: 0; }
+        .tb-item p { font-size: 14px; font-weight: 800; color: var(--c-azul); line-height: 1.3; }
+        .tb-item p span { display: block; font-size: 13px; font-weight: 500; color: var(--c-texto-light); margin-top: 2px; }
+
+        
+.tech-help-whatsapp{display:flex;align-items:center;gap:14px;margin-top:14px;padding:18px;background:#eaf8fa;border:1px solid #9edce5;border-left:4px solid #00afc6;border-radius:12px;color:#071a24}
+.tech-help-whatsapp svg{width:32px;height:32px;flex:none;fill:none;stroke:#008fa3;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tech-help-whatsapp strong{display:block;font-size:14px;line-height:1.35;margin-bottom:5px}
+.tech-help-whatsapp a{display:inline-block;color:#008fa3;font-size:15px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.tech-product-info{display:flex;align-items:center;gap:14px;border:2px solid #00afc6;background:#f2f6f7;border-radius:14px;padding:12px;margin:0 0 25px}
+.tech-product-info img{width:118px;height:126px;object-fit:contain;flex:none}
+.tech-product-name{font-size:15px;font-weight:800;color:#071a24}.tech-product-price{font-size:25px;font-weight:900;color:#f65a03;margin:4px 0}
+.tech-product-tax{font-size:11px;color:#71818b;font-weight:400;line-height:1.4}
+.tech-step-label{font-size:14px;font-weight:900;color:#071a24;border-bottom:2px solid #e2e8f0;padding-bottom:11px;margin:24px 0 14px}
+.tech-buy-layout .buy-config-section{padding:clamp(16px,4vw,26px)}
+.tech-buy-layout .color-selector{justify-content:stretch}.tech-buy-layout .color-label{max-width:none;padding:12px;gap:6px;font-size:13px}
+.tech-buy-layout .color-swatch{width:33px;height:33px}
+.tech-buy-layout .comparator-grid{gap:13px;margin-bottom:20px}
+.tech-buy-layout .plan-card{display:block;padding:0;overflow:hidden;border-radius:13px;transform:none!important;box-shadow:0 1px 3px #071a2410;background:#fff}
+.tech-buy-layout .plan-card.active{border:3px solid #00afc6;background:#fff}
+.tech-buy-layout .plan-card .plan-header{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;background:#e5edf1;padding:9px 13px;margin:0}
+.tech-buy-layout .plan-card.active .plan-header{background:#e0f7fa}
+.tech-buy-layout .plan-name{display:flex;align-items:baseline;gap:5px;font-size:13px;white-space:nowrap}
+.tech-plan-number{font-size:29px;line-height:1;font-weight:900;letter-spacing:-.6px}.tech-plan-number.tech-cash{font-size:22px}
+.tech-plan-words{font-size:13px;letter-spacing:-.2px}.tech-plan-words span{font-size:11px}
+.tech-buy-layout .plan-badge{font-size:10px;letter-spacing:0;padding:5px 7px;border-radius:5px;white-space:nowrap}
+.tech-buy-layout .plan-card.active .plan-badge:not(.exclusive){background:#f65a03}
+.tech-buy-layout .plan-price-box{border:0;display:block;margin:0;padding:9px 13px 11px;text-align:left}
+.tech-buy-layout .plan-installment{font-size:23px;line-height:1.2;display:block;overflow-wrap:normal}
+.tech-buy-layout .plan-installment small{font-size:13px}.tech-buy-layout .plan-total{font-size:12px;font-weight:650;margin-top:2px}
+.tech-buy-layout .qty-integrator{padding:14px}.tech-buy-layout .qty-controls-main{border-top:0;padding-top:0;margin:0}
+.tech-sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:110;background:#071a24;color:#fff;border-top:3px solid #00afc6;padding:10px max(16px,calc((100vw - 1200px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 -4px 15px #071a2420;transition:transform .2s}
+.tech-sticky-bar strong{font-size:13px}.tech-sticky-bar a{background:#f65a03;border-radius:10px;padding:12px 18px;font-size:13px;font-weight:900;white-space:nowrap}
+.tech-sticky-bar.is-hidden{transform:translateY(110%);pointer-events:none}
+@media(max-width:767px){body:has(.tech-sticky-bar:not(.is-hidden)) .whatsapp-float{bottom:92px}}
+@media(min-width:768px){.tech-buy-layout .plan-card{display:block}.tech-buy-layout .plan-price-box{border-top:0}.tech-buy-layout .plan-header{margin:0}.tech-sticky-bar{display:none}}
+@media(max-width:380px){.tech-plan-number{font-size:25px}.tech-plan-words{font-size:11px}.tech-plan-words span{font-size:10px}.tech-buy-layout .plan-badge{font-size:9px}.tech-product-info img{width:96px;height:106px}}
+
+
+/* Sección informativa de envíos: independiente del configurador y del carrito */
+.tech-shipping-section{max-width:900px;margin:36px auto 40px;padding:28px 22px;background:#fff;border:1px solid #e2e8f0;border-radius:20px;box-shadow:0 4px 12px rgba(7,26,36,.04);text-align:center}
+.tech-shipping-icon{width:36px;height:36px;margin:0 auto 12px;fill:none;stroke:#00afc6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tech-shipping-section h2{font-size:25px;font-weight:900;color:#071a24;margin:0 0 14px}
+.tech-shipping-lead{font-size:18px;font-weight:850;color:#008fa3;margin-bottom:8px}
+.tech-shipping-desc{font-size:15px;color:#34434a;line-height:1.55;margin:0 auto 24px;max-width:650px}
+.tech-shipping-options{display:grid;gap:14px;text-align:left}
+.tech-shipping-option{display:flex;gap:15px;align-items:flex-start;padding:18px;border-radius:12px;background:#eaf8fa;border:1px solid #00afc6;border-left:5px solid #00afc6}
+.tech-shipping-option.extended{background:#f8fafb;border-color:#e2e8f0;border-left-color:#f65a03}
+.tech-shipping-option-icon{width:40px;height:40px;flex:none;display:grid;place-items:center;background:#00afc6;color:#fff;border-radius:9px}
+.tech-shipping-option.extended .tech-shipping-option-icon{background:#e0f7fa;color:#071a24}
+.tech-shipping-option-icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tech-shipping-option strong{display:block;font-size:17px;font-weight:900;color:#071a24;margin-bottom:4px}
+.tech-shipping-option p{font-size:14px;color:#64748b;line-height:1.5;margin:0}
+.tech-shipping-option p+p{margin-top:3px;font-size:13px}
+.tech-shipping-note{font-size:14px;color:#64748b;line-height:1.5;margin:22px 0 16px}
+.tech-shipping-contact{display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:12px 14px;border:2px solid #00afc6;border-radius:9px;color:#008fa3;font-weight:850;font-size:14px;text-decoration:none;text-align:center}
+.tech-shipping-contact:hover{background:#eaf8fa}
+.tech-shipping-contact svg{width:20px;height:20px;fill:currentColor;flex:none}
+@media(min-width:768px){.tech-shipping-section{padding:38px 42px}.tech-shipping-options{grid-template-columns:1fr 1fr}}
+    </style>
 <!-- VERSION: REFLECTIVO-2026-10-29-R2 · MENÚ MÓVIL / REGALOS / CALCULADORA / PNG / CARRUSELES -->
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/blindaflex-favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -689,37 +769,35 @@
 </div>
 </section>
 <!-- 6. SELECTOR DE COMPRA (REFLECTIVO) -->
-<div class="section-gap buy-wrapper" id="compra">
+<section aria-labelledby="tech-calc-title" class="tech-calculator section-gap">
+<h2 id="tech-calc-title">¿CUÁNTA MEMBRANA NECESITÁS?</h2>
+<p>Ingresá los m² de tu techo y calculá cuántos baldes de 20 kg podrías necesitar.</p>
+<div class="tech-calc-input"><label for="calc-area">Superficie a impermeabilizar</label><div class="tech-calc-field"><input id="calc-area" inputmode="decimal" min="1" oninput="appPricing.calculateSurface()" placeholder="Ej.: 40" step="1" type="number"/><span>m²</span></div></div>
+<div aria-live="polite" class="tech-calc-result" id="calc-result">Estimación orientativa: consumo mínimo de 1 kg/m².</div>
+<p class="tech-calc-note">El consumo real depende del estado del techo, del soporte y del tipo de aplicación. Esta calculadora es informativa y no modifica tu pedido.</p>
+</section><div class="tech-buy-layout"> <div class="buy-wrapper" id="compra">
 <div class="pricing-loader" id="pricing-loader">
 <div class="spinner"></div>
 <p style="font-size:14px; color:var(--c-texto); font-weight:700;">Conectando ofertas vigentes...</p>
 </div>
-<!-- 1. IMAGEN PROMOCIONAL PROTAGONISTA -->
-<div class="promo-image-wrapper loading">
-<img alt="Hasta 20 cuotas con Tarjeta Cordobesa y hasta 15 cuotas sin interés con tarjetas y medios de pago." onerror="this.parentElement.classList.remove('loading'); this.parentElement.classList.add('missing-image');" onload="this.parentElement.classList.remove('loading')" src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png"/>
-</div>
-<h2 class="payment-heading">ELEGÍ CÓMO QUERÉS PAGAR</h2>
-<p class="payment-intro">Seleccioná una opción para ver el precio por cuota y el total de tu pedido.</p>
-<!-- 2. COMPARADOR DE PLANES INTERACTIVO -->
-<div class="comparator-grid" id="payment-comparator">
-<!-- Inyectado via JS -->
-</div>
 <!-- 3. CONFIGURACIÓN DEL PEDIDO (Color y Cantidad) -->
 <section class="buy-config-section">
 <h2 class="buy-title-h2">ARMÁ TU PEDIDO</h2>
+<div class="tech-product-info"><img alt="Blindaje Atérmico 20 kg" loading="lazy" src="assets/images/balde-blindaje-reflectivo.png"/><div><div class="tech-product-name">Blindaje Atérmico<br/>20 kg</div><div class="tech-product-price" id="tech-base-price">$203.980</div><div class="tech-product-tax" id="tech-tax-price">Sin impuestos nacionales: $168.579</div></div></div>
+<div class="tech-step-label">PASO 01 — COLOR DISPONIBLE</div>
 <!-- Color -->
 <div class="config-block">
-<div class="color-selector"><input checked="" class="color-input" id="color-blanco" name="color" type="radio" value="Blanco"/><label class="color-label" for="color-blanco"><span class="color-swatch swatch-white"></span>BLANCO REFLECTIVO</label></div>
+<div class="color-selector">
+<input checked="" class="color-input" id="color-blanco" name="color" onchange="appPricing.updateUI()" type="radio" value="Blanco"/>
+<label class="color-label" for="color-blanco"><span class="color-swatch swatch-white"></span>BLANCO</label>
 </div>
+</div>
+<div class="tech-step-label">PASO 02 — ELEGÍ CÓMO PAGAR</div>
+<div class="comparator-grid" id="payment-comparator"></div>
+<div class="tech-step-label">PASO 03 — ELEGÍ LA CANTIDAD</div>
 <!-- Cantidad -->
 <div class="config-block">
 <div class="qty-integrator">
-<div class="bf-inline-calc">
-<label for="calc-m2" class="bf-calc-label">¿No sabés cuántos necesitás? Calculá tu techo:</label>
-<div class="bf-calc-input-row"><input id="calc-m2" type="number" min="1" inputmode="decimal" placeholder="Ej: 40" oninput="calculateYield()" aria-label="Superficie en metros cuadrados"><span>m²</span></div>
-<p class="bf-calc-help">Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m². En mantenimiento puede variar según el soporte.</p>
-<div id="calc-result-box" class="bf-calc-result" style="display:none"><span id="res-baldes" hidden>0</span><strong id="res-baldes-label"></strong><button type="button" onclick="transferCalcToConfig()">Usar esta cantidad</button></div>
-</div>
 <div class="qty-controls-main">
 <span class="lbl">Cantidad a llevar:</span>
 <div class="qty-spinner">
@@ -739,12 +817,21 @@
                             </button>
 <!-- Trust Badges Integrados -->
 <div class="trust-badges-inline">
-<div class="tb-item"><span class="tb-icon" aria-hidden="true">✓</span><div><strong>Pagás cuando recibís tu pedido</strong><span>Comprá con tranquilidad y aboná contra entrega.</span></div></div>
-<div class="tb-item"><span class="tb-icon" aria-hidden="true">↗</span><div><strong>Envío gratis en Córdoba</strong><span>Córdoba Capital y zonas cercanas habilitadas.</span></div></div>
+<div class="tb-item">
+<svg viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<p>PAGÁS CUANDO RECIBÍS TU PEDIDO<span>Seguridad y confianza garantizada.</span></p>
+</div>
+<div class="tb-item">
+<svg viewbox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path></svg>
+<p>ENVÍO GRATIS EN CÓRDOBA<span>Dentro de Circunvalación y zonas de cobertura.</span></p>
+</div>
+<div class="tech-help-whatsapp">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-3.6-.8L3 21l1.8-4.9A8.5 8.5 0 1 1 20 11.5Z"></path></svg>
+<div><strong>¿Necesitás asesoramiento con tu compra?</strong><a href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20en%20la%20p%C3%A1gina%20de%20Blindaje%20At%C3%A9rmico%20y%20necesito%20ayuda%20con%20mi%20pedido." rel="noopener noreferrer" target="_blank">Escribinos por WhatsApp ↗</a></div>
+</div>
 </div>
 </section>
-</div>
-</div>
+</div></div>
 </div>
 <div class="grid-desktop">
 <div>
@@ -777,46 +864,27 @@
 <div style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px; font-weight: 500;">En zonas extendidas se solicita anticipadamente únicamente el costo del envío.</div>
 </section>
 <!-- 10. ENVÍOS Y PAGOS -->
-<section class="section-gap card" id="confianza">
-<svg class="section-icon-main svg-thin" style="width: 36px; height: 36px; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block;" viewbox="0 0 24 24"><rect height="10" rx="1" width="12" x="3" y="8"></rect><path d="M15 8h3l3 4v6h-6"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
-<h2 class="section-title">ENVÍOS Y ENTREGAS</h2>
-<div style="text-align: center; margin-bottom: 24px;">
-<h3 style="font-size: 18px; font-weight: 900; color: var(--c-turquesa-dark); text-transform: uppercase; margin-bottom: 8px;">ENTREGA RÁPIDA EN CÓRDOBA</h3>
-<p style="font-size: 15px; font-weight: 500; color: var(--c-texto); line-height: 1.4;">Entregas en el día o dentro de las 24 horas, según disponibilidad y programación (desde la confirmación).</p>
+<section aria-labelledby="tech-shipping-title" class="tech-shipping-section">
+<svg aria-hidden="true" class="tech-shipping-icon" viewbox="0 0 24 24"><path d="M3 6h11v11H3zM14 10h4l3 3v4h-7zM7.5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+<h2 id="tech-shipping-title">ENVÍOS Y ENTREGAS</h2>
+<p class="tech-shipping-lead">ENTREGA RÁPIDA EN CÓRDOBA</p>
+<p class="tech-shipping-desc">Entregas en el día o dentro de las 24 horas, según disponibilidad y programación (desde la confirmación).</p>
+<div class="tech-shipping-options">
+<div class="tech-shipping-option">
+<span aria-hidden="true" class="tech-shipping-option-icon"><svg viewbox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3 8 8 11 5-3 8-6 8-11V5z"></path></svg></span>
+<div><strong>ENVÍO GRATIS</strong><p>Córdoba Capital (anillo Circunvalación) y zonas cercanas habilitadas.</p></div>
 </div>
-<div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-<div style="background: #eefafc; border: 1px solid var(--c-turquesa); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; border-left: 4px solid var(--c-turquesa);">
-<div style="width: 32px; height: 32px; background: var(--c-turquesa); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0;"><svg style="width: 18px; height: 18px; fill: var(--c-blanco);" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg></div>
-<div>
-<h4 style="font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;">ENVÍO GRATIS</h4>
-<p style="font-size: 13px; color: var(--c-texto-light);">Córdoba Capital dentro del anillo de Circunvalación y zonas cercanas incluidas en nuestra cobertura.</p>
-</div>
-</div>
-<div style="background: var(--c-gris-bg); border: 1px solid var(--c-gris-border); padding: 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 12px; border-left: 4px solid var(--c-naranja);">
-<div style="width: 32px; height: 32px; background: var(--c-turquesa-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink:0;"><svg style="width: 18px; height: 18px; fill: var(--c-turquesa-dark);" viewbox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg></div>
-<div>
-<h4 style="font-size: 15px; font-weight: 800; color: var(--c-azul); margin-bottom: 4px;">ZONAS EXTENDIDAS</h4>
-<p style="font-size: 13px; color: var(--c-texto-light);">$10.000 por pedido.<br/>Costo fijo por compra completa, sin importar la cantidad de baldes.</p>
+<div class="tech-shipping-option extended">
+<span aria-hidden="true" class="tech-shipping-option-icon"><svg viewbox="0 0 24 24"><path d="M12 21s7-7 7-12a7 7 0 1 0-14 0c0 5 7 12 7 12z"></path><circle cx="12" cy="9" r="2"></circle></svg></span>
+<div><strong>ZONAS EXTENDIDAS</strong><p>$10.000 por pedido.</p><p>Costo fijo por compra completa, sin importar cantidad.</p></div>
 </div>
 </div>
-</div>
+<p class="tech-shipping-note">La cobertura y el costo de entrega se confirman según tu dirección.</p>
+<a class="tech-shipping-contact" href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20viendo%20Blindaje%20At%C3%A9rmico%20y%20quiero%20consultar%20si%20realizan%20entregas%20en%20mi%20zona." rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 4h16v13H8l-4 3V4z"></path></svg>CONSULTÁ TU ZONA POR WHATSAPP</a>
 </section>
 </div>
 <div>
 <!-- MEDIOS DE PAGO -->
-<section class="section-gap card" style="background: linear-gradient(135deg, #071A24 0%, #0a2736 100%); border: none; color: var(--c-blanco);">
-<div style="text-align: center; margin-bottom: 16px;">
-<svg class="section-icon-main svg-thin" style="width: 36px; height: 36px; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block;" viewbox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="5"></rect><line x1="2" x2="22" y1="10" y2="10"></line><line x1="6" x2="10" y1="15" y2="15"></line></svg>
-<h2 style="font-size: 20px; font-weight: 900; color: var(--c-blanco); text-transform: uppercase; margin-bottom: 8px;">PAGÁ AL RECIBIR TU PEDIDO</h2>
-<p style="font-size: 15px; color: var(--c-gris-claro); text-align: center; margin-bottom: 24px; font-weight: 500;">Comodidad y seguridad en la entrega.</p>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px;">
-<div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(0, 175, 198, 0.3); padding: 10px 14px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px);"><svg style="width: 16px; height: 16px; fill: var(--c-turquesa);" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-3.57-1.62-3.57-3.09 0-1.53 1.15-2.76 2.83-3.14V4h2.67v1.89c1.4.3 2.56 1.25 2.78 2.74h-1.94c-.16-1-.93-1.53-2.16-1.53-1.65 0-2.28.84-2.28 1.45 0 .8.54 1.44 2.75 1.96 2.68.64 3.48 1.75 3.48 3.2 0 1.57-1.12 2.79-2.9 3.18z"></path></svg> Efectivo</div>
-<div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(0, 175, 198, 0.3); padding: 10px 14px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px);"><svg style="width: 16px; height: 16px; fill: var(--c-turquesa);" viewbox="0 0 24 24"><path d="M4 4h6v6H4zm2 2v2h2V6zm8-2h6v6h-6zm2 2v2h2V6zM4 14h6v6H4zm2 2v2h2v-2zM15 14h1v2h-1zm1 2h1v1h-1zm-2-1h1v1h-1zm1-1h1v1h-1zm2-1h1v2h-1zm1 2h1v2h-1z"></path></svg> Transferencia / QR</div>
-<div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(0, 175, 198, 0.3); padding: 10px 14px; border-radius: 24px; font-size: 13px; font-weight: 600; color: var(--c-blanco); display: flex; align-items: center; gap: 8px; backdrop-filter: blur(4px);"><svg style="width: 16px; height: 16px; fill: var(--c-turquesa);" viewbox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"></path></svg> Tarjetas</div>
-</div>
-<div style="font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; margin-top: 16px; font-weight: 500;">En zonas extendidas se abona anticipadamente solamente el costo de envío. Promociones bancarias sujetas a disponibilidad.</div>
-</section>
 <!-- 11. FAQ -->
 <section class="section-gap card">
 <div style="text-align: center; margin-bottom:16px;">
@@ -832,7 +900,6 @@
 <div style="border-bottom: 1px solid var(--c-gris-border);"><button onclick="toggleFaq(this)" style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;">¿Sobre qué superficies se puede aplicar?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Es apto para techos de losas y chapas que estén correctamente preparados, limpios, firmes y secos.</p></div></div>
 <div style="border-bottom: 1px solid var(--c-gris-border);"><button onclick="toggleFaq(this)" style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;">¿Cómo se prepara la superficie?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">La superficie debe estar firme, limpia y seca, sin polvo, grasa, pintura floja ni partes desprendidas. Reparar fisuras o grietas existentes. Si hay humedad de origen estructural o filtraciones activas, solucioná primero su causa.</p></div></div>
 <div style="border-bottom: 1px solid var(--c-gris-border);"><button onclick="toggleFaq(this)" style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;">¿Cuánto tiempo debo esperar entre manos?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">Tiempo de secado mínimo 6hs a 8hs de acuerdo a condiciones climáticas.</p></div></div>
-
 <div style="border-bottom: 1px solid var(--c-gris-border);"><button onclick="toggleFaq(this)" style="width: 100%; text-align: left; background: none; border: none; padding: 16px 8px; font-weight: 800; font-size: 15px; color: var(--c-azul); display: flex; justify-content: space-between; align-items: center; cursor: pointer;">¿Cómo funcionan las promociones y el envío?</button><div style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 14px; color: var(--c-texto-light); font-weight: 500; padding: 0 8px;"><p style="padding-bottom: 16px;">El descuento por cantidad se aplica automáticamente en el carrito sobre el subtotal de Blindaje Atérmico. El envío gratis o con costo fijo se confirma vía WhatsApp según tu dirección exacta.</p></div></div>
 </div>
 </section>
@@ -844,7 +911,6 @@
 <p class="section-subtitle" style="color: var(--c-azul); font-weight: 800; margin-bottom: 24px;">IMPERMEABILIZACIÓN Y PROTECCIÓN REFLECTIVA EN UNA SOLA MEMBRANA.</p>
 <button class="btn-primary btn-action" onclick="document.getElementById('compra').scrollIntoView({behavior:'smooth'})">VER PRECIOS Y CUOTAS</button>
 </section>
-</div>
 </main>
 <!-- BARRA FLOTANTE -->
 <div class="floating-bar" id="floating-bar">
@@ -856,17 +922,14 @@
 <svg aria-hidden="true" viewbox="0 0 32 32"><path d="M16.01 3.2A12.7 12.7 0 0 0 5.1 22.4L3.3 29l6.8-1.8A12.8 12.8 0 1 0 16 3.2zm0 23.3c-2 0-4-.5-5.6-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.5zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"></path></svg>
 </a>
 <!-- CARRITO DRAWER UNIVERSAL -->
-
-
 <!-- CHECKOUT (FORMULARIO WHATSAPP) -->
-
 <!-- FOOTER -->
 <footer id="footer">
 <div class="container footer-grid">
 <div>
 <a class="footer-logo" href="index.html" style="display:inline-block; margin-bottom: 12px;">
-<img alt="BLINDAFLEX" src="assets/images/logo.png">
-</img></a>
+<img alt="BLINDAFLEX" src="assets/images/logo.png"/>
+</a>
 <p class="footer-desc">Especialistas en pinturas impermeabilizantes y protección de superficies.</p>
 </div>
 <div class="footer-nav">
@@ -899,9 +962,6 @@
 <div aria-label="Ubicación Blindaflex" style="text-align:center;font-size:12px;padding:12px;color:#94a3b8">⌖ Córdoba, Argentina</div>
 </footer>
 <!-- ================== SCRIPT LÓGICA PRINCIPAL ================== -->
-
-
-
 <div class="cart-overlay" id="cart-overlay" onclick="appPricing.closeCart()"></div><aside class="cart-drawer" id="cart-drawer">
 <div class="cart-header">
 <h2>MI PEDIDO</h2>
@@ -1087,6 +1147,9 @@ const appPricing = (function() {
                 const res = await fetch('precios.json');
                 if(!res.ok) throw new Error("No se pudo cargar precios.json");
                 db = await res.json();
+                if (!db.productos?.atermico_20) throw new Error('Falta Blindaje Atérmico en precios.json');
+                if (db.modalidades && !db.modalidades.transferencia && db.modalidades.contado)
+                    db.modalidades.transferencia = { ...db.modalidades.contado, id: 'transferencia', nombre: 'Contado' };
                 
                 const savedPayment = localStorage.getItem(PAYMENT_KEY);
                 if(savedPayment && db.modalidades[savedPayment] && isPlanConfigured(savedPayment)) {
@@ -1127,11 +1190,14 @@ const appPricing = (function() {
 
         function updateUI() {
             if(!db) return;
-            
+
             state.color = 'Blanco';
+            const basePrice = db.productos[state.productId].precio_base;
+            document.getElementById('tech-base-price').textContent = fmtMoney(basePrice);
+            document.getElementById('tech-tax-price').textContent = 'Sin impuestos nacionales: ' + fmtMoney(Math.round(basePrice / 1.21));
             
             // 1. Renderizar el Comparador (Plan de cuotas)
-            const order = ['cordobesa_20', 'cuotas_15', 'cuotas_9', 'cuotas_3', 'contado'];
+            const order = ['cordobesa_20', 'cuotas_15', 'cuotas_9', 'cuotas_6', 'cuotas_3', 'transferencia'];
             const compContainer = document.getElementById('payment-comparator');
             let compHtml = '';
 
@@ -1142,7 +1208,9 @@ const appPricing = (function() {
                 const isActive = available && state.paymentMethod === id;
                 const exclusive = id === 'cordobesa_20';
                 const badge = m.etiqueta ? `<span class="plan-badge ${exclusive ? 'exclusive' : ''}">${m.etiqueta}</span>` : '';
-                const planTitle = m.nombre;
+                const planTitle = id === 'transferencia'
+                    ? '<span class="tech-plan-number tech-cash">CONTADO</span>'
+                    : `<span class="tech-plan-number">${m.cuotas}</span><span class="tech-plan-words">CUOTAS <span>SIN INTERÉS</span></span>`;
                 
                 if(!available) {
                     compHtml += `<div class="plan-card unavailable" aria-disabled="true">
@@ -1152,7 +1220,7 @@ const appPricing = (function() {
                     return;
                 }
                 
-                const pData = getPrices(state.productId, id, state.qty);
+                const pData = getPrices(state.productId, id, 1);
                 const priceHtml = m.cuotas > 1
                     ? `<div class="plan-installment">${fmtMoney(pData.installmentValue)} <small>por cuota</small></div>
                        <div class="plan-total">Precio total: ${fmtMoney(pData.finalTotal)}</div>`
@@ -1214,11 +1282,6 @@ const appPricing = (function() {
             if(!val || val <= 0) { res.innerHTML = "Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m². En mantenimiento puede variar."; return; }
             const needed = Math.ceil(val / 20); 
             res.innerHTML = `<strong style="color:var(--c-azul);">Para impermeabilización completa, estimación: ${needed} balde${needed > 1 ? 's' : ''}. El consumo real puede variar.</strong>`;
-            if(state.qty !== needed) {
-                state.qty = needed;
-                document.getElementById('main-qty').value = state.qty;
-                updateUI();
-            }
         }
 
         // --- CARRITO COMPARTIDO ---
