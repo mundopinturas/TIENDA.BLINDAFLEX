@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-09-integracion-barrera",
+  "version": "2026-11-10",
   "configuracion": {
     "impuestos_iva": 0.21
   },
@@ -32,11 +32,11 @@
   "modalidades": {
     "cordobesa_20": {
       "id": "cordobesa_20",
-      "nombre": "20 cuotas - Tarjeta Cordobesa",
+      "nombre": "20 cuotas · Cordobesa",
       "cuotas": 20,
-      "precio_base": 168000,
       "descuento": 0,
-      "etiqueta": "EXCLUSIVO TARJETA CORDOBESA"
+      "etiqueta": "EXCLUSIVO CORDOBESA",
+      "precio_base": 168000
     },
     "cuotas_15": {
       "id": "cuotas_15",
@@ -51,6 +51,13 @@
       "cuotas": 9,
       "descuento": 0.08,
       "etiqueta": "8% OFF"
+    },
+    "cuotas_6": {
+      "id": "cuotas_6",
+      "nombre": "6 cuotas",
+      "cuotas": 6,
+      "descuento": 0.11,
+      "etiqueta": "11% OFF"
     },
     "cuotas_3": {
       "id": "cuotas_3",
