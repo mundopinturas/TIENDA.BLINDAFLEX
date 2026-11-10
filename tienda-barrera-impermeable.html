@@ -657,6 +657,13 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
             border-radius: 0;
         }
 
+/* Jerarquía de lectura: número destacado, resto discreto sin aumentar la tarjeta. */
+.bf-plan-option .bf-plan-title{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.bf-plan-option .bf-plan-number{font-size:27px;font-weight:900;line-height:1;letter-spacing:-.7px}
+.bf-plan-option .bf-plan-wording{font-size:13px;font-weight:850;line-height:1.25}
+.bf-plan-option .bf-plan-interest{font-size:11px;font-weight:750;white-space:nowrap}
+.bf-plan-option .bf-plan-cash{font-size:19px;letter-spacing:0}
+@media(max-width:380px){.bf-plan-option .bf-plan-number{font-size:25px}.bf-plan-option .bf-plan-wording{font-size:12px}.bf-plan-option .bf-plan-interest{font-size:10px}}
 /* Financiación Barrera Impermeable: sin estilos globales de SVG */
 .bf-financing-banner{max-width:900px;margin:0 auto 22px;text-align:center}
 .bf-financing-banner img{display:block;width:100%;height:auto;border-radius:12px}
@@ -950,11 +957,11 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                                 <div class="c-pres-grid">
                                     <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12, 130106)">
                                         <span class="c-pres-kg">12 kg</span>
-                                        <span class="c-pres-price">$130.106</span><small class="c-pres-net">Sin IVA: $107.526</small>
+                                        <span class="c-pres-price">$130.106</span><small class="c-pres-net">Sin impuestos nacionales: $107.526</small>
                                     </div>
                                     <div class="c-pres-card" id="c-pres-5" onclick="setPres(5, 54794)">
                                         <span class="c-pres-kg">5 kg</span>
-                                        <span class="c-pres-price">$54.794</span><small class="c-pres-net">Sin IVA: $45.284</small>
+                                        <span class="c-pres-price">$54.794</span><small class="c-pres-net">Sin impuestos nacionales: $45.284</small>
                                     </div>
                                 </div>
                             </div>
@@ -990,7 +997,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
                                 </div>
                             </div>
 
-                            <div class="bf-plan-section c-step" id="bf-plan-section"><h3 class="c-step-title">PASO 03 — ELEGÍ CÓMO PAGAR</h3><p class="bf-plan-intro">Un solo plan para todo tu pedido. Podés combinar presentaciones y colores.</p><div class="bf-plan-grid" id="bf-plan-grid"></div><p class="bf-plan-foot">Las cuotas se abonan con tarjeta al recibir tu pedido, en zonas habilitadas. Los descuentos se aplican sobre el precio de 15 cuotas.</p></div>
+                            <div class="bf-plan-section c-step" id="bf-plan-section"><h3 class="c-step-title">PASO 03 — ELEGÍ CÓMO PAGAR</h3><div class="bf-plan-grid" id="bf-plan-grid"></div><p class="bf-plan-foot">Las cuotas se abonan con tarjeta al recibir tu pedido, en zonas habilitadas. Los descuentos se aplican sobre el precio de 15 cuotas.</p></div>
                             <!-- PASO 3 -->
                             <div class="c-step">
                                 <h3 class="c-step-title">PASO 04 — CANTIDAD</h3>
@@ -2166,9 +2173,9 @@ function toggleMobileMenu(){
 (function(){
 'use strict';
 const KEY='blindaflex_cart_data', PAY='blindaflex_payment_preference';
-const fallback={productos:{techos_20:{nombre:'Blindaje para Techos',precio_base:168000,precio_cordobesa_20:168000},atermico_20:{nombre:'Blindaje Atérmico',precio_base:203980,precio_cordobesa_20:203980},barrera_12:{nombre:'Barrera Impermeable',precio_base:130106,precio_cordobesa_20:130106},barrera_5:{nombre:'Barrera Impermeable',precio_base:54794,precio_cordobesa_20:54794}},modalidades:{cordobesa_20:{nombre:'20 cuotas · Cordobesa',cuotas:20,descuento:0},cuotas_15:{nombre:'15 cuotas',cuotas:15,descuento:0},cuotas_9:{nombre:'9 cuotas',cuotas:9,descuento:.08},cuotas_3:{nombre:'3 cuotas',cuotas:3,descuento:.14},contado:{nombre:'Contado',cuotas:1,descuento:.20}}};
+const fallback={productos:{techos_20:{nombre:'Blindaje para Techos',precio_base:168000,precio_cordobesa_20:168000},atermico_20:{nombre:'Blindaje Atérmico',precio_base:203980,precio_cordobesa_20:203980},barrera_12:{nombre:'Barrera Impermeable',precio_base:130106,precio_cordobesa_20:130106},barrera_5:{nombre:'Barrera Impermeable',precio_base:54794,precio_cordobesa_20:54794}},modalidades:{cordobesa_20:{nombre:'20 cuotas · Cordobesa',cuotas:20,descuento:0},cuotas_15:{nombre:'15 cuotas',cuotas:15,descuento:0},cuotas_9:{nombre:'9 cuotas',cuotas:9,descuento:.08},cuotas_6:{nombre:'6 cuotas',cuotas:6,descuento:.11},cuotas_3:{nombre:'3 cuotas',cuotas:3,descuento:.14},contado:{nombre:'Contado',cuotas:1,descuento:.20}}};
 let db=fallback;
-const methods=['cordobesa_20','cuotas_15','cuotas_9','cuotas_3','contado'];
+const methods=['cordobesa_20','cuotas_15','cuotas_9','cuotas_6','cuotas_3','contado'];
 let method=methods.includes(localStorage.getItem(PAY))?localStorage.getItem(PAY):'cuotas_15';
 const fmt=n=>'$'+Number(n).toLocaleString('es-AR',{minimumFractionDigits:0,maximumFractionDigits:2});
 window.bfUnitPrice=function(kg){const id='barrera_'+kg;const p=db.productos[id],m=db.modalidades[method];return method==='cordobesa_20'?Number(p.precio_cordobesa_20):Math.round(Number(p.precio_base)*(1-Number(m.descuento||0)))};
@@ -2188,12 +2195,12 @@ function renderPlans(){
   const p=db.modalidades[id];if(!p)return '';
   const amount=id==='cordobesa_20'?Number(db.productos['barrera_'+cfgPres]?.precio_cordobesa_20||0):Math.round(APP_PRICES[cfgPres]*(1-p.descuento));
   const cuotas=Number(p.cuotas)||1;
-  const title=id==='cordobesa_20'?'20 CUOTAS - TARJETA CORDOBESA':id==='contado'?'CONTADO':cuotas+' CUOTAS';
+  const title=id==='contado'?'<span class="bf-plan-number bf-plan-cash">CONTADO</span>':'<span class="bf-plan-number">'+cuotas+'</span><span class="bf-plan-wording"> CUOTAS <span class="bf-plan-interest">SIN INTERÉS</span></span>';
   const badge=id==='cordobesa_20'?'<span class="bf-plan-badge cordobesa">EXCLUSIVO TARJETA CORDOBESA</span>':id==='cuotas_15'?'<span class="bf-plan-badge">DESTACADO</span>':p.descuento?'<span class="bf-plan-badge">'+Math.round(p.descuento*100)+'% OFF</span>':'';
   return '<button type="button" class="bf-plan-option" aria-pressed="'+(id===method)+'" data-plan="'+id+'"><span class="bf-plan-head"><span class="bf-plan-title">'+title+'</span>'+badge+'</span><span class="bf-plan-installment">'+fmt(amount/cuotas)+(cuotas>1?'<span class="bf-plan-per"> por cuota</span>':'')+'</span><span class="bf-plan-total">Precio total: '+fmt(amount)+'</span></button>';
  }).join('');
 }
-function updateSelection(){renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin IVA: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
+function updateSelection(){renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin impuestos nacionales: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
 window.bfSetPlan=function(id){if(!db.modalidades[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
 document.getElementById('bf-plan-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b)bfSetPlan(b.dataset.plan)});
 const originalSetPres=window.setPres;window.setPres=function(kg,price){originalSetPres(kg,price);updateSelection()};
