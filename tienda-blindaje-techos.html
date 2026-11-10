@@ -423,6 +423,51 @@
             .hero-section:has(> #bf-vcarousel) {flex-direction: row; align-items: center;}
             .hero-section > .hero-text-block {width:100%;}
         }
+
+/* BLINDAJE PARA TECHOS — optimización acotada al recorrido de compra */
+.tech-promo-section{max-width:900px;margin-left:auto;margin-right:auto}
+.tech-promo-section .promo-image-wrapper{margin-bottom:0}
+.tech-comparer-wrap{max-width:900px;margin:0 auto 36px}
+.tech-buy-layout{max-width:900px;margin:0 auto}
+.tech-calculator{max-width:900px;margin:0 auto 32px;background:linear-gradient(145deg,#071a24,#0d2c3d);color:#fff;border-radius:20px;padding:26px 20px;text-align:center}
+.tech-calculator h2{font-size:clamp(20px,4vw,28px);font-weight:900;color:#00afc6;line-height:1.2;margin-bottom:10px}
+.tech-calculator>p{font-size:14px;color:#e5edf1;line-height:1.5}
+.tech-calc-input{border:1px solid #39515c;background:#ffffff0d;border-radius:14px;margin:22px 0 16px;padding:20px}
+.tech-calc-input label{display:block;font-weight:800;font-size:14px;margin-bottom:12px}
+.tech-calc-field{display:flex;align-items:center;justify-content:center;gap:12px;font-weight:900;color:#00afc6;font-size:23px}
+.tech-calc-field input{width:130px;max-width:65%;border:3px solid #00afc6;border-radius:9px;background:#fff;color:#071a24;font-size:24px;font-weight:900;text-align:center;padding:10px}
+.tech-calc-result{background:#fff;border-radius:14px;padding:20px 12px;color:#071a24;font-weight:700;display:flex;align-items:center;flex-direction:column;gap:4px}
+.tech-calc-result-label{font-size:12px;color:#64748b;letter-spacing:.04em}
+.tech-calc-result strong{font-size:27px}.tech-calc-buckets{color:#f65a03;font-size:21px;font-weight:900}
+.tech-calculator .tech-calc-note{margin-top:15px;font-size:12px;color:#c5d4da;text-align:left}
+.tech-product-info{display:flex;align-items:center;gap:14px;border:2px solid #00afc6;background:#f2f6f7;border-radius:14px;padding:12px;margin:0 0 25px}
+.tech-product-info img{width:86px;height:94px;object-fit:contain;flex:none}
+.tech-product-name{font-size:15px;font-weight:800;color:#071a24}.tech-product-price{font-size:25px;font-weight:900;color:#f65a03;margin:4px 0}
+.tech-product-tax{font-size:11px;color:#71818b;font-weight:400;line-height:1.4}
+.tech-step-label{font-size:14px;font-weight:900;color:#071a24;border-bottom:2px solid #e2e8f0;padding-bottom:11px;margin:24px 0 14px}
+.tech-buy-layout .buy-config-section{padding:clamp(16px,4vw,26px)}
+.tech-buy-layout .color-selector{justify-content:stretch}.tech-buy-layout .color-label{max-width:none;padding:12px;gap:6px;font-size:13px}
+.tech-buy-layout .color-swatch{width:33px;height:33px}
+.tech-buy-layout .comparator-grid{gap:13px;margin-bottom:20px}
+.tech-buy-layout .plan-card{display:block;padding:0;overflow:hidden;border-radius:13px;transform:none!important;box-shadow:0 1px 3px #071a2410;background:#fff}
+.tech-buy-layout .plan-card.active{border:3px solid #00afc6;background:#fff}
+.tech-buy-layout .plan-card .plan-header{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;background:#e5edf1;padding:9px 13px;margin:0}
+.tech-buy-layout .plan-card.active .plan-header{background:#e0f7fa}
+.tech-buy-layout .plan-name{display:flex;align-items:baseline;gap:5px;font-size:13px;white-space:nowrap}
+.tech-plan-number{font-size:29px;line-height:1;font-weight:900;letter-spacing:-.6px}.tech-plan-number.tech-cash{font-size:22px}
+.tech-plan-words{font-size:13px;letter-spacing:-.2px}.tech-plan-words span{font-size:11px}
+.tech-buy-layout .plan-badge{font-size:10px;letter-spacing:0;padding:5px 7px;border-radius:5px;white-space:nowrap}
+.tech-buy-layout .plan-card.active .plan-badge:not(.exclusive){background:#f65a03}
+.tech-buy-layout .plan-price-box{border:0;display:block;margin:0;padding:9px 13px 11px;text-align:left}
+.tech-buy-layout .plan-installment{font-size:23px;line-height:1.2;display:block;overflow-wrap:normal}
+.tech-buy-layout .plan-installment small{font-size:13px}.tech-buy-layout .plan-total{font-size:12px;font-weight:650;margin-top:2px}
+.tech-buy-layout .qty-integrator{padding:14px}.tech-buy-layout .qty-controls-main{border-top:0;padding-top:0;margin:0}
+.tech-sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:110;background:#071a24;color:#fff;border-top:3px solid #00afc6;padding:10px max(16px,calc((100vw - 1200px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 -4px 15px #071a2420;transition:transform .2s}
+.tech-sticky-bar strong{font-size:13px}.tech-sticky-bar a{background:#f65a03;border-radius:10px;padding:12px 18px;font-size:13px;font-weight:900;white-space:nowrap}
+.tech-sticky-bar.is-hidden{transform:translateY(110%);pointer-events:none}
+@media(min-width:768px){.tech-buy-layout .plan-card{display:block}.tech-buy-layout .plan-price-box{border-top:0}.tech-buy-layout .plan-header{margin:0}.tech-sticky-bar{display:none}}
+@media(max-width:380px){.tech-plan-number{font-size:25px}.tech-plan-words{font-size:11px}.tech-plan-words span{font-size:10px}.tech-buy-layout .plan-badge{font-size:9px}.tech-product-info img{width:70px}}
+
     </style>
 </head>
 <body>
@@ -527,11 +572,15 @@
                 </div>
             </section>
 
-            <div class="grid-desktop">
-                
-                <!-- COLUMNA IZQUIERDA: COMPARADOR VISUAL -->
-                <div>
-                    <section class="comparer-section">
+            <!-- Financiación, después de los beneficios -->
+            <section class="tech-promo-section section-gap">                        <!-- 1. IMAGEN PROMOCIONAL PROTAGONISTA -->
+                        <div class="promo-image-wrapper loading">
+                            <img src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png" alt="Hasta 20 cuotas con Tarjeta Cordobesa y hasta 15 cuotas sin interés con tarjetas y medios de pago." onerror="this.parentElement.classList.remove('loading'); this.parentElement.classList.add('missing-image');" onload="this.parentElement.classList.remove('loading')">
+                        </div>
+
+            </section>
+            <!-- Antes y después -->
+            <div class="tech-comparer-wrap section-gap">                    <section class="comparer-section">
                         <div class="comparer-header">
                             <h2 class="comparer-h2">MIRÁ LA DIFERENCIA</h2>
                             <p class="comparer-subtitle">Compará el aspecto antes y después de aplicar Blindaflex.</p>
@@ -546,34 +595,28 @@
                             </div>
                         </div>
                         <div class="comparer-help">Deslizá para comparar</div>
-                    </section>
-                </div>
-
-                <!-- COLUMNA DERECHA: MÓDULO DE COMPRA PREMIUM -->
-                <div>
-                    <div class="buy-wrapper" id="compra">
+                    </section></div>
+            <section class="tech-calculator section-gap" aria-labelledby="tech-calc-title">
+                <h2 id="tech-calc-title">¿CUÁNTA MEMBRANA NECESITÁS?</h2>
+                <p>Ingresá los m² de tu techo y calculá cuántos baldes de 20 kg podrías necesitar.</p>
+                <div class="tech-calc-input"><label for="calc-area">Superficie a impermeabilizar</label><div class="tech-calc-field"><input id="calc-area" type="number" min="1" step="1" inputmode="decimal" placeholder="Ej.: 40" oninput="appPricing.calculateSurface()"><span>m²</span></div></div>
+                <div id="calc-result" class="tech-calc-result" aria-live="polite">Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m².</div>
+                <p class="tech-calc-note">Estimación informativa para impermeabilización completa, con un mínimo de 1 kg/m². El consumo real depende del estado de la superficie, las manos aplicadas y si se trata de mantenimiento o de una membrana existente. No modifica tu pedido.</p>
+            </section>
+            <!-- Configurador de compra -->
+            <div class="tech-buy-layout">                    <div class="buy-wrapper" id="compra">
                         
                         <div class="pricing-loader" id="pricing-loader">
                             <div class="spinner"></div>
                             <p style="font-size:14px; color:var(--c-texto); font-weight:700;">Conectando ofertas vigentes...</p>
                         </div>
 
-                        <!-- 1. IMAGEN PROMOCIONAL PROTAGONISTA -->
-                        <div class="promo-image-wrapper loading">
-                            <img src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png" alt="Hasta 20 cuotas con Tarjeta Cordobesa y hasta 15 cuotas sin interés con tarjetas y medios de pago." onerror="this.parentElement.classList.remove('loading'); this.parentElement.classList.add('missing-image');" onload="this.parentElement.classList.remove('loading')">
-                        </div>
-
-                        <h2 class="payment-heading">ELEGÍ CÓMO QUERÉS PAGAR</h2>
-                        <p class="payment-intro">Seleccioná una opción para ver el precio por cuota y el total de tu pedido.</p>
-                        <!-- 2. COMPARADOR DE PLANES INTERACTIVO -->
-                        <div class="comparator-grid" id="payment-comparator">
-                            <!-- Inyectado via JS -->
-                        </div>
-
                         <!-- 3. CONFIGURACIÓN DEL PEDIDO (Color y Cantidad) -->
                         <section class="buy-config-section">
                             <h2 class="buy-title-h2">ARMÁ TU PEDIDO</h2>
+                            <div class="tech-product-info"><img src="assets/images/balde-blindaje-techo.png" alt="Blindaje para Techos 20 kg" loading="lazy"><div><div class="tech-product-name">Blindaje para Techos · 20 kg</div><div class="tech-product-price" id="tech-base-price">$168.000</div><div class="tech-product-tax" id="tech-tax-price">Sin impuestos nacionales: $138.843</div></div></div>
                             
+                            <div class="tech-step-label">PASO 01 — ELEGÍ EL COLOR</div>
                             <!-- Color -->
                             <div class="config-block">
                                 <div class="color-selector">
@@ -585,19 +628,12 @@
                                 </div>
                             </div>
 
+                            <div class="tech-step-label">PASO 02 — ELEGÍ CÓMO PAGAR</div>
+                            <div class="comparator-grid" id="payment-comparator"></div>
+                            <div class="tech-step-label">PASO 03 — ELEGÍ LA CANTIDAD</div>
                             <!-- Cantidad -->
                             <div class="config-block">
                                 <div class="qty-integrator">
-                                    <div>
-                                        <div class="calc-header">¿No sabés cuántos necesitás? Calculá tu techo:</div>
-                                        <div class="calc-row">
-                                            <div class="calc-input-wrapper">
-                                                <input id="calc-area" type="number" min="1" step="1" placeholder="Ej: 40" oninput="appPricing.calculateSurface()">
-                                                <span style="font-size:13px; color:var(--c-texto-light); font-weight:700;">m²</span>
-                                            </div>
-                                            <div class="calc-result" id="calc-result">Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m². En mantenimiento puede variar.</div>
-                                        </div>
-                                    </div>
                                     <div class="qty-controls-main">
                                         <span class="lbl">Cantidad a llevar:</span>
                                         <div class="qty-spinner">
@@ -630,9 +666,7 @@
                                 </div>
                             </div>
                         </section>
-                    </div>
-                </div>
-            </div>
+                    </div></div>
 
             <!-- CÓMO COMPRAR Y FAQ -->
             <div class="grid-desktop" style="margin-top:40px;">
@@ -682,6 +716,7 @@
         </div>
     </main>
 
+    <div class="tech-sticky-bar" id="tech-sticky-bar"><strong>BLINDAJE PARA TECHOS</strong><a href="#compra">VER PRECIOS</a></div>
     <!-- FOOTER -->
     <footer id="footer">
         <div class="container footer-grid">
@@ -785,6 +820,9 @@
                 const res = await fetch('precios.json');
                 if(!res.ok) throw new Error("No se pudo cargar precios.json");
                 db = await res.json();
+                // Todos los precios y descuentos provienen de precios.json.
+                if (!db.productos?.techos_20 || !['cordobesa_20','cuotas_15','cuotas_9','cuotas_6','cuotas_3','contado'].every(id => db.modalidades?.[id])) throw new Error('Configuración incompleta en precios.json');
+                if (db.modalidades && !db.modalidades.transferencia && db.modalidades.contado) db.modalidades.transferencia = { ...db.modalidades.contado, id: 'transferencia', nombre: 'Contado' };
                 
                 const savedPayment = localStorage.getItem(PAYMENT_KEY);
                 if(savedPayment && db.modalidades[savedPayment] && isPlanConfigured(savedPayment)) {
@@ -806,7 +844,7 @@
         function isPlanConfigured(methodId) {
             const m = db && db.modalidades[methodId];
             if(!m || !Number.isInteger(m.cuotas) || m.cuotas < 1) return false;
-            if(methodId === 'cordobesa_20') return Number.isFinite(m.precio_base) && m.precio_base > 0;
+            if(methodId === 'cordobesa_20') return Number.isFinite(db.productos[state.productId].precio_cordobesa_20) && db.productos[state.productId].precio_cordobesa_20 > 0;
             return Number.isFinite(m.descuento) && m.descuento >= 0 && m.descuento < 1;
         }
 
@@ -816,7 +854,7 @@
             if(!p || !m) return null;
 
             const baseTotal = p.precio_base * qty;
-            const finalTotal = methodId === 'cordobesa_20' ? m.precio_base * qty : Math.round(baseTotal * (1 - m.descuento));
+            const finalTotal = methodId === 'cordobesa_20' ? p.precio_cordobesa_20 * qty : Math.round(baseTotal * (1 - m.descuento));
             const installmentValue = finalTotal / m.cuotas;
             const savings = baseTotal - finalTotal;
 
@@ -828,8 +866,11 @@
             
             state.color = document.querySelector('input[name="color"]:checked').value;
             
+            const basePrice = db.productos[state.productId].precio_base;
+            document.getElementById('tech-base-price').textContent = fmtMoney(basePrice);
+            document.getElementById('tech-tax-price').textContent = 'Sin impuestos nacionales: ' + fmtMoney(Math.round(basePrice / 1.21));
             // 1. Renderizar el Comparador (Plan de cuotas)
-            const order = ['cordobesa_20', 'cuotas_15', 'cuotas_9', 'cuotas_3', 'transferencia'];
+            const order = ['cordobesa_20', 'cuotas_15', 'cuotas_9', 'cuotas_6', 'cuotas_3', 'transferencia'];
             const compContainer = document.getElementById('payment-comparator');
             let compHtml = '';
 
@@ -840,7 +881,7 @@
                 const isActive = available && state.paymentMethod === id;
                 const exclusive = id === 'cordobesa_20';
                 const badge = m.etiqueta ? `<span class="plan-badge ${exclusive ? 'exclusive' : ''}">${m.etiqueta}</span>` : '';
-                const planTitle = m.nombre;
+                const planTitle = id === 'transferencia' ? '<span class="tech-plan-number tech-cash">CONTADO</span>' : `<span class="tech-plan-number">${m.cuotas}</span><span class="tech-plan-words">CUOTAS <span>SIN INTERÉS</span></span>`;
                 
                 if(!available) {
                     compHtml += `<div class="plan-card unavailable" aria-disabled="true">
@@ -850,12 +891,12 @@
                     return;
                 }
                 
-                const pData = getPrices(state.productId, id, state.qty);
+                const pData = getPrices(state.productId, id, 1);
                 const priceHtml = m.cuotas > 1
                     ? `<div class="plan-installment">${fmtMoney(pData.installmentValue)} <small>por cuota</small></div>
                        <div class="plan-total">Precio total: ${fmtMoney(pData.finalTotal)}</div>`
                     : `<div class="plan-installment">${fmtMoney(pData.finalTotal)}</div>
-                       <div class="plan-total">Precio final abonando al recibir</div>`;
+                       <div class="plan-total">Precio total: ${fmtMoney(pData.finalTotal)}</div>`;
                 compHtml += `<button type="button" class="plan-card ${isActive ? 'active' : ''}" aria-pressed="${isActive}" onclick="appPricing.setPayment('${id}')">
                     <div class="plan-header"><div class="plan-name">${planTitle}</div>${badge}</div>
                     <div class="plan-price-box">${priceHtml}</div></button>`;
@@ -907,16 +948,15 @@
         }
 
         function calculateSurface() {
-            const val = document.getElementById('calc-area').value;
+            const value = Number(document.getElementById('calc-area').value);
             const res = document.getElementById('calc-result');
-            if(!val || val <= 0) { res.innerHTML = "Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m². En mantenimiento puede variar."; return; }
-            const needed = Math.ceil(val / 20); 
-            res.innerHTML = `<strong style="color:var(--c-azul);">Para impermeabilización completa, estimación: ${needed} balde${needed > 1 ? 's' : ''}. El consumo real puede variar.</strong>`;
-            if(state.qty !== needed) {
-                state.qty = needed;
-                document.getElementById('main-qty').value = state.qty;
-                updateUI();
+            if (!Number.isFinite(value) || value <= 0) {
+                res.textContent = 'Para impermeabilización completa: consumo mínimo orientativo de 1 kg/m².';
+                return;
             }
+            const kilos = Math.ceil(value);
+            const buckets = Math.ceil(value / 20);
+            res.innerHTML = `<span class="tech-calc-result-label">NECESITÁS APROXIMADAMENTE</span><strong>${kilos.toLocaleString('es-AR')} kg</strong><span class="tech-calc-buckets">${buckets} balde${buckets === 1 ? '' : 's'} de 20 kg</span>`;
         }
 
         // --- CARRITO COMPARTIDO ---
@@ -978,7 +1018,7 @@
                     // Compatibilidad con items agregados desde landing vieja
                     const fallbackBase = (i.type === 'techo' || /Techos/.test(i.product)) ? 168000 : (i.price || 0);
                     const baseTot = fallbackBase * i.qty;
-                    const finTot = currentMethod === 'cordobesa_20' ? m.precio_base * i.qty : Math.round(baseTot * (1 - m.descuento));
+                    const finTot = currentMethod === 'cordobesa_20' ? (db.productos[i.id]?.precio_cordobesa_20 || db.productos[i.id]?.precio_base) * i.qty : Math.round(baseTot * (1 - m.descuento));
                     pData = { finalTotal: finTot, savings: baseTot - finTot };
                 }
                 i._calcTotal = pData.finalTotal;
@@ -1447,5 +1487,18 @@
         else answer.style.maxHeight = "0";
     }
     </script>
+<script>
+(function(){
+  const bar=document.getElementById('tech-sticky-bar');
+  const buy=document.getElementById('compra');
+  if(!bar||!buy)return;
+  const update=()=>{
+    const r=buy.getBoundingClientRect();
+    const visible=r.top < innerHeight-70 && r.bottom > 80;
+    bar.classList.toggle('is-hidden',visible || document.getElementById('checkout-view').style.display==='block');
+  };
+  addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();
+})();
+</script>
 </body>
 </html>
