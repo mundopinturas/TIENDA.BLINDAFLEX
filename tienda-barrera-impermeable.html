@@ -808,8 +808,8 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 
 /* Barrera Impermeable: tarjetas de presentación, exclusivamente. */
 .c-pres-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-.c-pres-card { display: grid; grid-template-columns: clamp(76px, 23%, 118px) minmax(0, 1fr); align-items: center; column-gap: clamp(12px, 3vw, 24px); padding: 16px; text-align: left; min-height: 146px; }
-.c-pres-bucket { width: 100%; height: 120px; object-fit: contain; display: block; }
+.c-pres-card { display: grid; grid-template-columns: clamp(112px, 32%, 154px) minmax(0, 1fr); align-items: center; column-gap: 12px; padding: 16px; text-align: left; min-height: 146px; }
+.c-pres-bucket { width: 100%; height: 136px; object-fit: contain; display: block; }
 .c-pres-details { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
 .c-pres-kg { margin-bottom: 0; font-size: 17px; }
 .c-pres-original-line { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
@@ -817,7 +817,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 .c-pres-off { background: #008fa3; color: white; padding: 4px 7px; border-radius: 5px; font-size: 10px; font-weight: 900; white-space: nowrap; }
 .c-pres-price { margin: 0; font-size: 18px; }
 .c-pres-net { margin-top: 0; font-size: 10px; }
-@media (max-width: 360px) { .c-pres-card { grid-template-columns: 74px minmax(0,1fr); gap: 10px; padding: 12px; } .c-pres-bucket { height: 105px; } .c-pres-original { font-size: 13px; } }
+@media (max-width: 360px) { .c-pres-card { grid-template-columns: 104px minmax(0,1fr); gap: 8px; padding: 12px; } .c-pres-bucket { height: 124px; } .c-pres-original { font-size: 13px; } }
 </style>
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/blindaflex-favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -1022,13 +1022,13 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12, 130106)">
 <img class="c-pres-bucket" src="assets/images/bi/balde.png" alt="Barrera Impermeable, balde de 12 kg" loading="lazy"/>
 <div class="c-pres-details"><span class="c-pres-kg">12 kg</span>
-<div class="c-pres-original-line"><s class="c-pres-original">$173.474,67</s><span class="c-pres-off">25% OFF</span></div>
+<div class="c-pres-original-line"><s class="c-pres-original">$153.066</s><span class="c-pres-off">15% OFF</span></div>
 <span class="c-pres-price">$130.106</span><small class="c-pres-net">Sin impuestos nacionales: $107.526</small></div>
 </div>
 <div class="c-pres-card" id="c-pres-5" onclick="setPres(5, 54794)">
 <img class="c-pres-bucket" src="assets/images/balde-barrera-impermeable-5kg.png" alt="Barrera Impermeable, balde de 5 kg" loading="lazy"/>
 <div class="c-pres-details"><span class="c-pres-kg">5 kg</span>
-<div class="c-pres-original-line"><s class="c-pres-original">$73.058,67</s><span class="c-pres-off">25% OFF</span></div>
+<div class="c-pres-original-line"><s class="c-pres-original">$64.464</s><span class="c-pres-off">15% OFF</span></div>
 <span class="c-pres-price">$54.794</span><small class="c-pres-net">Sin impuestos nacionales: $45.284</small></div>
 </div>
 </div>
@@ -2224,7 +2224,7 @@ window.bfRenderBarreraSummary=function(){
  html+='<div class="ds-total-box"><div class="ds-total-lbl">TOTAL DEL PEDIDO:</div><div class="ds-total-val">'+fmt(sum)+'</div></div>';
  el.innerHTML=html;
 };
-function updateSelection(){if(!db)return;renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const original=el.querySelector('.c-pres-original');if(original)original.textContent=fmt(bfUnitPrice(kg)/0.75);const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin impuestos nacionales: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
+function updateSelection(){if(!db)return;renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const original=el.querySelector('.c-pres-original');if(original)original.textContent=fmt(bfUnitPrice(kg)/0.85);const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin impuestos nacionales: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
 window.bfSetPlan=function(id){if(!db?.modalidades?.[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
 document.getElementById('bf-plan-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b)bfSetPlan(b.dataset.plan)});
 const originalSetPres=window.setPres;window.setPres=function(kg,price){originalSetPres(kg,price);updateSelection()};
