@@ -805,6 +805,19 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 .bf-pa-quick a{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:48px;padding:10px 18px;border:2px solid #F65A03;border-radius:12px;background:#071A24;color:#FFFFFF;font:800 15px/1.35 Inter,system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;box-shadow:0 5px 0 rgba(246,90,3,.18),0 8px 16px rgba(7,26,36,.12);transition:background .2s ease,box-shadow .2s ease}
 .bf-pa-quick a:hover,.bf-pa-quick a:focus-visible{background:#123747;color:#FFFFFF;outline-offset:3px;box-shadow:0 5px 0 rgba(246,90,3,.25),0 8px 18px rgba(7,26,36,.18)}
 @media(max-width:480px){.bf-pa-quick{margin:28px auto 24px}.bf-pa-quick a{font-size:15px;padding:11px 14px}}
+
+/* Barrera Impermeable: tarjetas de presentación, exclusivamente. */
+.c-pres-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.c-pres-card { display: grid; grid-template-columns: clamp(76px, 23%, 118px) minmax(0, 1fr); align-items: center; column-gap: clamp(12px, 3vw, 24px); padding: 16px; text-align: left; min-height: 146px; }
+.c-pres-bucket { width: 100%; height: 120px; object-fit: contain; display: block; }
+.c-pres-details { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+.c-pres-kg { margin-bottom: 0; font-size: 17px; }
+.c-pres-original-line { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.c-pres-original { color: #34434A; font-size: 15px; font-weight: 700; text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.c-pres-off { background: #008fa3; color: white; padding: 4px 7px; border-radius: 5px; font-size: 10px; font-weight: 900; white-space: nowrap; }
+.c-pres-price { margin: 0; font-size: 18px; }
+.c-pres-net { margin-top: 0; font-size: 10px; }
+@media (max-width: 360px) { .c-pres-card { grid-template-columns: 74px minmax(0,1fr); gap: 10px; padding: 12px; } .c-pres-bucket { height: 105px; } .c-pres-original { font-size: 13px; } }
 </style>
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/blindaflex-favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -1007,12 +1020,16 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 <h3 class="c-step-title">PASO 01 — ELEGÍ LA PRESENTACIÓN</h3>
 <div class="c-pres-grid">
 <div class="c-pres-card selected" id="c-pres-12" onclick="setPres(12, 130106)">
-<span class="c-pres-kg">12 kg</span>
-<span class="c-pres-price">$130.106</span><small class="c-pres-net">Sin impuestos nacionales: $107.526</small>
+<img class="c-pres-bucket" src="assets/images/bi/balde.png" alt="Barrera Impermeable, balde de 12 kg" loading="lazy"/>
+<div class="c-pres-details"><span class="c-pres-kg">12 kg</span>
+<div class="c-pres-original-line"><s class="c-pres-original">$173.474,67</s><span class="c-pres-off">25% OFF</span></div>
+<span class="c-pres-price">$130.106</span><small class="c-pres-net">Sin impuestos nacionales: $107.526</small></div>
 </div>
 <div class="c-pres-card" id="c-pres-5" onclick="setPres(5, 54794)">
-<span class="c-pres-kg">5 kg</span>
-<span class="c-pres-price">$54.794</span><small class="c-pres-net">Sin impuestos nacionales: $45.284</small>
+<img class="c-pres-bucket" src="assets/images/balde-barrera-impermeable-5kg.png" alt="Barrera Impermeable, balde de 5 kg" loading="lazy"/>
+<div class="c-pres-details"><span class="c-pres-kg">5 kg</span>
+<div class="c-pres-original-line"><s class="c-pres-original">$73.058,67</s><span class="c-pres-off">25% OFF</span></div>
+<span class="c-pres-price">$54.794</span><small class="c-pres-net">Sin impuestos nacionales: $45.284</small></div>
 </div>
 </div>
 </div>
@@ -2207,7 +2224,7 @@ window.bfRenderBarreraSummary=function(){
  html+='<div class="ds-total-box"><div class="ds-total-lbl">TOTAL DEL PEDIDO:</div><div class="ds-total-val">'+fmt(sum)+'</div></div>';
  el.innerHTML=html;
 };
-function updateSelection(){if(!db)return;renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin impuestos nacionales: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
+function updateSelection(){if(!db)return;renderPlans();document.querySelectorAll('.c-pres-card').forEach(el=>{const kg=el.id.endsWith('12')?12:5;el.querySelector('.c-pres-price').textContent=fmt(bfUnitPrice(kg));const original=el.querySelector('.c-pres-original');if(original)original.textContent=fmt(bfUnitPrice(kg)/0.75);const net=el.querySelector('.c-pres-net');if(net)net.textContent='Sin impuestos nacionales: '+fmt(Math.round(bfUnitPrice(kg)/1.21));});updateBtnSumar();renderLocalOrder();if(yieldRecommendation)calculateYield();renderCart();}
 window.bfSetPlan=function(id){if(!db?.modalidades?.[id])return;method=id;localStorage.setItem(PAY,id);updateSelection();};
 document.getElementById('bf-plan-grid')?.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(b)bfSetPlan(b.dataset.plan)});
 const originalSetPres=window.setPres;window.setPres=function(kg,price){originalSetPres(kg,price);updateSelection()};
@@ -2260,6 +2277,7 @@ async function init(){
   if(c)c.textContent='Los precios no están disponibles. Publicá el archivo precios.json y recargá la página.';
   document.getElementById('bf-plan-grid').textContent='Precios temporalmente no disponibles.';
   document.querySelectorAll('.c-pres-price').forEach(el=>el.textContent='Consultar precio');
+  document.querySelectorAll('.c-pres-original-line').forEach(el=>el.style.display='none');
   document.querySelectorAll('.c-pres-net').forEach(el=>el.textContent='');
   document.getElementById('btn-checkout').disabled=true;
  }
