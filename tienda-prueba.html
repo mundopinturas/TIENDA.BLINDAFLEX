@@ -1022,11 +1022,12 @@
 </select>
 </div>
 <div class="bf-pay-field">
-<label class="bf-pay-field-label" for="bf-credit-installments">Cuotas</label>
+<label class="bf-pay-field-label" for="bf-credit-installments">Elegí tus cuotas sin interés</label>
 <select class="bf-pay-select" disabled="" id="bf-credit-installments" onchange="appPricing.onInstallmentsChange(this.value)">
 <option disabled="" selected="" value="">Seleccioná las cuotas</option>
 </select>
 </div>
+<p class="bf-pay-disclaimer">* Beneficios especiales para Bancor y Santander en Visa y Mastercard.</p>
 <p class="bf-pay-disclaimer">La aceptación y financiación efectivas están sujetas a la habilitación de la tarjeta y autorización de la operación.</p>
 </div>
 <div class="bf-pay-fields" hidden="" id="bf-debit-fields">
@@ -1121,7 +1122,7 @@
 </section>
 </div>
 <div>
-<section aria-labelledby="bf-pa-title" class="bf-pa-card bf-pa-anchor" id="pintores-asociados" style="width:100%;max-width:none;"><div><h2 id="bf-pa-title">¿Sos pintor o aplicador?</h2><p>Recomendá nuestros impermeabilizantes, ganá comisiones por tus ventas y ofrecé beneficios especiales a tus clientes.</p></div><a class="bf-pa-cta" href="https://wa.me/5493512661626?text=Hola%2C%20soy%20pintor/aplicador%20y%20me%20interesa%20formar%20parte%20del%20Programa%20de%20Pintores%20Asociados%20Blindaflex.%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20funciona%20y%20cu%C3%A1les%20son%20los%20beneficios.%20%C2%A1Gracias%21" rel="noopener noreferrer" target="_blank">QUIERO SER PINTOR ASOCIADO</a></section><section class="section-gap card">
+<section aria-labelledby="bf-pa-title" class="bf-pa-card bf-pa-anchor" id="pintores-asociados" style="width:100%;max-width:none;"><div><h2 id="bf-pa-title">¿Sos pintor o aplicador?</h2><p>Tenemos beneficios exclusivos para profesionales como vos.</p></div><a class="bf-pa-cta" href="https://wa.me/5493512661626?text=Hola%2C%20soy%20pintor/aplicador%20y%20me%20interesa%20formar%20parte%20del%20Programa%20de%20Pintores%20Asociados%20Blindaflex.%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20funciona%20y%20cu%C3%A1les%20son%20los%20beneficios.%20%C2%A1Gracias%21" rel="noopener noreferrer" target="_blank">QUIERO SER PINTOR ASOCIADO</a></section><section class="section-gap card">
 <div style="margin-bottom:16px;">
 <h2 style="font-size: 20px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;">PREGUNTAS FRECUENTES</h2>
 </div>
@@ -1239,11 +1240,17 @@
                 banks: ['Bancor']
             },
             {
+                id: 'Santander',
+                label: 'Santander',
+                autoBank: 'Santander',
+                banks: ['Santander']
+            },
+            {
                 id: 'Visa',
                 label: 'Visa',
                 autoBank: null,
                 banks: [
-                    'BBVA', 'Ciudad', 'Comafi', 'Credicoop', 'Galicia',
+                    'Bancor', 'BBVA', 'Ciudad', 'Comafi', 'Credicoop', 'Galicia',
                     'Hipotecario', 'ICBC', 'Industrial (BIND)', 'Macro', 'Nación',
                     'Naranja X', 'Patagonia', 'Provincia', 'Santander', 'Supervielle',
                     'Otras entidades'
@@ -1254,7 +1261,7 @@
                 label: 'Mastercard',
                 autoBank: null,
                 banks: [
-                    'BBVA', 'Ciudad', 'Comafi', 'Dino', 'Galicia',
+                    'Bancor', 'BBVA', 'Ciudad', 'Comafi', 'Dino', 'Galicia',
                     'ICBC', 'Macro', 'Mercado Pago', 'Nación', 'Naranja X',
                     'Patagonia', 'Provincia', 'Roela', 'Santander', 'Supervielle',
                     'Ualá', 'Otras entidades'
@@ -1287,14 +1294,21 @@
             return this.creditCards.find(c => c.id === cardId) || null;
         },
         getInstallments(cardId, bank) {
-            if (!cardId) return [];
-            if (cardId === 'Cordobesa') return this.scales.cordobesa.slice();
+            const cfg = this.getCreditCardConfig(cardId);
+            if (!cfg || !cfg.banks.includes(bank)) return [];
+            if (cardId === 'Cordobesa' || bank === 'Bancor') return this.scales.cordobesa.slice();
             if (cardId === 'Naranja X') return this.scales.naranjaPropia.slice();
-            if (!bank) return [];
-            if (bank === 'Santander' && (cardId === 'Visa' || cardId === 'Mastercard')) {
+            if (bank === 'Santander' && ['Visa', 'Mastercard', 'Santander'].includes(cardId)) {
                 return this.scales.santanderVisaMaster.slice();
             }
             return this.scales.general.slice();
+        },
+        cardLabel(c) {
+            const max = Math.max(...(c.autoBank ? this.getInstallments(c.id, c.autoBank) : this.scales.general));
+            return `${c.label} · Hasta ${max} cuotas${['Visa', 'Mastercard'].includes(c.id) ? '*' : ''}`;
+        },
+        bankLabel(card, bank) {
+            return `${bank === 'Bancor' ? 'Bancor (Cordobesa)' : bank} · Hasta ${Math.max(...this.getInstallments(card, bank))} cuotas`;
         }
     };
 
@@ -1372,7 +1386,7 @@
             if (creditCardSel) {
                 let opts = '<option value="" disabled selected>Seleccioná tu tarjeta</option>';
                 BLINDAFLEX_FINANCING.creditCards.forEach(c => {
-                    opts += `<option value="${c.id}">${c.label}</option>`;
+                    opts += `<option value="${c.id}">${BLINDAFLEX_FINANCING.cardLabel(c)}</option>`;
                 });
                 creditCardSel.innerHTML = opts;
             }
@@ -1411,7 +1425,7 @@
             if (p.method === 'transferencia' || p.method === 'efectivo') return p.installments === 1;
             if (p.method === 'debito') return Boolean(p.debitCard) && p.installments === 1;
             if (p.method === 'credito') {
-                return Boolean(p.card && p.bank && Number.isInteger(p.installments) && p.installments >= 1);
+                return Boolean(p.card && p.bank && Number.isInteger(p.installments) && BLINDAFLEX_FINANCING.getInstallments(p.card, p.bank).includes(p.installments));
             }
             return false;
         }
@@ -1430,7 +1444,7 @@
             const methodName = p.methodName || BLINDAFLEX_FINANCING.methods[p.method]?.label || p.method;
             if (p.method === 'credito') {
                 const cuotasTxt = p.installments === 1 ? '1 pago' : `${p.installments} cuotas sin interés`;
-                return `${methodName} · ${p.card} (${p.bank}) · ${cuotasTxt}`;
+                return `${methodName} · ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card} (${p.bank}) · ${cuotasTxt}`;
             }
             if (p.method === 'debito') {
                 return `${methodName} · ${p.debitCard || p.card} · Un único pago`;
@@ -1567,7 +1581,7 @@
                     bankSel.innerHTML = '<option value="" disabled selected>Seleccioná tu banco</option>';
                     bankSel.disabled = true;
                 } else if (cfg.autoBank) {
-                    bankSel.innerHTML = `<option value="${cfg.autoBank}" selected>${cfg.autoBank}</option>`;
+                    bankSel.innerHTML = `<option value="${cfg.autoBank}" selected>${BLINDAFLEX_FINANCING.bankLabel(p.card, cfg.autoBank)}</option>`;
                     bankSel.value = cfg.autoBank;
                     bankSel.disabled = true;
                     bankSel.classList.add('bf-pay-select-auto');
@@ -1575,7 +1589,7 @@
                 } else {
                     let bankOpts = '<option value="" disabled>Seleccioná tu banco</option>';
                     cfg.banks.forEach(b => {
-                        bankOpts += `<option value="${b}">${b}</option>`;
+                        bankOpts += `<option value="${b}">${BLINDAFLEX_FINANCING.bankLabel(p.card, b)}</option>`;
                     });
                     bankSel.innerHTML = bankOpts;
                     bankSel.value = p.bank || '';
@@ -1605,7 +1619,7 @@
                 const cuotaVal = totalOrder / c;
                 const label = c === 1
                     ? `1 pago de ${fmtMoney(totalOrder)}`
-                    : `${c} cuotas sin interés de ${fmtMoney(cuotaVal)}`;
+                    : `${c} cuotas de ${fmtMoney(cuotaVal)}`;
                 opts += `<option value="${c}">${label}</option>`;
             });
             instSel.innerHTML = opts;
@@ -1690,7 +1704,7 @@
                 const methodLabel = BLINDAFLEX_FINANCING.methods[p.method].label;
                 paymentHtml += `<div class="ds-row"><span>Medio de pago:</span> <strong class="ds-highlight">${methodLabel}</strong></div>`;
                 if (p.method === 'credito') {
-                    paymentHtml += `<div class="ds-row"><span>Tarjeta y entidad:</span> <strong>${p.card} (${p.bank})</strong></div>`;
+                    paymentHtml += `<div class="ds-row"><span>Tarjeta y entidad:</span> <strong>${p.card === 'Santander' ? 'Visa o Mastercard' : p.card} (${p.bank})</strong></div>`;
                     const planText = p.installments > 1
                         ? `${p.installments} cuotas sin interés de ${fmtMoney(totalOrder / p.installments)}`
                         : `1 pago de ${fmtMoney(totalOrder)}`;
@@ -1786,7 +1800,7 @@
                     showPayError('Seleccioná el banco o entidad emisora de tu tarjeta.', 'bf-credit-bank');
                     return false;
                 }
-                if (!p.installments) {
+                if (!BLINDAFLEX_FINANCING.getInstallments(p.card, p.bank).includes(p.installments)) {
                     showPayError('Seleccioná la cantidad de cuotas para continuar.', 'bf-credit-installments');
                     return false;
                 }
@@ -1941,7 +1955,7 @@
             if (p) {
                 let detailLines = `<strong style="font-size:15px; color:var(--c-turquesa);">${p.methodName}</strong>`;
                 if (p.method === 'credito') {
-                    detailLines += `<br>Tarjeta: ${p.card} · Banco: ${p.bank}`;
+                    detailLines += `<br>Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card} · Banco: ${p.bank}`;
                     detailLines += p.installments > 1
                         ? `<br>Plan: ${p.installments} cuotas sin interés de ${fmtMoney(totals.grandTotal / p.installments)}`
                         : `<br>Plan: 1 pago de ${fmtMoney(totals.grandTotal)}`;
@@ -2011,7 +2025,7 @@
                 h += `<div style="font-size:15px; font-weight:800; margin-bottom:6px;">${p.methodName}</div>`;
 
                 if (p.method === 'credito') {
-                    h += `<div style="font-size:13px; margin-bottom:2px;">Tarjeta: ${p.card}</div>`;
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card}</div>`;
                     h += `<div style="font-size:13px; margin-bottom:2px;">Banco / Entidad emisora: ${p.bank}</div>`;
                     if (p.installments > 1) {
                         h += `<div style="font-size:13px; margin-bottom:2px;">Cuotas: ${p.installments} cuotas sin interés</div>`;
@@ -2082,7 +2096,7 @@
             rows.push('*FORMA DE PAGO*');
             rows.push(`Medio de pago: ${p.methodName}`);
             if (p.method === 'credito') {
-                rows.push(`Tarjeta: ${p.card}`);
+                rows.push(`Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card}`);
                 rows.push(`Banco / Entidad emisora: ${p.bank}`);
                 if (p.installments > 1) {
                     rows.push(`Cuotas: ${p.installments} cuotas sin interés`);
@@ -2375,4 +2389,100 @@
             if (activeVideo().paused) {
                 explicitlyPaused = false;
                 playCurrent();
+            } else {
+                explicitlyPaused = true;
+                pauseAll();
             }
+        });
+
+        // Swipe Controls
+        tap.addEventListener('pointerdown', e => {
+            pointerStart = { x: e.clientX, y: e.clientY };
+        });
+
+        tap.addEventListener('pointerup', e => {
+            if (!pointerStart) return;
+            const dx = e.clientX - pointerStart.x;
+            const dy = e.clientY - pointerStart.y;
+            pointerStart = null;
+            
+            // Horizontal swipe detected
+            if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+                suppressNextClick = true;
+                switchVideo(dx < 0 ? 1 : -1);
+                setTimeout(() => { suppressNextClick = false; }, 300);
+            }
+        });
+
+        tap.addEventListener('pointercancel', () => { 
+            pointerStart = null; 
+        });
+
+        // Visibility Observer
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(entries => {
+                visible = entries[0].isIntersecting;
+                if (visible) {
+                    playCurrent();
+                } else {
+                    pauseAll();
+                }
+            }, { threshold: 0.3 });
+            observer.observe(root);
+        } else {
+            visible = true;
+            playCurrent();
+        }
+
+        // Handle tab visibility
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                pauseAll();
+            } else if (visible) {
+                playCurrent();
+            }
+        });
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+        appPricing.init();
+        appPricing.initComparer();
+        
+        try {
+            const items = JSON.parse(localStorage.getItem('blindaflex_cart_data')).items;
+            if(items) {
+                const count = items.reduce((sum, i) => sum + Number(i.qty), 0);
+                document.getElementById('cart-counter').textContent = count;
+            }
+        } catch(e) {}
+    });
+
+    function toggleMobileMenu(){
+        const menu=document.getElementById('mobile-menu'), overlay=document.getElementById('mobile-overlay');
+        const open=!menu.classList.contains('active');
+        menu.classList.toggle('active',open); overlay.classList.toggle('active',open);
+        document.body.style.overflow=open?'hidden':'';
+    }
+
+    function toggleFaq(btn) {
+        btn.classList.toggle('active');
+        const answer = btn.nextElementSibling;
+        if (btn.classList.contains('active')) answer.style.maxHeight = answer.scrollHeight + "px";
+        else answer.style.maxHeight = "0";
+    }
+    </script>
+<script>
+(function(){
+  const bar=document.getElementById('tech-sticky-bar');
+  const buy=document.getElementById('compra');
+  if(!bar||!buy)return;
+  const update=()=>{
+    const r=buy.getBoundingClientRect();
+    const visible=r.top < innerHeight-70 && r.bottom > 80;
+    bar.classList.toggle('is-hidden',visible || document.getElementById('checkout-view').style.display==='block');
+  };
+  addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();
+})();
+</script>
+</body>
+</html>
