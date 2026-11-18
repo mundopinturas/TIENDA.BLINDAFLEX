@@ -16,25 +16,30 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <!-- Schema.org estructurado -->
 <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "Blindaje para Techos",
-      "image": "https://blindaflex.com/img/blindaje-techos.jpg",
-      "description": "Membrana líquida impermeabilizante e hidrorrepelente para techos de losa y chapa. Hasta 15 cuotas sin interés.",
-      "category": "Membrana líquida impermeabilizante para techos",
-      "brand": { "@type": "Brand", "name": "Blindaflex" },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://tienda.blindaflex.com/tienda-blindaje-techos.html",
-        "priceCurrency": "ARS",
-        "price": "168000",
-        "itemCondition": "https://schema.org/NewCondition",
-        "availability": "https://schema.org/InStock",
-        "seller": { "@type": "Organization", "name": "Blindaflex" }
-      }
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "Blindaje para Techos",
+  "image": "https://blindaflex.com/img/blindaje-techos.jpg",
+  "description": "Membrana líquida impermeabilizante e hidrorrepelente para techos de losa y chapa. Hasta 15 cuotas sin interés.",
+  "category": "Membrana líquida impermeabilizante para techos",
+  "brand": {
+    "@type": "Brand",
+    "name": "Blindaflex"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://tienda.blindaflex.com/tienda-blindaje-techos.html",
+    "priceCurrency": "ARS",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Blindaflex"
     }
-    </script>
+  }
+}
+</script>
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -1317,15 +1322,6 @@
 
     const appPricing = (function() {
         let db = null;
-        const DEFAULT_DB = {
-            productos: {
-                techos_20: {
-                    nombre: 'Blindaje para Techos',
-                    presentacion: 20,
-                    precio_base: 168000
-                }
-            }
-        };
 
         const state = {
             productId: 'techos_20',
@@ -1364,16 +1360,15 @@
 
         async function init() {
             try {
-                const res = await fetch('precios.json');
+                const res = await fetch('precios.json',{cache:'no-store'});
                 if (!res.ok) throw new Error('No se pudo cargar precios.json');
                 const loaded = await res.json();
-                if (!loaded?.productos?.techos_20 || !Number.isFinite(Number(loaded.productos.techos_20.precio_base))) {
+                if (!(['techos_20','atermico_20','barrera_25','barrera_5'].every(id=>Number.isFinite(Number(loaded.productos?.[id]?.precio_base))&&Number(loaded.productos[id].precio_base)>0))) {
                     throw new Error('Configuración de producto incompleta en precios.json');
                 }
                 db = loaded;
             } catch (error) {
-                console.warn('Blindaflex: usando precio comercial de referencia por imposibilidad de lectura de precios.json.', error);
-                db = DEFAULT_DB;
+                console.error(error); db=null; document.getElementById('pricing-loader').querySelector('p').textContent='Precios no disponibles. Recargá la página.'; document.getElementById('btn-add-cart').disabled=true; renderCart(); return;
             }
 
             populateStaticSelects();
@@ -1406,7 +1401,7 @@
         function getUnitPrice(productId) {
             const p = db?.productos?.[productId];
             if (p && Number.isFinite(Number(p.precio_base))) return Number(p.precio_base);
-            return DEFAULT_DB.productos.techos_20.precio_base;
+            throw Error('Precio no disponible: '+productId);
         }
 
         function getPaymentSnapshot(p = state.payment) {
@@ -1757,7 +1752,7 @@
 
         // --- CARRITO COMPARTIDO ---
         function getCart() {
-            try { return JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []; }
+            try { return (JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []).filter(i=>i&&!((i.id==='barrera_12') || ((i.type==='barrera'||/barrera/i.test(i.product||'')) && /^12(?:\s*kg)?$/i.test(String(i.presentacion||i.presentation||''))))); }
             catch (e) { return []; }
         }
 
@@ -1846,6 +1841,7 @@
         }
 
         function addToCart() {
+            if(!db)return;
             if (!validatePaymentSelection()) return;
 
             const currentPayment = getPaymentSnapshot();
@@ -1897,7 +1893,7 @@
         function updateCartIcon(items) {
             const count = items.reduce((sum, i) => sum + Number(i.qty), 0);
             document.getElementById('cart-counter').textContent = count;
-            document.getElementById('btn-checkout').disabled = count === 0;
+            document.getElementById('btn-checkout').disabled = !db || count === 0;
         }
 
         function cartItemDelta(index, delta) {
@@ -1914,16 +1910,13 @@
         }
 
         function resolveItemUnitPrice(item) {
-            if (item.id && db?.productos?.[item.id]) {
-                return getUnitPrice(item.id);
+            let id=item.id; const name=String(item.product||'');
+            if (!db?.productos?.[id]) {
+                if (/barrera/i.test(name)||item.type==='barrera') { const kg=parseInt(item.presentacion||item.presentation||name.match(/(25|5)\s*kg/i)?.[1]); id='barrera_'+kg; }
+                else if (/at[eé]rmico|reflectivo/i.test(name)||item.type==='reflectivo') id='atermico_20';
+                else if (/techos/i.test(name)||item.type==='techo') id='techos_20';
             }
-            if (Number.isFinite(Number(item.price)) && Number(item.price) > 0) {
-                return Number(item.price);
-            }
-            if (item.type === 'techo' || /Techos/.test(item.product || '')) {
-                return getUnitPrice('techos_20');
-            }
-            return 0;
+            const price=Number(db?.productos?.[id]?.precio_base); if(!Number.isFinite(price)||price<=0) throw Error('Precio no disponible: '+id); return price;
         }
 
         function getCartTotals(items) {
@@ -1944,7 +1937,7 @@
         }
 
         function renderCart() {
-            if (!db) return;
+            if (!db) { document.getElementById("cart-body").textContent="Precios no disponibles. Recargá la página."; document.getElementById("drawer-total").textContent="—"; document.getElementById("btn-checkout").disabled=true; return; }
             const items = getCart();
             updateCartIcon(items);
             const body = document.getElementById('cart-body');
@@ -2062,6 +2055,7 @@
         // WhatsApp Submission
         function submitWhatsApp(e) {
             e.preventDefault();
+            if(!db)return;
             const totals = getCartTotals(getCart());
             if (!totals.items.length) return;
 
@@ -2137,6 +2131,7 @@
         function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); document.body.style.overflow = ''; }
 
         function goToCheckout() {
+            if(!db)return;
             if (getCart().length === 0) return;
 
             if (!getCartPayment()) {

@@ -1330,7 +1330,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 
 const appPricing=(()=>{
 const CART_KEY="blindaflex_cart_data", PAYMENT_KEY="blindaflex_payment_preference", PAYMENT_DETAILS_KEY="blindaflex_payment_details";
-const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": "20 kg", "precio_base": 168000}, "atermico_20": {"nombre": "Blindaje Atérmico", "presentacion": "20 kg", "precio_base": 203980}, "barrera_12": {"nombre": "Barrera Impermeable", "presentacion": "12 kg", "precio_base": 130106}, "barrera_5": {"nombre": "Barrera Impermeable", "presentacion": "5 kg", "precio_base": 54794}}; let db={productos:defaults};
+let db=null;
         const arsFormatterCache = {};
         const round2 = n => Math.round((Number(n) + Number.EPSILON) * 100) / 100;
         const fmtMoney = n => {
@@ -1359,7 +1359,7 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
         }
 
         function getCart() {
-            try { return JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []; }
+            try { return (JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []).filter(i=>i&&!((i.id==='barrera_12') || ((i.type==='barrera'||/barrera/i.test(i.product||'')) && /^12(?:\s*kg)?$/i.test(String(i.presentacion||i.presentation||''))))); }
             catch (e) { return []; }
         }
 
@@ -1396,7 +1396,7 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
         function updateCartIcon(items) {
             const count = items.reduce((sum, i) => sum + Number(i.qty), 0);
             document.getElementById('cart-counter').textContent = count;
-            document.getElementById('btn-checkout').disabled = count === 0 || !getCartPayment();
+            document.getElementById('btn-checkout').disabled = !db || count === 0 || !getCartPayment();
         }
 
         function cartItemDelta(index, delta) {
@@ -1414,14 +1414,13 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
         }
 
         function resolveItemUnitPrice(item) {
-            let id=item.id;
-            const name=String(item.product||'');
-            if (!db.productos[id]) {
-                if (/barrera/i.test(name)) id=/^5(?:\s*kg)?$/i.test(String(item.presentacion||item.presentation||''))?'barrera_5':'barrera_12';
-                else if (/at[eé]rmico|reflectivo/i.test(name)) id='atermico_20';
+            let id=item.id; const name=String(item.product||'');
+            if (!db?.productos?.[id]) {
+                if (/barrera/i.test(name)||item.type==='barrera') { const kg=parseInt(item.presentacion||item.presentation||name.match(/(25|5)\s*kg/i)?.[1]); id='barrera_'+kg; }
+                else if (/at[eé]rmico|reflectivo/i.test(name)||item.type==='reflectivo') id='atermico_20';
                 else if (/techos/i.test(name)||item.type==='techo') id='techos_20';
             }
-            return Number(db.productos[id]?.precio_base||item.price||0);
+            const price=Number(db?.productos?.[id]?.precio_base); if(!Number.isFinite(price)||price<=0) throw Error('Precio no disponible: '+id); return price;
         }
         function getCartTotals(items) {
             let grandTotal = 0;
@@ -1441,7 +1440,7 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
         }
 
         function renderCart() {
-            if (!db) return;
+            if (!db) { document.getElementById("cart-body").textContent="Precios no disponibles. Recargá la página."; document.getElementById("drawer-total").textContent="—"; document.getElementById("btn-checkout").disabled=true; return; }
             const items = getCart();
             updateCartIcon(items);
             const body = document.getElementById('cart-body');
@@ -1559,6 +1558,7 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
         // WhatsApp Submission
         function submitWhatsApp(e) {
             e.preventDefault();
+            if(!db)return;
             const totals = getCartTotals(getCart());
             if (!totals.items.length) return;
 
@@ -1629,11 +1629,11 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
 
 function openCart(){renderCart();document.getElementById('cart-overlay').classList.add('open');document.getElementById('cart-drawer').classList.add('open');document.body.style.overflow='hidden';}
 function closeCart(){document.getElementById('cart-overlay').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open');document.body.style.overflow='';}
-function goToCheckout(){if(!getCart().length||!getCartPayment())return;closeCart();renderCheckoutSummary();const el=document.getElementById('checkout-view');el.style.display='block';el.scrollTop=0;document.body.style.overflow='hidden';}
+function goToCheckout(){if(!db||!getCart().length||!getCartPayment())return;closeCart();renderCheckoutSummary();const el=document.getElementById('checkout-view');el.style.display='block';el.scrollTop=0;document.body.style.overflow='hidden';}
 function closeCheckout(){document.getElementById('checkout-view').style.display='none';openCart();}
 function refresh(){renderCart();if(document.getElementById('checkout-view').style.display==='block')renderCheckoutSummary();}
 window.addEventListener('pageshow',refresh);window.addEventListener('storage',e=>{if([CART_KEY,PAYMENT_KEY,PAYMENT_DETAILS_KEY].includes(e.key))refresh()});
-fetch('precios.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Precios no disponibles');return r.json()}).then(j=>{for(const id of Object.keys(defaults)){if(Number(j.productos?.[id]?.precio_base)>0)db.productos[id]=j.productos[id]}refresh()}).catch(()=>refresh());
+fetch('precios.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Precios no disponibles');return r.json()}).then(loaded=>{if(!(['techos_20','atermico_20','barrera_25','barrera_5'].every(id=>Number.isFinite(Number(loaded.productos?.[id]?.precio_base))&&Number(loaded.productos[id].precio_base)>0)))throw Error('Precios incompletos');db=loaded;refresh()}).catch(()=>{db=null;refresh()});
 refresh();return {openCart,closeCart,goToCheckout,closeCheckout,cartItemDelta,cartItemRemove,submitWhatsApp};})();
 </script>
 </body>
