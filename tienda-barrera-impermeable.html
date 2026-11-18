@@ -656,15 +656,15 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 
         /* Carrusel de videos: ancho total y proporción visual idéntica a la prueba aprobada de Techos. */
         #bf-vcarousel.yt-carousel-wrapper {
-            width: 100vw;
-            max-width: none;
+            width: 100%;
+            max-width: 600px;
             height: auto;
             min-height: 0;
             max-height: none;
-            aspect-ratio: 0.73 / 1;
-            margin-left: calc(50% - 50vw);
+            aspect-ratio: 3 / 4;
+            margin-left: auto;
             flex: none;
-            border-radius: 0;
+            border-radius: var(--radius-lg);
         }
 
 /* Jerarquía de lectura: número destacado, resto discreto sin aumentar la tarjeta. */
