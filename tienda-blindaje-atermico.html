@@ -710,6 +710,289 @@
 .tech-price-before{font-size:16px;font-weight:750;color:#34434a;text-decoration:line-through;text-decoration-thickness:1.5px;white-space:nowrap}
 .tech-price-off{display:inline-block;background:#00afc6;color:#071a24;border-radius:5px;padding:4px 7px;font-size:11px;font-weight:900;line-height:1.1;white-space:nowrap}
 @media(max-width:390px){.tech-price-before{font-size:14px}.tech-price-before-row{gap:5px 7px}.tech-price-off{font-size:10px;padding:4px 6px}}
+/* =========================================================
+   NUEVO VISOR DE MEDIOS DE PAGO Y FINANCIACIÓN (ESTRICTAMENTE ACOTADO)
+   ========================================================= */
+.bf-pay-visor {
+    background: #F2F6F7;
+    border: 1px solid #d8e4e8;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+.bf-pay-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #071A24;
+    margin: 0 0 12px;
+    line-height: 1.25;
+}
+.bf-pay-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.bf-pay-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #FFFFFF;
+    border: 2px solid #dce5e8;
+    border-radius: 11px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.bf-pay-option:hover {
+    border-color: #9edce5;
+}
+.bf-pay-option.is-selected {
+    border-color: #00AFC6;
+    background: #FFFFFF;
+    box-shadow: 0 3px 12px rgba(0, 175, 198, 0.14);
+}
+.bf-pay-radio {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+.bf-pay-radio:focus-visible + .bf-pay-radio-ui {
+    outline: 3px solid #00AFC6;
+    outline-offset: 2px;
+}
+.bf-pay-radio-ui {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #8ba2ac;
+    background: #FFFFFF;
+    flex: none;
+    display: grid;
+    place-items: center;
+    transition: border-color 0.18s ease;
+}
+.bf-pay-radio-ui::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00AFC6;
+    transform: scale(0);
+    transition: transform 0.15s ease;
+}
+.bf-pay-option.is-selected .bf-pay-radio-ui {
+    border-color: #00AFC6;
+}
+.bf-pay-option.is-selected .bf-pay-radio-ui::after {
+    transform: scale(1);
+}
+.bf-pay-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #F2F6F7;
+    color: #071A24;
+    display: grid;
+    place-items: center;
+    flex: none;
+}
+.bf-pay-option.is-selected .bf-pay-icon {
+    background: rgba(0, 175, 198, 0.12);
+    color: #00AFC6;
+}
+.bf-pay-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.bf-pay-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+.bf-pay-label {
+    font-size: 15px;
+    font-weight: 800;
+    color: #071A24;
+    line-height: 1.25;
+}
+.bf-pay-benefit {
+    font-size: 12px;
+    font-weight: 800;
+    color: #00AFC6;
+    line-height: 1.2;
+}
+.bf-pay-details {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #cbd8dd;
+}
+.bf-pay-details[hidden],
+.bf-pay-fields[hidden],
+.bf-pay-summary[hidden],
+.bf-pay-error[hidden],
+.bf-pay-confirm[hidden] {
+    display: none;
+}
+.bf-pay-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.bf-pay-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.bf-pay-field-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #071A24;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.bf-pay-field-auto {
+    font-weight: 600;
+    text-transform: none;
+    color: #00AFC6;
+    letter-spacing: 0;
+}
+.bf-pay-select {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 36px 10px 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #071A24;
+    background-color: #FFFFFF;
+    border: 2px solid #cbd8dd;
+    border-radius: 9px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23071A24' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.bf-pay-select:focus {
+    outline: none;
+    border-color: #00AFC6;
+    box-shadow: 0 0 0 3px rgba(0, 175, 198, 0.18);
+}
+.bf-pay-select:disabled {
+    background-color: #e9eff1;
+    color: #64748b;
+    border-color: #d8e2e6;
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+.bf-pay-select.bf-pay-select-auto:disabled {
+    background-color: #FFFFFF;
+    color: #071A24;
+    border-color: #00AFC6;
+    opacity: 1;
+    background-image: none;
+    padding-right: 12px;
+}
+.bf-pay-disclaimer {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #55666e;
+    margin: 2px 0 0;
+}
+.bf-pay-summary {
+    margin-top: 14px;
+    background: #FFFFFF;
+    border: 2px solid #00AFC6;
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: center;
+}
+.bf-pay-summary-caption {
+    font-size: 13px;
+    font-weight: 700;
+    color: #071A24;
+    line-height: 1.3;
+}
+.bf-pay-summary-amount {
+    font-size: 26px;
+    font-weight: 900;
+    color: #00AFC6;
+    line-height: 1.15;
+    margin: 4px 0;
+}
+.bf-pay-summary-total {
+    font-size: 13px;
+    font-weight: 700;
+    color: #34434A;
+}
+.bf-pay-error {
+    margin-top: 12px;
+    padding: 11px 13px;
+    border-radius: 9px;
+    background: #fff4ed;
+    border: 1.5px solid #F65A03;
+    color: #071A24;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+.bf-pay-confirm {
+    margin-bottom: 16px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #F2F6F7;
+    border: 2px solid #F65A03;
+    color: #071A24;
+    font-size: 13px;
+    line-height: 1.45;
+}
+.bf-pay-confirm p {
+    margin: 0 0 12px;
+}
+.bf-pay-confirm-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.bf-pay-confirm-btn {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+}
+.bf-pay-confirm-btn.primary {
+    background: #F65A03;
+    color: #FFFFFF;
+}
+.bf-pay-confirm-btn.secondary {
+    background: #FFFFFF;
+    color: #071A24;
+    border: 1.5px solid #cbd8dd;
+}
+@media (min-width: 640px) {
+    .bf-pay-visor {
+        padding: 20px;
+    }
+    .bf-pay-confirm-actions {
+        flex-direction: row;
+    }
+}
+
 </style>
 <!-- VERSION: REFLECTIVO-2026-10-29-R2 · MENÚ MÓVIL / REGALOS / CALCULADORA / PNG / CARRUSELES -->
 <link href="/favicon.ico" rel="icon" sizes="any"/>
@@ -836,7 +1119,7 @@
 <div class="bf-pa-atermico-promo">
 <div class="bf-pa-quick"><a aria-label="Conocer el programa de Pintores Asociados Blindaflex" href="#pintores-asociados">Pintores asociados · Conocé el programa ↓</a></div>
 <div class="bf-pa-atermico-financiacion">
-<img src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png" alt="Hasta 20 cuotas con Tarjeta Cordobesa y hasta 15 cuotas sin interés con tarjetas y medios de pago." loading="lazy" decoding="async"/>
+<img src="assets/images/financiacion-blindaflex-20-y-15-cuotas.png" alt="Hasta 15 cuotas sin interés con Cordobesa y financiación con otras tarjetas." loading="lazy" decoding="async"/>
 </div>
 </div>
 <section aria-labelledby="tech-calc-title" class="tech-calculator section-gap">
@@ -863,7 +1146,86 @@
 </div>
 </div>
 <div class="tech-step-label">PASO 02 — ELEGÍ CÓMO PAGAR</div>
-<div class="comparator-grid" id="payment-comparator"></div>
+<div class="bf-pay-visor" id="payment-visor">
+<h3 class="bf-pay-title" id="bf-pay-heading">¿Cómo querés pagar?</h3>
+<div aria-labelledby="bf-pay-heading" class="bf-pay-methods" role="radiogroup">
+<label class="bf-pay-option" data-method="credito">
+<input class="bf-pay-radio" name="bf_payment_method" onchange="appPricing.onPaymentMethodChange(this.value)" type="radio" value="credito"/>
+<span aria-hidden="true" class="bf-pay-radio-ui"></span>
+<span aria-hidden="true" class="bf-pay-icon">
+<svg viewbox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="5"></rect><line x1="2" x2="22" y1="10" y2="10"></line><line x1="6" x2="10" y1="15" y2="15"></line></svg>
+</span>
+<span class="bf-pay-text">
+<span class="bf-pay-label">Tarjeta de crédito</span>
+<span class="bf-pay-benefit">Hasta 15 cuotas sin interés</span>
+</span>
+</label>
+<label class="bf-pay-option" data-method="debito">
+<input class="bf-pay-radio" name="bf_payment_method" onchange="appPricing.onPaymentMethodChange(this.value)" type="radio" value="debito"/>
+<span aria-hidden="true" class="bf-pay-radio-ui"></span>
+<span aria-hidden="true" class="bf-pay-icon">
+<svg viewbox="0 0 24 24"><rect height="14" rx="2" width="20" x="2" y="5"></rect><line x1="2" x2="22" y1="10" y2="10"></line><circle cx="17" cy="15" r="1.5"></circle></svg>
+</span>
+<span class="bf-pay-text">
+<span class="bf-pay-label">Tarjeta de débito o prepaga</span>
+</span>
+</label>
+<label class="bf-pay-option" data-method="transferencia">
+<input class="bf-pay-radio" name="bf_payment_method" onchange="appPricing.onPaymentMethodChange(this.value)" type="radio" value="transferencia"/>
+<span aria-hidden="true" class="bf-pay-radio-ui"></span>
+<span aria-hidden="true" class="bf-pay-icon">
+<svg viewbox="0 0 24 24"><path d="M3 10h18"></path><path d="M5 10v8"></path><path d="M10 10v8"></path><path d="M14 10v8"></path><path d="M19 10v8"></path><path d="M3 18h18"></path><path d="M12 3l9 5H3l9-5z"></path></svg>
+</span>
+<span class="bf-pay-text">
+<span class="bf-pay-label">Transferencia bancaria</span>
+</span>
+</label>
+<label class="bf-pay-option" data-method="efectivo">
+<input class="bf-pay-radio" name="bf_payment_method" onchange="appPricing.onPaymentMethodChange(this.value)" type="radio" value="efectivo"/>
+<span aria-hidden="true" class="bf-pay-radio-ui"></span>
+<span aria-hidden="true" class="bf-pay-icon">
+<svg viewbox="0 0 24 24"><rect height="12" rx="2" width="20" x="2" y="6"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+</span>
+<span class="bf-pay-text">
+<span class="bf-pay-label">Efectivo</span>
+</span>
+</label>
+</div>
+<div class="bf-pay-details" hidden="" id="bf-pay-details">
+<div class="bf-pay-fields" hidden="" id="bf-credit-fields">
+<div class="bf-pay-field">
+<label class="bf-pay-field-label" for="bf-credit-card">Tarjeta</label>
+<select class="bf-pay-select" id="bf-credit-card" onchange="appPricing.onCreditCardChange(this.value)">
+<option disabled="" selected="" value="">Seleccioná tu tarjeta</option>
+</select>
+</div>
+<div class="bf-pay-field">
+<label class="bf-pay-field-label" for="bf-credit-bank">Banco o entidad emisora <span class="bf-pay-field-auto" hidden="" id="bf-credit-bank-auto">(asignado automáticamente)</span></label>
+<select class="bf-pay-select" disabled="" id="bf-credit-bank" onchange="appPricing.onCreditBankChange(this.value)">
+<option disabled="" selected="" value="">Seleccioná tu banco</option>
+</select>
+</div>
+<div class="bf-pay-field">
+<label class="bf-pay-field-label" for="bf-credit-installments">Elegí tus cuotas sin interés</label>
+<select class="bf-pay-select" disabled="" id="bf-credit-installments" onchange="appPricing.onInstallmentsChange(this.value)">
+<option disabled="" selected="" value="">Seleccioná las cuotas</option>
+</select>
+</div>
+<p class="bf-pay-disclaimer">* Beneficios especiales para Bancor y Santander en Visa y Mastercard.</p>
+<p class="bf-pay-disclaimer">La aceptación y financiación efectivas están sujetas a la habilitación de la tarjeta y autorización de la operación.</p>
+</div>
+<div class="bf-pay-fields" hidden="" id="bf-debit-fields">
+<div class="bf-pay-field">
+<label class="bf-pay-field-label" for="bf-debit-card">Tarjeta de débito o prepaga</label>
+<select class="bf-pay-select" id="bf-debit-card" onchange="appPricing.onDebitCardChange(this.value)">
+<option disabled="" selected="" value="">Seleccioná tu tarjeta</option>
+</select>
+</div>
+</div>
+</div>
+<div aria-live="polite" class="bf-pay-summary" hidden="" id="bf-pay-summary"></div>
+<div class="bf-pay-error" hidden="" id="bf-pay-error" role="alert"></div>
+</div>
 <div class="tech-step-label">PASO 03 — ELEGÍ LA CANTIDAD</div>
 <!-- Cantidad -->
 <div class="config-block">
@@ -882,6 +1244,7 @@
 <div class="dynamic-summary-box" id="dynamic-summary">
 <!-- Inyectado via JS -->
 </div>
+<div aria-live="polite" class="bf-pay-confirm" hidden="" id="bf-pay-confirm" role="alertdialog"></div>
 <button class="btn-primary" disabled="" id="btn-add-cart" onclick="appPricing.addToCart()">
                                 AGREGAR AL CARRITO
                             </button>
@@ -955,7 +1318,7 @@
 <div>
 <!-- MEDIOS DE PAGO -->
 <!-- 11. FAQ -->
-<section aria-labelledby="bf-pa-title" class="bf-pa-card bf-pa-anchor" id="pintores-asociados" style="width:100%;max-width:none;"><div><h2 id="bf-pa-title">¿Sos pintor o aplicador?</h2><p>Recomendá nuestros impermeabilizantes, ganá comisiones por tus ventas y ofrecé beneficios especiales a tus clientes.</p></div><a class="bf-pa-cta" href="https://wa.me/5493512661626?text=Hola%2C%20soy%20pintor/aplicador%20y%20me%20interesa%20formar%20parte%20del%20Programa%20de%20Pintores%20Asociados%20Blindaflex.%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20funciona%20y%20cu%C3%A1les%20son%20los%20beneficios.%20%C2%A1Gracias%21" rel="noopener noreferrer" target="_blank">QUIERO SER PINTOR ASOCIADO</a></section><section class="section-gap card">
+<section aria-labelledby="bf-pa-title" class="bf-pa-card bf-pa-anchor" id="pintores-asociados" style="width:100%;max-width:none;"><div><h2 id="bf-pa-title">¿Sos pintor o aplicador?</h2><p>Tenemos beneficios exclusivos para profesionales como vos.</p></div><a class="bf-pa-cta" href="https://wa.me/5493512661626?text=Hola%2C%20soy%20pintor/aplicador%20y%20me%20interesa%20formar%20parte%20del%20Programa%20de%20Pintores%20Asociados%20Blindaflex.%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20funciona%20y%20cu%C3%A1les%20son%20los%20beneficios.%20%C2%A1Gracias%21" rel="noopener noreferrer" target="_blank">QUIERO SER PINTOR ASOCIADO</a></section><section class="section-gap card">
 <div style="text-align: center; margin-bottom:16px;">
 <svg class="section-icon-main svg-thin" style="width: 36px; height: 36px; color: var(--c-turquesa); margin: 0 auto 16px auto; display: block;" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
 <h2 style="font-size: 20px; font-weight: 900; color: var(--c-azul); text-transform: uppercase;">PREGUNTAS FRECUENTES</h2>
@@ -1194,154 +1557,506 @@ function initInfiniteCarousel(trackId, intervalMs) {
 
 
         
-const appPricing = (function() {
+const BLINDAFLEX_FINANCING = {
+        methods: {
+            credito: { id: 'credito', label: 'Tarjeta de crédito' },
+            debito: { id: 'debito', label: 'Tarjeta de débito o prepaga' },
+            transferencia: { id: 'transferencia', label: 'Transferencia bancaria' },
+            efectivo: { id: 'efectivo', label: 'Efectivo' }
+        },
+        debitCards: ['Visa', 'Mastercard', 'Maestro'],
+        creditCards: [
+            {
+                id: 'Cordobesa',
+                label: 'Cordobesa',
+                autoBank: 'Bancor',
+                banks: ['Bancor']
+            },
+            {
+                id: 'Santander',
+                label: 'Santander',
+                autoBank: 'Santander',
+                banks: ['Santander']
+            },
+            {
+                id: 'Visa',
+                label: 'Visa',
+                autoBank: null,
+                banks: [
+                    'Bancor', 'BBVA', 'Ciudad', 'Comafi', 'Credicoop', 'Galicia',
+                    'Hipotecario', 'ICBC', 'Industrial (BIND)', 'Macro', 'Nación',
+                    'Naranja X', 'Patagonia', 'Provincia', 'Santander', 'Supervielle',
+                    'Otras entidades'
+                ]
+            },
+            {
+                id: 'Mastercard',
+                label: 'Mastercard',
+                autoBank: null,
+                banks: [
+                    'Bancor', 'BBVA', 'Ciudad', 'Comafi', 'Dino', 'Galicia',
+                    'ICBC', 'Macro', 'Mercado Pago', 'Nación', 'Naranja X',
+                    'Patagonia', 'Provincia', 'Roela', 'Santander', 'Supervielle',
+                    'Ualá', 'Otras entidades'
+                ]
+            },
+            {
+                id: 'American Express',
+                label: 'American Express',
+                autoBank: null,
+                banks: [
+                    'American Express', 'Galicia', 'Macro', 'Patagonia', 'Santander',
+                    'Otras entidades'
+                ]
+            },
+            {
+                id: 'Naranja X',
+                label: 'Naranja X',
+                autoBank: 'Naranja X',
+                banks: ['Naranja X']
+            }
+        ],
+        scales: {
+            cordobesa: [15, 12, 9, 6, 3],
+            santanderVisaMaster: [12, 9, 6, 3],
+            naranjaPropia: [6, 3],
+            general: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+            single: [1]
+        },
+        getCreditCardConfig(cardId) {
+            return this.creditCards.find(c => c.id === cardId) || null;
+        },
+        getInstallments(cardId, bank) {
+            const cfg = this.getCreditCardConfig(cardId);
+            if (!cfg || !cfg.banks.includes(bank)) return [];
+            if (cardId === 'Cordobesa' || bank === 'Bancor') return this.scales.cordobesa.slice();
+            if (cardId === 'Naranja X') return this.scales.naranjaPropia.slice();
+            if (bank === 'Santander' && ['Visa', 'Mastercard', 'Santander'].includes(cardId)) {
+                return this.scales.santanderVisaMaster.slice();
+            }
+            return this.scales.general.slice();
+        },
+        cardLabel(c) {
+            const max = Math.max(...(c.autoBank ? this.getInstallments(c.id, c.autoBank) : this.scales.general));
+            return `${c.label} · Hasta ${max} cuotas${['Visa', 'Mastercard'].includes(c.id) ? '*' : ''}`;
+        },
+        bankLabel(card, bank) {
+            return `${bank === 'Bancor' ? 'Bancor (Cordobesa)' : bank} · Hasta ${Math.max(...this.getInstallments(card, bank))} cuotas`;
+        }
+    };
+
+    const appPricing = (function() {
         let db = null;
+        const DEFAULT_DB = {"productos": {"techos_20": {"nombre": "Blindaje para Techos", "presentacion": "20 kg", "precio_base": 168000, "precio_cordobesa_20": 168000}, "atermico_20": {"nombre": "Blindaje Atérmico", "presentacion": "20 kg", "precio_base": 203980, "precio_cordobesa_20": 203980}, "barrera_12": {"nombre": "Barrera Impermeable", "presentacion": "12 kg", "precio_base": 130106, "precio_cordobesa_20": 130106}, "barrera_5": {"nombre": "Barrera Impermeable", "presentacion": "5 kg", "precio_base": 54794, "precio_cordobesa_20": 54794}}};
+
         const state = {
             productId: 'atermico_20',
             qty: 1,
             color: 'Blanco',
-            paymentMethod: 'cuotas_15' // Valor inicial referencial
+            payment: {
+                method: '',
+                card: '',
+                bank: '',
+                debitCard: '',
+                installments: null
+            },
+            pendingCartAction: null
         };
-        
+
         const CART_KEY = 'blindaflex_cart_data';
         const PAYMENT_KEY = 'blindaflex_payment_preference';
+        const PAYMENT_DETAILS_KEY = 'blindaflex_payment_details';
 
-        // Formateo de pesos argentinos. Si es un entero muestra $167.000, si tiene decimales muestra $11.133,33
-        const fmtPercent = n => Number(n.toFixed(2)).toLocaleString('es-AR', {maximumFractionDigits:2});
+        const arsFormatterCache = {};
+        const round2 = n => Math.round((Number(n) + Number.EPSILON) * 100) / 100;
         const fmtMoney = n => {
-            return "$" + n.toLocaleString('es-AR', { minimumFractionDigits: (n % 1 === 0 ? 0 : 2), maximumFractionDigits: 2 });
+            const rounded = round2(n);
+            const hasDecimals = Math.abs(rounded - Math.round(rounded)) >= 0.005;
+            const key = hasDecimals ? '2' : '0';
+            if (!arsFormatterCache[key]) {
+                arsFormatterCache[key] = new Intl.NumberFormat('es-AR', {
+                    style: 'currency',
+                    currency: 'ARS',
+                    minimumFractionDigits: hasDecimals ? 2 : 0,
+                    maximumFractionDigits: 2
+                });
+            }
+            return arsFormatterCache[key].format(rounded).replace(/\s/g, '');
         };
 
         async function init() {
             try {
                 const res = await fetch('precios.json');
-                if(!res.ok) throw new Error("No se pudo cargar precios.json");
-                db = await res.json();
-                if (!db.productos?.atermico_20) throw new Error('Falta Blindaje Atérmico en precios.json');
-                if (db.modalidades && !db.modalidades.transferencia && db.modalidades.contado)
-                    db.modalidades.transferencia = { ...db.modalidades.contado, id: 'transferencia', nombre: 'Contado' };
-                
-                const savedPayment = localStorage.getItem(PAYMENT_KEY);
-                if(savedPayment && db.modalidades[savedPayment] && isPlanConfigured(savedPayment)) {
-                    state.paymentMethod = savedPayment;
+                if (!res.ok) throw new Error('No se pudo cargar precios.json');
+                const loaded = await res.json();
+                if (!loaded?.productos?.atermico_20 || !Number.isFinite(Number(loaded.productos.atermico_20.precio_base))) {
+                    throw new Error('Configuración de producto incompleta en precios.json');
                 }
-
-                document.getElementById('pricing-loader').classList.add('hidden');
-                document.getElementById('btn-add-cart').disabled = false;
-                
-                updateUI();
-                renderCart();
-
+                db = loaded;
             } catch (error) {
-                console.error("Blindaflex:", error);
-                document.getElementById('pricing-loader').innerHTML = `<p style="color:var(--c-naranja); font-weight:800; text-align:center;">Error al cargar la información.<br>Por favor recargá la página.</p>`;
+                console.warn('Blindaflex: usando precio comercial de referencia por imposibilidad de lectura de precios.json.', error);
+                db = DEFAULT_DB;
+            }
+
+            populateStaticSelects();
+            document.getElementById('pricing-loader').classList.add('hidden');
+            document.getElementById('btn-add-cart').disabled = false;
+
+            updateUI();
+            renderCart();
+        }
+
+        function populateStaticSelects() {
+            const creditCardSel = document.getElementById('bf-credit-card');
+            if (creditCardSel) {
+                let opts = '<option value="" disabled selected>Seleccioná tu tarjeta</option>';
+                BLINDAFLEX_FINANCING.creditCards.forEach(c => {
+                    opts += `<option value="${c.id}">${BLINDAFLEX_FINANCING.cardLabel(c)}</option>`;
+                });
+                creditCardSel.innerHTML = opts;
+            }
+            const debitCardSel = document.getElementById('bf-debit-card');
+            if (debitCardSel) {
+                let opts = '<option value="" disabled selected>Seleccioná tu tarjeta</option>';
+                BLINDAFLEX_FINANCING.debitCards.forEach(name => {
+                    opts += `<option value="${name}">${name}</option>`;
+                });
+                debitCardSel.innerHTML = opts;
             }
         }
 
-        function isPlanConfigured(methodId) {
-            const m = db && db.modalidades[methodId];
-            if(!m || !Number.isInteger(m.cuotas) || m.cuotas < 1) return false;
-            if(methodId === 'cordobesa_20') return !!(db.productos[state.productId] && Number.isFinite(db.productos[state.productId].precio_cordobesa_20) && db.productos[state.productId].precio_cordobesa_20 > 0);
-            return Number.isFinite(m.descuento) && m.descuento >= 0 && m.descuento < 1;
+        function getUnitPrice(productId) {
+            const p = db?.productos?.[productId];
+            if (p && Number.isFinite(Number(p.precio_base))) return Number(p.precio_base);
+            return DEFAULT_DB.productos.atermico_20.precio_base;
         }
 
-        function getPrices(productId, methodId, qty) {
-            const p = db.productos[productId];
-            const m = db.modalidades[methodId];
-            if(!p || !m) return null;
-
-            const baseTotal = p.precio_base * qty;
-            const finalTotal = methodId === 'cordobesa_20' ? p.precio_cordobesa_20 * qty : Math.round(baseTotal * (1 - m.descuento));
-            const installmentValue = finalTotal / m.cuotas;
-            const savings = baseTotal - finalTotal;
-
-            return { baseTotal, finalTotal, installmentValue, installments: m.cuotas, discountPercent: Number((m.descuento * 100).toFixed(2)), savings, methodName: m.nombre, productName: p.nombre };
+        function getPaymentSnapshot(p = state.payment) {
+            if (!p || !p.method) return null;
+            const methodMeta = BLINDAFLEX_FINANCING.methods[p.method];
+            if (!methodMeta) return null;
+            return {
+                method: p.method,
+                methodName: methodMeta.label,
+                card: p.method === 'credito' ? p.card : (p.method === 'debito' ? p.debitCard : ''),
+                bank: p.method === 'credito' ? p.bank : '',
+                debitCard: p.method === 'debito' ? p.debitCard : '',
+                installments: p.installments ? Number(p.installments) : null
+            };
         }
 
-        function updateUI() {
-            if(!db) return;
-
-            state.color = 'Blanco';
-            const basePrice = db.productos[state.productId].precio_base;
-            document.getElementById('tech-base-price').textContent = fmtMoney(basePrice);
-            document.getElementById('tech-price-before').textContent = new Intl.NumberFormat('es-AR', {style:'currency',currency:'ARS',minimumFractionDigits:0,maximumFractionDigits:2}).format(Math.round((basePrice / 0.75) * 100) / 100).replace(/\s/g, '');
-            document.getElementById('tech-tax-price').textContent = 'Sin impuestos nacionales: ' + fmtMoney(Math.round(basePrice / 1.21));
-            
-            // 1. Renderizar el Comparador (Plan de cuotas)
-            const order = ['cordobesa_20', 'cuotas_15', 'cuotas_9', 'cuotas_6', 'cuotas_3', 'transferencia'];
-            const compContainer = document.getElementById('payment-comparator');
-            let compHtml = '';
-
-            order.forEach(id => {
-                const m = db.modalidades[id];
-                if(!m) return;
-                const available = isPlanConfigured(id);
-                const isActive = available && state.paymentMethod === id;
-                const exclusive = id === 'cordobesa_20';
-                const badge = m.etiqueta ? `<span class="plan-badge ${exclusive ? 'exclusive' : ''}">${m.etiqueta}</span>` : '';
-                const planTitle = id === 'transferencia'
-                    ? '<span class="tech-plan-number tech-cash">CONTADO</span>'
-                    : `<span class="tech-plan-number">${m.cuotas}</span><span class="tech-plan-words">CUOTAS <span>SIN INTERÉS</span></span>`;
-                
-                if(!available) {
-                    compHtml += `<div class="plan-card unavailable" aria-disabled="true">
-                        <div class="plan-header"><div class="plan-name">${planTitle}</div>${badge}</div>
-                        <div class="plan-price-box"><div class="plan-note">Precio aún no definido</div>
-                        <div class="plan-total">Consultá el importe para esta modalidad.</div></div></div>`;
-                    return;
-                }
-                
-                const pData = getPrices(state.productId, id, 1);
-                const priceHtml = m.cuotas > 1
-                    ? `<div class="plan-installment">${fmtMoney(pData.installmentValue)} <small>por cuota</small></div>
-                       <div class="plan-total">Precio total: ${fmtMoney(pData.finalTotal)}</div>`
-                    : `<div class="plan-installment">${fmtMoney(pData.finalTotal)}</div>
-                       <div class="plan-total">Precio final abonando al recibir</div>`;
-                compHtml += `<button type="button" class="plan-card ${isActive ? 'active' : ''}" aria-pressed="${isActive}" onclick="appPricing.setPayment('${id}')">
-                    <div class="plan-header"><div class="plan-name">${planTitle}</div>${badge}</div>
-                    <div class="plan-price-box">${priceHtml}</div></button>`;
-            });
-            compContainer.innerHTML = compHtml;
-
-            // 2. Renderizar Resumen Dinámico azul
-            const pData = getPrices(state.productId, state.paymentMethod, state.qty);
-            const m = db.modalidades[state.paymentMethod];
-            const summaryBox = document.getElementById('dynamic-summary');
-            
-            let sHtml = `
-                <div class="ds-title">RESUMEN DE TU PEDIDO</div>
-                <div class="ds-row"><span>Producto:</span> <strong>${state.qty}x ${pData.productName} (${state.color})</strong></div>
-                <div class="ds-row"><span>Modalidad:</span> <strong class="ds-highlight">${pData.methodName}</strong></div>
-            `;
-            
-            if(m.cuotas > 1) {
-                sHtml += `<div class="ds-row"><span>Plan:</span> <strong class="ds-highlight">${m.cuotas} cuotas de ${fmtMoney(pData.installmentValue)}</strong></div>`;
+        function isPaymentComplete(p = state.payment) {
+            if (!p || !p.method) return false;
+            if (p.method === 'transferencia' || p.method === 'efectivo') return p.installments === 1;
+            if (p.method === 'debito') return Boolean(p.debitCard) && p.installments === 1;
+            if (p.method === 'credito') {
+                return Boolean(p.card && p.bank && Number.isInteger(p.installments) && BLINDAFLEX_FINANCING.getInstallments(p.card, p.bank).includes(p.installments));
             }
-
-            if(pData.savings > 0) {
-                sHtml += `<div class="ds-row ds-savings"><span>Descuento aplicado:</span> <strong>${fmtPercent(pData.discountPercent)}% OFF (-${fmtMoney(pData.savings)})</strong></div>`;
-            }
-
-            sHtml += `
-                <div class="ds-total-box">
-                    <div class="ds-total-lbl">TOTAL DEL PEDIDO:</div>
-                    <div class="ds-total-val">${fmtMoney(pData.finalTotal)}</div>
-                </div>
-            `;
-            summaryBox.innerHTML = sHtml;
+            return false;
         }
 
-        // --- EVENTOS USUARIO ---
-        function setPayment(id) {
-            if(!isPlanConfigured(id)) return;
-            state.paymentMethod = id;
-            localStorage.setItem(PAYMENT_KEY, id);
+        function isSamePayment(a, b) {
+            if (!a || !b) return false;
+            return a.method === b.method &&
+                (a.card || '') === (b.card || '') &&
+                (a.bank || '') === (b.bank || '') &&
+                (a.debitCard || '') === (b.debitCard || '') &&
+                Number(a.installments || 0) === Number(b.installments || 0);
+        }
+
+        function describePayment(p) {
+            if (!p || !p.method) return 'Sin seleccionar';
+            const methodName = p.methodName || BLINDAFLEX_FINANCING.methods[p.method]?.label || p.method;
+            if (p.method === 'credito') {
+                const cuotasTxt = p.installments === 1 ? '1 pago' : `${p.installments} cuotas sin interés`;
+                return `${methodName} · ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card} (${p.bank}) · ${cuotasTxt}`;
+            }
+            if (p.method === 'debito') {
+                return `${methodName} · ${p.debitCard || p.card} · Un único pago`;
+            }
+            return `${methodName} · Un único pago`;
+        }
+
+        function clearPayError() {
+            const errEl = document.getElementById('bf-pay-error');
+            if (errEl) {
+                errEl.hidden = true;
+                errEl.textContent = '';
+            }
+        }
+
+        function showPayError(msg, focusId) {
+            const errEl = document.getElementById('bf-pay-error');
+            if (errEl) {
+                errEl.textContent = msg;
+                errEl.hidden = false;
+            }
+            const visor = document.getElementById('payment-visor');
+            if (visor) visor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (focusId) {
+                const target = document.getElementById(focusId);
+                if (target && !target.disabled) setTimeout(() => target.focus(), 200);
+            }
+        }
+
+        function hideCartConfirm() {
+            state.pendingCartAction = null;
+            const el = document.getElementById('bf-pay-confirm');
+            if (el) {
+                el.hidden = true;
+                el.innerHTML = '';
+            }
+        }
+
+        function onPaymentMethodChange(method) {
+            clearPayError();
+            hideCartConfirm();
+            state.payment = {
+                method: method,
+                card: '',
+                bank: '',
+                debitCard: '',
+                installments: (method === 'transferencia' || method === 'efectivo') ? 1 : null
+            };
+            syncPaymentVisorControls();
             updateUI();
         }
 
+        function onCreditCardChange(cardId) {
+            clearPayError();
+            hideCartConfirm();
+            const cfg = BLINDAFLEX_FINANCING.getCreditCardConfig(cardId);
+            state.payment.card = cardId || '';
+            state.payment.bank = cfg && cfg.autoBank ? cfg.autoBank : '';
+            state.payment.installments = null;
+            syncPaymentVisorControls();
+            updateUI();
+        }
+
+        function onCreditBankChange(bank) {
+            clearPayError();
+            hideCartConfirm();
+            state.payment.bank = bank || '';
+            const validScales = BLINDAFLEX_FINANCING.getInstallments(state.payment.card, state.payment.bank);
+            if (!validScales.includes(Number(state.payment.installments))) {
+                state.payment.installments = null;
+            }
+            syncPaymentVisorControls();
+            updateUI();
+        }
+
+        function onInstallmentsChange(val) {
+            clearPayError();
+            hideCartConfirm();
+            const num = Number(val);
+            state.payment.installments = Number.isInteger(num) && num >= 1 ? num : null;
+            updateUI();
+        }
+
+        function onDebitCardChange(card) {
+            clearPayError();
+            hideCartConfirm();
+            state.payment.debitCard = card || '';
+            state.payment.installments = card ? 1 : null;
+            updateUI();
+        }
+
+        function syncPaymentVisorControls() {
+            const p = state.payment;
+            document.querySelectorAll('.bf-pay-option').forEach(opt => {
+                const radio = opt.querySelector('input[type="radio"]');
+                const selected = opt.dataset.method === p.method;
+                opt.classList.toggle('is-selected', selected);
+                if (radio) radio.checked = selected;
+            });
+
+            const detailsEl = document.getElementById('bf-pay-details');
+            const creditFieldsEl = document.getElementById('bf-credit-fields');
+            const debitFieldsEl = document.getElementById('bf-debit-fields');
+
+            if (p.method === 'credito') {
+                detailsEl.hidden = false;
+                creditFieldsEl.hidden = false;
+                debitFieldsEl.hidden = true;
+            } else if (p.method === 'debito') {
+                detailsEl.hidden = false;
+                creditFieldsEl.hidden = true;
+                debitFieldsEl.hidden = false;
+            } else {
+                detailsEl.hidden = true;
+                creditFieldsEl.hidden = true;
+                debitFieldsEl.hidden = true;
+            }
+
+            const cardSel = document.getElementById('bf-credit-card');
+            const bankSel = document.getElementById('bf-credit-bank');
+            const bankAutoLbl = document.getElementById('bf-credit-bank-auto');
+            const instSel = document.getElementById('bf-credit-installments');
+            const debitSel = document.getElementById('bf-debit-card');
+
+            if (cardSel) cardSel.value = p.card || '';
+            if (debitSel) debitSel.value = p.debitCard || '';
+
+            const cfg = BLINDAFLEX_FINANCING.getCreditCardConfig(p.card);
+            if (bankSel) {
+                bankSel.classList.remove('bf-pay-select-auto');
+                if (bankAutoLbl) bankAutoLbl.hidden = true;
+
+                if (!cfg) {
+                    bankSel.innerHTML = '<option value="" disabled selected>Seleccioná tu banco</option>';
+                    bankSel.disabled = true;
+                } else if (cfg.autoBank) {
+                    bankSel.innerHTML = `<option value="${cfg.autoBank}" selected>${BLINDAFLEX_FINANCING.bankLabel(p.card, cfg.autoBank)}</option>`;
+                    bankSel.value = cfg.autoBank;
+                    bankSel.disabled = true;
+                    bankSel.classList.add('bf-pay-select-auto');
+                    if (bankAutoLbl) bankAutoLbl.hidden = false;
+                } else {
+                    let bankOpts = '<option value="" disabled>Seleccioná tu banco</option>';
+                    cfg.banks.forEach(b => {
+                        bankOpts += `<option value="${b}">${BLINDAFLEX_FINANCING.bankLabel(p.card, b)}</option>`;
+                    });
+                    bankSel.innerHTML = bankOpts;
+                    bankSel.value = p.bank || '';
+                    bankSel.disabled = false;
+                }
+            }
+
+            renderCreditInstallmentOptions(instSel);
+        }
+
+        function renderCreditInstallmentOptions(instSel) {
+            if (!instSel) return;
+            const p = state.payment;
+            const totalOrder = getUnitPrice(state.productId) * state.qty;
+            const scales = (p.method === 'credito' && p.card && p.bank)
+                ? BLINDAFLEX_FINANCING.getInstallments(p.card, p.bank)
+                : [];
+
+            if (!scales.length) {
+                instSel.innerHTML = '<option value="" disabled selected>Seleccioná las cuotas</option>';
+                instSel.disabled = true;
+                return;
+            }
+
+            let opts = '<option value="" disabled>Seleccioná las cuotas</option>';
+            scales.forEach(c => {
+                const cuotaVal = totalOrder / c;
+                const label = c === 1
+                    ? `1 pago de ${fmtMoney(totalOrder)}`
+                    : `${c} cuotas de ${fmtMoney(cuotaVal)}`;
+                opts += `<option value="${c}">${label}</option>`;
+            });
+            instSel.innerHTML = opts;
+            instSel.value = (p.installments && scales.includes(Number(p.installments))) ? String(p.installments) : '';
+            instSel.disabled = false;
+        }
+
+        function updateUI() {
+            if (!db) return;
+
+            const checkedColor = document.querySelector('input[name="color"]:checked');
+            if (checkedColor) state.color = checkedColor.value;
+
+            const basePrice = getUnitPrice(state.productId);
+            const refBefore = round2(basePrice / 0.75);
+            const taxFree = Math.round(basePrice / 1.21);
+
+            document.getElementById('tech-base-price').textContent = fmtMoney(basePrice);
+            document.getElementById('tech-price-before').textContent = fmtMoney(refBefore);
+            document.getElementById('tech-tax-price').textContent = 'Sin impuestos nacionales: ' + fmtMoney(taxFree);
+
+            if (state.payment.method === 'credito') {
+                renderCreditInstallmentOptions(document.getElementById('bf-credit-installments'));
+            }
+
+            const totalOrder = basePrice * state.qty;
+            renderPaymentSummaryBox(totalOrder);
+            renderDynamicSummary(totalOrder);
+        }
+
+        function renderPaymentSummaryBox(totalOrder) {
+            const box = document.getElementById('bf-pay-summary');
+            if (!box) return;
+
+            if (!isPaymentComplete()) {
+                box.hidden = true;
+                box.innerHTML = '';
+                return;
+            }
+
+            const p = state.payment;
+            let html = '';
+            if (p.method === 'credito' && p.installments > 1) {
+                const cuotaVal = totalOrder / p.installments;
+                html = `
+                    <div class="bf-pay-summary-caption">${p.installments} cuotas sin interés de</div>
+                    <div class="bf-pay-summary-amount">${fmtMoney(cuotaVal)}</div>
+                    <div class="bf-pay-summary-total">Total: ${fmtMoney(totalOrder)}</div>
+                `;
+            } else if (p.method === 'credito' && p.installments === 1) {
+                html = `
+                    <div class="bf-pay-summary-caption">1 pago de</div>
+                    <div class="bf-pay-summary-amount">${fmtMoney(totalOrder)}</div>
+                    <div class="bf-pay-summary-total">Total: ${fmtMoney(totalOrder)}</div>
+                `;
+            } else {
+                html = `
+                    <div class="bf-pay-summary-caption">Un único pago de</div>
+                    <div class="bf-pay-summary-amount">${fmtMoney(totalOrder)}</div>
+                `;
+            }
+
+            box.innerHTML = html;
+            box.hidden = false;
+        }
+
+        function renderDynamicSummary(totalOrder) {
+            const summaryBox = document.getElementById('dynamic-summary');
+            if (!summaryBox) return;
+
+            const prodName = db.productos[state.productId]?.nombre || 'Blindaje Atérmico';
+            const p = state.payment;
+            const complete = isPaymentComplete();
+
+            let paymentHtml = '';
+            if (!p.method) {
+                paymentHtml = `<div class="ds-row"><span>Medio de pago:</span> <strong>Seleccioná cómo querés pagar</strong></div>`;
+            } else if (!complete) {
+                const methodLabel = BLINDAFLEX_FINANCING.methods[p.method]?.label || '';
+                paymentHtml = `<div class="ds-row"><span>Medio de pago:</span> <strong class="ds-highlight">${methodLabel} (completá los datos)</strong></div>`;
+            } else {
+                const methodLabel = BLINDAFLEX_FINANCING.methods[p.method].label;
+                paymentHtml += `<div class="ds-row"><span>Medio de pago:</span> <strong class="ds-highlight">${methodLabel}</strong></div>`;
+                if (p.method === 'credito') {
+                    paymentHtml += `<div class="ds-row"><span>Tarjeta y entidad:</span> <strong>${p.card === 'Santander' ? 'Visa o Mastercard' : p.card} (${p.bank})</strong></div>`;
+                    const planText = p.installments > 1
+                        ? `${p.installments} cuotas sin interés de ${fmtMoney(totalOrder / p.installments)}`
+                        : `1 pago de ${fmtMoney(totalOrder)}`;
+                    paymentHtml += `<div class="ds-row"><span>Plan:</span> <strong class="ds-highlight">${planText}</strong></div>`;
+                } else if (p.method === 'debito') {
+                    paymentHtml += `<div class="ds-row"><span>Tarjeta:</span> <strong>${p.debitCard}</strong></div>`;
+                    paymentHtml += `<div class="ds-row"><span>Plan:</span> <strong class="ds-highlight">Un único pago de ${fmtMoney(totalOrder)}</strong></div>`;
+                } else {
+                    paymentHtml += `<div class="ds-row"><span>Plan:</span> <strong class="ds-highlight">Un único pago de ${fmtMoney(totalOrder)}</strong></div>`;
+                }
+            }
+
+            summaryBox.innerHTML = `
+                <div class="ds-title">RESUMEN DE TU PEDIDO</div>
+                <div class="ds-row"><span>Producto:</span> <strong>${state.qty}x ${prodName} (${state.color})</strong></div>
+                ${paymentHtml}
+                <div class="ds-total-box">
+                    <div class="ds-total-lbl">TOTAL DEL PEDIDO:</div>
+                    <div class="ds-total-val">${fmtMoney(totalOrder)}</div>
+                </div>
+            `;
+        }
+
         function changeQty(delta) {
+            hideCartConfirm();
             let next = state.qty + delta;
-            if(next < 1) next = 1;
+            if (next < 1) next = 1;
             state.qty = next;
             document.getElementById('main-qty').value = state.qty;
             updateUI();
@@ -1357,28 +2072,141 @@ const appPricing = (function() {
 
         // --- CARRITO COMPARTIDO ---
         function getCart() {
-            try { return JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []; } 
-            catch(e) { return []; }
+            try { return JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []; }
+            catch (e) { return []; }
+        }
+
+        function getCartPayment() {
+            try {
+                const raw = localStorage.getItem(PAYMENT_DETAILS_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                return isPaymentComplete(parsed) ? parsed : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function saveCartPayment(details) {
+            if (!details) {
+                localStorage.removeItem(PAYMENT_DETAILS_KEY);
+                return;
+            }
+            localStorage.setItem(PAYMENT_DETAILS_KEY, JSON.stringify(details));
+            localStorage.setItem(PAYMENT_KEY, details.method);
         }
 
         function saveCart(items) {
-            localStorage.setItem(CART_KEY, JSON.stringify({items: items, lastActivity: Date.now()}));
+            localStorage.setItem(CART_KEY, JSON.stringify({ items: items, lastActivity: Date.now() }));
+            if (items.length === 0) {
+                localStorage.removeItem(PAYMENT_DETAILS_KEY);
+            }
             updateCartIcon(items);
             renderCart();
-            if(document.getElementById('checkout-view').style.display === 'block') renderCheckoutSummary();
+            if (document.getElementById('checkout-view').style.display === 'block') renderCheckoutSummary();
+        }
+
+        function validatePaymentSelection() {
+            const p = state.payment;
+            if (!p.method) {
+                showPayError('Seleccioná cómo querés pagar antes de agregar el producto al carrito.');
+                return false;
+            }
+            if (p.method === 'credito') {
+                if (!p.card) {
+                    showPayError('Seleccioná tu tarjeta de crédito para continuar.', 'bf-credit-card');
+                    return false;
+                }
+                if (!p.bank) {
+                    showPayError('Seleccioná el banco o entidad emisora de tu tarjeta.', 'bf-credit-bank');
+                    return false;
+                }
+                if (!BLINDAFLEX_FINANCING.getInstallments(p.card, p.bank).includes(p.installments)) {
+                    showPayError('Seleccioná la cantidad de cuotas para continuar.', 'bf-credit-installments');
+                    return false;
+                }
+            }
+            if (p.method === 'debito' && !p.debitCard) {
+                showPayError('Seleccioná si tu tarjeta de débito o prepaga es Visa, Mastercard o Maestro.', 'bf-debit-card');
+                return false;
+            }
+            clearPayError();
+            return true;
+        }
+
+        function commitItemToCart(paymentSnapshot) {
+            const items = getCart();
+            const unitPrice = getUnitPrice(state.productId);
+            const pres = db.productos[state.productId]?.presentacion || 20;
+            const prodName = db.productos[state.productId]?.nombre || 'Blindaje Atérmico';
+
+            const existing = items.find(i => i.id === state.productId && i.color === state.color);
+            if (existing) {
+                existing.qty += state.qty;
+                existing.price = unitPrice;
+                existing.presentacion = pres;
+            } else {
+                items.push({
+                    id: state.productId,
+                    product: prodName,
+                    presentacion: pres,
+                    color: state.color,
+                    qty: state.qty,
+                    price: unitPrice
+                });
+            }
+            saveCartPayment(paymentSnapshot);
+            saveCart(items);
+            openCart();
         }
 
         function addToCart() {
-            let items = getCart();
-            const existing = items.find(i => i.id === state.productId && i.color === state.color);
-            if(existing) {
-                existing.qty += state.qty;
-            } else {
-                items.push({ id: state.productId, product: db.productos[state.productId].nombre, color: state.color, qty: state.qty });
+            if (!validatePaymentSelection()) return;
+
+            const currentPayment = getPaymentSnapshot();
+            const existingItems = getCart();
+            const existingPayment = getCartPayment();
+
+            if (existingItems.length > 0 && existingPayment && !isSamePayment(existingPayment, currentPayment)) {
+                state.pendingCartAction = {
+                    newPayment: currentPayment,
+                    previousPayment: existingPayment
+                };
+                const confirmBox = document.getElementById('bf-pay-confirm');
+                confirmBox.innerHTML = `
+                    <p>Tu carrito ya tiene seleccionada la modalidad <strong>${describePayment(existingPayment)}</strong>.<br/>¿Querés aplicar <strong>${describePayment(currentPayment)}</strong> a todo el pedido?</p>
+                    <div class="bf-pay-confirm-actions">
+                        <button type="button" class="bf-pay-confirm-btn primary" onclick="appPricing.resolveCartPaymentConflict(true)">Aplicar a todo el pedido</button>
+                        <button type="button" class="bf-pay-confirm-btn secondary" onclick="appPricing.resolveCartPaymentConflict(false)">Mantener modalidad anterior</button>
+                    </div>
+                `;
+                confirmBox.hidden = false;
+                confirmBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
             }
-            localStorage.setItem(PAYMENT_KEY, state.paymentMethod);
-            saveCart(items);
-            openCart();
+
+            hideCartConfirm();
+            commitItemToCart(currentPayment);
+        }
+
+        function resolveCartPaymentConflict(applyNew) {
+            if (!state.pendingCartAction) return;
+            const { newPayment, previousPayment } = state.pendingCartAction;
+            hideCartConfirm();
+            if (applyNew) {
+                commitItemToCart(newPayment);
+            } else {
+                state.payment = {
+                    method: previousPayment.method,
+                    card: previousPayment.method === 'credito' ? previousPayment.card : '',
+                    bank: previousPayment.method === 'credito' ? previousPayment.bank : '',
+                    debitCard: previousPayment.method === 'debito' ? previousPayment.debitCard : '',
+                    installments: previousPayment.installments
+                };
+                syncPaymentVisorControls();
+                updateUI();
+                commitItemToCart(previousPayment);
+            }
         }
 
         function updateCartIcon(items) {
@@ -1390,7 +2218,7 @@ const appPricing = (function() {
         function cartItemDelta(index, delta) {
             let items = getCart();
             items[index].qty += delta;
-            if(items[index].qty <= 0) items.splice(index, 1);
+            if (items[index].qty <= 0) items.splice(index, 1);
             saveCart(items);
         }
 
@@ -1400,58 +2228,82 @@ const appPricing = (function() {
             saveCart(items);
         }
 
+        function resolveItemUnitPrice(item) {
+            if (item.id && db?.productos?.[item.id]) {
+                return getUnitPrice(item.id);
+            }
+            if (Number.isFinite(Number(item.price)) && Number(item.price) > 0) {
+                return Number(item.price);
+            }
+            if (item.type === 'techo' || /Techos/.test(item.product || '')) {
+                return getUnitPrice('techos_20');
+            }
+            return 0;
+        }
+
         function getCartTotals(items) {
-            let grandTotal = 0; let totalSaved = 0;
-            let currentMethod = localStorage.getItem(PAYMENT_KEY) || 'cuotas_15';
-            if(currentMethod === 'cordobesa_20' && items.some(i => !db.productos[i.id] || !Number.isFinite(db.productos[i.id].precio_cordobesa_20))) { currentMethod = 'cuotas_15'; localStorage.setItem(PAYMENT_KEY,currentMethod); }
-            if(!isPlanConfigured(currentMethod)) currentMethod = state.paymentMethod;
-            const m = db.modalidades[currentMethod];
-            
+            let grandTotal = 0;
+            const cartPayment = getCartPayment();
+
             items.forEach(i => {
-                let pData;
-                if(db.productos[i.id]) {
-                    pData = getPrices(i.id, currentMethod, i.qty);
-                    if(currentMethod === 'cordobesa_20' && !(Number.isFinite(db.productos[i.id].precio_cordobesa_20) && db.productos[i.id].precio_cordobesa_20 > 0)) { pData = null; }
-                } else {
-                    // Compatibilidad con items agregados desde landing vieja
-                    const fallbackBase = (i.type === 'techo' || /Techos/.test(i.product)) ? 168000 : (i.price || 0);
-                    const baseTot = fallbackBase * i.qty;
-                    const finTot = currentMethod === 'cordobesa_20' ? (db.productos[i.id]?.precio_cordobesa_20 || fallbackBase) * i.qty : Math.round(baseTot * (1 - m.descuento));
-                    pData = { finalTotal: finTot, savings: baseTot - finTot };
-                }
-                i._calcTotal = pData.finalTotal;
-                grandTotal += pData.finalTotal;
-                totalSaved += pData.savings;
+                const unit = resolveItemUnitPrice(i);
+                const subtotal = unit * Number(i.qty || 0);
+                i._unitPrice = unit;
+                i._calcTotal = subtotal;
+                grandTotal += subtotal;
             });
-            return { items, grandTotal, totalSaved, currentMethod, m };
+
+            return { items, grandTotal, payment: cartPayment };
         }
 
         function renderCart() {
-            if(!db) return; 
+            if (!db) return;
             const items = getCart();
-            updateCartIcon(items); // Sincroniza botón al cargar un carrito guardado.
+            updateCartIcon(items);
             const body = document.getElementById('cart-body');
             const totalEl = document.getElementById('drawer-total');
-            
-            if(items.length === 0) {
+
+            if (items.length === 0) {
                 body.innerHTML = '<div class="cart-empty-message">Tu carrito está vacío.</div>';
                 totalEl.textContent = '$0';
                 return;
             }
 
             const totals = getCartTotals(items);
-            let html = `<div style="background:var(--c-azul-grad); color:#fff; padding:16px; border-radius:8px; margin-bottom:16px; font-size:13px;">
-                <div style="margin-bottom:4px; color:#8ba2ac;">FORMA DE PAGO APLICADA AL PEDIDO:</div>
-                <strong style="font-size:15px; color:var(--c-turquesa);">${totals.m.nombre}</strong>
-                ${totals.m.cuotas > 1 ? `<br>Plan: ${totals.m.cuotas} cuotas de ${fmtMoney(totals.grandTotal/totals.m.cuotas)}` : ''}
-            </div>`;
+            const p = totals.payment;
+            let payBlockHtml = '';
 
+            if (p) {
+                let detailLines = `<strong style="font-size:15px; color:var(--c-turquesa);">${p.methodName}</strong>`;
+                if (p.method === 'credito') {
+                    detailLines += `<br>Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card} · Banco: ${p.bank}`;
+                    detailLines += p.installments > 1
+                        ? `<br>Plan: ${p.installments} cuotas sin interés de ${fmtMoney(totals.grandTotal / p.installments)}`
+                        : `<br>Plan: 1 pago de ${fmtMoney(totals.grandTotal)}`;
+                } else if (p.method === 'debito') {
+                    detailLines += `<br>Tarjeta: ${p.debitCard || p.card}<br>Plan: Un único pago de ${fmtMoney(totals.grandTotal)}`;
+                } else {
+                    detailLines += `<br>Plan: Un único pago de ${fmtMoney(totals.grandTotal)}`;
+                }
+                payBlockHtml = `<div style="background:var(--c-azul-grad); color:#fff; padding:16px; border-radius:8px; margin-bottom:16px; font-size:13px; line-height:1.45;">
+                    <div style="margin-bottom:4px; color:#8ba2ac; font-weight:700;">FORMA DE PAGO DEL PEDIDO:</div>
+                    ${detailLines}
+                </div>`;
+            } else {
+                payBlockHtml = `<div style="background:#fff4ed; border:1.5px solid #F65A03; color:#071A24; padding:14px; border-radius:8px; margin-bottom:16px; font-size:13px; font-weight:700;">
+                    Elegí cómo querés pagar en el selector de la tienda antes de finalizar tu pedido.
+                </div>`;
+            }
+
+            let html = payBlockHtml;
             totals.items.forEach((i, idx) => {
+                const pres = i.presentacion || db.productos[i.id]?.presentacion;
+                const presTxt = pres ? ` de ${String(pres).replace(/\s*kg$/i, "")} kg` : '';
                 html += `
                 <div class="cart-item">
                     <button class="remove-item" onclick="appPricing.cartItemRemove(${idx})">&times;</button>
-                    <div class="cart-item-title">${i.product}</div>
-                    <div class="cart-item-color">Color: ${i.color || 'N/A'}</div>
+                    <div class="cart-item-title">${i.product}${presTxt}</div>
+                    <div class="cart-item-color">Color: ${i.color || 'N/A'} · Unitario: ${fmtMoney(i._unitPrice)}</div>
                     <div class="cart-item-controls">
                         <div class="qty-controls">
                             <button class="qty-btn" onclick="appPricing.cartItemDelta(${idx}, -1)">-</button>
@@ -1463,50 +2315,58 @@ const appPricing = (function() {
                 </div>`;
             });
 
-            if(totals.totalSaved > 0) {
-                html += `<div style="padding:12px 0; font-weight:900; color:var(--c-naranja); text-align:right;">¡Ahorraste ${fmtMoney(totals.totalSaved)}!</div>`;
-            }
-
             body.innerHTML = html;
             totalEl.textContent = fmtMoney(totals.grandTotal);
         }
 
         function renderCheckoutSummary() {
             const el = document.getElementById('checkout-summary');
-            if(!el) return;
+            if (!el) return;
             const totals = getCartTotals(getCart());
-            
+            const p = totals.payment;
+
             let h = '';
             totals.items.forEach((i, idx) => {
-                const pres = db.productos[i.id]?.presentacion ? ` de ${db.productos[i.id].presentacion} kg` : '';
+                const pres = i.presentacion || db.productos[i.id]?.presentacion;
+                const presTxt = pres ? ` de ${String(pres).replace(/\s*kg$/i, "")} kg` : '';
                 h += `
                 <div style="padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
-                    <div style="font-size:14px; font-weight:700; margin-bottom:4px;">Producto ${idx + 1}: ${i.product}${pres}</div>
-                    <div style="font-size:13px; color:rgba(255,255,255,0.8); display:flex; justify-content:space-between;">
-                        <span>Color: ${i.color}</span>
+                    <div style="font-size:14px; font-weight:700; margin-bottom:4px;">Producto ${idx + 1}: ${i.product}${presTxt}</div>
+                    <div style="font-size:13px; color:rgba(255,255,255,0.8); display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+                        <span>Color: ${i.color || 'N/A'}</span>
                         <span>Cantidad: ${i.qty}</span>
+                        <span>Unitario: ${fmtMoney(i._unitPrice)}</span>
                     </div>
                     <div style="font-size:15px; font-weight:800; text-align:right; margin-top:8px; color:var(--c-turquesa-light);">Subtotal: ${fmtMoney(i._calcTotal)}</div>
                 </div>`;
             });
-            
-            h += `<div style="margin-top:16px; font-size:14px; font-weight:700; color:var(--c-turquesa);">Forma de pago seleccionada:</div>`;
-            h += `<div style="font-size:15px; font-weight:800; margin-bottom:8px;">${totals.m.nombre}</div>`;
-            
-            if(totals.m.cuotas > 1) {
-                h += `<div style="font-size:13px; margin-bottom:2px;">Cantidad de cuotas: ${totals.m.cuotas}</div>`;
-                h += `<div style="font-size:13px; margin-bottom:2px;">Importe de cada cuota: ${fmtMoney(totals.grandTotal / totals.m.cuotas)}</div>`;
-            }
-            if(totals.totalSaved > 0) {
-                h += `<div style="font-size:13px; color:var(--c-naranja); margin-top:4px; margin-bottom:2px;">Descuento aplicado: ${fmtPercent((totals.m.descuento || 0)*100)}%</div>`;
-                h += `<div style="font-size:13px; color:var(--c-naranja);">Ahorro total: -${fmtMoney(totals.totalSaved)}</div>`;
+
+            if (p) {
+                h += `<div style="margin-top:16px; font-size:14px; font-weight:700; color:var(--c-turquesa);">Forma de pago seleccionada:</div>`;
+                h += `<div style="font-size:15px; font-weight:800; margin-bottom:6px;">${p.methodName}</div>`;
+
+                if (p.method === 'credito') {
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card}</div>`;
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Banco / Entidad emisora: ${p.bank}</div>`;
+                    if (p.installments > 1) {
+                        h += `<div style="font-size:13px; margin-bottom:2px;">Cuotas: ${p.installments} cuotas sin interés</div>`;
+                        h += `<div style="font-size:13px; margin-bottom:2px;">Importe de cada cuota: ${fmtMoney(totals.grandTotal / p.installments)}</div>`;
+                    } else {
+                        h += `<div style="font-size:13px; margin-bottom:2px;">Plan: 1 pago de ${fmtMoney(totals.grandTotal)}</div>`;
+                    }
+                } else if (p.method === 'debito') {
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Tarjeta: ${p.debitCard || p.card}</div>`;
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Plan: Un único pago</div>`;
+                } else {
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Plan: Un único pago</div>`;
+                }
             }
 
             h += `<div style="display:flex;justify-content:space-between;margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px;font-weight:900;">
                 <span>TOTAL FINAL:</span>
                 <span>${fmtMoney(totals.grandTotal)}</span>
             </div>`;
-            
+
             el.innerHTML = h;
         }
 
@@ -1514,10 +2374,21 @@ const appPricing = (function() {
         function submitWhatsApp(e) {
             e.preventDefault();
             const totals = getCartTotals(getCart());
-            if(!totals.items.length) return;
-            
+            if (!totals.items.length) return;
+
+            let p = totals.payment;
+            if (!p && isPaymentComplete()) {
+                p = getPaymentSnapshot();
+                saveCartPayment(p);
+            }
+            if (!p) {
+                closeCheckout();
+                showPayError('Seleccioná cómo querés pagar antes de enviar tu pedido.');
+                return;
+            }
+
             const val = id => document.getElementById(id).value.trim();
-            
+
             const rows = [
                 '*NUEVO PEDIDO BLINDAFLEX*',
                 '',
@@ -1532,74 +2403,90 @@ const appPricing = (function() {
                 '',
                 '*DETALLE DEL PEDIDO*'
             ];
-            
+
             totals.items.forEach((i, idx) => {
-                const pres = db.productos[i.id]?.presentacion ? ` de ${db.productos[i.id].presentacion} kg` : '';
-                rows.push(`Producto ${idx + 1}: ${i.product}${pres}`);
-                rows.push(`Color: ${i.color}`);
+                const pres = i.presentacion || db.productos[i.id]?.presentacion;
+                const presTxt = pres ? ` de ${String(pres).replace(/\s*kg$/i, "")} kg` : '';
+                rows.push(`Producto ${idx + 1}: ${i.product}${presTxt}`);
+                rows.push(`Color: ${i.color || 'N/A'}`);
                 rows.push(`Cantidad: ${i.qty}`);
+                rows.push(`Precio unitario: ${fmtMoney(i._unitPrice)}`);
                 rows.push(`Subtotal: ${fmtMoney(i._calcTotal)}\n`);
             });
-            
+
             rows.push('*FORMA DE PAGO*');
-            rows.push(`Medio o plan seleccionado: ${totals.m.nombre}`);
-            
-            if(totals.m.cuotas > 1) {
-                rows.push(`Cantidad de cuotas: ${totals.m.cuotas}`);
-                rows.push(`Importe de cada cuota: ${fmtMoney(totals.grandTotal / totals.m.cuotas)}`);
+            rows.push(`Medio de pago: ${p.methodName}`);
+            if (p.method === 'credito') {
+                rows.push(`Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card}`);
+                rows.push(`Banco / Entidad emisora: ${p.bank}`);
+                if (p.installments > 1) {
+                    rows.push(`Cuotas: ${p.installments} cuotas sin interés`);
+                    rows.push(`Importe de cada cuota: ${fmtMoney(totals.grandTotal / p.installments)}`);
+                } else {
+                    rows.push(`Plan: 1 pago de ${fmtMoney(totals.grandTotal)}`);
+                }
+            } else if (p.method === 'debito') {
+                rows.push(`Tarjeta: ${p.debitCard || p.card}`);
+                rows.push('Plan: Un único pago');
+            } else {
+                rows.push('Plan: Un único pago');
             }
-            if(totals.totalSaved > 0) {
-                rows.push(`Descuento aplicado: ${fmtPercent((totals.m.descuento || 0)*100)}%`);
-                rows.push(`Ahorro total: ${fmtMoney(totals.totalSaved)}`);
-            }
-            
+
             rows.push('');
             rows.push(`*TOTAL FINAL A PAGAR: ${fmtMoney(totals.grandTotal)}*`);
             rows.push('');
             rows.push('*ENTREGA Y PAGO*');
             rows.push('Envío: A coordinar según zona de entrega.');
             rows.push('Pago: El importe se abona al recibir los productos.');
-            
+
             window.open('https://wa.me/5493512661626?text=' + encodeURIComponent(rows.join('\n')), '_blank');
         }
 
-        // Nav Controllers (Corregido para manejar correctamente Checkout sobre tienda)
-        function openCart() { document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-drawer').classList.add('open'); document.body.style.overflow='hidden'; }
-        function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); document.body.style.overflow=''; }
-        
+        // Nav Controllers
+        function openCart() { document.getElementById('cart-overlay').classList.add('open'); document.getElementById('cart-drawer').classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); document.body.style.overflow = ''; }
+
         function goToCheckout() {
-            if(getCart().length === 0) return;
+            if (getCart().length === 0) return;
+
+            if (!getCartPayment()) {
+                if (isPaymentComplete()) {
+                    saveCartPayment(getPaymentSnapshot());
+                } else {
+                    closeCart();
+                    showPayError('Seleccioná cómo querés pagar tu pedido antes de continuar.');
+                    return;
+                }
+            }
+
             closeCart();
-            
-            // Ocultar vistas comerciales para liberar scroll nativo a Checkout
+
             document.querySelector('header').style.display = 'none';
             document.getElementById('main-store').style.display = 'none';
             document.getElementById('footer').style.display = 'none';
             const floatWsp = document.querySelector('.whatsapp-float');
-            if(floatWsp) floatWsp.style.display = 'none';
+            if (floatWsp) floatWsp.style.display = 'none';
             const floatBar = document.getElementById('floating-bar');
-            if(floatBar) floatBar.style.display = 'none';
+            if (floatBar) floatBar.style.display = 'none';
 
-            // Mostrar el checkout como pagina principal
             document.getElementById('checkout-view').style.display = 'block';
-            
+
             document.body.style.overflow = '';
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
             renderCheckoutSummary();
         }
-        
+
         function closeCheckout() {
-            // Restaurar toda la vista de la tienda
             document.querySelector('header').style.display = '';
             document.getElementById('main-store').style.display = '';
             document.getElementById('footer').style.display = '';
             const floatWsp = document.querySelector('.whatsapp-float');
-            if(floatWsp) floatWsp.style.display = '';
+            if (floatWsp) floatWsp.style.display = '';
             const floatBar = document.getElementById('floating-bar');
-            if(floatBar) floatBar.style.display = '';
+            if (floatBar) floatBar.style.display = '';
 
             document.getElementById('checkout-view').style.display = 'none';
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
         }
 
         // Comparador Visual (Antes/Después)
@@ -1607,7 +2494,7 @@ const appPricing = (function() {
             const comparer = document.getElementById('comparer-container');
             const afterImg = document.getElementById('comparer-img-after');
             const divider = document.getElementById('comparer-divider');
-            if(!comparer) return;
+            if (!comparer) return;
             let isDragging = false;
             comparer.addEventListener('pointerdown', (e) => {
                 isDragging = true; comparer.setPointerCapture(e.pointerId);
@@ -1625,7 +2512,27 @@ const appPricing = (function() {
             }
         }
 
-        return { init, setPayment, changeQty, calculateSurface, updateUI, addToCart, openCart, closeCart, cartItemDelta, cartItemRemove, goToCheckout, closeCheckout, submitWhatsApp, initComparer };
+        return {
+            init,
+            onPaymentMethodChange,
+            onCreditCardChange,
+            onCreditBankChange,
+            onInstallmentsChange,
+            onDebitCardChange,
+            resolveCartPaymentConflict,
+            changeQty,
+            calculateSurface,
+            updateUI,
+            addToCart,
+            openCart,
+            closeCart,
+            cartItemDelta,
+            cartItemRemove,
+            goToCheckout,
+            closeCheckout,
+            submitWhatsApp,
+            initComparer
+        };
     })();
 
 
