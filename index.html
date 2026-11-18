@@ -1435,7 +1435,9 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
                 grandTotal += subtotal;
             });
 
-            return { items, grandTotal, payment: cartPayment };
+            const discount = ["debito", "transferencia", "efectivo"].includes(cartPayment?.method) ? Math.round(grandTotal * 0.12 * 100) / 100 : 0;
+            grandTotal = Math.round((grandTotal - discount) * 100) / 100;
+            return { items, grandTotal, discount, payment: cartPayment };
         }
 
         function renderCart() {
@@ -1467,6 +1469,7 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
                 } else {
                     detailLines += `<br>Plan: Un único pago de ${fmtMoney(totals.grandTotal)}`;
                 }
+                if (totals.discount) detailLines += `<br>12% OFF: −${fmtMoney(totals.discount)}`;
                 payBlockHtml = `<div style="background:var(--c-azul-grad); color:#fff; padding:16px; border-radius:8px; margin-bottom:16px; font-size:13px; line-height:1.45;">
                     <div style="margin-bottom:4px; color:#8ba2ac; font-weight:700;">FORMA DE PAGO DEL PEDIDO:</div>
                     ${detailLines}
@@ -1544,6 +1547,7 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
                 }
             }
 
+            if (totals.discount) h += `<div>12% OFF: −${fmtMoney(totals.discount)}</div>`;
             h += `<div style="display:flex;justify-content:space-between;margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px;font-weight:900;">
                 <span>TOTAL FINAL:</span>
                 <span>${fmtMoney(totals.grandTotal)}</span>
@@ -1612,6 +1616,7 @@ const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": 
             }
 
             rows.push('');
+            if (totals.discount) rows.push(`Descuento 12% OFF: −${fmtMoney(totals.discount)}`);
             rows.push(`*TOTAL FINAL A PAGAR: ${fmtMoney(totals.grandTotal)}*`);
             rows.push('');
             rows.push('*ENTREGA Y PAGO*');

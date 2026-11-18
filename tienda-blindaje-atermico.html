@@ -1168,6 +1168,7 @@
 </span>
 <span class="bf-pay-text">
 <span class="bf-pay-label">Tarjeta de débito o prepaga</span>
+<span class="bf-pay-benefit">12% OFF</span>
 </span>
 </label>
 <label class="bf-pay-option" data-method="transferencia">
@@ -1178,6 +1179,7 @@
 </span>
 <span class="bf-pay-text">
 <span class="bf-pay-label">Transferencia bancaria</span>
+<span class="bf-pay-benefit">12% OFF</span>
 </span>
 </label>
 <label class="bf-pay-option" data-method="efectivo">
@@ -1188,6 +1190,7 @@
 </span>
 <span class="bf-pay-text">
 <span class="bf-pay-label">Efectivo</span>
+<span class="bf-pay-benefit">12% OFF</span>
 </span>
 </label>
 </div>
@@ -2002,8 +2005,8 @@ const BLINDAFLEX_FINANCING = {
                 `;
             } else {
                 html = `
-                    <div class="bf-pay-summary-caption">Un único pago de</div>
-                    <div class="bf-pay-summary-amount">${fmtMoney(totalOrder)}</div>
+                    <div class="bf-pay-summary-caption">Un único pago de · 12% OFF</div>
+                    <div class="bf-pay-summary-amount">${fmtMoney(Math.round(totalOrder * 0.88 * 100) / 100)}</div>
                 `;
             }
 
@@ -2018,6 +2021,8 @@ const BLINDAFLEX_FINANCING = {
             const prodName = db.productos[state.productId]?.nombre || 'Blindaje Atérmico';
             const p = state.payment;
             const complete = isPaymentComplete();
+            const cashDiscount = complete && ["debito", "transferencia", "efectivo"].includes(p.method);
+            if (cashDiscount) totalOrder = Math.round(totalOrder * 0.88 * 100) / 100;
 
             let paymentHtml = '';
             if (!p.method) {
@@ -2046,6 +2051,7 @@ const BLINDAFLEX_FINANCING = {
                 <div class="ds-title">RESUMEN DE TU PEDIDO</div>
                 <div class="ds-row"><span>Producto:</span> <strong>${state.qty}x ${prodName} (${state.color})</strong></div>
                 ${paymentHtml}
+                ${cashDiscount ? '<div class="ds-row"><span>Descuento:</span><strong>12% OFF</strong></div>' : ''}
                 <div class="ds-total-box">
                     <div class="ds-total-lbl">TOTAL DEL PEDIDO:</div>
                     <div class="ds-total-val">${fmtMoney(totalOrder)}</div>
@@ -2253,7 +2259,9 @@ const BLINDAFLEX_FINANCING = {
                 grandTotal += subtotal;
             });
 
-            return { items, grandTotal, payment: cartPayment };
+            const discount = ["debito", "transferencia", "efectivo"].includes(cartPayment?.method) ? Math.round(grandTotal * 0.12 * 100) / 100 : 0;
+            grandTotal = Math.round((grandTotal - discount) * 100) / 100;
+            return { items, grandTotal, discount, payment: cartPayment };
         }
 
         function renderCart() {
@@ -2285,6 +2293,7 @@ const BLINDAFLEX_FINANCING = {
                 } else {
                     detailLines += `<br>Plan: Un único pago de ${fmtMoney(totals.grandTotal)}`;
                 }
+                if (totals.discount) detailLines += `<br>12% OFF: −${fmtMoney(totals.discount)}`;
                 payBlockHtml = `<div style="background:var(--c-azul-grad); color:#fff; padding:16px; border-radius:8px; margin-bottom:16px; font-size:13px; line-height:1.45;">
                     <div style="margin-bottom:4px; color:#8ba2ac; font-weight:700;">FORMA DE PAGO DEL PEDIDO:</div>
                     ${detailLines}
@@ -2362,6 +2371,7 @@ const BLINDAFLEX_FINANCING = {
                 }
             }
 
+            if (totals.discount) h += `<div>12% OFF: −${fmtMoney(totals.discount)}</div>`;
             h += `<div style="display:flex;justify-content:space-between;margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px;font-weight:900;">
                 <span>TOTAL FINAL:</span>
                 <span>${fmtMoney(totals.grandTotal)}</span>
@@ -2433,6 +2443,7 @@ const BLINDAFLEX_FINANCING = {
             }
 
             rows.push('');
+            if (totals.discount) rows.push(`Descuento 12% OFF: −${fmtMoney(totals.discount)}`);
             rows.push(`*TOTAL FINAL A PAGAR: ${fmtMoney(totals.grandTotal)}*`);
             rows.push('');
             rows.push('*ENTREGA Y PAGO*');
