@@ -542,7 +542,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 .bf-cart-plan strong{display:block;margin-bottom:4px;}
 .bf-cart-note{font-size:12px;color:#64748b;margin:10px 0;}
 #bf-keep-shopping{display:block;width:100%;margin-bottom:10px;padding:14px;background:#fff;color:#071A24;border:2px solid #00afc6;border-radius:8px;font-weight:850;cursor:pointer;}
-#checkout-summary{background:#fff;border-radius:10px;padding:12px;}
+
 
 
 /* Programa Pintores Asociados: estilos aislados, sin alterar el resto de la tienda */
@@ -578,6 +578,46 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 .bf-pa-quick a{display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:48px;padding:10px 18px;border:2px solid #F65A03;border-radius:12px;background:#071A24;color:#FFFFFF;font:800 15px/1.35 Inter,system-ui,sans-serif;letter-spacing:.01em;text-decoration:none;box-shadow:0 5px 0 rgba(246,90,3,.18),0 8px 16px rgba(7,26,36,.12);transition:background .2s ease,box-shadow .2s ease}
 .bf-pa-quick a:hover,.bf-pa-quick a:focus-visible{background:#123747;color:#FFFFFF;outline-offset:3px;box-shadow:0 5px 0 rgba(246,90,3,.25),0 8px 18px rgba(7,26,36,.18)}
 @media(max-width:480px){.bf-pa-quick{margin:28px auto 24px}.bf-pa-quick a{font-size:15px;padding:11px 14px}}
+        /* CARRITO (DRAWER) */
+        .cart-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(7, 26, 36, 0.8); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(2px);}
+        .cart-overlay.open { opacity: 1; pointer-events: auto; }
+        .cart-drawer { position: fixed; top:0; right:-100%; width: 100%; max-width: 400px; height: 100%; background: var(--c-gris-bg); z-index: 1000; transition: right 0.3s ease; display: flex; flex-direction: column; box-shadow: -8px 0 24px rgba(0,0,0,0.15);}
+        .cart-drawer.open { right: 0; }
+        .cart-header { padding: 20px; background: var(--c-blanco); border-bottom: 1px solid var(--c-gris-border); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-soft); z-index: 2;}
+        .cart-header h2 { font-size: 18px; font-weight: 900; color: var(--c-azul);}
+        .close-cart { background: var(--c-gris-claro); border: none; color: var(--c-azul); width: 32px; height: 32px; border-radius: 50%; font-size: 20px; font-weight: bold; cursor: pointer; }
+        .cart-body { flex: 1; overflow-y: auto; padding: 20px; position: relative; }
+        .cart-item { background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 12px; position: relative; box-shadow: var(--shadow-soft);}
+        .cart-item-title { font-size: 15px; font-weight: 900; color: var(--c-azul); margin-bottom: 4px; padding-right: 32px; line-height: 1.2;}
+        .cart-item-color { font-size: 13px; color: var(--c-texto-light); margin-bottom: 12px; font-weight: 600;}
+        .cart-item-controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--c-gris-border); padding-top: 12px;}
+        .qty-controls { display: flex; align-items: center; gap: 8px; background: var(--c-gris-bg); padding: 4px; border-radius: var(--radius-sm);}
+        .qty-btn { width: 28px; height: 28px; background: var(--c-blanco); border: 1px solid var(--c-gris-border); border-radius: 4px; font-weight: 900; color: var(--c-azul); cursor: pointer;}
+        .item-price { font-weight: 900; font-size: 16px; color: var(--c-azul); }
+        .remove-item { position: absolute; top: 8px; right: 8px; background: #fee2e2; border: none; color: #dc2626; width: 44px; height: 44px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+        .remove-item svg { width: 20px; height: 20px; fill: currentColor; pointer-events: none;}
+        .cart-empty-message { text-align: center; padding: 40px 0; color: var(--c-texto-light); font-size: 15px; font-weight: 600; display: block; }
+        .cart-footer { padding: 20px; background: var(--c-blanco); border-top: 1px solid var(--c-gris-border); box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 2;}
+        .cart-total { display: flex; justify-content: space-between; font-size: 20px; font-weight: 900; color: var(--c-azul); margin-bottom: 16px; }
+
+        /* CHECKOUT VIEW */
+        #checkout-view { display: none; padding: 24px 0; min-height: 100vh;}
+        .checkout-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .back-btn { background: var(--c-blanco); border: 1px solid var(--c-gris-border); width: 40px; height: 40px; border-radius: 50%; font-size: 20px; color: var(--c-azul); cursor: pointer; box-shadow: var(--shadow-soft); display: flex; justify-content: center; align-items: center; font-weight: bold;}
+        .checkout-title { font-size: 22px; font-weight: 900; color: var(--c-azul); }
+        .form-card { background: var(--c-blanco); padding: var(--pad-box); border-radius: var(--radius-lg); margin-bottom: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--c-gris-border);}
+        .form-card h3 { font-size: 18px; font-weight: 900; color: var(--c-azul); margin-bottom: 20px; border-bottom: 2px solid var(--c-gris-bg); padding-bottom: 12px;}
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 800; color: var(--c-texto); margin-bottom: 6px; }
+        .form-control { width: 100%; padding: 12px 16px; border: 2px solid var(--c-gris-border); border-radius: var(--radius-sm); font-size: 15px; font-weight: 500; font-family: inherit; background: var(--c-gris-bg);}
+        .form-control:focus { outline: none; border-color: var(--c-turquesa); background: var(--c-blanco); box-shadow: 0 0 0 4px var(--c-turquesa-light); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; background: linear-gradient(180deg, #25D366 0%, #1da851 100%); color: white; font-weight: 900; font-size: 16px; padding: 18px; border-radius: var(--radius-sm); border: none; cursor: pointer; text-transform: uppercase; }
+        .btn-whatsapp svg { width: 24px; height: 24px; fill: white; }
+
+
+#checkout-view{position:fixed;inset:0;z-index:100000;overflow-y:auto;background:var(--c-gris-bg);padding:24px 0;}
+.cart-overlay{z-index:99990}.cart-drawer{z-index:99999}.cart-footer .btn-primary{width:100%;background:linear-gradient(180deg,var(--c-naranja),var(--c-naranja-dark));border:none}.checkout-header{display:flex}.mt-2{margin-top:8px}@media(min-width:768px){#checkout-view .grid-desktop{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}}
 </style>
 <link href="/favicon.ico" rel="icon" sizes="any"/>
 <link href="/blindaflex-favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -619,7 +659,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 <a href="index.html#confianza">Envíos y pagos</a>
 <a href="#footer">Contacto</a>
 </nav>
-<button aria-label="Ver carrito" class="cart-btn" onclick="openCartDrawer()">
+<button aria-label="Ver carrito" class="cart-btn" onclick="appPricing.openCart()">
 <svg viewbox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"></path></svg>
 <span class="cart-count" id="cart-counter">0</span>
 </button>
@@ -655,7 +695,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 </nav>
 <main>
 <!-- Banner principal: financiación -->
-<div class="bf-finance-banner-wrap"><img alt="Hasta 20 cuotas con Tarjeta Cordobesa y hasta 15 cuotas sin interés con tarjetas y medios de pago" class="bf-finance-banner bf-finance-banner--top" decoding="async" fetchpriority="high" src="assets/images/index-cuotas-1.jpeg"/></div>
+<div class="bf-finance-banner-wrap"><img alt="Hasta 15 cuotas sin interés con Cordobesa, 12 con Santander Visa y Mastercard, 10 con otras tarjetas habilitadas y 6 con Naranja X" class="bf-finance-banner bf-finance-banner--top" decoding="async" fetchpriority="high" src="assets/images/index-cuotas-1.jpeg"/></div>
 <!-- 3. PORTADA PRINCIPAL -->
 <section class="hero-section">
 <div class="container hero-grid">
@@ -783,7 +823,7 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 </div>
 </section>
 <!-- CONSULTAS MAYORISTAS (bloque independiente del carrito) -->
-<section aria-labelledby="bf-pa-title" class="bf-pa-card bf-pa-anchor bf-pa-index" id="pintores-asociados"><div><h2 id="bf-pa-title">Pintores Asociados Blindaflex</h2><p>Recomendá nuestros impermeabilizantes, ganá comisiones por tus ventas y ofrecé beneficios especiales a tus clientes.</p></div><a class="bf-pa-cta" href="https://wa.me/5493512661626?text=Hola%2C%20soy%20pintor/aplicador%20y%20me%20interesa%20formar%20parte%20del%20Programa%20de%20Pintores%20Asociados%20Blindaflex.%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20funciona%20y%20cu%C3%A1les%20son%20los%20beneficios.%20%C2%A1Gracias%21" rel="noopener noreferrer" target="_blank">QUIERO SER PINTOR ASOCIADO</a></section>
+<section aria-labelledby="bf-pa-title" class="bf-pa-card bf-pa-anchor bf-pa-index" id="pintores-asociados"><div><h2 id="bf-pa-title">¿Sos pintor o aplicador?</h2><p>Tenemos beneficios exclusivos para profesionales como vos.</p></div><a class="bf-pa-cta" href="https://wa.me/5493512661626?text=Hola%2C%20soy%20pintor/aplicador%20y%20me%20interesa%20formar%20parte%20del%20Programa%20de%20Pintores%20Asociados%20Blindaflex.%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20c%C3%B3mo%20funciona%20y%20cu%C3%A1les%20son%20los%20beneficios.%20%C2%A1Gracias%21" rel="noopener noreferrer" target="_blank">QUIERO SER PINTOR ASOCIADO</a></section>
 <section aria-labelledby="bf-wholesale-title" class="bf-wholesale">
 <div class="bf-wholesale-inner">
 <div>
@@ -988,36 +1028,30 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 <a aria-label="Consultar por WhatsApp" class="whatsapp-float" href="https://wa.me/5493512661626?text=Hola%2C%20estoy%20visitando%20la%20tienda%20Blindaflex%20y%20quisiera%20hacer%20una%20consulta." rel="noopener noreferrer" target="_blank" title="Consultar por WhatsApp">
 <svg aria-hidden="true" viewbox="0 0 32 32"><path d="M16.01 3.2A12.7 12.7 0 0 0 5.1 22.4L3.3 29l6.8-1.8A12.8 12.8 0 1 0 16 3.2zm0 23.3c-2 0-4-.5-5.6-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.5zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"></path></svg>
 </a>
-<div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
-<aside aria-labelledby="cart-title" class="cart-drawer" id="cart-drawer">
+<div class="cart-overlay" id="cart-overlay" onclick="appPricing.closeCart()"></div>
+<aside class="cart-drawer" id="cart-drawer">
 <div class="cart-header">
-<h2 id="cart-title">MI CARRITO</h2>
-<button aria-label="Cerrar carrito" class="close-cart" onclick="closeCartDrawer()">×</button>
+<h2>MI PEDIDO</h2>
+<button class="close-cart" onclick="appPricing.closeCart()">×</button>
 </div>
 <div class="cart-body" id="cart-body"></div>
 <div class="cart-footer">
-<div class="cart-total">
-<span>Total a pagar:</span>
-<span id="drawer-total">$0</span>
-</div>
-<button id="bf-keep-shopping" onclick="closeCartDrawer()" type="button">SEGUIR COMPRANDO</button>
-<!-- El Checkout directo es modal en la Home para no desviar de la página -->
-<button class="btn-primary btn-action" disabled="" id="btn-checkout" onclick="openHomeCheckout()" style="width: 100%; border:none; padding:18px; font-size:15px;">CONTINUAR CON MI PEDIDO</button>
+<div class="cart-total"><span>Total a pagar:</span><span id="drawer-total">$0</span></div>
+<button class="btn-primary" disabled="" id="btn-checkout" onclick="appPricing.goToCheckout()">CONTINUAR CON MI PEDIDO</button>
+<button onclick="appPricing.closeCart()" style="width:100%; text-align:center; background:none; border:none; color:var(--c-texto-light); font-size:13px; font-weight:800; padding:12px 0; margin-top:8px; cursor:pointer;">SEGUIR COMPRANDO</button>
 </div>
 </aside>
-<!-- ================== CHECKOUT MODAL (HOME) ================== -->
-<div id="checkout-view">
-<div class="checkout-container">
-<div class="chk-header">
-<button aria-label="Volver al carrito" class="chk-back" onclick="closeHomeCheckout()">←</button>
-<h2 class="section-title" style="margin:0; font-size: 20px;">DATOS DE ENTREGA</h2>
+<!-- CHECKOUT VIEW -->
+<section id="checkout-view">
+<div class="container">
+<div class="checkout-header">
+<button class="back-btn" onclick="appPricing.closeCheckout()">←</button>
+<h2 class="checkout-title">Datos de Entrega</h2>
 </div>
-<div class="card" style="margin-bottom: 16px;">
-<h3 style="font-size:16px;margin:0 0 10px;">Resumen de tu pedido</h3>
-<div id="checkout-summary"></div>
-</div>
-<div class="card" style="margin-bottom: 24px;">
-<form id="checkout-form" onsubmit="submitWhatsApp(event)">
+<div class="grid-desktop">
+<div class="form-card">
+<h3>¿Dónde enviamos tu pedido?</h3>
+<form id="checkout-form" onsubmit="appPricing.submitWhatsApp(event)">
 <div class="form-group"><label>Nombre y Apellido *</label><input class="form-control" id="f-nombre" required="" type="text"/></div>
 <div class="form-group"><label>Teléfono / Celular *</label><input class="form-control" id="f-tel" required="" type="tel"/></div>
 <div class="form-group"><label>Localidad o Barrio *</label><input class="form-control" id="f-loc" required="" type="text"/></div>
@@ -1026,18 +1060,19 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 <div class="form-group"><label>Número *</label><input class="form-control" id="f-num" required="" type="text"/></div>
 </div>
 <div class="form-row">
-<div class="form-group"><label>Código Postal</label><input class="form-control" id="f-cp" type="text"/></div>
-<div class="form-group"><label>Referencia (Opcional)</label><input class="form-control" id="f-ref" type="text"/></div>
+<div class="form-group"><label for="f-cp">Código postal</label><input autocomplete="postal-code" class="form-control" id="f-cp" inputmode="numeric" type="text"/></div>
+<div class="form-group"><label for="f-ref">Referencias de entrega</label><input class="form-control" id="f-ref" placeholder="Piso, depto., indicaciones" type="text"/></div>
 </div>
-<button class="btn-whatsapp" type="submit">
-<svg viewbox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"></path></svg>
-                        ENVIAR PEDIDO
-                    </button>
-<div style="font-size: 12px; color: var(--c-texto-light); text-align: center; margin-top: 16px;">El envío queda sujeto a confirmación según dirección.<br/>Pago contraentrega disponible en zonas habilitadas.</div>
+<button class="btn-whatsapp mt-2" type="submit"><svg viewbox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm5.36 14.07c-.22.64-1.29 1.21-1.88 1.28-.53.07-1.2.14-3.52-.82-2.81-1.16-4.63-4.04-4.77-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.33.26-.27.56-.34.75-.34.19 0 .38 0 .54.01.18.01.41-.07.64.48.24.58.75 1.83.82 1.96.07.14.12.3.02.48-.1.19-.15.3-.3.45-.15.15-.31.34-.44.47-.14.15-.29.31-.13.58.16.27.72 1.18 1.55 1.91.82.72 1.72.95 1.99 1.08.27.14.43.12.59-.07.16-.19.69-.81.88-1.08.19-.27.38-.23.63-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.12.07.68-.15 1.32z"></path></svg> ENVIAR PEDIDO POR WHATSAPP</button>
 </form>
 </div>
+<div class="form-card" style="background: var(--c-azul-grad); color: var(--c-blanco); border:none;">
+<h3 style="color: var(--c-turquesa); border-color: rgba(255,255,255,0.1);">Resumen Final</h3>
+<div id="checkout-summary"></div>
 </div>
 </div>
+</div>
+</section>
 <!-- SCRIPT GLOBAL (UI, Menú, Video y Carrito Universal) -->
 <script>
         // -----------------------------------------------------
@@ -1204,30 +1239,397 @@ footer {background:var(--c-azul);color:var(--c-blanco)}
 (()=>{const original=document.title;let timer=null,index=0;const messages=['👋 ¡Volvé a Blindaflex!','💧 Tu protección te espera'];function reset(){if(timer){clearInterval(timer);timer=null;}document.title=original;}document.addEventListener('visibilitychange',()=>{reset();if(document.hidden){document.title=messages[0];index=1;timer=setInterval(()=>{if(document.hidden){document.title=messages[index%messages.length];index++;}else reset();},3000);}});window.addEventListener('pagehide',reset);})();
 </script>
 <script id="bf-cart-current-plans">
-(function(){
-'use strict';
-const KEY='blindaflex_cart_data', PAYMENT_KEY='blindaflex_payment_preference';
-const PRODUCTS={techos_20:{nombre:'Blindaje para Techos',presentacion:'20 kg',precio_base:167000},atermico_20:{nombre:'Blindaje Atérmico',presentacion:'20 kg',precio_base:203980},barrera_12:{nombre:'Barrera Impermeable',presentacion:'12 kg',precio_base:130106},barrera_5:{nombre:'Barrera Impermeable',presentacion:'5 kg',precio_base:54794}};
-const PLANS={cordobesa_20:{nombre:'20 cuotas - Tarjeta Cordobesa',cuotas:20,descuento:0},cuotas_15:{nombre:'15 cuotas',cuotas:15,descuento:0},cuotas_9:{nombre:'9 cuotas',cuotas:9,descuento:.08},cuotas_3:{nombre:'3 cuotas',cuotas:3,descuento:.14},contado:{nombre:'Contado',cuotas:1,descuento:.20},transferencia:{nombre:'Contado',cuotas:1,descuento:.20}};
-const fmt=n=>'$'+Number(n).toLocaleString('es-AR',{maximumFractionDigits:2,minimumFractionDigits:Number.isInteger(n)?0:2});
-const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let db={productos:PRODUCTS,modalidades:PLANS};
-fetch('precios.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No disponible');return r.json()}).then(j=>{if(j.productos)db.productos={...PRODUCTS,...j.productos};if(j.modalidades)db.modalidades={...PLANS,...j.modalidades};render()}).catch(()=>render());
-function getItems(){try{const obj=JSON.parse(localStorage.getItem(KEY)||'{}');return Array.isArray(obj.items)?obj.items.filter(i=>i&&Number(i.qty)>0):[]}catch(e){return []}}
-function save(items){localStorage.setItem(KEY,JSON.stringify({items,lastActivity:Date.now()}));render()}
-function getPlan(){const key=localStorage.getItem(PAYMENT_KEY)||'cuotas_15';return {key:db.modalidades[key]?key:'cuotas_15',...db.modalidades[db.modalidades[key]?key:'cuotas_15']}}
-function identify(i){if(db.productos[i.id])return i.id;const name=String(i.product||'');if(/barrera impermeable/i.test(name))return /(?:^|\D)5\s*kg/i.test(String(i.presentation||i.presentacion||name))?'barrera_5':'barrera_12';if(/at[eé]rmico|reflectivo/i.test(name))return 'atermico_20';if(/techos/i.test(name))return 'techos_20';return null}
-function lines(){const plan=getPlan(),items=getItems();let total=0,baseTotal=0;const rows=items.map((i,index)=>{const pid=identify(i),product=pid?db.productos[pid]:null;const qty=Math.max(1,Math.floor(Number(i.qty)||1));const base=Number(product?.precio_base||i.price||i.unitPrice||0);const amount=pid==='techos_20'&&plan.key==='cordobesa_20'?168000*qty:Math.round(base*qty*(1-Number(plan.descuento||0)));const subtotal=amount;total+=subtotal;baseTotal+=base*qty;return {i,index,qty,pid,product,subtotal,base};});return {rows,total,baseTotal,plan}}
-function render(){const {rows,total,baseTotal,plan}=lines();const count=rows.reduce((a,r)=>a+r.qty,0);const counter=document.getElementById('cart-counter');if(counter)counter.textContent=count;const button=document.getElementById('btn-checkout');if(button)button.disabled=!count;const amount=document.getElementById('drawer-total');if(amount)amount.textContent=fmt(total);const body=document.getElementById('cart-body');if(body){if(!rows.length){body.innerHTML='<div class="cart-empty-message">Tu carrito está vacío.</div>'}else{let html='<div class="bf-cart-plan"><strong>FORMA DE PAGO: '+esc(plan.nombre)+'</strong>'+(plan.cuotas>1?fmt(total/plan.cuotas)+' por cuota<br>':'')+'Precio total: '+fmt(total)+'</div>';rows.forEach(({i,index,qty,product,subtotal})=>{html+='<div class="bf-cart-line"><div class="bf-cart-line-head"><div class="bf-cart-line-title">'+esc(product?.nombre||i.product||'Producto')+'</div><button type="button" data-remove="'+index+'" aria-label="Quitar producto" style="border:0;background:#fee2e2;color:#a42323;border-radius:6px;padding:5px 9px;cursor:pointer">Quitar</button></div><div class="bf-cart-line-meta">'+(product?.presentacion?'Presentación: '+esc(product.presentacion)+' · ':i.presentation?'Presentación: '+esc(i.presentation)+' · ':'')+'Color: '+esc(i.color||'Blanco')+'</div><div class="bf-cart-line-controls"><div><button type="button" data-qty="-1" data-index="'+index+'">−</button> <strong>'+qty+'</strong> <button type="button" data-qty="1" data-index="'+index+'">+</button></div><strong>'+fmt(subtotal)+'</strong></div></div>'});if(baseTotal>total)html+='<div class="bf-cart-note">Descuento aplicado: '+fmt(baseTotal-total)+'</div>';body.innerHTML=html;}}renderSummary()}
-function renderSummary(){const el=document.getElementById('checkout-summary');if(!el)return;const {rows,total,baseTotal,plan}=lines();el.innerHTML=rows.map(({i,product,qty,subtotal})=>'<div style="padding:10px 0;border-bottom:1px solid #e2e8f0"><strong>'+qty+' × '+esc(product?.nombre||i.product||'Producto')+'</strong><div style="font-size:12px;color:#64748b">'+esc(product?.presentacion||i.presentation||'')+' · '+esc(i.color||'Blanco')+'</div><div style="text-align:right;font-weight:800">'+fmt(subtotal)+'</div></div>').join('')+'<p style="margin:15px 0 5px"><strong>Modalidad: '+esc(plan.nombre)+'</strong></p>'+(plan.cuotas>1?'<p>'+plan.cuotas+' cuotas de '+fmt(total/plan.cuotas)+'</p>':'')+(baseTotal>total?'<p>Descuento: '+fmt(baseTotal-total)+'</p>':'')+'<p style="font-size:20px;font-weight:900;margin-top:14px">TOTAL: '+fmt(total)+'</p>'}
-window.openCartDrawer=function(){render();document.getElementById('cart-overlay').classList.add('open');document.getElementById('cart-drawer').classList.add('open');document.body.style.overflow='hidden'};
-window.closeCartDrawer=function(){document.getElementById('cart-overlay').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open');document.body.style.overflow=''};
-window.openHomeCheckout=function(){if(!getItems().length)return;closeCartDrawer();renderSummary();document.getElementById('checkout-view').style.display='block';document.body.style.overflow='hidden';document.getElementById('checkout-view').scrollTop=0};
-window.closeHomeCheckout=function(){document.getElementById('checkout-view').style.display='none';document.body.style.overflow=''};
-window.submitWhatsApp=function(e){if(e)e.preventDefault();const {rows,total,baseTotal,plan}=lines();if(!rows.length)return;const v=id=>document.getElementById(id)?.value?.trim()||'';const msg=['*NUEVO PEDIDO BLINDAFLEX*','','*DATOS DEL CLIENTE*','Nombre y apellido: '+v('f-nombre'),'Teléfono: '+v('f-tel'),'Localidad/Barrio: '+v('f-loc'),'Dirección: '+v('f-calle')+' '+v('f-num'),'Código postal: '+v('f-cp'),'Referencia: '+v('f-ref'),'','*DETALLE DEL PEDIDO*'];rows.forEach(({i,qty,product,subtotal})=>msg.push(qty+' × '+(product?.nombre||i.product||'Producto')+' · '+(product?.presentacion||i.presentation||'')+' · '+(i.color||'Blanco'),'Subtotal: '+fmt(subtotal),''));msg.push('*FORMA DE PAGO: '+plan.nombre+'*');if(plan.cuotas>1)msg.push(plan.cuotas+' cuotas de '+fmt(total/plan.cuotas));if(baseTotal>total)msg.push('Descuento: '+fmt(baseTotal-total));msg.push('*TOTAL FINAL: '+fmt(total)+'*','Envío a coordinar según zona.','Pago al recibir en zonas habilitadas.');window.open('https://wa.me/5493512661626?text='+encodeURIComponent(msg.join('\n')),'_blank','noopener')};
-document.getElementById('cart-body')?.addEventListener('click',e=>{const btn=e.target.closest('button[data-remove],button[data-qty]');if(!btn)return;const items=getItems(),idx=Number(btn.dataset.remove??btn.dataset.index);if(!Number.isInteger(idx)||!items[idx])return;if(btn.hasAttribute('data-remove'))items.splice(idx,1);else{items[idx].qty=Number(items[idx].qty)+Number(btn.dataset.qty);if(items[idx].qty<=0)items.splice(idx,1)}save(items)});
-window.addEventListener('pageshow',render);window.addEventListener('storage',e=>{if(e.key===KEY||e.key===PAYMENT_KEY)render()});render();
-})();
+    const BLINDAFLEX_FINANCING = {
+        methods: {
+            credito: { id: 'credito', label: 'Tarjeta de crédito' },
+            debito: { id: 'debito', label: 'Tarjeta de débito o prepaga' },
+            transferencia: { id: 'transferencia', label: 'Transferencia bancaria' },
+            efectivo: { id: 'efectivo', label: 'Efectivo' }
+        },
+        debitCards: ['Visa', 'Mastercard', 'Maestro'],
+        creditCards: [
+            {
+                id: 'Cordobesa',
+                label: 'Cordobesa',
+                autoBank: 'Bancor',
+                banks: ['Bancor']
+            },
+            {
+                id: 'Santander',
+                label: 'Santander',
+                autoBank: 'Santander',
+                banks: ['Santander']
+            },
+            {
+                id: 'Visa',
+                label: 'Visa',
+                autoBank: null,
+                banks: [
+                    'Bancor', 'BBVA', 'Ciudad', 'Comafi', 'Credicoop', 'Galicia',
+                    'Hipotecario', 'ICBC', 'Industrial (BIND)', 'Macro', 'Nación',
+                    'Naranja X', 'Patagonia', 'Provincia', 'Santander', 'Supervielle',
+                    'Otras entidades'
+                ]
+            },
+            {
+                id: 'Mastercard',
+                label: 'Mastercard',
+                autoBank: null,
+                banks: [
+                    'Bancor', 'BBVA', 'Ciudad', 'Comafi', 'Dino', 'Galicia',
+                    'ICBC', 'Macro', 'Mercado Pago', 'Nación', 'Naranja X',
+                    'Patagonia', 'Provincia', 'Roela', 'Santander', 'Supervielle',
+                    'Ualá', 'Otras entidades'
+                ]
+            },
+            {
+                id: 'American Express',
+                label: 'American Express',
+                autoBank: null,
+                banks: [
+                    'American Express', 'Galicia', 'Macro', 'Patagonia', 'Santander',
+                    'Otras entidades'
+                ]
+            },
+            {
+                id: 'Naranja X',
+                label: 'Naranja X',
+                autoBank: 'Naranja X',
+                banks: ['Naranja X']
+            }
+        ],
+        scales: {
+            cordobesa: [15, 12, 9, 6, 3],
+            santanderVisaMaster: [12, 9, 6, 3],
+            naranjaPropia: [6, 3],
+            general: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+            single: [1]
+        },
+        getCreditCardConfig(cardId) {
+            return this.creditCards.find(c => c.id === cardId) || null;
+        },
+        getInstallments(cardId, bank) {
+            const cfg = this.getCreditCardConfig(cardId);
+            if (!cfg || !cfg.banks.includes(bank)) return [];
+            if (cardId === 'Cordobesa' || bank === 'Bancor') return this.scales.cordobesa.slice();
+            if (cardId === 'Naranja X') return this.scales.naranjaPropia.slice();
+            if (bank === 'Santander' && ['Visa', 'Mastercard', 'Santander'].includes(cardId)) {
+                return this.scales.santanderVisaMaster.slice();
+            }
+            return this.scales.general.slice();
+        },
+        cardLabel(c) {
+            const max = Math.max(...(c.autoBank ? this.getInstallments(c.id, c.autoBank) : this.scales.general));
+            return `${c.label} · Hasta ${max} cuotas${['Visa', 'Mastercard'].includes(c.id) ? '*' : ''}`;
+        },
+        bankLabel(card, bank) {
+            return `${bank === 'Bancor' ? 'Bancor (Cordobesa)' : bank} · Hasta ${Math.max(...this.getInstallments(card, bank))} cuotas`;
+        }
+    };
+
+
+const appPricing=(()=>{
+const CART_KEY="blindaflex_cart_data", PAYMENT_KEY="blindaflex_payment_preference", PAYMENT_DETAILS_KEY="blindaflex_payment_details";
+const defaults={"techos_20": {"nombre": "Blindaje para Techos", "presentacion": "20 kg", "precio_base": 168000}, "atermico_20": {"nombre": "Blindaje Atérmico", "presentacion": "20 kg", "precio_base": 203980}, "barrera_12": {"nombre": "Barrera Impermeable", "presentacion": "12 kg", "precio_base": 130106}, "barrera_5": {"nombre": "Barrera Impermeable", "presentacion": "5 kg", "precio_base": 54794}}; let db={productos:defaults};
+        const arsFormatterCache = {};
+        const round2 = n => Math.round((Number(n) + Number.EPSILON) * 100) / 100;
+        const fmtMoney = n => {
+            const rounded = round2(n);
+            const hasDecimals = Math.abs(rounded - Math.round(rounded)) >= 0.005;
+            const key = hasDecimals ? '2' : '0';
+            if (!arsFormatterCache[key]) {
+                arsFormatterCache[key] = new Intl.NumberFormat('es-AR', {
+                    style: 'currency',
+                    currency: 'ARS',
+                    minimumFractionDigits: hasDecimals ? 2 : 0,
+                    maximumFractionDigits: 2
+                });
+            }
+            return arsFormatterCache[key].format(rounded).replace(/\s/g, '');
+        };
+
+        function isPaymentComplete(p) {
+            if (!p || !p.method) return false;
+            if (p.method === 'transferencia' || p.method === 'efectivo') return p.installments === 1;
+            if (p.method === 'debito') return Boolean(p.debitCard) && p.installments === 1;
+            if (p.method === 'credito') {
+                return Boolean(p.card && p.bank && Number.isInteger(p.installments) && BLINDAFLEX_FINANCING.getInstallments(p.card, p.bank).includes(p.installments));
+            }
+            return false;
+        }
+
+        function getCart() {
+            try { return JSON.parse(localStorage.getItem(CART_KEY) || '{"items":[]}').items || []; }
+            catch (e) { return []; }
+        }
+
+        function getCartPayment() {
+            try {
+                const raw = localStorage.getItem(PAYMENT_DETAILS_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                return isPaymentComplete(parsed) ? parsed : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function saveCartPayment(details) {
+            if (!details) {
+                localStorage.removeItem(PAYMENT_DETAILS_KEY);
+                return;
+            }
+            localStorage.setItem(PAYMENT_DETAILS_KEY, JSON.stringify(details));
+            localStorage.setItem(PAYMENT_KEY, details.method);
+        }
+
+        function saveCart(items) {
+            localStorage.setItem(CART_KEY, JSON.stringify({ items: items, lastActivity: Date.now() }));
+            if (items.length === 0) {
+                localStorage.removeItem(PAYMENT_DETAILS_KEY);
+            }
+            updateCartIcon(items);
+            renderCart();
+            if (document.getElementById('checkout-view').style.display === 'block') renderCheckoutSummary();
+        }
+
+        function updateCartIcon(items) {
+            const count = items.reduce((sum, i) => sum + Number(i.qty), 0);
+            document.getElementById('cart-counter').textContent = count;
+            document.getElementById('btn-checkout').disabled = count === 0 || !getCartPayment();
+        }
+
+        function cartItemDelta(index, delta) {
+            let items = getCart();
+            if (!items[index]) return;
+            items[index].qty = Number(items[index].qty) + delta;
+            if (items[index].qty <= 0) items.splice(index, 1);
+            saveCart(items);
+        }
+
+        function cartItemRemove(index) {
+            let items = getCart();
+            items.splice(index, 1);
+            saveCart(items);
+        }
+
+        function resolveItemUnitPrice(item) {
+            let id=item.id;
+            const name=String(item.product||'');
+            if (!db.productos[id]) {
+                if (/barrera/i.test(name)) id=/^5(?:\s*kg)?$/i.test(String(item.presentacion||item.presentation||''))?'barrera_5':'barrera_12';
+                else if (/at[eé]rmico|reflectivo/i.test(name)) id='atermico_20';
+                else if (/techos/i.test(name)||item.type==='techo') id='techos_20';
+            }
+            return Number(db.productos[id]?.precio_base||item.price||0);
+        }
+        function getCartTotals(items) {
+            let grandTotal = 0;
+            const cartPayment = getCartPayment();
+
+            items.forEach(i => {
+                const unit = resolveItemUnitPrice(i);
+                const subtotal = unit * Number(i.qty || 0);
+                i._unitPrice = unit;
+                i._calcTotal = subtotal;
+                grandTotal += subtotal;
+            });
+
+            return { items, grandTotal, payment: cartPayment };
+        }
+
+        function renderCart() {
+            if (!db) return;
+            const items = getCart();
+            updateCartIcon(items);
+            const body = document.getElementById('cart-body');
+            const totalEl = document.getElementById('drawer-total');
+
+            if (items.length === 0) {
+                body.innerHTML = '<div class="cart-empty-message">Tu carrito está vacío.</div>';
+                totalEl.textContent = '$0';
+                return;
+            }
+
+            const totals = getCartTotals(items);
+            const p = totals.payment;
+            let payBlockHtml = '';
+
+            if (p) {
+                let detailLines = `<strong style="font-size:15px; color:var(--c-turquesa);">${p.methodName}</strong>`;
+                if (p.method === 'credito') {
+                    detailLines += `<br>Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card} · Banco: ${p.bank}`;
+                    detailLines += p.installments > 1
+                        ? `<br>Plan: ${p.installments} cuotas sin interés de ${fmtMoney(totals.grandTotal / p.installments)}`
+                        : `<br>Plan: 1 pago de ${fmtMoney(totals.grandTotal)}`;
+                } else if (p.method === 'debito') {
+                    detailLines += `<br>Tarjeta: ${p.debitCard || p.card}<br>Plan: Un único pago de ${fmtMoney(totals.grandTotal)}`;
+                } else {
+                    detailLines += `<br>Plan: Un único pago de ${fmtMoney(totals.grandTotal)}`;
+                }
+                payBlockHtml = `<div style="background:var(--c-azul-grad); color:#fff; padding:16px; border-radius:8px; margin-bottom:16px; font-size:13px; line-height:1.45;">
+                    <div style="margin-bottom:4px; color:#8ba2ac; font-weight:700;">FORMA DE PAGO DEL PEDIDO:</div>
+                    ${detailLines}
+                </div>`;
+            } else {
+                payBlockHtml = `<div style="background:#fff4ed; border:1.5px solid #F65A03; color:#071A24; padding:14px; border-radius:8px; margin-bottom:16px; font-size:13px; font-weight:700;">
+                    Elegí cómo querés pagar en el selector de la tienda antes de finalizar tu pedido.
+                </div>`;
+            }
+
+            let html = payBlockHtml;
+            totals.items.forEach((i, idx) => {
+                const pres = i.presentacion || db.productos[i.id]?.presentacion;
+                const presTxt = pres ? ` de ${String(pres).replace(/\s*kg$/i, "")} kg` : '';
+                html += `
+                <div class="cart-item">
+                    <button class="remove-item" onclick="appPricing.cartItemRemove(${idx})">&times;</button>
+                    <div class="cart-item-title">${i.product}${presTxt}</div>
+                    <div class="cart-item-color">Color: ${i.color || 'N/A'} · Unitario: ${fmtMoney(i._unitPrice)}</div>
+                    <div class="cart-item-controls">
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="appPricing.cartItemDelta(${idx}, -1)">-</button>
+                            <span style="font-weight:900; font-size:14px; width:24px; text-align:center;">${i.qty}</span>
+                            <button class="qty-btn" onclick="appPricing.cartItemDelta(${idx}, 1)">+</button>
+                        </div>
+                        <div class="item-price">${fmtMoney(i._calcTotal)}</div>
+                    </div>
+                </div>`;
+            });
+
+            body.innerHTML = html;
+            totalEl.textContent = fmtMoney(totals.grandTotal);
+        }
+
+        function renderCheckoutSummary() {
+            const el = document.getElementById('checkout-summary');
+            if (!el) return;
+            const totals = getCartTotals(getCart());
+            const p = totals.payment;
+
+            let h = '';
+            totals.items.forEach((i, idx) => {
+                const pres = i.presentacion || db.productos[i.id]?.presentacion;
+                const presTxt = pres ? ` de ${String(pres).replace(/\s*kg$/i, "")} kg` : '';
+                h += `
+                <div style="padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size:14px; font-weight:700; margin-bottom:4px;">Producto ${idx + 1}: ${i.product}${presTxt}</div>
+                    <div style="font-size:13px; color:rgba(255,255,255,0.8); display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;">
+                        <span>Color: ${i.color || 'N/A'}</span>
+                        <span>Cantidad: ${i.qty}</span>
+                        <span>Unitario: ${fmtMoney(i._unitPrice)}</span>
+                    </div>
+                    <div style="font-size:15px; font-weight:800; text-align:right; margin-top:8px; color:var(--c-turquesa-light);">Subtotal: ${fmtMoney(i._calcTotal)}</div>
+                </div>`;
+            });
+
+            if (p) {
+                h += `<div style="margin-top:16px; font-size:14px; font-weight:700; color:var(--c-turquesa);">Forma de pago seleccionada:</div>`;
+                h += `<div style="font-size:15px; font-weight:800; margin-bottom:6px;">${p.methodName}</div>`;
+
+                if (p.method === 'credito') {
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card}</div>`;
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Banco / Entidad emisora: ${p.bank}</div>`;
+                    if (p.installments > 1) {
+                        h += `<div style="font-size:13px; margin-bottom:2px;">Cuotas: ${p.installments} cuotas sin interés</div>`;
+                        h += `<div style="font-size:13px; margin-bottom:2px;">Importe de cada cuota: ${fmtMoney(totals.grandTotal / p.installments)}</div>`;
+                    } else {
+                        h += `<div style="font-size:13px; margin-bottom:2px;">Plan: 1 pago de ${fmtMoney(totals.grandTotal)}</div>`;
+                    }
+                } else if (p.method === 'debito') {
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Tarjeta: ${p.debitCard || p.card}</div>`;
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Plan: Un único pago</div>`;
+                } else {
+                    h += `<div style="font-size:13px; margin-bottom:2px;">Plan: Un único pago</div>`;
+                }
+            }
+
+            h += `<div style="display:flex;justify-content:space-between;margin-top:20px; border-top:1px solid rgba(255,255,255,0.2); padding-top:16px; font-size:18px;font-weight:900;">
+                <span>TOTAL FINAL:</span>
+                <span>${fmtMoney(totals.grandTotal)}</span>
+            </div>`;
+
+            el.innerHTML = h;
+        }
+
+        // WhatsApp Submission
+        function submitWhatsApp(e) {
+            e.preventDefault();
+            const totals = getCartTotals(getCart());
+            if (!totals.items.length) return;
+
+            let p = totals.payment;
+            
+            if (!p) {
+                closeCheckout();
+                alert('Seleccioná cómo querés pagar desde una página de producto.');
+                return;
+            }
+
+            const val = id => document.getElementById(id).value.trim();
+
+            const rows = [
+                '*NUEVO PEDIDO BLINDAFLEX*',
+                '',
+                '*DATOS DEL CLIENTE*',
+                'Nombre y apellido: ' + val('f-nombre'),
+                'Teléfono: ' + val('f-tel'),
+                'Localidad o barrio: ' + val('f-loc'),
+                'Calle: ' + val('f-calle'),
+                'Número: ' + val('f-num'),
+                'Código postal: ' + (val('f-cp') || 'No informado'),
+                'Referencias: ' + (val('f-ref') || 'Sin referencias'),
+                '',
+                '*DETALLE DEL PEDIDO*'
+            ];
+
+            totals.items.forEach((i, idx) => {
+                const pres = i.presentacion || db.productos[i.id]?.presentacion;
+                const presTxt = pres ? ` de ${String(pres).replace(/\s*kg$/i, "")} kg` : '';
+                rows.push(`Producto ${idx + 1}: ${i.product}${presTxt}`);
+                rows.push(`Color: ${i.color || 'N/A'}`);
+                rows.push(`Cantidad: ${i.qty}`);
+                rows.push(`Precio unitario: ${fmtMoney(i._unitPrice)}`);
+                rows.push(`Subtotal: ${fmtMoney(i._calcTotal)}\n`);
+            });
+
+            rows.push('*FORMA DE PAGO*');
+            rows.push(`Medio de pago: ${p.methodName}`);
+            if (p.method === 'credito') {
+                rows.push(`Tarjeta: ${p.card === 'Santander' ? 'Visa o Mastercard' : p.card}`);
+                rows.push(`Banco / Entidad emisora: ${p.bank}`);
+                if (p.installments > 1) {
+                    rows.push(`Cuotas: ${p.installments} cuotas sin interés`);
+                    rows.push(`Importe de cada cuota: ${fmtMoney(totals.grandTotal / p.installments)}`);
+                } else {
+                    rows.push(`Plan: 1 pago de ${fmtMoney(totals.grandTotal)}`);
+                }
+            } else if (p.method === 'debito') {
+                rows.push(`Tarjeta: ${p.debitCard || p.card}`);
+                rows.push('Plan: Un único pago');
+            } else {
+                rows.push('Plan: Un único pago');
+            }
+
+            rows.push('');
+            rows.push(`*TOTAL FINAL A PAGAR: ${fmtMoney(totals.grandTotal)}*`);
+            rows.push('');
+            rows.push('*ENTREGA Y PAGO*');
+            rows.push('Envío: A coordinar según zona de entrega.');
+            rows.push('Pago: El importe se abona al recibir los productos.');
+
+            window.open('https://wa.me/5493512661626?text=' + encodeURIComponent(rows.join('\n')), '_blank');
+        }
+
+
+function openCart(){renderCart();document.getElementById('cart-overlay').classList.add('open');document.getElementById('cart-drawer').classList.add('open');document.body.style.overflow='hidden';}
+function closeCart(){document.getElementById('cart-overlay').classList.remove('open');document.getElementById('cart-drawer').classList.remove('open');document.body.style.overflow='';}
+function goToCheckout(){if(!getCart().length||!getCartPayment())return;closeCart();renderCheckoutSummary();const el=document.getElementById('checkout-view');el.style.display='block';el.scrollTop=0;document.body.style.overflow='hidden';}
+function closeCheckout(){document.getElementById('checkout-view').style.display='none';openCart();}
+function refresh(){renderCart();if(document.getElementById('checkout-view').style.display==='block')renderCheckoutSummary();}
+window.addEventListener('pageshow',refresh);window.addEventListener('storage',e=>{if([CART_KEY,PAYMENT_KEY,PAYMENT_DETAILS_KEY].includes(e.key))refresh()});
+fetch('precios.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Precios no disponibles');return r.json()}).then(j=>{for(const id of Object.keys(defaults)){if(Number(j.productos?.[id]?.precio_base)>0)db.productos[id]=j.productos[id]}refresh()}).catch(()=>refresh());
+refresh();return {openCart,closeCart,goToCheckout,closeCheckout,cartItemDelta,cartItemRemove,submitWhatsApp};})();
 </script>
 </body>
 </html>
