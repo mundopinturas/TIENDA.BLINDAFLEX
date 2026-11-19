@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
+    <title>Comprar Blindaje para Techos | Blindaflex</title>
+    <meta name="description" content="Comprá Blindaje para Techos directo de fábrica. Envío gratis y hasta 15 cuotas sin interés en Córdoba y alrededores, o comprá desde todo el país por Mercado Libre."/>
+    <link rel="canonical" href="https://tienda.blindaflex.com/compras.html"/>
+    <meta name="robots" content="index, follow"/>
+    <meta property="og:title" content="Comprar Blindaje para Techos | Blindaflex"/>
+    <meta property="og:description" content="Sellá tu techo con Blindaje para Techos. Elegí tu ubicación para comprar en Córdoba con envío gratis o desde todo el país."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://tienda.blindaflex.com/compras.html"/>
+    <meta property="og:image" content="https://tienda.blindaflex.com/assets/images/compra.png"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+    <style>
+        :root {
+            --c-turquesa: #00AFC6;
+            --c-turquesa-dark: #0097ab;
+            --c-azul: #071A24;
+            --c-azul-grad: linear-gradient(135deg, #071A24 0%, #0d2c3d 100%);
+            --c-blanco: #FFFFFF;
+            --c-gris-claro: #F2F6F7;
+            --c-gris-oscuro: #34434A;
+            --c-gris-borde: #dce5e8;
+            --c-ml-amarillo: #FFE600;
+            --c-ml-azul: #3483FA;
+            --c-ml-azul-hover: #2968c8;
+            --c-ml-marino: #2D3277;
+            --c-wsp: #25D366;
+            --c-wsp-dark: #1da851;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --shadow-sm: 0 4px 14px rgba(7, 26, 36, 0.06);
+            --shadow-md: 0 10px 28px rgba(7, 26, 36, 0.12);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--c-gris-claro);
+            color: var(--c-gris-oscuro);
+            line-height: 1.45;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================================================
+           ENCABEZADO Y MENÚ HAMBURGUESA DISCRETO
+           ========================================================= */
+        .site-header {
+            background: var(--c-azul-grad);
+            color: var(--c-blanco);
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--c-turquesa);
+            box-shadow: 0 4px 16px rgba(7, 26, 36, 0.16);
+        }
+
+        .header-inner {
+            width: 100%;
+            max-width: 720px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: 44px 1fr 44px;
+            align-items: center;
+        }
+
+        .menu-toggle {
+            width: 44px;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 0;
+            color: var(--c-blanco);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-toggle:hover,
+        .menu-toggle:focus-visible {
+            background: rgba(255, 255, 255, 0.1);
+            outline: 2px solid var(--c-turquesa);
+            outline-offset: -2px;
+        }
+
+        .menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 6px 0;
+        }
+
+        .header-logo img {
+            height: 46px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        /* Menú lateral */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 26, 36, 0.78);
+            backdrop-filter: blur(2px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .drawer-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 84%;
+            max-width: 320px;
+            height: 100%;
+            background: var(--c-azul);
+            color: var(--c-blanco);
+            z-index: 1001;
+            transition: left 0.28s ease;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-shadow: 8px 0 28px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-drawer.is-open {
+            left: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .drawer-header img {
+            height: 32px;
+            width: auto;
+        }
+
+        .drawer-close {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 0;
+            color: var(--c-blanco);
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .drawer-close:focus-visible {
+            outline: 2px solid var(--c-turquesa);
+        }
+
+        .drawer-nav {
+            padding: 18px 20px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .drawer-link {
+            display: block;
+            padding: 13px 0;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: var(--c-blanco);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .drawer-link:hover,
+        .drawer-link:focus-visible {
+            color: var(--c-turquesa);
+        }
+
+        .drawer-group-label {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--c-turquesa);
+            letter-spacing: 0.04em;
+            padding: 16px 0 6px;
+            text-transform: uppercase;
+        }
+
+        .drawer-sublist {
+            display: flex;
+            flex-direction: column;
+            padding: 0 0 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .drawer-sublist a {
+            display: block;
+            padding: 9px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .drawer-sublist a:hover,
+        .drawer-sublist a:focus-visible {
+            color: var(--c-blanco);
+        }
+
+        /* =========================================================
+           CONTENIDO PRINCIPAL
+           ========================================================= */
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 18px 16px 40px;
+        }
+
+        /* Imagen promocional principal */
+        .promo-hero {
+            width: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--c-blanco);
+            border: 1px solid var(--c-gris-borde);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 26px;
+        }
+
+        .promo-hero img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Selector de ubicación */
+        .location-section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: clamp(22px, 5vw, 28px);
+            font-weight: 900;
+            color: var(--c-azul);
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+        }
+
+        .cards-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        /* Tarjeta base */
+        .channel-card {
+            border-radius: 18px;
+            padding: 24px 20px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .channel-card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .channel-title {
+            font-size: clamp(21px, 4.8vw, 25px);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .channel-title svg {
+            width: 24px;
+            height: 24px;
+            flex: none;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            min-height: 54px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.2;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .cta-btn:active {
+            transform: translateY(1px);
+        }
+
+        .cta-btn:focus-visible {
+            outline: 3px solid var(--c-azul);
+            outline-offset: 2px;
+        }
+
+        /* =========================================================
+           TARJETA 1: CÓRDOBA Y ALREDEDORES
+           ========================================================= */
+        .card-cordoba {
+            background-color: var(--c-turquesa);
+            color: var(--c-blanco);
+        }
+
+        .card-cordoba .channel-title svg {
+            fill: none;
+            stroke: var(--c-blanco);
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .financing-highlight {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            gap: 8px;
+            background: rgba(7, 26, 36, 0.22);
+            border: 1.5px solid rgba(255, 255, 255, 0.55);
+            color: var(--c-blanco);
+            font-size: 16px;
+            font-weight: 900;
+            padding: 9px 14px;
+            border-radius: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .financing-highlight svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: var(--c-blanco);
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex: none;
+        }
+
+        .cordoba-perks {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cordoba-perks li {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--c-blanco);
+        }
+
+        .cordoba-perks svg {
+            width: 19px;
+            height: 19px;
+            fill: none;
+            stroke: var(--c-blanco);
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex: none;
+        }
+
+        .btn-cordoba {
+            background-color: var(--c-azul);
+            color: var(--c-blanco);
+            box-shadow: 0 6px 16px rgba(7, 26, 36, 0.25);
+        }
+
+        .btn-cordoba:hover {
+            background-color: #0c2938;
+        }
+
+        .btn-cordoba:focus-visible {
+            outline-color: var(--c-blanco);
+        }
+
+        /* =========================================================
+           TARJETA 2: RESTO DEL PAÍS (MERCADO LIBRE)
+           ========================================================= */
+        .card-mercadolibre {
+            background-color: var(--c-ml-amarillo);
+            color: var(--c-azul);
+            border: 1px solid rgba(7, 26, 36, 0.08);
+        }
+
+        .ml-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .card-mercadolibre .channel-title {
+            color: var(--c-azul);
+        }
+
+        .card-mercadolibre .channel-title svg {
+            fill: none;
+            stroke: var(--c-ml-marino);
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .ml-brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--c-blanco);
+            color: var(--c-ml-marino);
+            padding: 6px 11px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            box-shadow: 0 2px 6px rgba(45, 50, 119, 0.12);
+        }
+
+        .ml-brand-mark {
+            width: 24px;
+            height: 17px;
+            flex: none;
+        }
+
+        .ml-subtitle {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2c2f36;
+        }
+
+        .btn-mercadolibre {
+            background-color: var(--c-ml-azul);
+            color: var(--c-blanco);
+            box-shadow: 0 6px 16px rgba(52, 131, 250, 0.28);
+        }
+
+        .btn-mercadolibre:hover {
+            background-color: var(--c-ml-azul-hover);
+        }
+
+        /* =========================================================
+           SECCIÓN DE ASESORAMIENTO (DISCRETA)
+           ========================================================= */
+        .advice-section {
+            background-color: var(--c-blanco);
+            border: 1px solid var(--c-gris-borde);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .advice-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--c-azul);
+            margin-bottom: 4px;
+        }
+
+        .advice-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--c-gris-oscuro);
+            margin-bottom: 14px;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(180deg, var(--c-wsp) 0%, var(--c-wsp-dark) 100%);
+            color: var(--c-blanco);
+            box-shadow: 0 5px 14px rgba(37, 211, 102, 0.24);
+            font-size: 15px;
+            min-height: 50px;
+        }
+
+        .btn-whatsapp:hover {
+            filter: brightness(0.97);
+        }
+
+        .btn-whatsapp svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--c-blanco);
+            flex: none;
+        }
+
+        /* =========================================================
+           PIE MÍNIMO CORPORATIVO
+           ========================================================= */
+        .site-footer {
+            background: var(--c-azul);
+            color: rgba(255, 255, 255, 0.65);
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 18px 16px;
+            border-top: 3px solid var(--c-turquesa);
+        }
+
+        @media (min-width: 640px) {
+            main {
+                padding: 28px 20px 52px;
+            }
+            .channel-card {
+                padding: 28px 28px;
+            }
+            .advice-section {
+                padding: 24px 28px;
+            }
+        }
+        /* Composición compacta, sin ocultar contenido en pantallas pequeñas. */
+        .site-header { height: 52px; flex-shrink: 0; }
+        .header-logo img { height: 36px; }
+        main { padding: 10px 14px 12px; }
+        .promo-hero { margin-bottom: 10px; border-radius: 12px; aspect-ratio: 4 / 1; }
+        .promo-hero img { width: 100%; height: 100%; object-fit: contain; }
+        .location-section { margin-bottom: 10px; }
+        .section-title { font-size: clamp(18px, 4.7vw, 24px); margin-bottom: 10px; }
+        .cards-stack { gap: 10px; }
+        .channel-card { padding: 13px 15px; gap: 9px; border-radius: 15px; }
+        .channel-card-top { gap: 7px; }
+        .channel-title { font-size: clamp(17px, 4.5vw, 23px); gap: 7px; }
+        .channel-title svg { width: 20px; height: 20px; }
+        .financing-highlight { padding: 5px 9px; font-size: 14px; }
+        .financing-highlight svg { width: 17px; height: 17px; }
+        .cordoba-perks { gap: 4px 12px; flex-direction: row; flex-wrap: wrap; }
+        .cordoba-perks li { font-size: 13px; gap: 4px; }
+        .cordoba-perks svg { width: 16px; height: 16px; }
+        .cta-btn { min-height: 44px; padding: 10px 12px; font-size: 15px; }
+        .ml-header-row { gap: 6px; }
+        .ml-brand-badge { padding: 3px 7px; border-radius: 8px; }
+        .ml-brand-badge img { width: clamp(85px, 27vw, 120px); height: 27px; object-fit: contain; }
+        .ml-subtitle { font-size: 13px; line-height: 1.35; }
+        .advice-section { padding: 10px 14px; border-radius: 14px; }
+        .advice-title { font-size: 15px; margin-bottom: 6px; }
+        .btn-whatsapp { min-height: 44px; }
+        .site-footer { padding: 7px 12px; font-size: 10px; border-top-width: 2px; }
+        @media (min-width: 640px) {
+            main { padding: 14px 20px; }
+            .promo-hero { max-height: 145px; }
+            .channel-card { padding: 15px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ENCABEZADO -->
+    <header class="site-header">
+        <div class="header-inner">
+            <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-drawer">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            <a class="header-logo" href="index.html" aria-label="Ir al inicio de Blindaflex">
+                <img src="assets/images/logo.png" alt="BLINDAFLEX"/>
+            </a>
+            <div aria-hidden="true"></div>
+        </div>
+    </header>
+
+    <!-- MENÚ HAMBURGUESA DESPLEGABLE -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <nav class="nav-drawer" id="nav-drawer" aria-label="Menú principal" aria-hidden="true">
+        <div class="drawer-header">
+            <img src="assets/images/logo.png" alt="Blindaflex"/>
+            <button type="button" class="drawer-close" id="drawer-close" aria-label="Cerrar menú">&times;</button>
+        </div>
+        <div class="drawer-nav">
+            <a class="drawer-link" href="index.html">Inicio</a>
+            <div class="drawer-group-label">Productos</div>
+            <div class="drawer-sublist">
+                <a href="tienda-barrera-impermeable.html">Barrera Impermeable</a>
+                <a href="tienda-blindaje-techos.html">Blindaje para Techos</a>
+                <a href="tienda-blindaje-atermico.html">Blindaje Atérmico</a>
+                <a href="tienda-bindaje-transparente.html">Blindaje Transparente</a>
+                <a href="tienda-barrera-antihongo.html">Barrera Antihongo</a>
+            </div>
+            <a class="drawer-link" href="index.html#confianza">Envíos y pagos</a>
+            <a class="drawer-link" href="index.html#mayoristas">Ventas mayoristas</a>
+            <a class="drawer-link" href="https://wa.me/5493512661626" target="_blank" rel="noopener noreferrer">Contacto</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- IMAGEN PROMOCIONAL PRINCIPAL -->
+        <section class="promo-hero" aria-label="Promoción Blindaje para Techos">
+            <img src="assets/images/compra.png" alt="Sellá tu techo. Blindaje para Techos – Blindaflex"/>
+        </section>
+
+        <!-- SELECTOR DE UBICACIÓN -->
+        <section class="location-section" aria-labelledby="location-heading">
+            <h1 class="section-title" id="location-heading">¿Desde dónde nos comprás?</h1>
+
+            <div class="cards-stack">
+                <!-- TARJETA CÓRDOBA Y ALREDEDORES -->
+                <article class="channel-card card-cordoba" aria-labelledby="cordoba-title">
+                    <div class="channel-card-top">
+                        <h2 class="channel-title" id="cordoba-title">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5a7 7 0 1 1 14 0C19 14.7 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                            Córdoba y alrededores
+                        </h2>
+                        <div class="financing-highlight">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                            <span>Hasta 15 cuotas sin interés</span>
+                        </div>
+                        <ul class="cordoba-perks">
+                            <li>
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Pagá al recibir tu pedido.</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span>Envío gratis.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="cta-btn btn-cordoba" href="https://tienda.blindaflex.com/tienda-blindaje-techos.html">
+                        Hacé tu pedido
+                    </a>
+                </article>
+
+                <!-- TARJETA RESTO DEL PAÍS (MERCADO LIBRE) -->
+                <article class="channel-card card-mercadolibre" aria-labelledby="ml-title">
+                    <div class="channel-card-top">
+                        <div class="ml-header-row">
+                            <h2 class="channel-title" id="ml-title">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1.5"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                                Resto del país
+                            </h2>
+                            <span class="ml-brand-badge"><img src="assets/images/mercadolibre.png" alt="Mercado Libre" width="120" height="36"/></span>
+                        </div>
+                        <p class="ml-subtitle">Comprá desde cualquier lugar de Argentina.<br/>Consultá las cuotas sin interés disponibles.</p>
+                    </div>
+                    <a class="cta-btn btn-mercadolibre" href="https://www.mercadolibre.com.ar/membrana-liquida-impermeabilizante-techos-20kg--blindaflex/up/MLAU5969930034?pdp_filters=item_id:MLA4215451588" target="_blank" rel="noopener noreferrer">
+                        Comprar por Mercado Libre
+                    </a>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE ASESORAMIENTO -->
+        <section class="advice-section" aria-labelledby="advice-heading">
+            <h2 class="advice-title" id="advice-heading">¿Necesitás asesoramiento?</h2>
+            <a class="cta-btn btn-whatsapp" href="https://wa.me/5493512661626" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3.2A12.7 12.7 0 0 0 5.1 22.4L3.3 29l6.8-1.8A12.8 12.8 0 1 0 16 3.2zm0 23.3c-2 0-4-.5-5.6-1.6l-.4-.2-4 1.1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.5zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>
+                Contactanos por WhatsApp
+            </a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        © 2026 BLINDAFLEX · Córdoba, Argentina
+    </footer>
+
+    <script>
+        (function () {
+            'use strict';
+            const toggleBtn = document.getElementById('menu-toggle');
+            const closeBtn = document.getElementById('drawer-close');
+            const drawer = document.getElementById('nav-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+
+            if (!toggleBtn || !drawer || !overlay) return;
+
+            function setMenuState(open) {
+                drawer.classList.toggle('is-open', open);
+                overlay.classList.toggle('is-open', open);
+                toggleBtn.setAttribute('aria-expanded', String(open));
+                drawer.setAttribute('aria-hidden', String(!open));
+                document.body.style.overflow = open ? 'hidden' : '';
+                if (open && closeBtn) {
+                    closeBtn.focus();
+                } else if (!open) {
+                    toggleBtn.focus();
+                }
+            }
+
+            toggleBtn.addEventListener('click', function () {
+                setMenuState(!drawer.classList.contains('is-open'));
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function () {
+                    setMenuState(false);
+                });
+            }
+
+            overlay.addEventListener('click', function () {
+                setMenuState(false);
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+                    setMenuState(false);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
