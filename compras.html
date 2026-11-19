@@ -31,7 +31,7 @@
             --c-ml-amarillo: #FFE600;
             --c-ml-azul: #3483FA;
             --c-ml-azul-hover: #2968c8;
-            --c-ml-marino: #2D3277;
+            --c-ml-marino: #090080;
             --c-wsp: #25D366;
             --c-wsp-dark: #1da851;
             --font-main: 'Inter', system-ui, -apple-system, sans-serif;
@@ -494,7 +494,7 @@
             font-size: 12px;
             font-weight: 800;
             letter-spacing: -0.01em;
-            box-shadow: 0 2px 6px rgba(45, 50, 119, 0.12);
+            box-shadow: 0 2px 6px rgba(9, 0, 128, 0.12);
         }
 
         .ml-brand-mark {
@@ -592,8 +592,8 @@
         .site-header { height: 52px; flex-shrink: 0; }
         .header-logo img { height: 36px; }
         main { padding: 10px 14px 12px; }
-        .promo-hero { margin-bottom: 10px; border-radius: 12px; aspect-ratio: 4 / 1; }
-        .promo-hero img { width: 100%; height: 100%; object-fit: contain; }
+        .promo-hero { margin-bottom: 12px; border-radius: 12px; border: 0; }
+        .promo-hero img { width: 100%; height: auto; display: block; }
         .location-section { margin-bottom: 10px; }
         .section-title { font-size: clamp(18px, 4.7vw, 24px); margin-bottom: 10px; }
         .cards-stack { gap: 10px; }
@@ -608,8 +608,12 @@
         .cordoba-perks svg { width: 16px; height: 16px; }
         .cta-btn { min-height: 44px; padding: 10px 12px; font-size: 15px; }
         .ml-header-row { gap: 6px; }
-        .ml-brand-badge { padding: 3px 7px; border-radius: 8px; }
-        .ml-brand-badge img { width: clamp(85px, 27vw, 120px); height: 27px; object-fit: contain; }
+        .ml-brand-badge { padding: 3px 8px; border-radius: 8px; box-shadow: none; }
+        .ml-brand-badge img { width: clamp(100px, 31vw, 155px); height: auto; max-height: 54px; object-fit: contain; }
+        .ml-payment { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 11px; font-weight: 600; color: var(--c-ml-marino); }
+        .ml-payment img { width: 90px; height: auto; max-height: 28px; object-fit: contain; }
+        .ml-payment-logo { background: white; padding: 3px 6px; border-radius: 4px; }
+        .ml-payment-logo[hidden] { display: none; }
         .ml-subtitle { font-size: 13px; line-height: 1.35; }
         .advice-section { padding: 10px 14px; border-radius: 14px; }
         .advice-title { font-size: 15px; margin-bottom: 6px; }
@@ -617,7 +621,7 @@
         .site-footer { padding: 7px 12px; font-size: 10px; border-top-width: 2px; }
         @media (min-width: 640px) {
             main { padding: 14px 20px; }
-            .promo-hero { max-height: 145px; }
+            .promo-hero { max-height: none; }
             .channel-card { padding: 15px 20px; }
         }
     </style>
@@ -712,6 +716,7 @@
                     <a class="cta-btn btn-mercadolibre" href="https://www.mercadolibre.com.ar/membrana-liquida-impermeabilizante-techos-20kg--blindaflex/up/MLAU5969930034?pdp_filters=item_id:MLA4215451588" target="_blank" rel="noopener noreferrer">
                         Comprar por Mercado Libre
                     </a>
+                    <div class="ml-payment">Pagás a través de <span class="ml-payment-logo"><img src="assets/images/mercadopago.png" alt="Mercado Pago" onerror="this.parentElement.hidden=true; this.parentElement.nextElementSibling.hidden=false"/></span><span hidden>Mercado Pago</span></div>
                 </article>
             </div>
         </section>
